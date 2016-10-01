@@ -160,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  minitest
   pg (~> 0.15)
   rails (= 4.2.6)
   rails_12factor
