@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get 'userpage/display'
   root "userpage#display"
+  
   #root 'home#index'  
   
   # The priority is based upon order of creation: first created -> highest priority.
