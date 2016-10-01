@@ -1,16 +1,34 @@
 <div class="starter-template">
 <center><h1>料理、いつくる?</h1></center>
 <center><h1>今の空き具合</h1></center>
-    <table class="table table-hover">
+
       <tr>
-        <th>順位</th>
-        <th>店名</th>
+        <h1><%= ranking.rank[0] ranking.restaurant[0] %></h1>
       </tr>
-      <% @rankings.each do |ranking| %>
+      
+      <br>
+      
       <tr>
-        <td><%= ranking.rank %></td>
-        <td><%= ranking.restaurant %></td>
+        <h2><%= ranking.rank[1] ranking.restaurant[1]%></h2>
       </tr>
-      <% end %>
+      
+      <br>
+      
+      <tr>
+        <h3><%= ranking.rank[2] ranking.restaurant[2] %></h3>
+      </tr>
+      
+      <br>
+      
+      <tr>
+        <h4><%= ranking.rank[3] ranking.restaurant[3] %></h4>
+      </tr>
+      
+      <br>
+      
+      <tr>
+        <h5><%= ranking.rank[4] ranking.restaurant[4] %></h5>
+      </tr>
+      
     </table>
 </div>
