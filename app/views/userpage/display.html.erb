@@ -1,38 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
 <link href="/css/main.css" rel="stylesheet" />
-
 <div class="main">
-<center><h1>料理、いつくる?</h1></center>
-<center><h1>今空いている順番</h1></center>
-<meta neme="refresh" content="3">
+<title>itswitter</title>
+</head>
 
-      <tr>
-	<center><h1><%= @sortrank[0][1]%></h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-	<center><h1><%= @sortrank[1][1]%></h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-	<center><h1><%= @sortrank[2][1]%></h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-	<center><h1><%= @sortrank[3][1]%></h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-	<center><h1><%= @sortrank[4][1]%></h1></center>
-      </tr>
-      
-    </table>
+<body>
+  <center><h1>料理、いつくる?</h1></center>
+  <center><h1>今空いている順番</h1></center>
+  <meta neme="refresh" content="3">
+  <tr>
+    <center><h1><%= @sortrank[0][1]%></h1></center>
+  </tr>
+  <br>
+  <tr>
+    <center><h1><%= @sortrank[1][1]%></h1></center>
+  </tr>
+  <br>
+  <tr>
+    <center><h1><%= @sortrank[2][1]%></h1></center>
+  </tr>
+  <br>
+  <tr>
+    <center><h1><%= @sortrank[3][1]%></h1></center>
+  </tr>
+  <br>
+  <tr>
+    <center><h1><%= @sortrank[4][1]%></h1></center>
+  </tr>
 <%=link_to "更新",:controller => "userpage",:action => "display2"%>
+</body>
+
 </div>
+
+</html>
