@@ -2,20 +2,19 @@
 class UserpageController < ApplicationController
   def display
     @ranking = Jam.all
-    
-    
-    @subrank = [[2,"あがり"],[1,"さんちくじゅ"],[3,"がりゅうや"],[5,"とりたま"],[4,"通堂"]]
-    @sortrank = @subrank
-    #@sortrank = @subrank.sort
-    
-    #redirect_to '/userpage/display'
+    #[seki,hito,namae]
+    @@subrank = [[20.0,19.0,"あがり"],[20.0,20.0,"さんちくじゅ"],[30.0,28.0,"がりゅうや"],[25.0,30.0,"とりたま"],[35.0,36.0,"通堂"]]
+    @nsortrank = @@subrank
   end
   
   def display2
-    
-    @subrank = [[2,"あがり"],[1,"さんちくじゅ"],[3,"がりゅうや"],[5,"とりたま"],[4,"通堂"]]
-    @sortrank = @subrank.sort
-    
+    @len_num = @@subrank.length - 1
+    @sennyuu = []
+    (0..@len_num).each{|num|
+      @sennyuu.push([@@subrank[num][1] / @@subrank[num][0] , 
+                      @@subrank[num][2]])
+    }
+    @sortrank = @sennyuu.sort
   end
   
 end
