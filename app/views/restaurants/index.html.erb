@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link href="/css/main.css" rel="stylesheet" />
+<div class="main">
+<title>itswitter</title>
+</head>
+
+<body>
+  <center><h1>料理、いつくる?</h1></center>
+  <center><h1>今空いている順番</h1></center>
+  <meta neme="refresh" content="10">
+  <% num=1 %>
+  <% @rank.each do |ranking| %>
+  <tr>
+    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％ </h1><center>
+  </tr>
+  <% num = num+1 %>
+  <% end %>
+  <br>
+</body>
+
+</div>
+
+</html>

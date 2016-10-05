@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'userpage/display'
+<<<<<<< HEAD
   root "userpage#display"
 
   get "investigators/index"
@@ -55,11 +56,11 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
+=======
+  get 'userpage/display2'
+  get "userpage/display" => "userpage#display"
+  resources :restaurants
+  root 'restaurants#index'
+>>>>>>> 95f7940a0576aa8e47d95508089bd664587a9db7
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end
