@@ -4,6 +4,7 @@ class CreateRestaurants < ActiveRecord::Migration
       t.string :name
       t.integer :num_seats
       t.integer :num_people
+      t.integer :seats_occ
 
       t.timestamps null: false
     end
