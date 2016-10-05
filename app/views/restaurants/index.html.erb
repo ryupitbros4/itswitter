@@ -10,10 +10,12 @@
   <center><h1>料理、いつくる?</h1></center>
   <center><h1>今空いている順番</h1></center>
   <meta neme="refresh" content="10">
-  <% (0..@len_num).each do |num| %>
+  <% num=1 %>
+  <% @rank.each do |ranking| %>
   <tr>
-    <center><h1> <%= num+1 %>位 <%= @rank[num][1] %> <%= @rank[num][0] %>% </h1><center>
+    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％ </h1><center>
   </tr>
+  <% num = num+1 %>
   <% end %>
   <br>
 </body>
