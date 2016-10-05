@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
-  get 'userpage/display'
-<<<<<<< HEAD
-  root "userpage#display"
+  get 'userpage/display2'
+  get "userpage/display" => "userpage#display"
+
+  resources :restaurants
+  root 'restaurants#index'
 
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
@@ -56,11 +58,5 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-=======
-  get 'userpage/display2'
-  get "userpage/display" => "userpage#display"
-  resources :restaurants
-  root 'restaurants#index'
->>>>>>> 95f7940a0576aa8e47d95508089bd664587a9db7
 
 end
