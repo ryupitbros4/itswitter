@@ -1,0 +1,10 @@
+<h1>料理、いつくる？</h1>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+<li>
+  <%= restaurant.name%> 占有率<%= @per_array[restaurant.id-1] %>％
+</li>
+<% end %>
+</ul>
+

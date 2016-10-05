@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get 'userpage/display'
   get 'userpage/display2'
   root "userpage#display"
-  
+
   get "userpage/display" => "userpage#display"
+
+  resources :restaurants
   #root 'home#index'  
   
   # The priority is based upon order of creation: first created -> highest priority.
