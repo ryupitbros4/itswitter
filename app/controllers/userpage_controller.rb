@@ -10,8 +10,10 @@ class UserpageController < ApplicationController
   def display2
     @len_num = @@subrank.length - 1
     @sennyuu = []
+    
     (0..@len_num).each{|num|
-      @sennyuu.push([@@subrank[num][1] / @@subrank[num][0] , 
+      @konzatu = ((@@subrank[num][1] / @@subrank[num][0])*100).to_i
+      @sennyuu.push([@konzatu , 
                       @@subrank[num][2]])
     }
     @sortrank = @sennyuu.sort
