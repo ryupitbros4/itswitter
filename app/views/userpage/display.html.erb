@@ -1,34 +1,13 @@
 <div class="starter-template">
 <center><h1>料理、いつくる?</h1></center>
 <center><h1>今の空き具合</h1></center>
-
+<% @ranking.each do |rank| %>
       <tr>
-       <center><h1>店1</h1></center>
+       <center><h1><%= rank.store %></h1></center>
+       <center><h3><%= rank.congestion %></h3><center>
       </tr>
-      
       <br>
-      
-      <tr>
-      <center><h1>店2</h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-       <center><h1>店3</h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-       <center><h1>店4</h1></center>
-      </tr>
-      
-      <br>
-      
-      <tr>
-       <center><h1>店5</h1></center>
-      </tr>
+<% end %>
       
     </table>
 </div>

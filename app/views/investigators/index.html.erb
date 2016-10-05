@@ -1,0 +1,11 @@
+<h1>調査ページ</h1>
+
+  <% @jams.each do |jam| %>
+    <tr>
+    <h2><%= jam.store %></h2>
+      <%= form_tag(dbupdate_path(jam.id)) do %>
+        店内外の人数:<%= number_field_tag :congestion, nil, min: 0 %>
+        <%= submit_tag '送信' %>
+      <% end %>
+    </tr>
+  <% end %>

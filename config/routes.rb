@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   
   get 'userpage/display'
   root "userpage#display"
+
+  get "investigators/index"
+  post "investigators/:id" => 'investigators#update', as: :dbupdate
+
   #root 'home#index'  
   
   # The priority is based upon order of creation: first created -> highest priority.
