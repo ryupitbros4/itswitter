@@ -14,7 +14,7 @@
   <% @rank.each do |ranking| %>
   <tr>
     <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％ 
-	<%= ranking.updated_at.strftime("%Y-%m-%d %H:%M:%S") %> </h1><center>
+	<%= ranking.updated_at.strftime("%m/%d %H:%M:%S") %> <%= Time.zone.now.strftime("%m/%d %H:%M:%S") %> </h1><center>
   </tr>
   <% num = num+1 %>
   <% end %>
