@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20161006151641) do
     t.integer  "num_people"
     t.integer  "seats_occ"
     t.datetime "created_at", null: false
-    t.datetime "updated_at"
+    t.datetime "updated_at", null: false
   end
 
 end
