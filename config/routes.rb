@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
   get "investigators/new" => 'investigators#new', as: :new_investigators
-  post "investigators/new" => 'investigators#create'
+  post "investigators" => 'investigators#create', as: :invest_update
+  
   #root 'home#index'  
   
   # The priority is based upon order of creation: first created -> highest priority.
