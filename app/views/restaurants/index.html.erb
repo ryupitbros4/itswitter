@@ -13,7 +13,19 @@
   <% num=1 %>
   <% @rank.each do |ranking| %>
   <tr>
-    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％ </h1><center>
+    <!-- 更新時間を計算 -->
+    <% t = (Time.zone.now - ranking.updated_at).to_i %>
+    <% time = nil %>
+    
+    <% if t/60 != 0 then %>
+    <% time = (t/60).to_s + "分前" %>
+    <% end %>
+    
+    <% if t/3600 != 0 then %>
+    <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
+    <% end %>
+    
+    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％</h1><%= time %><center>
   </tr>
   <% num = num+1 %>
   <% end %>
