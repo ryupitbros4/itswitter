@@ -1,12 +1,33 @@
-<h1>調査ページ</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" neme="refresh" content="3">
+    <title>混雑を通知するページ</title>
+  </head>
+  <body>
 
-  <% @restaurants.each do |jam| %>
-    <tr>
-    <h2><%= jam.name %>:<%= jam.seats_occ %>%</h2>
-      <%= form_tag(dbupdate_path(jam.id)) do %>
-        店内外の人数:<%= number_field_tag :congestion, jam.num_people, min: 0 %>
-        <%= submit_tag '送信' %>
-      <% end %>
-    </tr>
-  <% end %>
-  <p><%= link_to "新規登録", new_investigators_path %></p>
+    <h1>調査ページ</h1>
+    <table>
+    <% @restaurants.each do |jam| %>
+      <tr>
+        <th scope="col">
+          <%= jam.name %>
+        </th>
+
+        <th scope="col">
+          <%= jam.seats_occ %>%
+        </th>
+
+        <th scope="col">
+          <%= form_tag(dbupdate_path(jam.id)) do %>
+            店内外の人数:<%= number_field_tag :congestion, jam.num_people, min: 0 %>
+            <%= submit_tag '送信' %>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
+    </table>
+
+  </body>
+</html>
+
