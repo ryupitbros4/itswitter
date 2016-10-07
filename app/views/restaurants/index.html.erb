@@ -25,8 +25,7 @@
     <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
     <% end %>
     
-    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％ 
-	<%= ranking.updated_at.strftime("%m/%d %H:%M:%S") %></h1><%= time %><center>
+    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％</h1><%= time %><center>
   </tr>
   <% num = num+1 %>
   <% end %>
