@@ -15,5 +15,5 @@ store = Restaurant.new({name: '通堂', num_seats: '44', num_people: '22', seats
 store.save
 store = Restaurant.new({name: '鳥玉', num_seats: '26', num_people: '50', seats_occ: '0', hurigana: 'とりたま'})
 store.save
-store = Restaurant.new({name: '三竹寿', num_seats: '23', num_people: '30', seats_occ: '0', hurigana: 'さんちくじゅ'})
+store = Restaurant.new({name: '三竹寿', num_seats: '25', num_people: '30', seats_occ: '0', hurigana: 'さんちくじゅ'})
 store.save

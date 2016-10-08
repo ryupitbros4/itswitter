@@ -8,7 +8,7 @@
 
 <body>
   <center><h1>料理、いつくる?</h1></center>
-  <center><h1>今空いている順番</h1></center>
+  <center><h1>今空いている順番  座席占有率</h1></center>
   <meta neme="refresh" content="10">
   <% num=1 %>
   <% @rank.each do |ranking| %>
@@ -17,6 +17,10 @@
     <% t = (Time.zone.now - ranking.updated_at).to_i %>
     <% time = nil %>
     
+    <% if t<60 then %>
+    <% time = t.to_s + "秒前" %>
+    <% end %>
+
     <% if t/60 != 0 then %>
     <% time = (t/60).to_s + "分前" %>
     <% end %>
@@ -25,7 +29,7 @@
     <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
     <% end %>
     
-    <center><h1><%= num  %>位 <%= ranking.name %> <%= ranking.seats_occ %>％</h1><%= time %><center>
+    <center><h1><%= num  %>位 <%= ranking.name %>　　<%= ranking.seats_occ %>％</h1><%= time %><center>
   </tr>
   <% num = num+1 %>
   <% end %>
