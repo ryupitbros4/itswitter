@@ -1,0 +1,9 @@
+<h1>登録店舗削除ページ</h1>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+<li>
+  <%= restaurant.name %>   <%= link_to "[削除]",delete_path(restaurant.id),
+  method: :delete, data: {confirm: "削除してもよろしいですか"} %>
+</li>
+  <% end %>
+</ul>

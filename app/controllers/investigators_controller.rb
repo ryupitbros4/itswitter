@@ -21,4 +21,12 @@ class InvestigatorsController < ApplicationController
     redirect_to :investigators_index
   end
 
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+    redirect_to :investigators_delete
+  end
+  def delete
+    @restaurants = Restaurant.all
+end
 end
