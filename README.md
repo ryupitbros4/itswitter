@@ -17,5 +17,5 @@
 お店の現在の状況を知ることができるという強みがあります。
 
 
-heroku:https://dashboard.heroku.com/apps/limitless-mountain-59911
+heroku:https://limitless-mountain-59911.herokuapp.com
 
