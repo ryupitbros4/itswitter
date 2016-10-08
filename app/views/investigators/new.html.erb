@@ -1,0 +1,24 @@
+<h1>料理、いつくる</h1>
+<h2>店新規登録</h2>
+<p>num_peopleとseats_occは0でお願いします。</p>
+<%= form_for @investigator, url:invest_update_path do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :num_seats%>
+    <%= f.text_field :num_seats %>
+  </div>
+  <div>
+    <%= f.label :num_people %>
+    <%= f.text_field :num_people %>
+  </div>
+  <div>
+    <%= f.label :seats_occ%>
+    <%= f.text_field :seats_occ %>
+  </div>
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>

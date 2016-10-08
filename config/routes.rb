@@ -1,11 +1,14 @@
+# -*- coding: UTF-8 -*-
 Rails.application.routes.draw do
   
   resources :restaurants
   root 'restaurants#index'
-
+  
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
-
+  get "investigators/new" => 'investigators#new', as: :new_investigators
+  post "investigators" => 'investigators#create', as: :invest_update
+  
   #root 'home#index'  
   
   # The priority is based upon order of creation: first created -> highest priority.

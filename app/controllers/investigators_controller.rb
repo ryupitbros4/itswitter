@@ -12,4 +12,13 @@ class InvestigatorsController < ApplicationController
     redirect_to :investigators_index
   end
 
+  def new
+    @investigator = Restaurant.new
+  end
+
+  def create
+    @investigator = Restaurant.create(params.require(:restaurant).permit(:name, :num_seats, :num_people, :seats_occ))
+    redirect_to :investigators_index
+  end
+
 end
