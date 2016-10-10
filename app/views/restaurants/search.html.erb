@@ -1,0 +1,27 @@
+<link href="/css/main.css" rel="stylesheet" />
+<div class="main">
+  <center><h1>検索結果　座席占有率</h1></center>
+  <meta neme="refresh" content="10">
+  <% @searched.each do |ranking| %>
+    <tr>
+      <!-- 更新時間を計算 -->
+      <% t = (Time.zone.now - ranking.updated_at).to_i %>
+      <% time = nil %>
+
+      <% if t<60 then %>
+        <% time = t.to_s + "秒前" %>
+      <% end %>
+
+      <% if t/60 != 0 then %>
+        <% time = (t/60).to_s + "分前"  %>
+      <% end %>
+
+      <% if t/3600 != 0 then %>
+        <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
+      <% end %>
+
+      <center><h1><%= ranking.name %>　　<%= ranking.seats_occ %>％</h1><%= time %><center>
+    </tr>
+  <% end %>
+  <br>
+</div>
