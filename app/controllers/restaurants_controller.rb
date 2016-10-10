@@ -17,4 +17,8 @@ class RestaurantsController < ApplicationController
     @len_num = @rank.count
   end
 
+  def search
+    @searched = Restaurant.where("name like '%" + params[:name] + "%'" + "or hurigana like '%" + params[:name] + "%'")
+  end
+
 end

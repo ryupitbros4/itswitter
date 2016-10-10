@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<%= form_tag(restaurants_search_path) do %>
+  店名:<%= text_field_tag :name %>
+  <%= submit_tag '送信' %>
+<% end %>
+
 <%= yield %>
 <%= link_to "トップページ", root_path %>
 <%= link_to "新規作成", new_investigators_path %>
