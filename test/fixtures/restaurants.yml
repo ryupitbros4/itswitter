@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  num_seats: 1
-  num_people: 1
+#one:
+#  name: MyString
+#  num_seats: 1
+#  num_people: 1
 
-two:
-  name: MyString
-  num_seats: 1
-  num_people: 1
+#two:
+#  name: MyString
+#  num_seats: 1
+#  num_people: 1
