@@ -12,6 +12,11 @@
   店名:<%= text_field_tag :name %>
   <%= submit_tag '送信' %>
 <% end %>
+<% if @error.present? %>
+  <h2><%= @error %></h2>
+  <% @error = "" %>
+<% end %>
+
 
 <%= yield %>
 <%= link_to "トップページ", root_path %>
