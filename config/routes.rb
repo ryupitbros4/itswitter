@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'apply_page/index'
+
   resources :restaurants
   root 'restaurants#index'
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
