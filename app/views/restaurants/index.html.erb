@@ -1,30 +1,54 @@
 <link href="/css/main.css" rel="stylesheet" />
 <div class="main">
   <center><h1>料理、いつくる?</h1></center>
-  <center><h1>今空いている順番  座席占有率</h1></center>
-  <meta neme="refresh" content="10">
-  <% num=1 %>
-  <% @rank.each do |ranking| %>
-  <tr>
-    <!-- 更新時間を計算 -->
-    <% t = (Time.zone.now - ranking.updated_at).to_i %>
-    <% time = nil %>
-    
-    <% if t<60 then %>
-    <% time = t.to_s + "秒前" %>
-    <% end %>
 
-    <% if t/60 != 0 then %>
-    <% time = (t/60).to_s + "分前"  %>
-    <% end %>
-    
-    <% if t/3600 != 0 then %>
-    <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
-    <% end %>
-    
-    <center><h1><%= num  %>位 <%= ranking.name %>　　<%= ranking.seats_occ %>％</h1><%= time %><center>
-  </tr>
-  <% num = num+1 %>
+  <%= form_tag(restaurants_search_path) do %>
+    店名:<%= text_field_tag :name %>
+    <%= submit_tag '送信' %>
   <% end %>
+  <% if @error.present? %>
+    <h2><%= @error %></h2>
+    <% @error = "" %>
+  <% end %>
+
+  <center><h1>今ここが空いてるランキング</h1></center>
+  <center>
+    <table>
+      <tr>
+        <td><h1>順位</h1></td>
+        <td><h1>店名</h1></td>
+        <td><h1>混雑度</h1></td>
+        <td>最新更新時</td>
+      </tr>
+      <meta neme="refresh" content="10">
+      <% num=1 %>
+      <% @rank.each do |ranking| %>
+        <!-- 更新時間を計算 -->
+        <% t = (Time.zone.now - ranking.updated_at).to_i %>
+        <% time = nil %>
+
+        <% if t<60 then %>
+          <% time = t.to_s + "秒前" %>
+        <% end %>
+
+        <% if t/60 != 0 then %>
+          <% time = (t/60).to_s + "分前"  %>
+        <% end %>
+    
+        <% if t/3600 != 0 then %>
+          <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
+        <% end %>
+
+        <tr>
+          <td><h1><%= num  %>位</h1></td>
+          <td><h1><%= ranking.name %></h1></td>
+          <td><h1><%= ranking.seats_occ %>％</h1></td>
+          <td><%= time %></td>
+        </tr>
+
+        <% num = num+1 %>
+      <% end %>
+    </table>
+  </center>
   <br>
 </div>
