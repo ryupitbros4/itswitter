@@ -16,6 +16,6 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "1時間", sec2h(3600)
   end
   test "1時間より長い変換" do
-    assert_equal "1時間10分", sec2h(3700)
+    assert_equal "1時間1分40秒", sec2h(3700)
   end
 end
