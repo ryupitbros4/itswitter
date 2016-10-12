@@ -27,6 +27,7 @@ class InvestigatorsController < ApplicationController
     @restaurant.destroy
     redirect_to :investigators_delete
   end
+
   def delete
     @restaurants = Restaurant.all
 end
