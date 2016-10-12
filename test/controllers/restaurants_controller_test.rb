@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
+
   def setup
     Rails.application.load_seed
   end
@@ -15,3 +17,4 @@ class RestaurantsControllerTest < ActionController::TestCase
     end
   end
 end
+
