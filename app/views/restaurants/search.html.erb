@@ -5,24 +5,40 @@
     店名:<%= text_field_tag :name %>
     <%= submit_tag '送信' %>
   <% end %>
+<<<<<<< HEAD
   <h2><%= @error %></h2>
 
+=======
+  <% if @error.present? %>
+    <h2><%= @error %></h2>
+    <% @error = "" %>
+  <% end %>
+  
+>>>>>>> 64e1d75f9825e5d33717b69f8b8038fe8477cb51
   <center><h1>検索結果</h1></center>
   <center>
     <table>
-      <tr>
-        <td><h1>店名</h1></td>
-        <td><h1>混雑度</h1></td>
-        <td><h1>最新更新時</h1></td>
-      </tr>
+      <div class="container">
+	<div class="row">
+	  <tr>
+            <td class="col-sm-3"><h1>店名</h1></td>
+            <td class="col-sm-3"><h1>混雑度</h1></td>
+            <td class="col-sm-6"><h1>最新更新時</h1></td>
+	  </tr>
+	</div>
+      </div>
 
-      <% @searched.each do |ranking| %>
-        <tr>
-          <td><h1><%= ranking.name %></h1></td>
-          <td><h1><%= ranking.seats_occ %>％</h1></td>
-          <td><h1><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</h1></td>
-        </tr>
-      <% end %>
+      <div class="container">
+	<div class="row">
+	  <% @searched.each do |ranking| %>
+          <tr>
+            <td class="col-sm-3"><h1><%= ranking.name %></h1></td>
+            <td class="col-sm-3"><h1><%= ranking.seats_occ %>％</h1></td>
+            <td class="col-sm-6"><h1><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</h1></td>
+          </tr>
+	  <% end %>
+	</div>
+      </div>
     </table>
   </center>
   <br>
