@@ -20,26 +20,10 @@
       </tr>
 
       <% @searched.each do |ranking| %>
-
-        <!-- 更新時間を計算 -->
-        <% t = (Time.zone.now - ranking.updated_at).to_i %>
-        <% time = nil %>
-
-        <% if t<60 then %>
-          <% time = t.to_s + "秒前" %>
-        <% end %>
-
-        <% if t/60 != 0 then %>
-          <% time = (t/60).to_s + "分前"  %>
-        <% end %>
-
-        <% if t/3600 != 0 then %>
-          <% time = (t/3600).to_s + "時間" + (t/60 - (t/3600)*60).to_s + "分前" %>
-        <% end %>
         <tr>
           <td><h1><%= ranking.name %></h1></td>
           <td><h1><%= ranking.seats_occ %>％</h1></td>
-          <td><h1><%= time %></h1></td>
+          <td><h1><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</h1></td>
         </tr>
       <% end %>
     </table>

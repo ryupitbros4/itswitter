@@ -15,5 +15,6 @@
 *.[oa]
 *~
 \#*#
+.\#*
 
 config/database.yml
