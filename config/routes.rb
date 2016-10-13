@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'apply_page/index'
+  post 'apply_page/new' => 'apply_page/new', as: :apply_page_new
 
   resources :restaurants
   root 'restaurants#index'
