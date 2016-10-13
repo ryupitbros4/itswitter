@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Itswitter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Itswitter</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-default">
 
-<%= yield %>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+	<%= link_to "いつくる？", root_path, {class: 'navbar-brand'} %>
+      </div>
+
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+	  <li><%= link_to "申請", apply_page_index_path %></li>
+      </div>
+
+    </nav>
+
+
+    <%= yield %>
+
 <%= link_to "トップページ", root_path %>
 <%= link_to "新規作成", new_investigators_path %>
 <%= link_to "調査員ページ", investigators_index_path %>
