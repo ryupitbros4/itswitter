@@ -2,14 +2,13 @@
 <h2>店新規登録</h2>
 
 <% if @investigator.errors.any? %>
+<%=@investigator.errors.inspect%>
   <div class="text-danger">
     <h2><%= @investigator.errors.count %>件のエラーがあります</h2>
     <ul>
-      <% @investigator.errors.messages.keys.each do |key| %>
-        <% @investigator.errors.messages[key].each do |msg| %>
-         <li><%= msg  %></li>
-        <% end %>
-      <% end %>
+    <% @investigator.errors.messages.keys.each do |msg| %>
+    <li><%= @investigator.errors.messages[msg][0] %></li>
+    <% end %>
     </ul>
   </div>
 <% end %>
