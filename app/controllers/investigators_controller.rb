@@ -18,7 +18,8 @@ class InvestigatorsController < ApplicationController
   end
 
   def create
-    @investigator = Restaurant.create(params.require(:restaurant).permit(:name, :hurigana, :num_seats))
+    new_rest = params.require(:restaurant).permit(:name, :hurigana, :num_seats)
+    @investigator = Restaurant.new(new_rest)
     if @investigator.save
       redirect_to :investigators_index
     else
