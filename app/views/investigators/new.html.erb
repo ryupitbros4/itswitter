@@ -4,14 +4,23 @@
   <div>
     <%= f.label :店名 %>
     <%= f.text_field :name %>
+    <% if @investigator.errors.any? %>
+    <%= @investigator.errors.messages[:name][0] %>
+    <% end %>
   </div>
   <div>
     <%= f.label :ふりがな%>
     <%= f.text_field :hurigana %>
+    <% if @investigator.errors.any? %>
+    <%= @investigator.errors.messages[:hurigana][0] %>
+    <% end %>
   </div>
   <div>
     <%= f.label :席数%>
     <%= f.text_field :num_seats %>
+    <% if @investigator.errors.any? %>
+    <%= @investigator.errors.messages[:num_seats][0] %>
+    <% end %>
   </div>
   <div>
     <%= f.submit "登録" %>

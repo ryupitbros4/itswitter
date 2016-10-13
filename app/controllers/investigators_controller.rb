@@ -19,7 +19,11 @@ class InvestigatorsController < ApplicationController
 
   def create
     @investigator = Restaurant.create(params.require(:restaurant).permit(:name, :hurigana, :num_seats))
-    redirect_to :investigators_index
+    if @investigator.save
+      redirect_to :investigators_index
+    else
+      render 'new'
+    end
   end
 
   def destroy
