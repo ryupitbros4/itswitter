@@ -1,6 +1,19 @@
 <h1>料理、いつくる</h1>
 <h2>店新規登録</h2>
 
+<% if @investigator.errors.any? %>
+  <div class="text-danger">
+    <h2><%= @investigator.errors.count %>件のエラーがあります</h2>
+    <ul>
+      <% @investigator.errors.messages.keys.each do |key| %>
+        <% @investigator.errors.messages[key].each do |msg| %>
+         <li><%= msg  %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @investigator, url:invest_update_path do |f| %>
   <div>
     <%= f.label :店名 %>
