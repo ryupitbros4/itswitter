@@ -35,5 +35,6 @@ class InvestigatorsController < ApplicationController
 
   def delete
     @restaurants = Restaurant.all
-end
+  end
+
 end
