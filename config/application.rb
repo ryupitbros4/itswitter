@@ -27,9 +27,6 @@ module Itswitter
     #エラー時レイアウト崩さない
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       %Q(#{html_tag}).html_safe
-
-    config.web_console.whitelisted_ips = '10.0.2.2'
-
     end
   end
 end
