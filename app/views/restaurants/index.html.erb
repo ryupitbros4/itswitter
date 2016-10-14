@@ -1,16 +1,22 @@
 <link href="/css/main.css" rel="stylesheet" />
 <div class="main">
-  <center><h1>料理、いつくる?</h1></center>
-
-  <%= form_tag(restaurants_search_path) do %>
-    店名:<%= text_field_tag :name %>
-    <%= submit_tag '送信' %>
-  <% end %>
-
-  <center><h1>今ここが空いてるランキング</h1></center>
+  <div style="margin-top:200px">
+    <div style="margin-bottom:200px">
+      <center><font size="10">料理、いつくる?</font></center>
+      <%= form_tag(restaurants_search_path) do %>
+      店名:<%= text_field_tag :name %>
+      <%= submit_tag '送信' %>
+      <% end %>
+    </div>
+  </div>
   
- <center> 
-    <table>
+  
+  <hr>
+  <div style="border">
+    <center><h1>今ここが空いてるランキング</h1></center>
+  </div>
+<!-- <center> -->
+    <table class="table table-bordered table-condensed">
      <div class="container">
     	<div class="row">
     	  <tr>
@@ -37,6 +43,6 @@
 	</div>
       </div>
     </table>
- </center>
+<!-- </center> -->
  <br>
 </div>
