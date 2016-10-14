@@ -1,3 +1,4 @@
+<link href="/css/main.css" rel="stylesheet" />
 <h1>店の新規申請</h1>
 <%= form_for @apply, url:apply_page_new_path do |f| %>
   <div>
@@ -12,8 +13,12 @@
     <%= f.submit "登録" %>
   </div>
 <% end %>
-
-<h1>申請中リスト</h1>
+<br>
+<div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
+  
+  <h1>申請記録</h1>
+  
+</div>
 <% @applies.each do |apply| %>
   <h2><%= apply.apply_restaurant %>　<%= apply.free %></h2>
 <% end %>
