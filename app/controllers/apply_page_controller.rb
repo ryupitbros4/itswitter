@@ -5,8 +5,14 @@ class ApplyPageController < ApplicationController
   end
 
   def new
-    @apply = Apply.create(params.require(:apply).permit(:apply_restaurant, :free))
-    redirect_to :apply_page_index
+    @apply = Apply.new(params.require(:apply).permit(:apply_restaurant, :free))
+    if @apply.save
+      redirect_to :apply_page_index
+    else
+      @applies = Apply.all
+      render 'index'
+    end
+
   end
 
 end
