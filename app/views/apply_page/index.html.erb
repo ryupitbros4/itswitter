@@ -15,10 +15,10 @@
 <% end %>
 <br>
 <div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
-  
-  <h1>申請記録</h1>
-  
+  <center><h1>申請記録</h1></center> 
 </div>
+<% num = 1 %>
 <% @applies.each do |apply| %>
-  <h2><%= apply.apply_restaurant %>　<%= apply.free %></h2>
+  <h2> <%= num %> . <u><%= apply.apply_restaurant %></u> <%= apply.free %></h2>
+  <% num = num + 1 %>
 <% end %>
