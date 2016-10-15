@@ -1,3 +1,4 @@
+<link href="/css/main.css" rel="stylesheet" />
 <h1>店の新規申請</h1>
 
 <% if @apply.errors.any? %>
@@ -20,8 +21,12 @@
     <%= f.submit "登録" %>
   </div>
 <% end %>
-
-<h1>申請中リスト</h1>
-<% @applies.each do |app| %>
-  <h2><%= app.apply_restaurant %>　<%= app.free %></h2>
+<br>
+<div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
+  <center><h1>申請記録</h1></center> 
+</div>
+<% num = 1 %>
+<% @applies.each do |apply| %>
+  <h2> <%= num %> . <u><%= apply.apply_restaurant %></u> <%= apply.free %></h2>
+  <% num = num + 1 %>
 <% end %>
