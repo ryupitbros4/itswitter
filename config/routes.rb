@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :restaurants
   root 'restaurants#index'
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
+  get 'restaurants/search' => 'restaurants#index'
   
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
