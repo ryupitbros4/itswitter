@@ -1,6 +1,14 @@
 <link href="/css/main.css" rel="stylesheet" />
 <h1>店の新規申請</h1>
+
+<% if @apply.errors.any? %>
+  <ul>
+    <h2><%= @apply.errors.messages[:apply_restaurant][0] %></h2>
+  </ul>
+<% end %>
+
 <%= form_for @apply, url:apply_page_new_path do |f| %>
+
   <div>
     <%= f.label :店名 %>
     <%= f.text_field :apply_restaurant %>
