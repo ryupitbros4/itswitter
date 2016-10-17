@@ -3,7 +3,7 @@
   <meta neme="refresh" content="10">
   <%= form_tag(restaurants_search_path) do %>
     店名:<%= text_field_tag :name %>
-    <%= submit_tag '送信' %>
+    <%= submit_tag '検索' %>
   <% end %>
   <h2><%= @error %></h2>
   
