@@ -9,3 +9,8 @@ two:
   name: te_st
   num_seats: 1
   num_people: 1
+
+three:
+  name: te\st
+  num_seats: 1
+  num_people: 1

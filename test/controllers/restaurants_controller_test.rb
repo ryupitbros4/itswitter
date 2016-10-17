@@ -28,5 +28,11 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 2, assigns(:searched).length
   end
+
+  test "\\で検索ができる" do
+    post :search, name: '\\'
+    assert_response :success
+    assert_equal 1, assigns(:searched).length
+  end
 end
 
