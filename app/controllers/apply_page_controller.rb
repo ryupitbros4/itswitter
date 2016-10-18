@@ -6,7 +6,12 @@ class ApplyPageController < ApplicationController
 
   def new
     @apply = Apply.new(params.require(:apply).permit(:apply_restaurant, :free))
-    redirect_to :apply_page_index
+    if @apply.save
+      redirect_to :apply_page_index
+    else
+      @applies = Apply.all.order(id: :desc)
+      render 'index'
+    end
   end
 
 end
