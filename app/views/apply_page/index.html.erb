@@ -8,6 +8,7 @@
 <% end %>
 
 <%= form_for @apply, url:apply_page_new_path do |f| %>
+
 <br>
   <div>
     <%= f.label :店名 %>
@@ -15,15 +16,13 @@
   </div>
     
   <br>
-
-  <div class="container">
-    <div class="form-group">
-	<%= f.label :フリースペース %>
-	<br>
-	<%= f.text_area :free, cols:80, rows:10 %>
-    </div>
+  
+  <div>
+    <%= f.label :フリースペース %>
+    <br>
+    <%= f.text_area :free, cols:50, rows:10 %>
   </div>
-
+  
   <div>
     <%= f.submit "登録" %>
   </div>
