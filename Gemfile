@@ -31,3 +31,6 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'minitest-rails-capybara', '~> 2.1.1'
+end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'apply_page/index'
-  post 'apply_page/new' => 'apply_page/new', as: :apply_page_new
+  post 'apply_page/index' => 'apply_page#new', as: :apply_page_new
 
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'

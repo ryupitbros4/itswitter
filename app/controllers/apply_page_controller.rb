@@ -12,7 +12,6 @@ class ApplyPageController < ApplicationController
       @applies = Apply.all.order(id: :desc)
       render 'index'
     end
-
   end
 
 end
