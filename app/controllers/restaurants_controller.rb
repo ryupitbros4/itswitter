@@ -18,7 +18,8 @@ class RestaurantsController < ApplicationController
   end
 
   def search
-    @searched = Restaurant.where("name like '%" + params[:name] + "%'" + "or hurigana like '%" + params[:name] + "%'")
+    escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
+    @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
     if @searched.empty?
       @error = "検索ワードがヒットしませんでした。もう一度入れなおして下さい。"
     end
