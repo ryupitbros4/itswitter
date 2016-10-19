@@ -7,13 +7,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-store = Restaurant.new({name: 'あがり', num_seats: '20', num_people: '5', seats_occ: '0', hurigana: 'あがり'})
+store = Restaurant.new({name: 'あがり', num_seats: '20', num_people: '5', seats_occ: '0', hurigana: 'あがり', crowdedness: '1'})
 store.save
-store = Restaurant.new({name: '我流屋', num_seats: '24', num_people: '24', seats_occ: '0', hurigana: 'がりゅうや'})
+store = Restaurant.new({name: '我流屋', num_seats: '24', num_people: '24', seats_occ: '0', hurigana: 'がりゅうや', crowdedness: '1'})
 store.save
-store = Restaurant.new({name: '通堂', num_seats: '44', num_people: '22', seats_occ: '0', hurigana: 'とんどう'})
+store = Restaurant.new({name: '通堂', num_seats: '44', num_people: '22', seats_occ: '0', hurigana: 'とんどう', crowdedness: '1'})
 store.save
-store = Restaurant.new({name: '鳥玉', num_seats: '26', num_people: '50', seats_occ: '0', hurigana: 'とりたま'})
+store = Restaurant.new({name: '鳥玉', num_seats: '26', num_people: '50', seats_occ: '0', hurigana: 'とりたま', crowdedness: '1'})
 store.save
-store = Restaurant.new({name: '三竹寿', num_seats: '25', num_people: '30', seats_occ: '0', hurigana: 'さんちくじゅ'})
+store = Restaurant.new({name: '三竹寿', num_seats: '25', num_people: '30', seats_occ: '0', hurigana: 'さんちくじゅ', crowdedness: '1'})
 store.save
