@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class RestaurantsController < ApplicationController
+  
+  before_action :set_restaurants, only: [:report, :deliver]
 
   def index
     @restaurants = Restaurant.all
@@ -23,6 +25,23 @@ class RestaurantsController < ApplicationController
     if @searched.empty?
       @error = "検索ワードがヒットしませんでした。もう一度入れなおして下さい。"
     end
+  end
+  
+  def report
+    @restaurant = Restaurant.new()
+  end
+  
+  def deliver
+    restaurant = Restaurant.find(params[:restaurant][:id])
+    restaurant.crowdedness = params[:restaurant][:crowdedness]
+    restaurant.save
+    redirect_to :root
+  end
+
+  private
+
+  def set_restaurants
+    @restaurant_names = Restaurant.all.pluck(:name, :id)
   end
 
 end
