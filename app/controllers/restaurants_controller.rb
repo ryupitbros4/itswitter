@@ -34,6 +34,7 @@ class RestaurantsController < ApplicationController
   def deliver
     id = params[:restaurant][:id]
     if id.blank?
+      flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants and return
     end
     restaurant = Restaurant.find(id)
