@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20161019115622) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "jams", force: :cascade do |t|
+    t.text     "store"
+    t.integer  "congestion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.integer  "num_seats"
