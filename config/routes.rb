@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   
   get 'demands/index'
-
-  get 'demand/index'
-  post 'demand/index' => 'demand#new', as: :demand_new
+  post 'demands/index' => 'demands#new', as: :demands_new
   
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'

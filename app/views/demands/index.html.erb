@@ -1,2 +1,38 @@
-<h1>Demands#index</h1>
-<p>Find me in app/views/demands/index.html.erb</p>
+<link href="/css/main.css" rel="stylesheet" />
+<h1>店の新規申請</h1>
+
+<% if @demand.errors.any? %>
+  <ul>
+    <h2><%= @demand.errors.messages[:demand_restaurant][0] %></h2>
+  </ul>
+<% end %>
+
+<%= form_for @demand, url:demand_new_path do |f| %>
+
+<br>
+  <div>
+    <%= f.label :店名 %>
+    <%= f.text_field :demand_restaurant %>
+  </div>
+    
+  <br>
+  
+  <div>
+    <%= f.label :フリースペース %>
+    <br>
+    <%= f.text_area :free, cols:50, rows:10 %>
+  </div>
+  
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+<br>
+<div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
+  <center><h1>申請記録</h1></center> 
+</div>
+<% num = 1 %>
+<% @demands.each do |demand| %>
+  <h2> <%= num %> . <u><%= demand.demand_restaurant %></u> <%= demand.free %></h2>
+  <% num = num + 1 %>
+<% end %>
