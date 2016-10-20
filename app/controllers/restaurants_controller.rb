@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class RestaurantsController < ApplicationController
   
-  before_action :set_restaurants, only: [:report]
+  before_action :set_restaurants, only: [:report, :deliver]
 
   def index
     @restaurants = Restaurant.all
@@ -29,10 +29,15 @@ class RestaurantsController < ApplicationController
   
   def report
     @restaurant = Restaurant.new()
-    @restaurant_names = Restaurant.all.pluck(:name, :id)
-    
   end
   
+  def deliver
+    restaurant = Restaurant.find(params[:restaurant][:id])
+    restaurant.crowdedness = params[:restaurant][:crowdedness]
+    restaurant.save
+    redirect_to :root
+  end
+
   private
 
   def set_restaurants

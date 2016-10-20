@@ -1,12 +1,12 @@
 <h1>お店の情報</h1>
-<%= form_for @restaurant do |f| %>
+<%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
   <%= f.select :id ,@restaurant_names, prompt: '選択してください' %> </br>
-  <%= f.radio_button :seats_occ, 10 %>　空いてる </br>
-  <%= f.radio_button :seats_occ, 20 %>　やや混み </br>
-  <%= f.radio_button :seats_occ, 30 %>　混んでる </br>
-  <%= f.radio_button :seats_occ, 40 %>　外にも人がいる </br>
-  <%= f.radio_button :seats_occ, 50 %>　外にたくさん人がいる </br>
+  <%= f.radio_button :crowdedness, 1 %>　空いてる </br>
+  <%= f.radio_button :crowdedness, 2 %>　やや混み </br>
+  <%= f.radio_button :crowdedness, 3 %>　混んでる </br>
+  <%= f.radio_button :crowdedness, 4 %>　外にも人がいる </br>
+  <%= f.radio_button :crowdedness, 5 %>　外にたくさん人がいる </br>
   <%= f.submit "伝える"%>
 <% end %>
 
