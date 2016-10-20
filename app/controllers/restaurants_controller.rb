@@ -32,7 +32,11 @@ class RestaurantsController < ApplicationController
   end
   
   def deliver
-    restaurant = Restaurant.find(params[:restaurant][:id])
+    id = params[:restaurant][:id]
+    if id.blank?
+      redirect_to :report_restaurants and return
+    end
+    restaurant = Restaurant.find(id)
     restaurant.crowdedness = params[:restaurant][:crowdedness]
     restaurant.save
     redirect_to :root
