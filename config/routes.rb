@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'demand/index'
+
   get 'apply_page/index'
   post 'apply_page/index' => 'apply_page#new', as: :apply_page_new
 
