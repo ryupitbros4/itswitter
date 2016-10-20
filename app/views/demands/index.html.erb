@@ -7,7 +7,7 @@
   </ul>
 <% end %>
 
-<%= form_for @demand, url:demand_new_path do |f| %>
+<%= form_for @demand, url:demands_new_path do |f| %>
 
 <br>
   <div>
@@ -32,6 +32,7 @@
   <center><h1>申請記録</h1></center> 
 </div>
 <% num = 1 %>
+
 <% @demands.each do |demand| %>
   <h2> <%= num %> . <u><%= demand.demand_restaurant %></u> <%= demand.free %></h2>
   <% num = num + 1 %>
