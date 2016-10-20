@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
   
   get 'apply_page/index'
-  post 'apply_page/new' => 'apply_page/new', as: :apply_page_new
+  post 'apply_page/index' => 'apply_page#new', as: :apply_page_new
 
-  resources :restaurants
-  root 'restaurants#index'
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
+  get 'restaurants/search' => 'restaurants#index'
   
+  resources :restaurants do 
+    collection do
+      get 'report'
+      post 'deliver'
+    end
+  end 
+  root 'restaurants#index'
+ 
+
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
   get "investigators/new" => 'investigators#new', as: :new_investigators

@@ -3,11 +3,14 @@
   <meta neme="refresh" content="10">
   <%= form_tag(restaurants_search_path) do %>
     店名:<%= text_field_tag :name %>
-    <%= submit_tag '送信' %>
+    <%= submit_tag '検索' %>
   <% end %>
   <h2><%= @error %></h2>
+  
+  <div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
+    <center><h1>検索一覧</h1></center>
+  </div>
 
-  <center><h1>検索結果</h1></center>
   <center>
     <table>
       <div class="container">

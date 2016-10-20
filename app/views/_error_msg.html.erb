@@ -1,0 +1,3 @@
+<% flash.each do |t, m| %>
+  <%= content_tag "div", m, :class => "alert alert-#{t}"  %>
+<% end %>
