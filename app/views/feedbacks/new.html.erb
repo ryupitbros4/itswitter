@@ -1,0 +1,17 @@
+<%= render '/input_msg', object: @feedback %>
+<%= form_for @feedback do |f| %>
+<div>
+  <%= f.label :名前 %>
+  <% @feedback.name = "匿名" %>
+  <%= f.text_field :name %>
+</div>
+<br>
+
+<p><%= f.label :ご意見 %></p>
+
+  <%= f.text_area :opinion, cols:50, rows:10 %>
+
+<div>
+  <%= f.submit "登録" %>
+</div>
+<% end %>

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end 
   root 'restaurants#index'
- 
 
   get "investigators/index"
   post "investigators/:id" => 'investigators#update', as: :dbupdate
@@ -21,8 +20,9 @@ Rails.application.routes.draw do
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete
   get "investigators/delete"
-  
-  #root 'home#index'  
+
+  resources :feedbacks
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
