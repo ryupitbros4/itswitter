@@ -16,11 +16,10 @@
      <div class="container">
     	<div class="row">
     	  <tr>
-            <td class="col-md-1"><h2>順位</h2></td>
-            <td class="col-md-3"><h2>店名</h2></td>
-	    <td class="col-md-2"><h2>混雑度</h2></td>
-            <td class="col-md-3"><h2>詳細人数</h2></td>
-            <td class="col-md-3"><h2>最新更新時</h2></td>
+            <td class="col-md-2"><h2>順位</h2></td>
+            <td class="col-md-5"><h2>店名</h2></td>
+	    <td class="col-md-5"><h3>混雑度</h3><br>
+	      最新更新時</td>
     	  </tr>
     	</div>
      </div>
@@ -30,11 +29,10 @@
 	  <% num=1 %>
 	  <% @rank.each do |ranking| %>
           <tr>
-            <td class="col-md-1"><h2><%= num  %>位</h2></td>
-            <td class="col-md-3"><h2><%= ranking.name %></h2></td>
-	    <td class="col-md-2"><h2><%= ranking.crowdedness %></h2></td>
-            <td class="col-md-2"><h2><%= ranking.seats_occ %>％</h2></td>
-            <td class="col-md-3"><h2><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</h2></td>
+            <td class="col-md-2"><h2><%= num  %>位</h2></td>
+            <td class="col-md-5"><h2><%= ranking.name %></h2></td>
+	    <td class="col-md-5"><h3><%= ranking.crowdedness %></h3><br>
+	      <%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <% num = num+1 %>
 	  <% end %>
