@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class FeedbacksController < ApplicationController
 
   def index
@@ -11,9 +12,10 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
-      redirect_to :feedbacks
+      redirect_to :new_feedback, notice: 
+      'ご意見ありがとうございました。送信しました'
     else
-      render 'new'
+      render 'new', alert: '送信できませんでした'
     end
   end
 

@@ -1,4 +1,16 @@
 <%= render '/input_msg', object: @feedback %>
+
+<% if flash[:notice] %>
+<div class="alert alert-success">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+<% if flash[:alert] %>
+<div class="alert alert-denger">
+  <%= flash[:alert] %>
+</div>
+<% end %>
+
 <%= form_for @feedback do |f| %>
 <div>
   <%= f.label :名前 %>

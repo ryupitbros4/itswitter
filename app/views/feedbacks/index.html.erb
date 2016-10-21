@@ -1,5 +1,5 @@
 <h1>ユーザーのご意見</h1>
-<% @feedbacks.each do |feedback|%>
+<% @feedbacks.reverse_each do |feedback|%>
 <div>
   <% if !feedback.archive %>
   <h3><%= feedback.name %></h3>
@@ -10,11 +10,11 @@
 </div>
 <% end %>
 
-
+<hr size="3">
 <div>
   <h1>archiv</h1>
 
-  <% @feedbacks.each do |feedback|%>
+  <% @feedbacks.reverse_each do |feedback|%>
   <div>
     <% if feedback.archive %>
     <h3><%= feedback.name %></h3>
