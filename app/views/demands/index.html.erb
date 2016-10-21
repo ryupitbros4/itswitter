@@ -1,4 +1,3 @@
-<link href="/css/main.css" rel="stylesheet" />
 <h1>店の新規申請</h1>
 
 <% if @demand.errors.any? %>
@@ -28,9 +27,8 @@
   </div>
 <% end %>
 <br>
-<div style="border-style: solid ; border-width: 1px; padding: 8px 5px 8px 5px; border-color: white;">
   <center><h1>申請記録</h1></center> 
-</div>
+
 <% num = 1 %>
 
 <% @demands.each do |demand| %>
