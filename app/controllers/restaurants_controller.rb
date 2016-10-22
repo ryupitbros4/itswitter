@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
       restaurant.save
     end
     #占有率が低い順に並び替える
-    @rank=Restaurant.order('seats_occ')
+    @rank=Restaurant.order('crowdedness')
     @len_num = @rank.count
   end
 
@@ -33,10 +33,17 @@ class RestaurantsController < ApplicationController
   
   def deliver
     id = params[:restaurant][:id]
+
     if id.blank?
       flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants and return
     end
+
+    if params[:restaurant][:crowdedness].blank?
+      flash[:warning] = '混雑度を選択して下さい'
+      redirect_to :report_restaurants and return
+    end
+
     restaurant = Restaurant.find(id)
     restaurant.crowdedness = params[:restaurant][:crowdedness]
     restaurant.save

@@ -3,11 +3,11 @@
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
   <%= f.select :id ,@restaurant_names, prompt: '選択してください' %> </br>
-  <%= f.radio_button :crowdedness, 1 %>　空いてる </br>
-  <%= f.radio_button :crowdedness, 2 %>　やや混み </br>
-  <%= f.radio_button :crowdedness, 3 %>　混んでる </br>
-  <%= f.radio_button :crowdedness, 4 %>　外にも人がいる </br>
-  <%= f.radio_button :crowdedness, 5 %>　外にたくさん人がいる </br>
+  <h1><%= f.radio_button :crowdedness, 1, {:id => 'garagara'} %>　空いてる </h1></br>
+  <h1><%= f.radio_button :crowdedness, 2, {:id => 'yayakomi'} %>　やや混み </h1></br>
+  <h1><%= f.radio_button :crowdedness, 3, {:id => 'komi'} %>　混んでる </h1></br>
+  <h1><%= f.radio_button :crowdedness, 4, {:id => 'yayamachi'} %>　外にも人がいる </h1></br>
+  <h1><%= f.radio_button :crowdedness, 5, {:id => 'machi'} %>　外にたくさん人がいる </h1></br>
   <%= f.submit "伝える"%>
 <% end %>
 

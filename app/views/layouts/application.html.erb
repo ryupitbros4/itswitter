@@ -6,6 +6,7 @@
     <title>Itswitter</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
+    <%= stylesheet_link_tag    'icon' , media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -35,6 +36,7 @@
     <footer class="footer">
       <div class="container">
 	<p class="text-muted"> 2016@enPit
+          <%= link_to "混雑度申請用ページ", report_restaurants_path, {class: "text-muted"} %>
 	</p>
       </div>
     </footer>
