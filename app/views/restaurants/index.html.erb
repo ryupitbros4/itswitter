@@ -1,43 +1,38 @@
-<link href="/css/main.css" rel="stylesheet" />
-<div class="main">
-  <div style="margin-top:200px">
-    <div style="margin-bottom:200px">
-      <center><font size="10">すいてる？</font></center>
-      <%= form_tag(restaurants_search_path) do %>
-      店名:<%= text_field_tag :name %>
-      <%= submit_tag '検索' %>
+  <div class="jumbotron">
+    <center><h1>Suitell</h1>
+      <p>飯、待てぬ、食わねば。</p>
+      <%= form_tag(restaurants_search_path) do |f| %>
+	<div class="input-group">
+	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: 'Search for...' %>
+          <span class="input-group-btn">
+   	    <%= button_tag '検索', class: 'btn btn-default' %>
+          </span>
+	</div>
       <% end %>
-    </div>
+    </center>
   </div>
   
-  <hr>
-    <center><h1>今、空いてる順</h1></center>
-    <table class="table table-bordered table-condensed;">
-     <div class="container">
-    	<div class="row">
-    	  <tr>
-            <td class="col-md-2"><h2>順位</h2></td>
-            <td class="col-md-5"><h2>店名</h2></td>
-	    <td class="col-md-5"><h3>混雑度</h3><br>
-	      最新更新時</td>
-    	  </tr>
-    	</div>
-     </div>
-      <meta neme="refresh" content="10">
-      <div class="container">
-        <div class="row">
-	  <% num=1 %>
-	  <% @rank.each do |ranking| %>
+  <center><h1>今、空いてる順</h1></center>
+    <table class="table table-hover">
+      <thead>
+    	<tr>
+          <th class="col-md-1">順位</th>
+          <th class="col-md-4">店名</th>
+	  <th class="col-md-4">混雑度</th>
+	  <th class="col-md-3">最新更新時</th>
+    	</tr>
+      </thead>
+      <tbody>
+	<% num=1 %>
+	<% @rank.each do |ranking| %>
           <tr>
-            <td class="col-md-2"><h2><%= num  %>位</h2></td>
-            <td class="col-md-5"><h2><%= ranking.name %></h2></td>
-	    <td class="col-md-5"><h3><%= ranking.crowdedness %></h3><br>
-	      <%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+            <th scope="row" class="col-md-1"><%= num  %>位</th>
+            <td class="col-md-4"><%= ranking.name %></td>
+	    <td class="col-md-4"><%= @how_crowded[ranking.crowdedness] %></td>
+	    <td class="col-md-3"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <% num = num+1 %>
-	  <% end %>
-	</div>
-      </div>
+	<% end %>
+      </tbody>
     </table>
-    <br>
-</div>
+   
