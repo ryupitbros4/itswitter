@@ -220,3 +220,44 @@
   color: rgb(21, 23, 24);
 }
 
+#garagara {
+    background: url(/assets/garagara-e8006f2fb76c74e3a6fd225b26297cdd2ebde8d560ef6714f014fbc4f727c785.png);
+    background-size: 60px 60px;
+}
+
+#yayakomi {
+    background: url(/assets/yayakomi-4c9fbce0fd3c40eeb0118849709889400c0761774c6135a354eb795bf7642845.png);
+    background-size: 60px 60px;
+}
+
+#komi {
+    background: url(/assets/komi-1090aac8483151d404de83e95b14567ebc189c956df5fc1acf3bc71627a04629.png);
+    background-size: 60px 60px;
+}
+
+#yayamachi {
+    background: url(/assets/yayamachi-403ddb5a037422ebfe05e08f7a0d9f4abc5e8d9e2228e7f111ec31b45d054120.png);
+    background-size: 60px 60px;
+}
+
+#machi {
+    background: url(/assets/machi-76e8fede88ad759dcef80569cc65795028e96dd925c6f5a606b1fe9466482308.png);
+    background-size: 60px 60px;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+}
+
+input[type="radio"]:checked:before{
+    content:"";
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 0px 0px 10px red;
+}

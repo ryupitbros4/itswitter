@@ -1,0 +1,27 @@
+<h1>ユーザーのご意見</h1>
+<% @feedbacks.reverse_each do |feedback|%>
+<div>
+  <% if !feedback.archive %>
+  <h3><%= feedback.name %></h3>
+  <%= feedback.opinion %>
+  <%= link_to "archive", edit_feedback_path(feedback.id),
+   data: {confirm: "archiveへ移動します"} %>
+  <% end %>
+</div>
+<% end %>
+
+<hr size="3">
+<div>
+  <h1>archiv</h1>
+
+  <% @feedbacks.reverse_each do |feedback|%>
+  <div>
+    <% if feedback.archive %>
+    <h3><%= feedback.name %></h3>
+    <%= feedback.opinion %>
+    <%= link_to "戻す", edit_feedback_path(feedback.id),
+	data: {confirm: "ご意見に戻します"} %>
+    <% end %>
+  </div>
+<% end %>
+</div>
