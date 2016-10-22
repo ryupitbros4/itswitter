@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itswitter</title>
+    <meta neme="refresh" content="300">
+    <title>Suitell</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
@@ -11,31 +12,33 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-menu-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "いつくる？", root_path, {class: 'navbar-brand'} %>
-        </div>
-        <div class="collapse navbar-collapse navbar-right nav-menu-1">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "申請", apply_page_index_path %></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div class="container">
 
-    <%= yield %>   
+      <!-- navbar -->
+      <nav class="navbar navbar-default">
+	<div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-menu-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to "すいてる？", root_path, {class: 'navbar-brand'} %>
+          </div>
+          <div class="collapse navbar-collapse navbar-right nav-menu-1">
+            <ul class="nav navbar-nav">
+	      <li><%= link_to "伝える", report_restaurants_path %></li>
+              <li><%= link_to "申請", demands_index_path %></li>
+            </ul>
+          </div>
+	</div>
+      </nav>
+      <%= yield %>   
 
     <footer class="footer">
       <div class="container">
-	<p class="text-muted"> 2016@enPit
+	<p class="text-muted"> Powerd by RyuPiT Brother's 4 2016@enPit
           <%= link_to "混雑度申請用ページ", report_restaurants_path, {class: "text-muted"} %>
 	</p>
       </div>
