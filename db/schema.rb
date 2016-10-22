@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 20161022004833) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.string   "name"
-    t.text     "opinion"
-    t.boolean  "archive",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.integer  "num_seats"

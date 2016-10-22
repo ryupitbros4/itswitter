@@ -7,6 +7,7 @@
     <title>Suitell</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
+    <%= stylesheet_link_tag    'icon' , media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -35,10 +36,10 @@
       </nav>
       <%= yield %>   
 
-      <footer class="footer">
-	<p class="text-muted"> Powerd by RyuPiT Brother's 4 2016@enPiT</p>
-      </footer>
-
-    </div>
+    <footer class="footer">
+      <div class="container">
+	<p class="text-muted"> Powerd by RyuPiT Brother's 4 2016@enPit</p>
+      </div>
+    </footer>
   </body>
 </html>
