@@ -40,7 +40,12 @@ class RestaurantsController < ApplicationController
       redirect_to :report_restaurants and return
     end
     restaurant = Restaurant.find(id)
-    restaurant.crowdedness = params[:restaurant][:crowdedness]
+    crowd = params[:restaurant][:crowdedness]
+    if crowd.blank?
+      flash[:warning] = '店の混雑度を選択して下さい'
+      redirect_to :report_restaurants and return
+    end
+    restaurant.crowdedness = crowd
     restaurant.save
     redirect_to :root
   end
