@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161021023112) do
 
   # These are extensions that must be enabled in order to support this database
@@ -39,7 +40,7 @@ ActiveRecord::Schema.define(version: 20161021023112) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "hurigana"
-    t.integer  "crowdedness"
+    t.integer  "crowdedness",             null: false
   end
 
 end
