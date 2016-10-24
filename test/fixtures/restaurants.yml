@@ -14,3 +14,10 @@ three:
   name: te\st
   num_seats: 1
   num_people: 1
+
+four:
+  name: test
+  hurigana: テスト
+  num_seats: 1
+  num_people: 1
+  crowdedness: 0

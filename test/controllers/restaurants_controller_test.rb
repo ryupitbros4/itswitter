@@ -34,5 +34,13 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 1, assigns(:searched).length
   end
+
+  test "同一の混雑度で更新すると、時刻が更新されている" do
+    r = restaurants(:four)
+    post :deliver, restaurant: { id: r.id, crowdedness: r.crowdedness }
+    assert_response :redirect
+    ra = Restaurant.find(r.id)
+    assert_not_equal r.updated_at, ra.updated_at
+  end
 end
 
