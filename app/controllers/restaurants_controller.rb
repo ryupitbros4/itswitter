@@ -53,7 +53,10 @@ class RestaurantsController < ApplicationController
       redirect_to :report_restaurants and return
     end
     restaurant.crowdedness = crowd
-    restaurant.save
+    Restaurant.transaction do
+      restaurant.save!
+      restaurant.touch!
+    end
     redirect_to :root
   end
 
