@@ -55,7 +55,7 @@ class RestaurantsController < ApplicationController
     restaurant.crowdedness = crowd
     Restaurant.transaction do
       restaurant.save!
-      restaurant.touch!
+      restaurant.touch
     end
     redirect_to :root
   end
