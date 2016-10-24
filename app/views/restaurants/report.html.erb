@@ -6,13 +6,13 @@
   <table align="center", style="width: 100%;">
     <tr>
       <td align="center">
-        <h1><%= f.radio_button :crowdedness, 1, {:id => 'garagara'} %></h1>
+        <h1><%= f.radio_button :crowdedness, 1, {:id => 'garagara'} %><%= label_tag nil, nil, for: 'garagara' %></h1>
       </td>
       <td align="center">
-        <h1><%= f.radio_button :crowdedness, 2, {:id => 'yayakomi'} %></h1>
+        <h1><%= f.radio_button :crowdedness, 2, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></h1>
       </td>
       <td align="center">
-        <h1><%= f.radio_button :crowdedness, 3, {:id => 'komi'} %></h1>
+        <h1><%= f.radio_button :crowdedness, 3, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></h1>
       </td>
     </tr>
     <tr>
@@ -24,10 +24,10 @@
   <table align="center", style="width: 100%;">
     <tr>
       <td align="center">
-        <%= f.radio_button :crowdedness, 4, {:id => 'yayamachi'} %>
+        <%= f.radio_button :crowdedness, 4, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %>
       </td>
       <td align="center">
-        <%= f.radio_button :crowdedness, 5, {:id => 'machi'} %>
+        <%= f.radio_button :crowdedness, 5, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %>
       </td>
     </tr>
     <tr>
