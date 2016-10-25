@@ -30,7 +30,14 @@ class RestaurantsController < ApplicationController
   end
   
   def report
-    @restaurant = Restaurant.new()
+    #resnameはトップからlink_toで飛んできた値
+    @restaurant_id = Restaurant.find_by(name: params[:resname])
+    #restaurant_idがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
+    if @restaurant_id.nil? then
+      @restaurant = Restaurant.new()
+    else
+      @restaurant = Restaurant.new(:id => @restaurant_id.id)
+    end
   end
   
   def deliver
