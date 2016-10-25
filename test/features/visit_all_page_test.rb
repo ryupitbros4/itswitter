@@ -12,8 +12,10 @@ feature "VisitAllPage" do
     return if visited.include? current_path
     visited << current_path
     all('a').each do |a|
-      visit a[:href]
-      visit_all_links(visited)
+      if a[:href].start_with?('/')
+        visit a[:href]
+        visit_all_links(visited)
+      end
     end
   end
 end
