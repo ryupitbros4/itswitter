@@ -2,10 +2,21 @@
 class RestaurantsController < ApplicationController
   
   before_action :set_restaurants, only: [:report, :deliver]
-
+  
+  #エラーフラグ
+  @@error_f = false
+  
   def index
     @restaurants = Restaurant.all
     @per_array = Array.new
+    
+    #フラグがtrueだった場合 エラーメッセージが出る
+    if  @@error_f then
+      @message = "店名を入力してください。"
+      @@error_f = false
+    else
+      @message = ""
+    end
     
     @restaurants.each do |restaurant|
       #perは占有率
@@ -19,9 +30,17 @@ class RestaurantsController < ApplicationController
     @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
     @len_num = @rank.count
   end
-
+  
   def search
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
+    
+    #検索ボックスがからの場合、エラーフラグがtrueになる
+    if escaped.blank?
+      @@error_f = true
+      redirect_to :root
+    end
+    
+    
     @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
     @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
     if @searched.empty?
