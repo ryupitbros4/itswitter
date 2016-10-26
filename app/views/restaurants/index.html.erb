@@ -28,7 +28,7 @@
           <tr>
             <th scope="row" class="col-md-1"><%= num %>位</th>
             <td class="col-md-4"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	    <td class="col-md-4"><%= @how_crowded[ranking.crowdedness] %></td>
+	    <td class="col-md-4"><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
 	    <td class="col-md-3"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <% num = num+1 %>
