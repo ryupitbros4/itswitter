@@ -15,7 +15,7 @@
           <td scope="col"><%= simple_format(d.free) %></td>
           <td scope="col">
             <%= d.archive ? "はい" : "いいえ" %>
-            <% unless d.archive %><%= link_to '承認する', admin_archive_demand_path(d), method: :put %><% end %>
+            <% unless d.archive %><%= link_to '[archive]', admin_archive_demand_path(d), method: :put %><% end %>
           </td>
       <% end %>
     </div>
