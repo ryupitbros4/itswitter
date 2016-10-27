@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   delete "investigators/:id" => 'investigators#destroy', as: :delete
   get "investigators/delete"
 
+
+  # Admin
+  get "admin" => 'admin#index'
+  get "admin/index" => 'admin#index', as: :admin_index
+  put "admin/demands/:id/archive" => 'admin#archive_demand', as: :admin_archive_demand
+
   resources :feedbacks
 
   

@@ -1,0 +1,23 @@
+<h1>管理者ページ</h1>
+<%= render :partial => '/flash_msg' %>
+<h2>申請一覧</h2>
+<table class="table table-bordered table-condensed table-responsive;">
+  <div class="container">
+    <div class="row">
+      <tr>
+        <th class="col-md-4">名前</th>
+        <th class="col-md-4">フリースペース</th>
+        <th class="col-md-4">承認済み？</th>
+      </tr>
+      <% @demands.each do |d| %>
+        <tr>
+          <td scope="col"><%= d.demand_restaurant %></td>
+          <td scope="col"><%= simple_format(d.free) %></td>
+          <td scope="col">
+            <%= d.archive ? "はい" : "いいえ" %>
+            <% unless d.archive %><%= link_to '承認する', admin_archive_demand_path(d), method: :put %><% end %>
+          </td>
+      <% end %>
+    </div>
+  </div>
+</table>
