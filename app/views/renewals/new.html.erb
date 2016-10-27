@@ -1,0 +1,23 @@
+<%= render '/input_msg', object: @renewal %>
+<%= render '/flash_msg2'%>
+<p>suitellの更新情報を記入してください</p>
+
+<%= form_for @renewal do |f| %>
+<div>
+  <%= f.label :更新情報 %>
+  <%= f.text_field :update_info %>
+</div>
+<div>
+  <%= f.submit "更新" %>
+</div>
+<% end %>
+<br>
+<br>
+<hr>
+<div>
+<h2>更新情報</h2>
+<% @renewals.reverse_each do |renewal| %>
+<p><%= renewal.update_info %> 
+<%= link_to "[削除]", renewal_delete_path(renewal.id), method: :delete, data: { confirm: "削除します" } %></p>
+<% end %>
+</div>
