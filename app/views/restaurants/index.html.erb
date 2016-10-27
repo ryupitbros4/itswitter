@@ -3,14 +3,16 @@
       <p>飯、待てぬ、食わねば。</p>
       <%= form_tag(restaurants_search_path) do |f| %>
 	<div class="input-group">
-	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: 'Search for...' %>
+	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: 'お店を検索しよう！' %>
           <span class="input-group-btn">
    	    <%= button_tag '検索', class: 'btn btn-default' %>
           </span>
 	</div>
       <% end %>
+      <p class="text-warning"><%= flash[:warning] %></p>
     </center>
   </div>
+  
   
   <center><h1>今、空いてる順</h1></center>
     <table class="table table-hover">
@@ -27,9 +29,8 @@
 	<% @rank.each do |ranking| %>
           <tr>
             <th scope="row" class="col-md-1"><%= num %>位</th>
-            <td class="col-md-4"><%= ranking.name %></td>
+            <td class="col-md-4"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
 	    <td class="col-md-4"><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
-	    
 	    <td class="col-md-3"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <% num = num+1 %>
