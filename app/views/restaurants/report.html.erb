@@ -15,17 +15,17 @@
       </tr>
       <tr>
         <td>席がガラガラ</td>
-        <td>席が半分くらい埋まってる</td>
+        <td>席が半分埋まってる</td>
         <td>席がほぼ埋まってる</td>
       </tr>
       <tr>
 	<td><%= f.radio_button :crowdedness, 3, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %></td>
 	<td><%= f.radio_button :crowdedness, 4, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %></td>
-	<td></td>
+	<td><%= f.radio_button :crowdedness, 5, {:id => 'close2'} %><%= label_tag nil, nil, for: 'close2' %></td>
       </tr>
       <tr>
 	<td>席に座れない人がいる</td>
-	<td>席に座れない人がたくさんいる</td>
+	<td>席に座れない人がかなりいる</td>
 	<td>お店が閉まっている</td>
       </tr>
       <tr>
