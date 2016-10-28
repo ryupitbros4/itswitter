@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "admin" => 'admin#index'
   get "admin/index" => 'admin#index', as: :admin_index
   put "admin/demands/:id/archive" => 'admin#archive_demand', as: :admin_archive_demand
+  put "admin/demands/:id/unarchive" => 'admin#unarchive_demand', as: :admin_unarchive_demand
 
   resources :feedbacks
 

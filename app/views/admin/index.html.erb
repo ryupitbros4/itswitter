@@ -19,6 +19,7 @@
           <td scope="col"><%= d.archive ? "はい" : "いいえ" %></td>
           <td scope="col">
             <% unless d.archive %><%= button_to 'archive', admin_archive_demand_path(d), { class: 'btn btn-primary', method: :put } %><% end %>
+            <% if d.archive %><%= button_to 'unarchive', admin_unarchive_demand_path(d), { class: 'btn btn-primary', method: :put } %><% end %>
           </td>
       <% end %>
     </div>

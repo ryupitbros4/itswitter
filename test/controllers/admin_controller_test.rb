@@ -20,4 +20,17 @@ class AdminControllerTest < ActionController::TestCase
       put :archive_demand, id: id
     end
   end
+
+  test "申請を承認取り消しできる" do
+    id = demands(:a_one).id
+    put :unarchive_demand, id: id
+    assert_not Demand.find(id).archive
+  end
+
+  test "未承認の申請は承認取り消しできない" do
+    id = demands(:na_one).id
+    assert_no_difference "Demand.find(id).updated_at" do
+      put :unarchive_demand, id: id
+    end
+  end
 end
