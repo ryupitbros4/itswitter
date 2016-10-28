@@ -43,7 +43,7 @@ class RestaurantsController < ApplicationController
   def report
     #resnameはトップからlink_toで飛んできた値
     @restaurant_id = Restaurant.find_by(name: params[:resname])
-    #restaurant_idがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
+    #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
       @restaurant = Restaurant.new()
     else
@@ -53,17 +53,17 @@ class RestaurantsController < ApplicationController
   
   def deliver
     id = params[:restaurant][:id]
-
+    
     if id.blank?
       flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants and return
     end
-
+    
     if params[:restaurant][:crowdedness].blank?
       flash[:warning] = '混雑度を選択して下さい'
       redirect_to :report_restaurants and return
     end
-
+    
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
@@ -79,9 +79,9 @@ class RestaurantsController < ApplicationController
   end
 
   private
-
+  
   def set_restaurants
-    @restaurant_names = Restaurant.all.pluck(:name, :id)
+    #五十音順で並び替えてnameとidを渡す
+    @restaurant_names = Restaurant.all.order("hurigana").pluck(:name, :id)
   end
-
 end
