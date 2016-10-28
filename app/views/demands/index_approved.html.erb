@@ -1,4 +1,20 @@
 <h1>承認済み申請一覧</h1>
-<% @demands.each.with_index do |demand, num| %>
-  <h2> <%= num %> . <u><%= demand.demand_restaurant %></u> <%= demand.free %></h2>
-<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>店名</th>
+      <th>伝えたい思い</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @demands.each.with_index do |demand, num| %>
+    <tr>
+      <th><%= num %></th>
+      <td><%= demand.demand_restaurant %></td> 
+      <td><%= demand.free %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
