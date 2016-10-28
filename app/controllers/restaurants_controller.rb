@@ -2,6 +2,10 @@
 class RestaurantsController < ApplicationController
   
   before_action :set_restaurants, only: [:report, :deliver]
+
+  def slide_info
+    render :layout => false
+  end
   
   def index
     @restaurants = Restaurant.all

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  get 'restaurants/slide_info'
   get 'demands/index'
   post 'demands/index' => 'demands#new', as: :demands_new
   

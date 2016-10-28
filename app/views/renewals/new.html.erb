@@ -17,7 +17,9 @@
 <div>
 <h2>更新情報</h2>
 <% @renewals.reverse_each do |renewal| %>
-<p><%= renewal.update_info %> 
+<p>
+<%= renewal.updated_at.strftime("%m/%d") %>
+<%= renewal.update_info %> 
 <%= link_to "[削除]", renewal_delete_path(renewal.id), method: :delete, data: { confirm: "削除します" } %></p>
 <% end %>
 </div>

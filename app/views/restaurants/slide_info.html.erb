@@ -1,0 +1,49 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+$(function(){
+    $(window).load(function(){
+        var $setElm = $('.ticker');
+        var effectSpeed = 1000;
+        var switchDelay = 5000;
+        var easing = 'swing';
+ 
+        $setElm.each(function(){
+            var effectFilter = $(this).attr('rel');
+ 
+            var $targetObj = $(this);
+            var $targetUl = $targetObj.children('ul');
+            var $targetLi = $targetObj.find('li');
+            var $setList = $targetObj.find('li:first');
+ 
+            var ulWidth = $targetUl.width();
+            var listHeight = $targetLi.height();
+            $targetObj.css({height:(listHeight)});
+            $targetLi.css({top:'0',left:'0',position:'absolute'});
+ 
+            var liCont = $targetLi.length;
+
+          $setList.css({top:'3em',display:'block',opacity:'0',zIndex:'98'}).stop().animate({top:'0',opacity:'1'},effectSpeed,easing).addClass('showlist');
+             if(liCont > 1) {
+                 setInterval(function(){
+                     var $activeShow = $targetObj.find('.showlist');
+                     $activeShow.animate({top:'-3em',opacity:'0'},effectSpeed,easing).next().css({top:'3em',display:'block',opacity:'0',zIndex:'99'}).animate({top:'0',opacity:'1'},effectSpeed,easing).addClass('showlist').end().appendTo($targetUl).css({zIndex:'98'}).removeClass('showlist');
+                    },switchDelay);
+            } 
+
+        });
+    });
+});
+</script>
+
+
+<div id="container">
+
+<div class="ticker" rel="roll">
+<ul>
+<% Renewal.all.each do |renewal| %>
+<li style="display: none;"><%= renewal.updated_at.strftime("%m/%d") %>
+<%= renewal.update_info%></li>
+<% end %>
+</ul>
+</div>
+</div>
