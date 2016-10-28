@@ -26,8 +26,8 @@
     <tbody>
       <% @searched.each do |ranking| %>
         <tr>
-          <td class="col-md-4"><%= ranking.name %></td>
-          <td class="col-md-4"><%= @how_crowded[ranking.crowdedness] %></td>
+          <td class="col-md-4"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
+          <td class="col-md-4"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
           <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
         </tr>
       <% end %>

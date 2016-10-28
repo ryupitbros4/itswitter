@@ -17,7 +17,9 @@ class RestaurantsController < ApplicationController
     end
     #占有率が低い順に並び替える
     @rank=Restaurant.order('crowdedness')
-    @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
+
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     @len_num = @rank.count
   end
   
@@ -30,7 +32,8 @@ class RestaurantsController < ApplicationController
     end
     
     @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
-    @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     
     if @searched.empty?
       @error = "検索ワードがヒットしませんでした。もう一度入れなおして下さい。"
@@ -41,7 +44,7 @@ class RestaurantsController < ApplicationController
   def report
     #resnameはトップからlink_toで飛んできた値
     @restaurant_id = Restaurant.find_by(name: params[:resname])
-    #restaurant_idがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
+    #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
       @restaurant = Restaurant.new()
     else
@@ -51,17 +54,17 @@ class RestaurantsController < ApplicationController
   
   def deliver
     id = params[:restaurant][:id]
-
+    
     if id.blank?
       flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants and return
     end
-
+    
     if params[:restaurant][:crowdedness].blank?
       flash[:warning] = '混雑度を選択して下さい'
       redirect_to :report_restaurants and return
     end
-
+    
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
@@ -77,9 +80,9 @@ class RestaurantsController < ApplicationController
   end
 
   private
-
+  
   def set_restaurants
-    @restaurant_names = Restaurant.all.pluck(:name, :id)
+    #五十音順で並び替えてnameとidを渡す
+    @restaurant_names = Restaurant.all.order("hurigana").pluck(:name, :id)
   end
-
 end

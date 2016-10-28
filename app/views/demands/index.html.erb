@@ -1,37 +1,51 @@
-<h1>店の新規申請</h1>
-
+<div class="jumbotron">
+  <h2>私たちにお店を教えてください。</h2>
+</div>
 <% if @demand.errors.any? %>
-  <ul>
-    <h2><%= @demand.errors.messages[:demand_restaurant][0] %></h2>
-  </ul>
+<ul>
+  <h2><%= @demand.errors.messages[:demand_restaurant][0] %></h2>
+</ul>
 <% end %>
-
 <%= form_for @demand, url:demands_new_path do |f| %>
+<div>
+  <%= f.label :店名 %>
+  <%= f.text_field :demand_restaurant, class:'form-control' %>
+</div>
 
 <br>
-  <div>
-    <%= f.label :店名 %>
-    <%= f.text_field :demand_restaurant %>
-  </div>
-    
+
+<div class="form-group">
+  <%= f.label :伝えたい思いをどうぞ！%>
   <br>
-  
-  <div>
-    <%= f.label :フリースペース %>
-    <br>
-    <%= f.text_area :free, cols:50, rows:10 %>
+  <%= f.text_area :free, rows:10, class:'form-control' %>
+</div>  
+<div>
+  <%= f.submit "登録", {class: 'btn btn-primary'} %>
   </div>
-  
-  <div>
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
-<br>
+  <% end %>
+
+<hr>
+
   <center><h1>承認待ち申請(承認済み申請は<%= link_to 'こちら', approved_demands_path %>)</h1></center> 
 
-<% num = 1 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>店名</th>
+      <th>伝えたい思い</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% num = 1 %>
+    <% @demands.each do |demand| %>
+    <tr>
+      <th><%= num %></th>
+      <td><%= demand.demand_restaurant %></td> 
+      <td><%= demand.free %></td>
 
-<% @demands.each do |demand| %>
-  <h2> <%= num %> . <u><%= demand.demand_restaurant %></u> <%= demand.free %></h2>
-  <% num = num + 1 %>
-<% end %>
+      <% num = num + 1 %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
