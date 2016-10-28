@@ -16,8 +16,9 @@ class RestaurantsController < ApplicationController
     end
     #占有率が低い順に並び替える
     @rank=Restaurant.order('crowdedness')
-    @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
-    @icon = []
+
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     @len_num = @rank.count
   end
   
@@ -30,7 +31,8 @@ class RestaurantsController < ApplicationController
     end
     
     @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
-    @how_crowded = ["記録なし","空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる"]
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     
     if @searched.empty?
       @error = "検索ワードがヒットしませんでした。もう一度入れなおして下さい。"

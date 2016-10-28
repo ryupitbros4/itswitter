@@ -1,40 +1,38 @@
-<h1>お店の状況を伝えよう。</h1>
+<div class="jumbotron" >
+<h2>お店の状況を伝えよう。</h2>
+</div>
+
 <%= render :partial => '/flash_msg' %>
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
-  <%= f.select :id ,@restaurant_names, prompt: '選択してください' %> </br>
-  
-  <table align="center", style="width: 100%;">
-    <tr>
-      <td align="center">
-        <h1><%= f.radio_button :crowdedness, 1, {:id => 'garagara'} %><%= label_tag nil, nil, for: 'garagara' %></h1>
-      </td>
-      <td align="center">
-        <h1><%= f.radio_button :crowdedness, 2, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></h1>
-      </td>
-      <td align="center">
-        <h1><%= f.radio_button :crowdedness, 3, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></h1>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">空いてる</td>
-      <td align="center">やや混み</td>
-      <td align="center">混んでる</td>
-    </tr>
+  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%> </br>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 0, {:id => 'garagara', :checked => false} %><%= label_tag nil, nil, for: 'garagara' %></td>
+        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 1, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></td>
+        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 2, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></td>
+      </tr>
+      <tr>
+        <td class="col-md-4" align="center">席がガラガラ</td>
+        <td class="col-md-4" align="center">席が半分埋まってる</td>
+        <td class="col-md-4" align="center">席がほぼ埋まってる</td>
+      </tr>
+      <tr>
+	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 3, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %></td>
+	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 4, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %></td>
+	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 5, {:id => 'close2'} %><%= label_tag nil, nil, for: 'close2' %></td>
+      </tr>
+      <tr>
+	<td class="col-md-4" align="center">席に座れない人がいる</td>
+	<td class="col-md-4" align="center">席に座れない人がかなりいる</td>
+	<td class="col-md-4" align="center">お店が閉まっている</td>
+      </tr>
+      <tr>
+	<td class="col-md-4" align="center"><%= f.submit "伝える", {class: 'btn btn-primary' }%></td>
+	<td class="col-md-4" align="center"></td>
+	<td class="col-md-4" align="center"></td>
+      </tr>
+    </tbody>
   </table>
-  <table align="center", style="width: 100%;">
-    <tr>
-      <td align="center">
-        <%= f.radio_button :crowdedness, 4, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %>
-      </td>
-      <td align="center">
-        <%= f.radio_button :crowdedness, 5, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">外にも少し人がいる</td>
-      <td align="center">外にたくさん人がいる</td>
-    </tr>
-  </table>
-  <%= f.submit "伝える"%>
 <% end %>
