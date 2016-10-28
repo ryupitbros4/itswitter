@@ -37,3 +37,21 @@
 	<% end %>
       </tbody>
     </table>
+  <center><h1>新着</h1></center>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-6">店名</th>
+          <th class="col-md-6">登録日</th>
+        </tr>
+      </thead>
+      <% @new_restaurants.each do |nr| %>
+        <tbody>
+          <tr>
+            <td class="col-md-6"><%= nr.name %></td>
+            <td class="col-md-6"><%= nr.created_at.strftime("%Y年%m月%d日 %H時%M分%S秒") %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </center>

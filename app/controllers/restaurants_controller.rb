@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
   
   def index
     @restaurants = Restaurant.all
+    @new_restaurants = Restaurant.where('created_at > ?', params[:from] ? params[:from] : 30.days.ago)
     @per_array = Array.new
     
     @restaurants.each do |restaurant|
