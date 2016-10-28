@@ -17,7 +17,8 @@ class RestaurantsController < ApplicationController
     #占有率が低い順に並び替える
     @rank=Restaurant.order('crowdedness')
 
-    @how_crowded = ["空いてる","やや混んでる","混んでる","外にも人がいる","外にたくさん人がいる","CLOSE","記録なし"]
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     @len_num = @rank.count
   end
   
