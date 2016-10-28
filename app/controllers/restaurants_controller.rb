@@ -41,7 +41,7 @@ class RestaurantsController < ApplicationController
   def report
     #resnameはトップからlink_toで飛んできた値
     @restaurant_id = Restaurant.find_by(name: params[:resname])
-    #restaurant_idがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
+    #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
       @restaurant = Restaurant.new()
     else
@@ -79,7 +79,6 @@ class RestaurantsController < ApplicationController
   private
 
   def set_restaurants
-    @restaurant_names = Restaurant.all.pluck(:name, :id)
+    @restaurant_names = Restaurant.all.order("hurigana").pluck(:name, :id, :hurigana)
   end
-
 end

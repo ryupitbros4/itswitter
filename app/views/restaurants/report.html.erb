@@ -3,6 +3,7 @@
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
   <%= f.select :id ,@restaurant_names, prompt: '選択してください' %> </br>
+  
   <table align="center", style="width: 100%;">
     <tr>
       <td align="center">
