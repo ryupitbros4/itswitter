@@ -5,7 +5,7 @@ class AdminControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert assigns(:demands).present?
-    assert_equal 4, assigns(:demands).length
+    assert_equal 5, assigns(:demands).length
   end
 
   test "申請を承認できる" do

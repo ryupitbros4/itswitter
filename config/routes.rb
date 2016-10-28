@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'demands/index'
+  get 'demands/index_approved', as: :approved_demands
   post 'demands/index' => 'demands#new', as: :demands_new
   
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search

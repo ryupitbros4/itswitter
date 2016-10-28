@@ -1,0 +1,4 @@
+<h1>承認済み申請一覧</h1>
+<% @demands.each.with_index do |demand, num| %>
+  <h2> <%= num %> . <u><%= demand.demand_restaurant %></u> <%= demand.free %></h2>
+<% end %>

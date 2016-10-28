@@ -17,3 +17,8 @@ a_two:
   demand_restaurant: 申請店名_承認済み_2
   free: フリースペース_承認済み_2
   archive: true
+
+a_three:
+  demand_restaurant: 申請店名_承認済み_3
+  free: フリースペース_承認済み_3
+  archive: true
