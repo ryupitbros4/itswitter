@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161027054415) do
     t.datetime "updated_at",                 null: false
   end
 
+
   create_table "renewals", force: :cascade do |t|
     t.string   "update_info"
     t.datetime "created_at",  null: false

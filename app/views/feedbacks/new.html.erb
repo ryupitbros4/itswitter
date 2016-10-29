@@ -1,20 +1,22 @@
 <%= render '/input_msg', object: @feedback %>
 <%= render '/flash_msg2'%>
-<p>Suitellを使ってみてのご意見・ご要望をお聞かせください</p>
+
+<div class="jumbotron">
+<h3>Suitellへのご意見・ご要望をお聞かせください。</h3>
+</div>
 
 <%= form_for @feedback do |f| %>
 <div>
   <%= f.label :名前 %>
   <% @feedback.name = "匿名" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name ,class:'form-control'%>
 </div>
 <br>
-
+<div class="form-group">
 <p><%= f.label :ご意見 %></p>
 
-  <%= f.text_area :opinion, cols:50, rows:10 %>
-
-<div>
-  <%= f.submit "登録" %>
+  <%= f.text_area :opinion, rows:10, class:'form-control' %>
+  <br>
+  <%= f.submit "送信",{class: 'btn btn-primary'} %>
 </div>
 <% end %>
