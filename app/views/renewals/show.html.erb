@@ -1,4 +1,12 @@
 <h1>更新情報詳細</h1>
-<p><%= format_date(@renewal.updated_at) %></p>
-<p><%= @renewal.update_info %></p>
-<p><%= link_to '更新情報一覧', renewals_path %></p>
+<div class="row">
+<strong class="col-md-2">更新日時</strong>
+  <p class="col-md-10"><%= format_date(@renewal.updated_at) %></p>
+</div>
+<div class="row">
+<strong class="col-md-2">更新内容</strong>
+  <p class="col-md-10"><%= @renewal.update_info %></p>
+</div>
+<div class="row">
+  <p class="col-md-2 col-md-offset-10"><%= link_to '更新情報一覧', renewals_path %></p>
+</div>
