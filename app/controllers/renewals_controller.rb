@@ -10,6 +10,10 @@ class RenewalsController < ApplicationController
     @renewal = Renewal.new
   end
 
+  def show
+    @renewal = Renewal.find(params[:id])
+  end
+
   def create
     @renewal = Renewal.new(renewal_params)
     if @renewal.save

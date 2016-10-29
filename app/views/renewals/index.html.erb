@@ -1,3 +1,4 @@
+<h1>更新情報一覧</h1>
 <% @renewals.each do |renewal| %>
-<p><%= renewal.update_info %></p>
+<p><%= format_date(renewal.updated_at) %> <%= link_to renewal.update_info, renewal_path(renewal) %></p>
 <% end %>
