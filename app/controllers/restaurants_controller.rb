@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurants, only: [:report, :deliver]
 
   def slide_info
+    @renewals = Renewal.order("created_at desc").limit(10)
     render :layout => false
   end
   
