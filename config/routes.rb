@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  get 'restaurants/slide_info'
   get 'demands/index'
   get 'demands/index_approved', as: :approved_demands
   post 'demands/index' => 'demands#new', as: :demands_new
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   put "admin/demands/:id/unarchive" => 'admin#unarchive_demand', as: :admin_unarchive_demand
 
   resources :feedbacks
-
-  
+  resources :renewals
+  delete "renewals/:id" => 'renewals#destroy', as: :renewal_delete
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

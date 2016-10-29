@@ -9,4 +9,7 @@ class Restaurant < ActiveRecord::Base
   validates :num_seats, presence: { message:"席数を入力してください"}
   validates :num_seats, numericality: { only_integer: true, message:"席数は数値を入力してください" },allow_blank: true
   validates :num_seats, inclusion: { in: 1..999, message:"席数は1~999で入力してください"},allow_blank: true
+  
+  #ここでソートすることでheroku上でも順番に表示できる
+  scope :restaurant_order_hurigana, -> {order('hurigana COLLATE "C" ASC')}
 end
