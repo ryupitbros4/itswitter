@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20161027054415) do
   create_table "demands", force: :cascade do |t|
     t.text     "free"
     t.string   "demand_restaurant"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "archive",           default: false, null: false
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -30,7 +31,6 @@ ActiveRecord::Schema.define(version: 20161027054415) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
-
 
   create_table "renewals", force: :cascade do |t|
     t.string   "update_info"
