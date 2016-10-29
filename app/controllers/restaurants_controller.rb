@@ -82,6 +82,7 @@ class RestaurantsController < ApplicationController
   
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
-    @restaurant_names = Restaurant.all.order("hurigana").pluck(:name, :id)
+    #@restaurant_names = Restaurant.all.order("hurigana").pluck(:name, :id)
+    @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
   end
 end
