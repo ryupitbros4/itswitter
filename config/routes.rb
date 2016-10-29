@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  get 'restaurants/slide_info'
   get 'demands/index'
   post 'demands/index' => 'demands#new', as: :demands_new
   
@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   get "investigators/delete"
 
   resources :feedbacks
-
-  
+  resources :renewals
+  delete "renewals/:id" => 'renewals#destroy', as: :renewal_delete
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
