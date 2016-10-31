@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 20161029104118) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "jams", force: :cascade do |t|
-    t.text     "store"
-    t.integer  "congestion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "renewals", force: :cascade do |t|
     t.string   "update_info"
     t.datetime "created_at",    null: false
