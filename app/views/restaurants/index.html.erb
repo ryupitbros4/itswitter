@@ -38,3 +38,25 @@
 	<% end %>
       </tbody>
     </table>
+
+  <center><h1>新着</h1></center>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-1">店名</th>
+          <th class="col-md-4">混雑度</th>
+          <th class="col-md-3">最新更新時</th>
+          <th class="col-md-4">登録日</th>
+        </tr>
+      </thead>
+      <tbody>
+	  <% @new_restaurants.each do |nr| %>
+        <tr>
+          <td class="col-md-1"><%= link_to nr.name, "https://www.google.co.jp/search?q=" + nr.name %></td>
+          <td class="col-md-4"><%= image_tag(@crowded_image[nr.crowdedness], :size => "32x32") %><%= link_to @how_crowded[nr.crowdedness], :action => "report", :resname => nr.name %></td>
+          <td class="col-md-3"><%= sec2h((Time.zone.now - nr.updated_at).to_i) %>前</td>
+          <td class="col-md-4"><%= nr.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

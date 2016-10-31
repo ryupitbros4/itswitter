@@ -1,7 +1,11 @@
 class DemandsController < ApplicationController
   def index
     @demand = Demand.new
-    @demands = Demand.all.order(id: :desc)
+    @demands = Demand.where(archive: false).order(id: :desc)
+  end
+
+  def index_approved
+    @demands = Demand.where(archive: true).order(id: :desc)
   end
 
   def new

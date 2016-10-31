@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'restaurants/slide_info'
   get 'demands/index'
+  get 'demands/index_approved', as: :approved_demands
   post 'demands/index' => 'demands#new', as: :demands_new
   
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
@@ -20,6 +21,13 @@ Rails.application.routes.draw do
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete
   get "investigators/delete"
+
+
+  # Admin
+  get "admin" => 'admin#index'
+  get "admin/index" => 'admin#index', as: :admin_index
+  put "admin/demands/:id/archive" => 'admin#archive_demand', as: :admin_archive_demand
+  put "admin/demands/:id/unarchive" => 'admin#unarchive_demand', as: :admin_unarchive_demand
 
   resources :feedbacks
   resources :renewals

@@ -1,3 +1,10 @@
+<h1>更新情報一覧</h1>
+<div class="row">
+  <strong class="col-md-4">更新日時</strong>
+  <strong class="col-md-8">更新内容</strong>
+</div>
 <% @renewals.each do |renewal| %>
-<p><%= renewal.update_info %></p>
+<div class="row">
+  <span class="col-md-4"><%= format_date(renewal.updated_at) %></span><span class="col-md-8"><%= link_to renewal.update_info, renewal_path(renewal) %></span>
+</div>
 <% end %>

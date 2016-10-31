@@ -1,0 +1,20 @@
+<h1>追加済みのお店一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>店名</th>
+      <th>伝えたい思い</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @demands.each.with_index do |demand, num| %>
+    <tr>
+      <th><%= num + 1 %></th>
+      <td><%= demand.demand_restaurant %></td> 
+      <td><%= demand.free %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

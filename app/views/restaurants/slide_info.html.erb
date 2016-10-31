@@ -41,8 +41,7 @@ $(function(){
 <div class="ticker" rel="roll">
 <ul>
 <% @renewals.each do |renewal| %>
-<li style="display: none;"><%= renewal.updated_at.strftime("%m/%d") %>
-<%= renewal.update_info%></li>
+<li style="display: none;"><%= link_to renewal.updated_at.strftime("%m/%d") + " " + renewal.update_info, renewal_path(renewal), target: :_top %></li>
 <% end %>
 </ul>
 </div>

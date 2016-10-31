@@ -20,9 +20,16 @@ class InvestigatorsController < ApplicationController
   def create
     new_rest = params.require(:restaurant).permit(:name, :hurigana, :num_seats)
     @investigator = Restaurant.new(new_rest)
-    if @investigator.save
-      redirect_to :investigators_index
-    else
+    begin
+      Restaurant.transaction do
+        @investigator.save!
+        renewal = Renewal.new({ update_info: "新たなお店 「#{new_rest[:name]}」 が追加されました", restaurant_id: @investigator.id })
+        renewal.save!
+        redirect_to :investigators_index
+      end
+    rescue => e
+      logger.error e.backtrace.join("\n")
+      flash[:warning] = "お店の新規登録に失敗しました。"
       render 'new'
     end
   end
