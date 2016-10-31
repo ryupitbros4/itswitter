@@ -11,7 +11,7 @@
   <tbody>
     <% @demands.each.with_index do |demand, num| %>
     <tr>
-      <th><%= num %></th>
+      <th><%= num + 1 %></th>
       <td><%= demand.demand_restaurant %></td> 
       <td><%= demand.free %></td>
     </tr>
