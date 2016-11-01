@@ -21,6 +21,13 @@ class AdminControllerTest < ActionController::TestCase
     end
   end
 
+  test "存在しない申請を承認しようとしてもデータは変化しない" do
+    before = Demand.all.order(:id).map(&:updated_at)
+    put :archive_demand, id: 'not-exist'
+    assert_response :redirect
+    assert_equal before, Demand.all.order(:id).map(&:updated_at)
+  end
+
   test "申請を承認取り消しできる" do
     id = demands(:a_one).id
     put :unarchive_demand, id: id
@@ -32,5 +39,11 @@ class AdminControllerTest < ActionController::TestCase
     assert_no_difference "Demand.find(id).updated_at" do
       put :unarchive_demand, id: id
     end
+  end
+  test "存在しない申請を承認取り消ししようとしてもデータは変化しない" do
+    before = Demand.all.order(:id).map(&:updated_at)
+    put :unarchive_demand, id: 'not-exist'
+    assert_response :redirect
+    assert_equal before, Demand.all.order(:id).map(&:updated_at)
   end
 end
