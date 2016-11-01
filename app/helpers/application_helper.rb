@@ -9,8 +9,7 @@ module ApplicationHelper
       time = "#{(t/60)}分"
     end
     if t/3600 != 0
-      #time = "#{(t/3600)}時間#{(t/60 - (t/3600)*60)}分"
-      time = "1時間以上"
+      time = "#{(t/3600)}時間#{(t/60 - (t/3600)*60)}分"
     end
 
     time

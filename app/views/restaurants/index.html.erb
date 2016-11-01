@@ -32,13 +32,8 @@
             <th scope="row" class="col-md-1"><%= num %>位</th>
             <td class="col-md-4"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
 	    <td class="col-md-4"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
-	    <td class="col-md-3">
-            <% if ranking.crowdedness == '6' %>
-              一時間以上
-            <% else %>
-              <%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>
-            <% end %>
-            前</td>
+	    <!-- 1時間以上経っている場合、"1時間以上前"と表示させる そうでない場合は最新更新時を表示 -->
+	    <td class="col-md-3"><% if (Time.zone.now - ranking.updated_at).to_i > 3600 %>1時間以上<% else %><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %><% end %>前</td>
           </tr>
           <% num = num+1 %>
 	<% end %>
