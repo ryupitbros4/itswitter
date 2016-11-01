@@ -10,7 +10,7 @@ class RestaurantsControllerTest < ActionController::TestCase
     shop_names_in_view = assigns(:rank).map(&:name)
     shops = %w(あがり 通堂 我流屋 三竹寿 鳥玉)
     shops.each do |shop|
-      shop_names_in_view.include?(/^.*#{shop}.*$/)
+      assert shop_names_in_view.include?(shop)
     end
   end
 
