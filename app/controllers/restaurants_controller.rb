@@ -19,6 +19,13 @@ class RestaurantsController < ApplicationController
       #モデルのseats_occに占有率を更新
       restaurant.seats_occ = per
       restaurant.save
+      #更新時刻が一時間以上の店のcrowdednessを更新
+      if (Time.zone.now - restaurant.updated_at).to_i > 3600
+        Restaurant.record_timestamps = false
+        @updaterestaurant = Restaurant.find(restaurant.id)
+        @updaterestaurant.update(crowdedness: '6')
+        Restaurant.record_timestamps = true
+      end
     end
     #占有率が低い順に並び替える
     @rank=Restaurant.order('crowdedness')
