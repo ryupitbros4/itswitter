@@ -46,5 +46,10 @@ class RestaurantsControllerTest < ActionController::TestCase
     get :index, from: '2016-10-02 12:00:00'
     assert_equal 2, assigns(:new_restaurants).length
   end
+
+  test "更新情報ページが表示されてる" do
+    get :slide_info
+    assert_response :success
+  end
 end
 
