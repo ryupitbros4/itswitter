@@ -15,3 +15,14 @@ class ActiveSupport::TestCase
   fixtures :all
   # Add more helper methods to be used by all tests here...
 end
+
+def login
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:twitter] = nil
+  @oauth_hash = OmniAuth::AuthHash.new({
+                                         provider: 'twitter', uid: '12345', info: { nickname: 'すいている', image: 'http://example.com/image.jpg' }
+                                       })
+  OmniAuth.config.mock_auth[:twitter] = @oauth_hash
+  get '/auth/twitter'
+  follow_redirect!
+end
