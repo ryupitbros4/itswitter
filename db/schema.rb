@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101115119) do
+ActiveRecord::Schema.define(version: 20161103130924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.string   "uid"
+    t.integer  "like_it"
+    t.integer  "post_count"
+    t.integer  "be_liked"
+    t.integer  "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "restaurant_id"
+    t.integer  "user_id"
+    t.string   "comment"
+    t.integer  "crowdedness"
+    t.integer  "be_liked"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "demands", force: :cascade do |t|
     t.text     "free"
@@ -32,6 +52,13 @@ ActiveRecord::Schema.define(version: 20161101115119) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "pressed_users", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.integer  "pressed_user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "renewals", force: :cascade do |t|
     t.string   "update_info"
     t.datetime "created_at",    null: false
@@ -41,13 +68,9 @@ ActiveRecord::Schema.define(version: 20161101115119) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
-    t.integer  "num_seats"
-    t.integer  "num_people",  default: 0, null: false
-    t.integer  "seats_occ",   default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "hurigana"
-    t.integer  "crowdedness", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
