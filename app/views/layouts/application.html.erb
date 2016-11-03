@@ -31,6 +31,11 @@
             <ul class="nav navbar-nav">
 	      <li><%= link_to "お店の状況を伝える", report_restaurants_path %></li>
               <li><%= link_to "新しいお店を申請する", demands_index_path %></li>
+	      <% if logged_in? %>
+	      <li><%= link_to session[:nickname]+"さんログアウト", logout_path %></li>
+	      <% else %>
+	      <li><%= link_to "ログイン", 'auth/twitter' %></li>
+	      <% end %>
             </ul>
           </div>
 	</div>

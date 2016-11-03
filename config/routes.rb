@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+  get "/auth/failure" => "sessions#failure"
+
   get 'restaurants/slide_info'
   get 'demands/index'
   get 'demands/index_approved', as: :approved_demands
