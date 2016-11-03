@@ -12,4 +12,9 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
+
+  def failure
+    flash[:warning] = "Twitter認証に失敗しました。"
+    redirect_to root_path
+  end
 end
