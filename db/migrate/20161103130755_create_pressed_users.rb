@@ -1,8 +1,9 @@
 class CreatePressedUsers < ActiveRecord::Migration
   def change
+
     create_table :pressed_users do |t|
-      t.integer :comment_id
-      t.integer :pressed_user_id
+      t.belongs_to :comment
+      t.belongs_to :user
 
       t.timestamps null: false
     end
