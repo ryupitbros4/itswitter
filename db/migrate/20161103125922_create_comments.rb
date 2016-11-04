@@ -12,10 +12,10 @@ class CreateComments < ActiveRecord::Migration
 
     create_table :actions do |t|
       t.belongs_to :user
-      t.integer :like_it
-      t.integer :post_count
-      t.integer :be_liked
-      t.integer :point
+      t.integer :like_it, null: false, default: 0
+      t.integer :post_count, null: false, default: 0
+      t.integer :be_liked, null: false, default: 0
+      t.integer :point, null: false, default: 0
 
       t.timestamps null: false
     end
@@ -32,7 +32,7 @@ class CreateComments < ActiveRecord::Migration
       t.belongs_to :restaurant
       t.string :comment
       t.integer :crowdedness, null: false, default: 0
-      t.integer :be_liked
+      t.integer :be_liked, null: false, default: 0
 
       t.timestamps null: false
     end

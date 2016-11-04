@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20161103130755) do
 
   create_table "actions", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "like_it"
-    t.integer  "post_count"
-    t.integer  "be_liked"
-    t.integer  "point"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "like_it",    default: 0, null: false
+    t.integer  "post_count", default: 0, null: false
+    t.integer  "be_liked",   default: 0, null: false
+    t.integer  "point",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20161103130755) do
     t.integer  "restaurant_id"
     t.string   "comment"
     t.integer  "crowdedness",   default: 0, null: false
-    t.integer  "be_liked"
+    t.integer  "be_liked",      default: 0, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
