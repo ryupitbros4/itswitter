@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20161103130755) do
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.integer  "like_it"
     t.integer  "post_count"
     t.integer  "be_liked"

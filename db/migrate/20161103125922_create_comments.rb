@@ -11,7 +11,7 @@ class CreateComments < ActiveRecord::Migration
     end
 
     create_table :actions do |t|
-      t.belongs_to :users
+      t.belongs_to :user
       t.integer :like_it
       t.integer :post_count
       t.integer :be_liked
