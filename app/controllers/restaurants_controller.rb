@@ -70,7 +70,7 @@ class RestaurantsController < ApplicationController
       redirect_to :report_restaurants and return
     end
     Restaurant.transaction do
-      restaurant.crowdedness = { crowdedness: crowd, user_id: 1 }
+      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id })
       restaurant.save!
       restaurant.touch
     end

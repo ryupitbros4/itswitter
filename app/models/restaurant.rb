@@ -16,10 +16,6 @@ class Restaurant < ActiveRecord::Base
     return 0                    # TODO
   end
 
-  def crowdedness=(a = {  })
-    Comment.create(crowdedness: a[:crowdedness], user_id: a[:user_id], restaurant_id: self.id, comment: a[:comment])
-  end
-
   def self.order_by_crowdedness
     return Restaurant.all       # TODO
   end
