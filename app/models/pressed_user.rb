@@ -1,4 +1,4 @@
 class PressedUser < ActiveRecord::Base
-  belong_to :comment
-  belong_to :user
+  belongs_to :comment
+  belongs_to :user
 end

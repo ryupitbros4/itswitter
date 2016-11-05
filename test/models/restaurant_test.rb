@@ -4,7 +4,7 @@ require 'test_helper'
 class RestaurantTest < ActiveSupport::TestCase
 
   def setup
-    @restaurant = Restaurant.new(name: "ラーメン", hurigana: "らーめん", num_seats: 10)
+    @restaurant = Restaurant.new(name: "ラーメン", hurigana: "らーめん")
   end
 
   test "@restaurantがtrueか" do
@@ -20,10 +20,6 @@ class RestaurantTest < ActiveSupport::TestCase
     @restaurant.hurigana = "  "
     assert_not @restaurant.valid?
   end
-  test "num_seatsが存在してるか" do
-    @restaurant.num_seats = "  "
-    assert_not @restaurant.valid?
-  end
 
   test "nameの長さ" do
     @restaurant.name = "a" * 25
@@ -32,11 +28,6 @@ class RestaurantTest < ActiveSupport::TestCase
 
   test "huriganaの長さ" do
     @restaurant.hurigana = "a" * 100
-    assert_not @restaurant.valid?
-  end
-
-  test "num_seatsの数値大きさ" do
-    @restaurant.num_seats = 1000
     assert_not @restaurant.valid?
   end
 end
