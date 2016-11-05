@@ -2,6 +2,7 @@
 class RestaurantsController < ApplicationController
   
   before_action :set_restaurants, only: [:report, :deliver]
+  before_action :authenticate_user!, only: [:report, :deliver]
 
   def slide_info
     @renewals = Renewal.order("created_at desc").limit(10)
@@ -82,5 +83,9 @@ class RestaurantsController < ApplicationController
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
+  end
+
+  def authenticate_user!
+    redirect_to :root, flash: { warning: 'ログインして下さい' } unless !!session[:user_id]
   end
 end

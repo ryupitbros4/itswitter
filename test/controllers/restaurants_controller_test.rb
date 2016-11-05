@@ -35,6 +35,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "同一の混雑度で更新すると、時刻が更新されている" do
+    skip('混雑度取得ロジックが変更になるため、それの実装待ち')
     r = restaurants(:four)
     post :deliver, restaurant: { id: r.id, crowdedness: r.crowdedness }
     assert_response :redirect
@@ -45,6 +46,13 @@ class RestaurantsControllerTest < ActionController::TestCase
   test "新着のお店が取得されている" do
     get :index, from: '2016-10-02 12:00:00'
     assert_equal 2, assigns(:new_restaurants).length
+  end
+
+  test "ログインしていない場合はreportとdeliver出来ない" do
+    get :report
+    assert flash[:warning].match(/.*ログインして下さい.*/)
+    post :deliver
+    assert flash[:warning].match(/.*ログインして下さい.*/)
   end
 end
 
