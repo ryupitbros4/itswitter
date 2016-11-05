@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_one :action
-
   has_many :comments
   has_many :restaurants, :through => :comments
 

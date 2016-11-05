@@ -16,22 +16,11 @@ ActiveRecord::Schema.define(version: 20161103130755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "like_it",    default: 0, null: false
-    t.integer  "post_count", default: 0, null: false
-    t.integer  "be_liked",   default: 0, null: false
-    t.integer  "point",      default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "restaurant_id"
     t.string   "comment"
     t.integer  "crowdedness",   default: 0, null: false
-    t.integer  "be_liked",      default: 0, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
