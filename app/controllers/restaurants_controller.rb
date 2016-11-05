@@ -69,8 +69,8 @@ class RestaurantsController < ApplicationController
       flash[:warning] = '店の混雑度を選択して下さい'
       redirect_to :report_restaurants and return
     end
-    restaurant.crowdedness = crowd
     Restaurant.transaction do
+      restaurant.crowdedness = { crowdedness: crowd, user_id: 1 }
       restaurant.save!
       restaurant.touch
     end
