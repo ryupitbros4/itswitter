@@ -31,8 +31,13 @@ class RestaurantTest < ActiveSupport::TestCase
     assert_not @restaurant.valid?
   end
 
-  test "crowdedness" do
+  test "commentが一件以上あるときは、crowdednessがそれらのうち最新のものと等しい" do
     r = restaurants(:one)
     assert_equal 3, r.crowdedness
+  end
+
+  test "commentが一件もないときは、crowdednessは6である" do
+    r = restaurants(:two)
+    assert_equal 6, r.crowdedness
   end
 end
