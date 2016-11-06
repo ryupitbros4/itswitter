@@ -40,4 +40,9 @@ class RestaurantTest < ActiveSupport::TestCase
     r = restaurants(:two)
     assert_equal 6, r.crowdedness
   end
+
+  test "crowdednessでソートされている" do
+    rs = Restaurant.order_by_crowdedness
+    assert_equal 'te%st_', rs.first.name
+  end
 end

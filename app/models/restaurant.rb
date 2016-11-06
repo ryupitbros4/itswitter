@@ -19,6 +19,6 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.order_by_crowdedness
-    return Restaurant.all       # TODO
+    Restaurant.all.sort_by(&:crowdedness)
   end
 end
