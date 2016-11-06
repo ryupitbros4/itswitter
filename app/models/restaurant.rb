@@ -13,7 +13,9 @@ class Restaurant < ActiveRecord::Base
   scope :restaurant_order_hurigana, -> {order('hurigana COLLATE "C" ASC')}
 
   def crowdedness
-    return 0                    # TODO
+    c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
+    return c.crowdedness if c
+    return 6
   end
 
   def self.order_by_crowdedness

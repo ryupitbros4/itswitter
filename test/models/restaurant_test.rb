@@ -30,4 +30,9 @@ class RestaurantTest < ActiveSupport::TestCase
     @restaurant.hurigana = "a" * 100
     assert_not @restaurant.valid?
   end
+
+  test "crowdedness" do
+    r = restaurants(:one)
+    assert_equal 3, r.crowdedness
+  end
 end
