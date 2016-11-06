@@ -35,7 +35,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "同一の混雑度で更新すると、時刻が更新されている" do
-    skip('混雑度取得ロジックが変更になるため、それの実装待ち')
+    session[:user_id] = 1
     r = restaurants(:four)
     post :deliver, restaurant: { id: r.id, crowdedness: r.crowdedness }
     assert_response :redirect
