@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  provider: MyString
-  uid: MyString
-  nickname: MyString
-  image_url: MyString
+  provider: twitter
+  uid: 12345
+  nickname: すいている
+  image_url: http://example.com/image1.jpg
 
 two:
-  provider: MyString
-  uid: MyString
-  nickname: MyString
-  image_url: MyString
+  provider: twitter
+  uid: 67890
+  nickname: すいている2
+  image_url: http://example.com/image2.jpg

@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   end 
   root 'restaurants#index'
 
-  get "investigators/index"
-  post "investigators/:id" => 'investigators#update', as: :dbupdate
   get "investigators/new" => 'investigators#new', as: :new_investigators
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete

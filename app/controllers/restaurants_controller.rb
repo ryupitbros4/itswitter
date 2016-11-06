@@ -2,6 +2,7 @@
 class RestaurantsController < ApplicationController
   
   before_action :set_restaurants, only: [:report, :deliver]
+  before_action :authenticate_user!, only: [:report, :deliver]
 
   def slide_info
     @renewals = Renewal.order("created_at desc").limit(10)
@@ -13,17 +14,8 @@ class RestaurantsController < ApplicationController
     @new_restaurants = Restaurant.where('created_at > ?', params[:from] ? params[:from] : 30.days.ago).order(created_at: :desc)
     @per_array = Array.new
     
-=begin
-    @restaurants.each do |restaurant|
-      #perは占有率
-      per = ((restaurant.num_people.to_f/restaurant.num_seats.to_f)*100).round
-      #モデルのseats_occに占有率を更新
-      restaurant.seats_occ = per
-      restaurant.save
-    end
     #占有率が低い順に並び替える
-    @rank=Restaurant.order('crowdedness')
-=end
+    @rank=Restaurant.order_by_crowdedness
 
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
@@ -78,8 +70,8 @@ class RestaurantsController < ApplicationController
       flash[:warning] = '店の混雑度を選択して下さい'
       redirect_to :report_restaurants and return
     end
-    restaurant.crowdedness = crowd
     Restaurant.transaction do
+      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id })
       restaurant.save!
       restaurant.touch
     end
@@ -91,5 +83,9 @@ class RestaurantsController < ApplicationController
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
+  end
+
+  def authenticate_user!
+    redirect_to :root, flash: { warning: 'ログインして下さい' } unless !!session[:user_id]
   end
 end
