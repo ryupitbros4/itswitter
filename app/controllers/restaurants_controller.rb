@@ -64,16 +64,20 @@ class RestaurantsController < ApplicationController
       redirect_to :report_restaurants and return
     end
     
+    
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
       flash[:warning] = '店の混雑度を選択して下さい'
       redirect_to :report_restaurants and return
     end
+    
     Restaurant.transaction do
       Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id })
       restaurant.save!
       restaurant.touch
+      #混雑状況を伝えたらユーザーのポイントを+10
+      increment_point()
     end
     redirect_to :root
   end
@@ -84,7 +88,13 @@ class RestaurantsController < ApplicationController
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
   end
-
+  
+  def increment_point
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point + 10
+    current_user.save
+  end
+  
   def authenticate_user!
     redirect_to :root, flash: { warning: 'ログインして下さい' } unless !!session[:user_id]
   end

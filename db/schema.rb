@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20161107081222) do
     t.string   "image_url",              null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "point",      default: 0
+    t.integer  "point",      default: 0, null: false
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
