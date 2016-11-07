@@ -1,4 +1,3 @@
-<p>更新情報<iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle"></iframe></p>
   <div class="jumbotron">
     <center><h1>Suitell</h1>
       <p>飯、待てぬ、食わねば。</p>
@@ -13,7 +12,9 @@
       <p class="text-warning"><%= flash[:warning] %></p>
     </center>
   </div>
-  
+<p>更新情報<iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle"></iframe></p>
+
+<%= render '/mypage_block'%>  
   
   <center><h1>今、空いてる順</h1></center>
     <table class="table table-hover">
