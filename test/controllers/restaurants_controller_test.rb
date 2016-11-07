@@ -35,7 +35,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "同一の混雑度で更新すると、時刻が更新されている" do
-    session[:user_id] = 1
+    session[:user_id] = users(:two).id
     r = restaurants(:four)
     post :deliver, restaurant: { id: r.id, crowdedness: r.crowdedness }
     assert_response :redirect
