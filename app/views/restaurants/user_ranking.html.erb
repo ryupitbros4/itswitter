@@ -1,0 +1,26 @@
+  <div class="jumbotron">
+    <h2>ランキング</h2>
+  </div>
+  
+<%= render '/mypage_block'%>  
+  
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1">順位</th>
+      <th class="col-md-5">ユーザー名</th>
+      <th class="col-md-6">ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% num=1 %>
+    <% @user_rank.each do |urank| %>
+    <tr>
+      <th scope="row" class="col-md-1"><%= num %>位</th>
+      <td class="col-md-5"><%= urank.nickname %></td>
+      <td class="col-md-6"><%= urank.point %></td>
+    </tr>
+    <% num = num+1 %>
+    <% end %>
+  </tbody>
+</table>

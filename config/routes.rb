@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'
   
+  get 'restaurants/user_ranking'
+  
   resources :restaurants do 
     collection do
       get 'report'

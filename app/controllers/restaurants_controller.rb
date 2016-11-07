@@ -51,6 +51,11 @@ class RestaurantsController < ApplicationController
     end
   end
   
+  def user_ranking
+    @user_rank = User.order("point DESC")
+    
+  end
+  
   def deliver
     id = params[:restaurant][:id]
     
@@ -77,7 +82,7 @@ class RestaurantsController < ApplicationController
       restaurant.save!
       restaurant.touch
       #混雑状況を伝えたらユーザーのポイントを+10
-      increment_point()
+      add_report_point()
     end
     redirect_to :root
   end
@@ -89,7 +94,7 @@ class RestaurantsController < ApplicationController
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
   end
   
-  def increment_point
+  def add_report_point
     current_user ||= User.find(session[:user_id])
     current_user.point = current_user.point + 10
     current_user.save
