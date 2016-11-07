@@ -10,6 +10,8 @@ class RestaurantsController < ApplicationController
   end
   
   def index
+    #グローバル変数なので、別クラスでも使用可能。
+    $user_info = User.find(session[:user_id])
     @restaurants = Restaurant.all
     @new_restaurants = Restaurant.where('created_at > ?', params[:from] ? params[:from] : 30.days.ago).order(created_at: :desc)
     @per_array = Array.new
@@ -41,8 +43,17 @@ class RestaurantsController < ApplicationController
   end
   
   def report
+
+    if $user_info.comments.find_by(restaurant_id: params[:resname]).present?
+      informTime = $user_info.comments.where(restaurant_id: params[:resname]).order(updated_at: :desc).limit(1).first
+      if (Time.zone.now - informTime.updated_at).to_i < 60*3
+        flash[:warning] = '次の' + informTime.restaurant.name + 'の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        redirect_to :back
+      end
+    end
+
     #resnameはトップからlink_toで飛んできた値
-    @restaurant_id = Restaurant.find_by(name: params[:resname])
+    @restaurant_id = Restaurant.find_by(id: params[:resname])
     #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
       @restaurant = Restaurant.new()
@@ -53,6 +64,13 @@ class RestaurantsController < ApplicationController
   
   def deliver
     id = params[:restaurant][:id]
+    if $user_info.comments.find_by(restaurant_id: id).present?
+      informTime = $user_info.comments.where(restaurant_id: id).order(updated_at: :desc).limit(1).first
+      if (Time.zone.now - informTime.updated_at).to_i < 60*3
+        flash[:warning] = '次の' + informTime.restaurant.name + 'の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        redirect_to :report_restaurants and return
+      end
+    end
     
     if id.blank?
       flash[:warning] = '店名を選択して下さい'
@@ -82,6 +100,7 @@ class RestaurantsController < ApplicationController
     redirect_to :root
   end
 
+
   private
   
   def set_restaurants
@@ -90,7 +109,7 @@ class RestaurantsController < ApplicationController
   end
   
   def increment_point
-    current_user ||= User.find(session[:user_id])
+    current_user ||= $user_info
     current_user.point = current_user.point + 10
     current_user.save
   end

@@ -32,7 +32,7 @@
           <tr>
             <th scope="row" class="col-md-1"><%= num %>位</th>
             <td class="col-md-4"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	    <td class="col-md-4"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
+	    <td class="col-md-4"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
 	    <td class="col-md-3"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <% num = num+1 %>
@@ -54,7 +54,7 @@
 	  <% @new_restaurants.each do |nr| %>
         <tr>
           <td class="col-md-1"><%= link_to nr.name, "https://www.google.co.jp/search?q=" + nr.name %></td>
-          <td class="col-md-4"><%= image_tag(@crowded_image[nr.crowdedness], :size => "32x32") %><%= link_to @how_crowded[nr.crowdedness], :action => "report", :resname => nr.name %></td>
+          <td class="col-md-4"><%= image_tag(@crowded_image[nr.crowdedness], :size => "32x32") %><%= link_to @how_crowded[nr.crowdedness], :action => "report", :resname => nr.id %></td>
           <td class="col-md-3"><%= sec2h((Time.zone.now - nr.updated_at).to_i) %>前</td>
           <td class="col-md-4"><%= nr.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
         </tr>
