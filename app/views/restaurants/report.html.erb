@@ -2,6 +2,8 @@
 <h2>お店の状況を伝えよう。</h2>
 </div>
 
+<%= render '/mypage_block'%>
+
 <%= render :partial => '/flash_msg' %>
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
