@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
@@ -20,7 +21,7 @@ def login(h = {  })
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = nil
   @oauth_hash = OmniAuth::AuthHash.new({
-                                         provider: 'twitter', uid: '12345', info: { nickname: 'すいている', image: 'http://example.com/image.jpg' }
+                                         provider: 'twitter', uid: '12345', info: { nickname: 'すいている', image: 'http://example.com/image.jpg' , point: 0 }
                                        })
   OmniAuth.config.mock_auth[:twitter] = @oauth_hash
   if h[:cap]
