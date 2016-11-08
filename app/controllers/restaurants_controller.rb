@@ -53,7 +53,6 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     @user_rank = User.order("point DESC")
-    
   end
   
   def deliver
