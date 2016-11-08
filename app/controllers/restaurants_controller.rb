@@ -47,7 +47,7 @@ class RestaurantsController < ApplicationController
       informTime = user_info.comments.order(updated_at: :desc).limit(1).first
       if (Time.zone.now - informTime.updated_at).to_i < 60*3
         flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
-        redirect_to :back
+        redirect_to :root and return
       end
     end
 
