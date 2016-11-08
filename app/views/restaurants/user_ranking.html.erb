@@ -2,8 +2,9 @@
     <h2>ランキング</h2>
   </div>
   
-<%= render '/mypage_block'%>  
-  
+<%= render '/mypage_block'%>
+
+<center><h3> トップ3 </h3></center>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -13,14 +14,36 @@
     </tr>
   </thead>
   <tbody>
-    <% num=1 %>
-    <% @user_rank.each do |urank| %>
+    <% num = 1 %>
+    <% @up_rank.each do |urank| %>
     <tr>
       <th scope="row" class="col-md-1"><%= num %>位</th>
       <td class="col-md-5"><%= urank.nickname %></td>
       <td class="col-md-6"><%= urank.point %></td>
     </tr>
-    <% num = num+1 %>
+    <% num = num + 1 %>
+    <% end %>
+  </tbody>
+</table>
+
+<center><h3> あなたのランキング </h3></center>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1">順位</th>
+      <th class="col-md-5">ユーザー名</th>
+      <th class="col-md-6">ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ynum = @your_index %>
+    <% @your_rank.each do |yrank| %>
+    <tr>
+      <th scope="row" class="col-md-1"><%= ynum %>位</th>
+      <td class="col-md-5"><%= yrank.nickname %></td>
+      <td class="col-md-6"><%= yrank.point %></td>
+    </tr>
+    <% ynum = ynum + 1 %>
     <% end %>
   </tbody>
 </table>

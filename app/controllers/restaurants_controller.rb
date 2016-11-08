@@ -53,6 +53,12 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     @user_rank = User.order("point DESC")
+    @up_rank = @user_rank.limit(3)
+    your_inf||= User.find(session[:user_id])
+    @your_index = @user_rank.index(your_inf)
+    
+    @your_rank = @user_rank.limit(3).offset(@your_index - 1)
+    
   end
   
   def deliver
