@@ -43,10 +43,10 @@ class RestaurantsController < ApplicationController
   def report
 
     user_info = User.find(session[:user_id])
-    if user_info.comments.find_by(restaurant_id: params[:resname]).present?
-      informTime = user_info.comments.where(restaurant_id: params[:resname]).order(updated_at: :desc).limit(1).first
+    if user_info.comments.present?
+      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
       if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:warning] = '次の' + informTime.restaurant.name + 'の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
         redirect_to :back
       end
     end
@@ -64,10 +64,10 @@ class RestaurantsController < ApplicationController
   def deliver
     id = params[:restaurant][:id]
     user_info = User.find(session[:user_id])
-    if user_info.comments.find_by(restaurant_id: id).present?
-      informTime = user_info.comments.where(restaurant_id: id).order(updated_at: :desc).limit(1).first
+    if user_info.comments.present?
+      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
       if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:warning] = '次の' + informTime.restaurant.name + 'の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
         redirect_to :report_restaurants and return
       end
     end
