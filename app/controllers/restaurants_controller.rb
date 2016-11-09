@@ -41,8 +41,18 @@ class RestaurantsController < ApplicationController
   end
   
   def report
+
+    user_info = User.find(session[:user_id])
+    if user_info.comments.present?
+      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+      if (Time.zone.now - informTime.updated_at).to_i < 60*3
+        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        redirect_to :root and return
+      end
+    end
+
     #resnameはトップからlink_toで飛んできた値
-    @restaurant_id = Restaurant.find_by(name: params[:resname])
+    @restaurant_id = Restaurant.find_by(id: params[:resname])
     #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
       @restaurant = Restaurant.new()
@@ -53,6 +63,14 @@ class RestaurantsController < ApplicationController
   
   def deliver
     id = params[:restaurant][:id]
+    user_info = User.find(session[:user_id])
+    if user_info.comments.present?
+      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+      if (Time.zone.now - informTime.updated_at).to_i < 60*3
+        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        redirect_to :report_restaurants and return
+      end
+    end
     
     if id.blank?
       flash[:warning] = '店名を選択して下さい'
@@ -81,6 +99,7 @@ class RestaurantsController < ApplicationController
     end
     redirect_to :root
   end
+
 
   private
   
