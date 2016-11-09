@@ -57,7 +57,7 @@ class RestaurantsController < ApplicationController
     
     if !(session[:user_id].blank?)
       your_inf||= User.find(session[:user_id])
-      @your_index = @user_rank.index(your_inf).
+      @your_index = @user_rank.index(your_inf)
       scope = 3
       if @your_index  <= 0
         @your_index =  1
