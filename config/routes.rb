@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get "/auth/failure" => "sessions#failure"
-
+  
   get 'restaurants/slide_info'
   get 'demands/index'
   get 'demands/index_approved', as: :approved_demands
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'
   
-  get 'restaurants/user_ranking'
+  get 'restaurants/user_ranking' 
   
   resources :restaurants do 
     collection do

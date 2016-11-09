@@ -14,18 +14,17 @@
     </tr>
   </thead>
   <tbody>
-    <% num = 1 %>
-    <% @up_rank.each do |urank| %>
+    <% @up_rank.each_with_index do |urank,index| %>
     <tr>
-      <th scope="row" class="col-md-1"><%= num %>位</th>
+      <th scope="row" class="col-md-1"><%= index+1 %>位</th>
       <td class="col-md-5"><%= urank.nickname %></td>
       <td class="col-md-6"><%= urank.point %></td>
     </tr>
-    <% num = num + 1 %>
     <% end %>
   </tbody>
 </table>
 
+<% if !(session[:user_id].blank?) %>
 <center><h3> あなたのランキング </h3></center>
 <table class="table table-hover">
   <thead>
@@ -36,14 +35,13 @@
     </tr>
   </thead>
   <tbody>
-    <% ynum = @your_index %>
-    <% @your_rank.each do |yrank| %>
+    <% @your_rank.each_with_index do |yrank,index| %>
     <tr>
-      <th scope="row" class="col-md-1"><%= ynum %>位</th>
+      <th scope="row" class="col-md-1"><%= @your_index + index %>位</th>
       <td class="col-md-5"><%= yrank.nickname %></td>
       <td class="col-md-6"><%= yrank.point %></td>
     </tr>
-    <% ynum = ynum + 1 %>
     <% end %>
   </tbody>
 </table>
+<% end %>
