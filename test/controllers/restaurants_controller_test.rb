@@ -48,11 +48,19 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_equal 2, assigns(:new_restaurants).length
   end
 
+
   test "ログインしていない場合はreportとdeliver出来ない" do
     get :report
     assert flash[:warning].match(/.*ログインして下さい.*/)
     post :deliver
     assert flash[:warning].match(/.*ログインして下さい.*/)
   end
+
+=begin
+  test "更新情報ページが表示されてる" do
+    get :slide_info
+    assert_response :success
+  end
+=end
 end
 

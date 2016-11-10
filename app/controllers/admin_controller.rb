@@ -4,9 +4,10 @@ class AdminController < ApplicationController
   end
 
   def archive_demand
-    demand = Demand.find(params[:id])
-    unless demand
-      flash[:error] = "指定した申請が見つかりませんでした。demand_id=#{params[:id]}"
+    begin
+      demand = Demand.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      flash[:warning] = "指定した申請が見つかりませんでした。demand_id=#{params[:id]}"
       redirect_to :admin_index
       return
     end
@@ -16,9 +17,10 @@ class AdminController < ApplicationController
   end
 
   def unarchive_demand
-    demand = Demand.find(params[:id])
-    unless demand
-      flash[:error] = "指定した申請が見つかりませんでした。demand_id=#{params[:id]}"
+    begin
+      demand = Demand.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      flash[:warning] = "指定した申請が見つかりませんでした。demand_id=#{params[:id]}"
       redirect_to :admin_index
       return
     end

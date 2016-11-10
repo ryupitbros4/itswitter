@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
@@ -13,9 +14,14 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "1分", sec2h(68)
   end
   test "1時間の変換" do
-    assert_equal "1時間0分", sec2h(3600)
+    assert_equal "1時間以上", sec2h(3600)
   end
   test "1時間より長い変換" do
-    assert_equal "1時間1分", sec2h(3700)
+    assert_equal "1時間以上", sec2h(3700)
   end
+  test "59分から1時間以上への遷移" do
+    assert_equal "59分", sec2h(3599)
+    assert_equal "1時間以上", sec2h(3600)
+  end
+
 end
