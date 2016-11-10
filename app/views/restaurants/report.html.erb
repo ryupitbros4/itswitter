@@ -1,10 +1,11 @@
+<%= render '/flash_msg2' %>
+
 <div class="jumbotron" >
 <h2>お店の状況を伝えよう。</h2>
 </div>
 
 <%= render '/mypage_block'%>
 
-<%= render :partial => '/flash_msg' %>
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
   <%= f.select :id ,@restaurant_names, prompt: '選択してください'%> </br>

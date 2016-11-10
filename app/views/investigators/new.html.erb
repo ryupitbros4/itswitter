@@ -1,8 +1,8 @@
 <h1>料理、いつくる</h1>
 <%= link_to "管理者ページ", admin_path %>
 <h2>店新規登録</h2>
+<%= render '/flash_msg2' %>
 <%= render '/input_msg', object: @investigator %>
-<%= render :partial => '/flash_msg' %>
 
 <%= form_for @investigator, url:invest_update_path do |f| %>
   <div>

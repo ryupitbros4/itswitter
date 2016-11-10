@@ -1,14 +1,10 @@
+<%= render '/flash_msg2' %>
 <div class="jumbotron">
   <h2>私たちにお店を教えてください。</h2>
 </div>
 
 <%= render '/mypage_block'%>
 
-<% if @demand.errors.any? %>
-<ul>
-  <h2><%= @demand.errors.messages[:demand_restaurant][0] %></h2>
-</ul>
-<% end %>
 <%= form_for @demand, url:demands_new_path do |f| %>
 <div>
   <%= f.label :店名 %>
