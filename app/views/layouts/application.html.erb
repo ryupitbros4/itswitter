@@ -32,7 +32,7 @@
 	      <% if logged_in? %>
 	      <li><%= link_to session[:nickname]+"さんログアウト", logout_path %></li>
 	      <% else %>
-	      <li><%= link_to "ログイン", 'auth/twitter' %></li>
+	      <li><%= link_to "ログイン", '/auth/twitter' %></li>
 	      <% end %>
             </ul>
           </div>
