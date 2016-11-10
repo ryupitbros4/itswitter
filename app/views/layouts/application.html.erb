@@ -35,7 +35,7 @@
               <li><%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, root_path %></li>
 	      <li><%= link_to "ログアウト", logout_path %></li>
 	      <% else %>
-	      <li><%= link_to "ログイン", login_path %></li>
+	      <li><%= link_to "ログイン", "/auth/twitter" %></li>
 	      <% end %>
             </ul>
           </div>

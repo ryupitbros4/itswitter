@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 class SessionsController < ApplicationController
-  def login
-    redirect_to '/auth/twitter'
-  end
-
   def create
     user = User.find_or_create_from_auth(request.env['omniauth.auth'])
     reset_session
