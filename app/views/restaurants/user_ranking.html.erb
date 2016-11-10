@@ -1,0 +1,47 @@
+  <div class="jumbotron">
+    <h2>ランキング</h2>
+  </div>
+  
+<%= render '/mypage_block'%>
+
+<center><h3> トップ3 </h3></center>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1">順位</th>
+      <th class="col-md-5">ユーザー名</th>
+      <th class="col-md-6">ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @up_rank.each_with_index do |urank,index| %>
+    <tr>
+      <th scope="row" class="col-md-1"><%= index+1 %>位</th>
+      <td class="col-md-5"><%= urank.nickname %></td>
+      <td class="col-md-6"><%= urank.point %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if !(session[:user_id].blank?) %>
+<center><h3> あなたのランキング </h3></center>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1">順位</th>
+      <th class="col-md-5">ユーザー名</th>
+      <th class="col-md-6">ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @your_rank.each_with_index do |yrank,index| %>
+    <tr>
+      <th scope="row" class="col-md-1"><%= @your_index + index %>位</th>
+      <td class="col-md-5"><%= yrank.nickname %></td>
+      <td class="col-md-6"><%= yrank.point %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+  get "/auth/failure" => "sessions#failure"
+  
   get 'restaurants/slide_info'
   get 'demands/index'
   get 'demands/index_approved', as: :approved_demands
@@ -6,6 +11,8 @@ Rails.application.routes.draw do
   
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'
+  
+  get 'restaurants/user_ranking' 
   
   resources :restaurants do 
     collection do
@@ -15,8 +22,6 @@ Rails.application.routes.draw do
   end 
   root 'restaurants#index'
 
-  get "investigators/index"
-  post "investigators/:id" => 'investigators#update', as: :dbupdate
   get "investigators/new" => 'investigators#new', as: :new_investigators
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete

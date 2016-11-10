@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  provider: twitter
+  uid: 12345
+  nickname: すいている
+  image_url: http://example.com/image1.jpg
+  point: 0
+two:
+  provider: twitter
+  uid: 67890
+  nickname: すいている2
+  image_url: http://example.com/image2.jpg
+  point: 20

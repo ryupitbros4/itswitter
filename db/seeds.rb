@@ -7,13 +7,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-store = Restaurant.new({name: 'あがり', num_seats: '20', num_people: '5', seats_occ: '0', hurigana: 'あがり', crowdedness: '1'})
+store = Restaurant.new({name: 'あがり', hurigana: 'あがり'})
 store.save
-store = Restaurant.new({name: '我流屋', num_seats: '24', num_people: '24', seats_occ: '0', hurigana: 'がりゅうや', crowdedness: '1'})
+store = Restaurant.new({name: '我流屋', hurigana: 'がりゅうや'})
 store.save
-store = Restaurant.new({name: '通堂', num_seats: '44', num_people: '22', seats_occ: '0', hurigana: 'とんどう', crowdedness: '1'})
+store = Restaurant.new({name: '通堂', hurigana: 'とんどう'})
 store.save
-store = Restaurant.new({name: '鳥玉', num_seats: '26', num_people: '50', seats_occ: '0', hurigana: 'とりたま', crowdedness: '1'})
+store = Restaurant.new({name: '鳥玉', hurigana: 'とりたま'})
 store.save
-store = Restaurant.new({name: '三竹寿', num_seats: '25', num_people: '30', seats_occ: '0', hurigana: 'さんちくじゅ', crowdedness: '1'})
+store = Restaurant.new({name: '三竹寿', hurigana: 'さんちくじゅ'})
 store.save
+
+user = User.new({provider: 'twitter', uid: '1234567890', nickname: '1たろう', image_url: '', point: '11'})
+user.save
+user = User.new({provider: 'twitter', uid: '2345678901', nickname: '2たろう', image_url: '', point: '22'})
+user.save
+user = User.new({provider: 'twitter', uid: '3456789012', nickname: '3たろう', image_url: '', point: '33'})
+user.save
+user = User.new({provider: 'twitter', uid: '4567890123', nickname: '4たろう', image_url: '', point: '44'})
+user.save
+user = User.new({provider: 'twitter', uid: '5678901234', nickname: '5たろう', image_url: '', point: '55'})
+user.save

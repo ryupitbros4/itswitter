@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <%= render 'application/favicon' %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="180">
@@ -29,17 +30,23 @@
           </div>
           <div class="collapse navbar-collapse navbar-right nav-menu-1">
             <ul class="nav navbar-nav">
-	      <li><%= link_to "お店の状況を伝える", report_restaurants_path %></li>
-              <li><%= link_to "新しいお店を申請する", demands_index_path %></li>
+	      <% if logged_in? %>
+              <li><%= link_to session[:nickname] + "さん", root_path %></li>
+              <li><%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, root_path %></li>
+	      <li><%= link_to "ログアウト", logout_path %></li>
+	      <% else %>
+	      <li><%= link_to "ログイン", '/auth/twitter' %></li>
+	      <% end %>
             </ul>
           </div>
 	</div>
       </nav>
+
       <%= yield %>   
 
     <footer class="footer">
       <div class="container">
-	<p class="text-muted"><%= link_to "このアプリへのご意見", new_feedback_path %> | Powerd by RyuPiT Brother's 4 2016@enPit</p>
+	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
       </div>
     </footer>
   </body>

@@ -35,6 +35,7 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "同一の混雑度で更新すると、時刻が更新されている" do
+    session[:user_id] = users(:two).id
     r = restaurants(:four)
     post :deliver, restaurant: { id: r.id, crowdedness: r.crowdedness }
     assert_response :redirect
@@ -47,9 +48,19 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_equal 2, assigns(:new_restaurants).length
   end
 
+
+  test "ログインしていない場合はreportとdeliver出来ない" do
+    get :report
+    assert flash[:alert].match(/.*ログインして下さい.*/)
+    post :deliver
+    assert flash[:alert].match(/.*ログインして下さい.*/)
+  end
+
+=begin
   test "更新情報ページが表示されてる" do
     get :slide_info
     assert_response :success
   end
+=end
 end
 

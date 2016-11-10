@@ -1,0 +1,19 @@
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<td colspan=2><p class="text-center form-control-static">マイページ</p></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><%= link_to "お店の混雑度を伝える", report_restaurants_path %></td>
+	<td><%= link_to "ユーザーランキング", restaurants_user_ranking_path %></td>
+      </tr>
+      <tr>
+	<td><%= link_to "お店をリクエストする", demands_index_path %></td>
+	<td><%= link_to "Suitellへのご意見", new_feedback_path %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

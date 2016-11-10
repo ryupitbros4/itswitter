@@ -19,7 +19,9 @@ class RenewalsController < ApplicationController
     if @renewal.save
       redirect_to :new_renewal, notice: '更新しました'
     else
-      render 'new', alert: '更新できませんでした。'
+      @renewals = Renewal.all
+      flash.now[:alert] = '更新できませんでした。更新情報を記入して下さい'
+      render :action => :new
     end
   end
 

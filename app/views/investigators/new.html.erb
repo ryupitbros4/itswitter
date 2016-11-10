@@ -1,7 +1,8 @@
 <h1>料理、いつくる</h1>
+<%= link_to "管理者ページ", admin_path %>
 <h2>店新規登録</h2>
+<%= render '/flash_msg2' %>
 <%= render '/input_msg', object: @investigator %>
-<%= render :partial => '/flash_msg' %>
 
 <%= form_for @investigator, url:invest_update_path do |f| %>
   <div>
@@ -11,10 +12,6 @@
   <div>
     <%= f.label :ふりがな%>
     <%= f.text_field :hurigana %>
-  </div>
-  <div>
-    <%= f.label :席数%>
-    <%= f.text_field :num_seats %>
   </div>
   <div>
     <%= f.submit "登録" %>

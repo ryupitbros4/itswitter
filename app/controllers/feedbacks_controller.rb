@@ -15,7 +15,12 @@ class FeedbacksController < ApplicationController
       redirect_to :new_feedback, notice: 
       'ご意見ありがとうございました。送信しました'
     else
-      render 'new', alert: '送信できませんでした'
+      redirect_to :new_feedback, alert: 'お名前とご意見を入力して下さい'
+=begin
+      flash.now[:alert] = "名前とご意見を入力して下さい"
+      render :action => :new
+=end
+
     end
   end
 
