@@ -26,8 +26,8 @@ class RestaurantsController < ApplicationController
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')    
     
     if escaped.blank?
-      flash[:warning] = '店名を入力してください'
-      redirect_to :root
+#      flash[:warning] = '店名を入力してください'
+      redirect_to :root, :alert => '店名を入力して下さい'
     end
     
     @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
@@ -46,7 +46,7 @@ class RestaurantsController < ApplicationController
     if user_info.comments.present?
       informTime = user_info.comments.order(updated_at: :desc).limit(1).first
       if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
         redirect_to :root and return
       end
     end
@@ -84,27 +84,27 @@ class RestaurantsController < ApplicationController
     if user_info.comments.present?
       informTime = user_info.comments.order(updated_at: :desc).limit(1).first
       if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:warning] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+        flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
         redirect_to :report_restaurants and return
       end
     end
     
     if id.blank?
-      flash[:warning] = '店名を選択して下さい'
-      redirect_to :report_restaurants and return
+#      flash[:warning] = '店名を選択して下さい'
+      redirect_to :report_restaurants, :alert => '店名を選択して下さい' and return
     end
     
     if params[:restaurant][:crowdedness].blank?
-      flash[:warning] = '混雑度を選択して下さい'
-      redirect_to :report_restaurants and return
+#      flash[:warning] = '混雑度を選択して下さい'
+      redirect_to :report_restaurants, :alert => '混雑度を選択して下さい' and return
     end
     
     
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
-      flash[:warning] = '店の混雑度を選択して下さい'
-      redirect_to :report_restaurants and return
+#      flash[:warning] = '店の混雑度を選択して下さい'
+      redirect_to :report_restaurants, :alert => '店の混雑度を選択して下さい' and return
     end
     
     Restaurant.transaction do
@@ -132,6 +132,6 @@ class RestaurantsController < ApplicationController
   end
   
   def authenticate_user!
-    redirect_to :root, flash: { warning: 'ログインして下さい' } unless !!session[:user_id]
+    redirect_to :root, flash: { alert: 'ログインして下さい' } unless !!session[:user_id]
   end
 end

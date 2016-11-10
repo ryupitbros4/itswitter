@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class DemandsController < ApplicationController
   def index
     @demand = Demand.new
@@ -14,7 +15,8 @@ class DemandsController < ApplicationController
       redirect_to :demands_index
     else
       @demands = Demand.all.order(id: :desc)
-      render 'index'
+      flash.now[:alert] = '店名を入力して下さい'
+      render :action => :index
     end
   end
 

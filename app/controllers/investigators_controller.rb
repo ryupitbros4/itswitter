@@ -17,8 +17,8 @@ class InvestigatorsController < ApplicationController
       end
     rescue => e
       logger.error e.backtrace.join("\n")
-      flash[:warning] = "お店の新規登録に失敗しました。"
-      render 'new'
+      flash.now[:alert] = "お店の新規登録に失敗しました。"
+      render :action => :new
     end
   end
 
