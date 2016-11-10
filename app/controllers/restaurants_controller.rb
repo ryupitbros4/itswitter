@@ -61,6 +61,23 @@ class RestaurantsController < ApplicationController
     end
   end
   
+  def user_ranking
+    @user_rank = User.order("point DESC")
+    @up_rank = @user_rank.limit(3)
+    
+    if !(session[:user_id].blank?)
+      your_inf||= User.find(session[:user_id])
+      @your_index = @user_rank.index(your_inf)
+      scope = 3
+      if @your_index  <= 0
+        @your_index =  1
+        scope = 2
+      end
+      one_up_your_rnk = @your_index - 1
+      @your_rank = @user_rank.limit(scope).offset(one_up_your_rnk)
+    end
+  end
+  
   def deliver
     id = params[:restaurant][:id]
     user_info = User.find(session[:user_id])
@@ -95,7 +112,7 @@ class RestaurantsController < ApplicationController
       restaurant.save!
       restaurant.touch
       #混雑状況を伝えたらユーザーのポイントを+10
-      increment_point()
+      add_report_point()
     end
     redirect_to :root
   end
@@ -108,10 +125,10 @@ class RestaurantsController < ApplicationController
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
   end
   
-  def increment_point
+  def add_report_point
     current_user ||= User.find(session[:user_id])
     current_user.point = current_user.point + 10
-    current_user.save
+    current_user.save!
   end
   
   def authenticate_user!
