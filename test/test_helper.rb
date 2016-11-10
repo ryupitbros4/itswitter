@@ -17,6 +17,11 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
+OmniAuth.config.test_mode = true
+  @oauth_hash = OmniAuth::AuthHash.new({
+                                         provider: 'twitter', uid: '12345', info: { nickname: 'すいている', image: 'http://example.com/image.jpg' , point: 0 }
+                                       })
+  OmniAuth.config.mock_auth[:twitter] = @oauth_hash
 def login(h = {  })
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = nil
