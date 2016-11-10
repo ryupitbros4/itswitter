@@ -51,9 +51,9 @@ class RestaurantsControllerTest < ActionController::TestCase
 
   test "ログインしていない場合はreportとdeliver出来ない" do
     get :report
-    assert flash[:warning].match(/.*ログインして下さい.*/)
+    assert flash[:alert].match(/.*ログインして下さい.*/)
     post :deliver
-    assert flash[:warning].match(/.*ログインして下さい.*/)
+    assert flash[:alert].match(/.*ログインして下さい.*/)
   end
 
 =begin
