@@ -31,19 +31,8 @@
 	<td class="col-md-4" align="center">席に座れない人がかなりいる</td>
 	<td class="col-md-4" align="center">お店が閉まっている</td>
       </tr>
-
-      <tr>
-        <%= form_tag "/deliver", method:"post", class:"form-group" do %>
-        <p><%= label_tag :comment, "店の詳細情報（任意入力）" %></p>
-           <%= text_area_tag :comment, nil, rows:10, cols:90, class:"form-control" %>
-        <% end %>
-      </tr>
-
-      <tr>
-	<td class="col-md-4" align="center"><%= f.submit "伝える", {class: 'btn btn-primary' }%></td>
-	<td class="col-md-4" align="center"></td>
-	<td class="col-md-4" align="center"></td>
-      </tr>
     </tbody>
   </table>
+  <%= f.text_area :latest_comment, :size=>"60x10", class: "form-control" %>
+  <%= f.submit "伝える", {class: 'btn btn-primary' }%>
 <% end %>
