@@ -124,9 +124,21 @@ class RestaurantsController < ApplicationController
     redirect_to :root
   end
 
+  def comment_log
+    if params[:restaurant_id].present?
+      restaurant = Restaurant.find(params[:restaurant_id])
+      @restaurant_name = restaurant.name
+      @comments = restaurant.comments.order(updated_at: :desc)
+    else
+      @restaurant_name = 'お店'
+      @comments = Comment.all
+    end
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
+  end
 
   private
-  
+
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
