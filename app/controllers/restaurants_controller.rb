@@ -115,7 +115,7 @@ class RestaurantsController < ApplicationController
     end
     
     Restaurant.transaction do
-      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id })
+      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id, comment: params[:restaurant][:latest_comment] })
       restaurant.save!
       restaurant.touch
       #混雑状況を伝えたらユーザーのポイントを+10
