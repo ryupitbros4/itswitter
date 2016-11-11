@@ -11,13 +11,13 @@ class InvestigatorsController < ApplicationController
     begin
       Restaurant.transaction do
         @investigator.save!
-        renewal = Renewal.new({ update_info: "新たなお店 「#{new_rest[:name]}」 が追加されました", restaurant_id: @investigator.id })
+        renewal = Renewal.new({ update_info: "新たな飲食店 「#{new_rest[:name]}」 が追加されました", restaurant_id: @investigator.id })
         renewal.save!
         redirect_to '/restaurants/report'
       end
     rescue => e
       logger.error e.backtrace.join("\n")
-      flash.now[:alert] = "お店の新規登録に失敗しました。"
+      flash.now[:alert] = "飲食店の新規登録に失敗しました。"
       render :action => :new
     end
   end

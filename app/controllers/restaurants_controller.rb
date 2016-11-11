@@ -130,7 +130,7 @@ class RestaurantsController < ApplicationController
       @restaurant_name = restaurant.name
       @comments = restaurant.comments.order(updated_at: :desc)
     else
-      @restaurant_name = 'お店'
+      @restaurant_name = '飲食店'
       @comments = Comment.all
     end
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
