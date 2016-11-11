@@ -121,7 +121,7 @@ class RestaurantsController < ApplicationController
       #混雑状況を伝えたらユーザーのポイントを+10
       add_report_point()
     end
-    redirect_to :root
+    redirect_to action: 'comment_log', restaurant_id: id
   end
 
   def comment_log
