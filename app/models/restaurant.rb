@@ -19,6 +19,6 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.order_by_crowdedness
-    Restaurant.all.sort_by(&:crowdedness)
+    Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
   end
 end
