@@ -11,10 +11,32 @@ require "minitest/rails/capybara"
 # Uncomment for awesome colorful output
 # require "minitest/pride"
 
+
+## capybara drivers
+######################################################
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+Capybara.default_driver = :poltergeist
+
+#require 'selenium-webdriver'
+#Capybara.default_driver = :selenium
+######################################################
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
   # Add more helper methods to be used by all tests here...
+
+
+  # Clean database(see https://github.com/DatabaseCleaner/database_cleaner#minitest-example)
+  DatabaseCleaner.strategy = :transaction
+  before :each do
+    DatabaseCleaner.start
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
 end
 
 OmniAuth.config.test_mode = true

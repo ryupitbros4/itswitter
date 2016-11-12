@@ -36,4 +36,7 @@ end
 
 group :test do
   gem 'minitest-rails-capybara', '~> 2.1.1'
+  gem 'selenium-webdriver', '~> 2.53.0'
+  gem 'database_cleaner', '~> 1.5.3'
+  gem 'poltergeist', '~> 1.11.0'
 end
