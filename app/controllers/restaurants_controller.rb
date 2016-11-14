@@ -41,7 +41,6 @@ class RestaurantsController < ApplicationController
   end
   
   def report
-
     user_info = User.find(session[:user_id])
     if user_info.comments.present?
       informTime = user_info.comments.order(updated_at: :desc).limit(1).first
@@ -63,7 +62,7 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     @user_rank = User.order("point DESC")
-    @up_rank = @user_rank.limit(3)
+    @up_rank = @user_rank
     
     if !(session[:user_id].blank?)
       your_inf||= User.find(session[:user_id])
