@@ -13,13 +13,12 @@ Rails.application.routes.draw do
   get 'restaurants/search' => 'restaurants#index'
   
   get 'restaurants/user_ranking' 
-
-  get 'restaurants/treatment'
   
   resources :restaurants do 
     collection do
       get 'report'
       post 'deliver'
+      get 'treatment'
     end
   end 
   root 'restaurants#index'
