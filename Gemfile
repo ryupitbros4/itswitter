@@ -36,4 +36,5 @@ end
 
 group :test do
   gem 'minitest-rails-capybara', '~> 2.1.1'
+  gem 'timecop'
 end

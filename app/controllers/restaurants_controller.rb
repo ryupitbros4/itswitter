@@ -68,8 +68,6 @@ class RestaurantsController < ApplicationController
     @user_rank = User.order("point DESC")
     @up_rank = @user_rank.limit(3)
 
-    logger.debugger @user_rank
-    
     if !(session[:user_id].blank?)
       your_inf||= User.find(session[:user_id])
       @your_index = @user_rank.index(your_inf)

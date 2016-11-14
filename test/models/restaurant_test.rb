@@ -31,9 +31,20 @@ class RestaurantTest < ActiveSupport::TestCase
     assert_not @restaurant.valid?
   end
 
-  test "commentが一件以上あるときは、crowdednessがそれらのうち最新のものと等しい" do
-    r = restaurants(:one)
-    assert_equal 3, r.crowdedness
+  test "commentの中に更新時間が一時間以内のものがあるときは、crowdednessはそれらのうち最新のものと等しい" do
+    t = Time.local(2016, 10, 12, 1, 0, 0)
+    Timecop.freeze(t) do
+      r = restaurants(:one)
+      assert_equal 3, r.crowdedness
+    end
+  end
+
+  test "commentの更新時間が全て一時間以上前のものであった場合、crowdednessは6である" do
+    t = Time.local(2016, 10, 12, 1, 1, 1)
+    Timecop.freeze(t) do
+      r = restaurants(:one)
+      assert_equal 6, r.crowdedness
+    end
   end
 
   test "commentが一件もないときは、crowdednessは6である" do
