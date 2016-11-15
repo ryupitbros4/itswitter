@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     collection do
       get 'report'
       post 'deliver'
+      get 'treatment'
     end
   end 
   root 'restaurants#index'

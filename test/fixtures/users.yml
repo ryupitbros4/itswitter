@@ -12,3 +12,15 @@ two:
   nickname: すいている2
   image_url: http://example.com/image2.jpg
   point: 20
+three:
+  provider: twitter
+  uid: 45678
+  nickname: すいている3
+  image_url: http://example.com/image3.jpg
+  point: 30
+four:
+  provider: twitter
+  uid: 89012
+  nickname: すいているタイ
+  image_url: http://example.com/image0.jpg
+  point: 0
