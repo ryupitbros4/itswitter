@@ -17,3 +17,10 @@ store = Restaurant.new({name: '鳥玉', hurigana: 'とりたま'})
 store.save
 store = Restaurant.new({name: '三竹寿', hurigana: 'さんちくじゅ'})
 store.save
+
+@user1 = User.new({provider: 'twitter', uid: '1234567890', nickname: '1たろう', image_url: '', point: '10'})
+@user1.save
+@user2 = User.new({provider: 'twitter', uid: '2345678901', nickname: '2たろう', image_url: '', point: '20'})
+@user2.save
+@user3 = User.new({provider: 'twitter', uid: '3456789012', nickname: '3たろう', image_url: '', point: '30'})
+@user3.save
