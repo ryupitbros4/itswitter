@@ -13,7 +13,7 @@ feature "VisitAllPage" do
     return if visited.include? current_path
     visited << current_path
     all('a').each do |a|
-      if a[:href].start_with?('/')
+      if a && a[:href] && a[:href].start_with?('/')
         if a[:href].include?('#')
           return current_path
         else
