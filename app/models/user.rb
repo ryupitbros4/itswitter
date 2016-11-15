@@ -15,4 +15,9 @@ class User < ActiveRecord::Base
       user.image_url = image_url
     end
   end
+  
+  def rank
+    User.where('point > ?', point).count + 1
+  end
+  
 end

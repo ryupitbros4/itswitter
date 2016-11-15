@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require "test_helper"
 
 feature "VisitAllPage" do
@@ -29,9 +30,13 @@ feature "VisitAllPage" do
     assert_nothing_raised do
       visited << current_path
       all('a').each do |a|
-        if a[:href].start_with?('/')
-          visit a[:href]
-          visit_all_links(visited)
+        if a && a[:href] && a[:href].start_with?('/')
+          if a[:href].include?('#')
+            return current_path
+          else
+            visit a[:href]
+            visit_all_links(visited)
+          end
         end
       end
     end
