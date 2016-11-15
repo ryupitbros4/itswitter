@@ -15,21 +15,12 @@
   </thead>
   <tbody>
     <!--もし同率ポイントだった場合は順位をタイにする-->
-    <% rank = 0 %>
-    <% pre_rank = -1 %>
-    <% pre_point = -1 %>
     <% @up_rank.each_with_index do |urank,index| %>
-    <% rank = index+1 %>
-    <% if pre_point == urank.point %>
-    <% rank = pre_rank %>
-    <% end %>
     <tr>
-      <th scope="row" class="col-md-1"><%= rank %>位</th>
+      <th scope="row" class="col-md-1"><%= urank.rank %>位</th>
       <td class="col-md-5"><%= urank.nickname %></td>
       <td class="col-md-6"><%= urank.point %></td>
     </tr>
-    <% pre_rank = rank %>
-    <% pre_point = urank.point %>
     <% end %>
   </tbody>
 </table>
@@ -46,21 +37,12 @@
   </thead>
   <tbody>
     <!--同率だった場合はタイにする-->
-    <% y_rank = 0 %>
-    <% y_pre_rank = -1 %>
-    <% y_pre_point = -1 %>
     <% @your_rank.each_with_index do |yrank,index| %>
-    <% y_rank = @your_index + index %>
-    <% if y_pre_point == yrank.point %>
-    <% y_rank = y_pre_rank %>
-    <% end %>
     <tr>
-      <th scope="row" class="col-md-1"><%= y_rank %>位</th>
+      <th scope="row" class="col-md-1"><%= yrank.rank %>位</th>
       <td class="col-md-5"><%= yrank.nickname %></td>
       <td class="col-md-6"><%= yrank.point %></td>
     </tr>
-    <% y_pre_rank = y_rank %>
-    <% y_pre_point = yrank.point %>
     <% end %>
   </tbody>
 </table>
