@@ -26,7 +26,7 @@ class RestaurantsController < ApplicationController
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')    
     
     if escaped.blank?
-#      flash[:warning] = '店名を入力してください'
+      #flash[:warning] = '店名を入力してください'
       redirect_to :root, :alert => '店名を入力して下さい'
     end
     
@@ -62,7 +62,7 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     @user_rank = User.order("point DESC")
-    @up_rank = @user_rank
+    @up_rank = User.order("point DESC").limit(3)
     
     if !(session[:user_id].blank?)
       your_inf||= User.find(session[:user_id])
@@ -89,12 +89,12 @@ class RestaurantsController < ApplicationController
     end
     
     if id.blank?
-#      flash[:warning] = '店名を選択して下さい'
+      #flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants, :alert => '店名を選択して下さい' and return
     end
     
     if params[:restaurant][:crowdedness].blank?
-#      flash[:warning] = '混雑度を選択して下さい'
+      #flash[:warning] = '混雑度を選択して下さい'
       redirect_to :report_restaurants, :alert => '混雑度を選択して下さい' and return
     end
     
@@ -102,7 +102,7 @@ class RestaurantsController < ApplicationController
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
-#      flash[:warning] = '店の混雑度を選択して下さい'
+      #flash[:warning] = '店の混雑度を選択して下さい'
       redirect_to :report_restaurants, :alert => '店の混雑度を選択して下さい' and return
     end
     
