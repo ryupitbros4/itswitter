@@ -70,9 +70,9 @@ class RestaurantsControllerTest < ActionController::TestCase
       res = restaurants(:four)
       post :deliver, restaurant: { crowdedness: '1', id: res.id, latest_comment: '今日セールやってるよ' }
       assert_response :redirect
+      insertUser = Comment.order(updated_at: :desc).limit(1).first
+      assert_equal '今日セールやってるよ', insertUser.comment
     end
-    insertUser = Comment.order(updated_at: :desc).limit(1).first
-    assert_equal '今日セールやってるよ', insertUser.comment
   end
 
 end
