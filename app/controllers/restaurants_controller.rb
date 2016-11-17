@@ -65,7 +65,7 @@ class RestaurantsController < ApplicationController
     @up_rank = user_rank.limit(3)
     
     if !(session[:user_id].blank?)
-      your_info||= User.find(session[:user_id])
+      your_info = User.find(session[:user_id])
       your_index = 0
       user_rank.each_with_index do |usrank,index|
         if usrank.uid == your_info.uid
