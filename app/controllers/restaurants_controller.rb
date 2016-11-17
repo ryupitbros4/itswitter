@@ -61,19 +61,24 @@ class RestaurantsController < ApplicationController
   end
   
   def user_ranking
-    @user_rank = User.order("point DESC")
-    @up_rank = User.order("point DESC").limit(3)
+    user_rank = User.order("point DESC")
+    @up_rank = user_rank.limit(3)
     
     if !(session[:user_id].blank?)
-      your_inf||= User.find(session[:user_id])
-      @your_index = @user_rank.index(your_inf)
+      your_info||= User.find(session[:user_id])
+      your_index = 0
+      user_rank.each_with_index do |usrank,index|
+        if usrank.uid == your_info.uid
+          your_index = index
+        end
+      end
       scope = 3
-      if @your_index  <= 0
-        @your_index =  1
+      if your_index  <= 0
+        your_index =  1
         scope = 2
       end
-      one_up_your_rnk = @your_index - 1
-      @your_rank = @user_rank.limit(scope).offset(one_up_your_rnk)
+      one_up_your_rnk = your_index - 1
+      @your_rank = user_rank.limit(scope).offset(one_up_your_rnk)
     end
   end
   
