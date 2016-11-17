@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <!--もし同率ポイントだった場合は順位をタイにする-->
-    <% @up_rank.each_with_index do |urank,index| %>
+    <% @up_rank.each do |urank| %>
     <tr>
       <th scope="row" class="col-md-1"><%= urank.rank %>位</th>
       <td class="col-md-5"><%= urank.nickname %></td>
@@ -37,7 +37,7 @@
   </thead>
   <tbody>
     <!--同率だった場合はタイにする-->
-    <% @your_rank.each_with_index do |yrank,index| %>
+    <% @your_rank.each do |yrank| %>
     <tr>
       <th scope="row" class="col-md-1"><%= yrank.rank %>位</th>
       <td class="col-md-5"><%= yrank.nickname %></td>

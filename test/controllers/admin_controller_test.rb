@@ -1,11 +1,18 @@
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
-  test "申請一覧が取得できている" do
+  test "未承認の申請一覧が取得できている" do
     get :index
     assert_response :success
-    assert assigns(:demands).present?
-    assert_equal 5, assigns(:demands).length
+    assert assigns(:unapproved_demands).present?
+    assert_equal 2, assigns(:unapproved_demands).length
+  end
+
+  test "承認済みの申請一覧が取得できている" do
+    get :index
+    assert_response :success
+    assert assigns(:approved_demands).present?
+    assert_equal 3, assigns(:approved_demands).length
   end
 
   test "申請を承認できる" do

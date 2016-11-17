@@ -26,7 +26,7 @@ class RestaurantsController < ApplicationController
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')    
     
     if escaped.blank?
-#      flash[:warning] = '店名を入力してください'
+      #flash[:warning] = '店名を入力してください'
       redirect_to :root, :alert => '店名を入力して下さい'
     end
     
@@ -67,8 +67,7 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     @user_rank = User.order("point DESC")
-    @up_rank = @user_rank.limit(3)
-    @up_rank = @user_rank
+    @up_rank = User.order("point DESC").limit(3)
     
     if !(session[:user_id].blank?)
       your_inf||= User.find(session[:user_id])

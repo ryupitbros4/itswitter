@@ -5,7 +5,7 @@
 <%= link_to "更新情報作成", new_renewal_path %>
 
 <%= render :partial => '/flash_msg' %>
-<h2>申請一覧</h2>
+<h2>未承認申請一覧</h2>
 <table class="table">
   <tr>
     <th class="col-md-2">店名</th>
@@ -14,15 +14,35 @@
     <th class="col-md-1">承認済み？</th>
     <th class="col-md-1"></th>
   </tr>
-  <% @demands.each do |d| %>
+  <% @unapproved_demands.each do |d| %>
     <tr>
       <td scope="col"><%= d.demand_restaurant %></td>
       <td scope="col"><%= simple_format(d.free) %></td>
       <td scope="col"><%= d.created_at %></td>
       <td scope="col"><%= d.archive ? "はい" : "いいえ" %></td>
       <td scope="col">
-        <% unless d.archive %><%= button_to 'archive', admin_archive_demand_path(d), { class: 'btn btn-primary', method: :put } %><% end %>
-        <% if d.archive %><%= button_to 'unarchive', admin_unarchive_demand_path(d), { class: 'btn btn-danger', method: :put } %><% end %>
+        <%= button_to 'archive', admin_archive_demand_path(d), { class: 'btn btn-primary', method: :put } %>
+      </td>
+  <% end %>
+</table>
+
+<h2>承認済み申請一覧</h2>
+<table class="table">
+  <tr>
+    <th class="col-md-2">店名</th>
+    <th class="col-md-4">フリースペース</th>
+    <th class="col-md-4">申請日時</th>
+    <th class="col-md-1">承認済み？</th>
+    <th class="col-md-1"></th>
+  </tr>
+  <% @approved_demands.each do |d| %>
+    <tr>
+      <td scope="col"><%= d.demand_restaurant %></td>
+      <td scope="col"><%= simple_format(d.free) %></td>
+      <td scope="col"><%= d.created_at %></td>
+      <td scope="col"><%= d.archive ? "はい" : "いいえ" %></td>
+      <td scope="col">
+        <%= button_to 'unarchive', admin_unarchive_demand_path(d), { class: 'btn btn-danger', method: :put } %>
       </td>
   <% end %>
 </table>

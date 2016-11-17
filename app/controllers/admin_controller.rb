@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
   def index
-    @demands = Demand.all.order(id: :desc)
+    @unapproved_demands = Demand.unapproved.order(id: :desc)
+    @approved_demands = Demand.approved.order(id: :desc)
   end
 
   def archive_demand
