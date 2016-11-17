@@ -62,5 +62,17 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_response :success
   end
 =end
-end
 
+  test "commentが追加されている" do
+    t = Time.local(2016, 10, 13, 0, 0, 0)
+    Timecop.freeze(t) do
+      session[:user_id] = users(:two).id
+      res = restaurants(:four)
+      post :deliver, restaurant: { crowdedness: '1', id: res.id, latest_comment: '今日セールやってるよ' }
+      assert_response :redirect
+      insertUser = Comment.order(updated_at: :desc).limit(1).first
+      assert_equal '今日セールやってるよ', insertUser.comment
+    end
+  end
+
+end

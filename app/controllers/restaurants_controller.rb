@@ -41,13 +41,18 @@ class RestaurantsController < ApplicationController
   end
   
   def report
-    user_info = User.find(session[:user_id])
-    if user_info.comments.present?
-      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
-      if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
-        redirect_to :root and return
+    #ログイン、usersテーブルのuserデータの有無を確認。
+    if logged_in? and User.where(:id => session[:user_id]).present?
+      user_info = User.find(session[:user_id])
+      if user_info.comments.present?
+        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        if (Time.zone.now - informTime.updated_at).to_i < 60*3
+          flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+          redirect_to :root and return
+        end
       end
+    else
+      redirect_to :root and return
     end
 
     #resnameはトップからlink_toで飛んできた値
@@ -83,16 +88,21 @@ class RestaurantsController < ApplicationController
   end
   
   def deliver
-    id = params[:restaurant][:id]
-    user_info = User.find(session[:user_id])
-    if user_info.comments.present?
-      informTime = user_info.comments.order(updated_at: :desc).limit(1).first
-      if (Time.zone.now - informTime.updated_at).to_i < 60*3
-        flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
-        redirect_to :report_restaurants and return
+    #ログイン、usersテーブルのuserデータの有無を確認。
+    if logged_in? and User.where(:id => session[:user_id]).present?
+      id = params[:restaurant][:id]
+      user_info = User.find(session[:user_id])
+      if user_info.comments.present?
+        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        if (Time.zone.now - informTime.updated_at).to_i < 60*3
+          flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+          redirect_to :report_restaurants and return
+        end
       end
+    else
+      redirect_to :root and return
     end
-    
+
     if id.blank?
       #flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants, :alert => '店名を選択して下さい' and return
@@ -112,18 +122,30 @@ class RestaurantsController < ApplicationController
     end
     
     Restaurant.transaction do
-      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id })
+      Comment.create({ crowdedness: crowd, user_id: session[:user_id], restaurant_id: restaurant.id, comment: params[:restaurant][:latest_comment] })
       restaurant.save!
       restaurant.touch
       #混雑状況を伝えたらユーザーのポイントを+10
       add_report_point()
     end
-    redirect_to :root
+    redirect_to action: 'comment_log', restaurant_id: id
   end
 
+  def comment_log
+    if params[:restaurant_id].present?
+      restaurant = Restaurant.find(params[:restaurant_id])
+      @restaurant_name = restaurant.name
+      @comments = restaurant.comments.order(updated_at: :desc)
+    else
+      @restaurant_name = '飲食店'
+      @comments = Comment.all
+    end
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
+  end
 
   private
-  
+
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
@@ -140,7 +162,6 @@ class RestaurantsController < ApplicationController
   end
 
   def treatment
-    
   end
 
 end

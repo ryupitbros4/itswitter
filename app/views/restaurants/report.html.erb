@@ -1,7 +1,7 @@
 <%= render '/flash_msg2' %>
 
 <div class="jumbotron" >
-<h2>お店の状況を伝えよう。</h2>
+<h2>飲食店の状況を伝えよう。</h2>
 </div>
 
 <%= render '/mypage_block'%>
@@ -29,13 +29,10 @@
       <tr>
 	<td class="col-md-4" align="center">席に座れない人がいる</td>
 	<td class="col-md-4" align="center">席に座れない人がかなりいる</td>
-	<td class="col-md-4" align="center">お店が閉まっている</td>
-      </tr>
-      <tr>
-	<td class="col-md-4" align="center"><%= f.submit "伝える", {class: 'btn btn-primary' }%></td>
-	<td class="col-md-4" align="center"></td>
-	<td class="col-md-4" align="center"></td>
+	<td class="col-md-4" align="center">飲食店が閉まっている</td>
       </tr>
     </tbody>
   </table>
+  <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control" %>
+  <%= f.submit "伝える", {class: 'btn btn-primary' }%>
 <% end %>

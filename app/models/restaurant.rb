@@ -14,11 +14,18 @@ class Restaurant < ActiveRecord::Base
 
   def crowdedness
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
-    return c.crowdedness if c
+    #トップページの表示だけを変える。commentsテーブルのcrowdednessは変えない。
+    return c.crowdedness if c and (Time.zone.now - c.updated_at).to_i <= 3600
     return 6
   end
 
   def self.order_by_crowdedness
     Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
   end
+  
+  def latest_comment
+    c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
+    return c.comment if c
+  end
+
 end
