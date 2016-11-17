@@ -153,12 +153,11 @@ class RestaurantsController < ApplicationController
     if !(session[:user_id].blank?)
       current_user ||= User.find(session[:user_id])
       current_user.point = current_user.point + 1
-      current_user.save!
+      current_user.save!      
     end
     redirect_to :root
   end
-    
-  
+      
   private
   
   def set_restaurants
