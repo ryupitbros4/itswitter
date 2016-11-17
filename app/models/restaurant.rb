@@ -33,4 +33,5 @@ class Restaurant < ActiveRecord::Base
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
     return c.user_id if c
   end
+  
 end
