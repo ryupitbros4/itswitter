@@ -19,11 +19,6 @@ class Restaurant < ActiveRecord::Base
     return 6
   end
 
-  def last_comment
-    c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
-    return c.comment if c
-  end
-
   def self.order_by_crowdedness
     Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
   end

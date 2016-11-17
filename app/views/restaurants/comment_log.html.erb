@@ -17,7 +17,7 @@
   </thead>
   <tbody>
     <% @comments.each do |comment| %>
-      <% if comment.comment.nil? %>
+      <% if comment.comment.blank? %>
         <% cont = 'コメント無し' %>
       <% else %>
         <% cont = comment.comment %>
