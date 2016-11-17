@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'restaurants/user_ranking' 
   get 'restaurants/comment_log'
   post 'restaurants/comment_log', as: :comment_log
+
+  post 'restaurants' => 'restaurants#add_like_point', as: :add_like_point
   
   resources :restaurants do 
     collection do

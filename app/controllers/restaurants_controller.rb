@@ -164,4 +164,17 @@ class RestaurantsController < ApplicationController
   def treatment
   end
 
+  def add_like_point
+    user_id = params[:user_id]
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point + 2
+    current_user.save!
+
+    comment_user ||= User.find_by(id: user_id)
+    comment_user.point = comment_user.point + 2
+    comment_user.save!
+    redirect_to :root
+    
+  end
+
 end
