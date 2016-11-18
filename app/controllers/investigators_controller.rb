@@ -6,14 +6,14 @@ class InvestigatorsController < ApplicationController
   end
 
   def create
-    new_rest = params.require(:restaurant).permit(:name, :hurigana)
+    new_rest = params.require(:restaurant).permit(:name, :hurigana, :start_hour, :start_minute, :end_hour, :end_minute, :holiday)
     @investigator = Restaurant.new(new_rest)
     begin
       Restaurant.transaction do
         @investigator.save!
         renewal = Renewal.new({ update_info: "新たな飲食店 「#{new_rest[:name]}」 が追加されました", restaurant_id: @investigator.id })
         renewal.save!
-        redirect_to '/restaurants/report'
+        redirect_to '/investigators/delete'
       end
     rescue => e
       logger.error e.backtrace.join("\n")
@@ -30,6 +30,7 @@ class InvestigatorsController < ApplicationController
 
   def delete
     @restaurants = Restaurant.all
+    @week = ["日","月","火","水","木","金","土"]
   end
 
 end

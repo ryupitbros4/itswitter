@@ -1,10 +1,60 @@
 <h1>登録店舗削除ページ</h1>
 <ul>
-  <% @restaurants.each do |restaurant| %>
-<li>
-  <%= restaurant.name %>   <%= link_to "[削除]",delete_path(restaurant.id),
-  method: :delete, data: {confirm: "削除してもよろしいですか"} %>
-</li>
-  <% end %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-1">店名</th>
+        <th class="col-md-2">営業時間</th>
+        <th class="col-md-3">定休日</th>
+        <th class="col-md-4"></th>
+      </tr>
+    </thead>
+    <% @restaurants.each do |restaurant| %>
+      <% holidays = "" %>
+      <% if restaurant.holiday.present? %>
+        <% restaurant.holiday.chars.each do |day| %>
+          <% holidays += @week[day.to_i] %>
+        <% end %>
+      <% end %>
+      <thbody>
+        <tr>
+          <th class="col-md-1"><%= restaurant.name %></th>
+          <th class="col-md-2"><%= restaurant.start_hour %>時<%= restaurant.start_minute %>分〜<%= restaurant.end_hour %>時<%= restaurant.end_minute %>分</th>
+          <th class="col-md-3"><%= holidays %><br><%= restaurant.holiday %></th>
+          <th class="col-md-4"><%= link_to "[削除]",delete_path(restaurant.id),
+  method: :delete, data: {confirm: "削除してもよろしいですか"} %></th>
+	</tr>
+      </thbody>
+    <% end %>
+  </table>
+  <h4>例.日曜と水曜と木曜が定休日 = 034</h4>
+  <center><h1>定休日表</h1>
+    <table class="table table-hover">
+      <thread>
+        <tr>
+          <th class="col-md-1">曜日</th>
+          <th class="col-md-2">日</th>
+          <th class="col-md-3">月</th>
+          <th class="col-md-4">火</th>
+          <th class="col-md-5">水</th>
+          <th class="col-md-6">木</th>
+          <th class="col-md-7">金</th>
+          <th class="col-md-8">土</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="col-md-1">入力値</th>
+          <th class="col-md-2">0</th>
+          <th class="col-md-3">1</th>
+          <th class="col-md-4">2</th>
+          <th class="col-md-5">3</th>
+          <th class="col-md-6">4</th>
+          <th class="col-md-7">5</th>
+          <th class="col-md-8">6</th>
+        </tr>
+      <thbody>
+    </table>
+  </center>
 </ul>
 
