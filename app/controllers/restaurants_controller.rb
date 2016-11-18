@@ -146,24 +146,41 @@ class RestaurantsController < ApplicationController
   
   def add_like_point
     user_id = params[:user_id]
+    comment_id = params[:comment_id]
+    
+    press_user = PressedUser.new()
+    press_user.comment_id = comment_id
+    press_user.user_id = current_user.id
+    press_user.save!
+    
     comment_user = User.find_by(id: user_id)    
     comment_user.point = comment_user.point + 2
     comment_user.save!
     
-    if !(session[:user_id].blank?)
-      current_user ||= User.find(session[:user_id])
-      current_user.point = current_user.point + 1
-      current_user.save!
-      
-      comment_id = params[:comment_id]
-      press_user = PressedUser.new()
-      press_user.comment_id = comment_id
-      press_user.user_id = current_user.id
-      press_user.save!
-    end
-    redirect_to :root
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point + 1
+    current_user.save!
+    
+    redirect_to :back
   end
-      
+  
+  def cancel_like
+    user_id = params[:user_id]
+    comment_id = params[:comment_id]
+    
+    PressedUser.find_by(comment_id: comment_id, user_id: user_id).destroy
+    
+    comment_user = User.find_by(id: user_id)
+    comment_user.point = comment_user.point - 2
+    comment_user.save!
+    
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point - 1
+    current_user.save!
+    
+    redirect_to :back
+  end
+  
   private
   
   def set_restaurants

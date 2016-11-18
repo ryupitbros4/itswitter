@@ -18,7 +18,7 @@ class Restaurant < ActiveRecord::Base
     return c.crowdedness if c and (Time.zone.now - c.updated_at).to_i <= 3600
     return 6
   end
-
+  
   def self.order_by_crowdedness
     Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
   end
