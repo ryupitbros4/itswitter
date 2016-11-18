@@ -75,8 +75,21 @@ class RestaurantsControllerTest < ActionController::TestCase
     end
   end
 
-  test "「いいね！」ボタンを押すと「いいね！を取り消す」ボタンが表れる。" do 
-
+  test "「いいね！」ボタンを押すとコメントしたユーザーに点数が加算される。" do 
+    session[:user_id] = users(:one).uid
+    before = users(:two).point
+    get :add_link_point, comment_id: comments(:two).id
+    assert_response :success
+    assert_equal users(:two).point, before + 2
   end
+
+  test "「いいね！」ボタンを押すといいねしたユーザーに点数が加算される。" do
+    session[:user_id] =users(:one).uid
+    before = users(:one).point
+    get :add_link_point, comment_id: comments(:two).id
+    assert_response :success
+    assert_equal users(:one).point, before + 1
+  end
+
 
 end
