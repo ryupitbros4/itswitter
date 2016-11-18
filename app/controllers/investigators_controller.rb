@@ -29,8 +29,26 @@ class InvestigatorsController < ApplicationController
   end
 
   def delete
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.order(updated_at: :desc)
     @week = ["日","月","火","水","木","金","土"]
+  end
+
+  def show
+    @investigator = Restaurant.find(params[:id])
+  end
+
+  def update
+    investigator = Restaurant.find(params[:id])
+    begin
+      Restaurant.transaction do
+        investigator.update(name: params[:restaurant][:name], hurigana: params[:restaurant][:hurigana], start_hour: params[:restaurant][:start_hour], start_minute: params[:restaurant][:start_minute], end_hour: params[:restaurant][:end_hour], end_minute: params[:restaurant][:end_minute], holiday: params[:restaurant][:holiday])
+        redirect_to '/investigators/delete'
+      end
+    rescue => e
+      logger.error e.backtrace.join("\n")
+      flash.now[:alert] = "飲食店の更新に失敗しました。"
+      render :action => :show
+    end
   end
 
 end

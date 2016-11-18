@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete
   get "investigators/delete"
-
+  get "investigators/show/:id" => 'investigators#show', as: :show_investigators
+  patch "investigators/:id" => 'investigators#update', as: :update_investigators
 
   # Admin
   get "admin" => 'admin#index'
