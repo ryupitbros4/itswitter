@@ -75,4 +75,8 @@ class RestaurantsControllerTest < ActionController::TestCase
     end
   end
 
+  test "「いいね！」ボタンを押すと「いいね！を取り消す」ボタンが表れる。" do 
+
+  end
+
 end
