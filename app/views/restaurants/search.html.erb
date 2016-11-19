@@ -19,9 +19,9 @@
     <thead>
       <tr>
         <th class="col-md-3">店名</th>
-        <th class="col-md-3">混雑度</th>
-        <th class="col-md-3">最新更新時</th>
-	<th class="col-md-3">コメント</th>
+        <th class="col-md-2">混雑度</th>
+        <th class="col-md-2">最新更新時</th>
+	<th class="col-md-4">コメント</th>
       </tr>
     </thead>
     <tbody>
@@ -32,9 +32,9 @@
       <% end %>
       <tr>
         <td class="col-md-3"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-        <td class="col-md-3"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
-        <td class="col-md-3"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
-	<td class="col-md-3"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", \
+        <td class="col-md-2"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %><%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.name %></td>
+        <td class="col-md-2"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+	<td class="col-md-4"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", \
 	  :restaurant_id => ranking.id %></td>
       </tr>
       <% end %>
