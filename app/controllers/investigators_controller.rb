@@ -36,9 +36,15 @@ class InvestigatorsController < ApplicationController
       end
     rescue => e
       logger.error e.backtrace.join("\n")
-      flash.now[:alert] = "営業時刻の新規登録に失敗しました。"
+      flash.now[:alert] = "営業時間の新規登録に失敗しました。"
       render :action => :opening_hour_new
     end
+  end
+
+  def opening_hour_destroy
+    @openinghour = OpeningHour.find(params[:id])
+    @openinghour.destroy
+    redirect_to :investigators_delete
   end
 
   def destroy

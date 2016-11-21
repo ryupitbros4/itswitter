@@ -23,7 +23,7 @@
           <td class="col-md-4">
             <% if restaurant.opening_hours.present? %>
               <% restaurant.opening_hours.each do |opening_hour| %>
-                <%= opening_hour.start_hour %>時<%= opening_hour.start_minute %>分〜<%= opening_hour.end_hour %>時<%= opening_hour.end_minute %>分<br>
+                <%= opening_hour.start_hour %>時<%= opening_hour.start_minute %>分〜<%= opening_hour.end_hour %>時<%= opening_hour.end_minute %>分<%= link_to "[削除]", opening_hour_delete_path(opening_hour.id), method: :delete, data: {confirm: "削除してもよろしいですか"} %><br>
               <% end %>
             <% end %>
           <%= link_to "[営業時間作成]", opening_hour_new_path(restaurant.id) %>
