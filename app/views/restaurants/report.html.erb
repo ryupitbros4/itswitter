@@ -8,7 +8,8 @@
 
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
   <%= f.label "店名" %>
-  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%> </br>
+  <%= f.select :id ,@restaurant_names, prompt: '選択してください(必須)'%> </br>
+混雑度(選択必須)
   <table class="table">
     <tbody>
       <tr>
@@ -33,7 +34,7 @@
       </tr>
     </tbody>
   </table>
-  <p>伝えたいコメントを書こう!</p>
+  <p>伝えたいコメントを書こう!(任意)</p>
   <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control" %>
   <%= f.submit "伝える", {class: 'btn btn-primary' }%>
 <% end %>

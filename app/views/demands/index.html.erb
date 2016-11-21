@@ -7,14 +7,14 @@
 
 <%= form_for @demand, url:demands_new_path do |f| %>
 <div>
-  <%= f.label :店名 %>
+  <%= f.label "店名(必須)" %>
   <%= f.text_field :demand_restaurant, class:'form-control' %>
 </div>
 
 <br>
 
 <div class="form-group">
-  <%= f.label :伝えたい思いをどうぞ！%>
+  <%= f.label "伝えたい思いをどうぞ！(任意)"%>
   <br>
   <%= f.text_area :free, rows:10, class:'form-control' %>
 </div>  
