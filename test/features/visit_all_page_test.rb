@@ -27,18 +27,25 @@ feature "VisitAllPage" do
   private
   def visit_all_links(visited)
     return if visited.include? current_path
+    visited << current_path
     assert_nothing_raised do
-      visited << current_path
-      all('a').each do |a|
-        if a && a[:href] && a[:href].start_with?('/')
-          if a[:href].include?('#')
-            return current_path
-          else
-            visit a[:href]
-            visit_all_links(visited)
-          end
+      for i in (0..(all('a').length - 1)) do
+        a = all('a')[i]
+        if visitable(a, visited)
+          visit a[:href]
+          visit_all_links(visited)
         end
       end
     end
+  end
+
+  def visitable(a, visited)
+    return false unless (a && a[:href] && a[:href].start_with?('http://127.0.0.1'))
+    return false if a[:href].include?('#')
+    path = URI.parse(a[:href]).path
+    return false if path == '/logout'
+    return false if path == '/auth/twitter'
+    return false if visited.include?(path)
+    return true
   end
 end
