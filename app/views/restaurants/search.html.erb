@@ -24,7 +24,7 @@
         <th class="col-md-4">最新更新時</th>
       </tr>
         <tr>
-          <th colspan="4" class="col-md-12">コメント</th>
+          <th colspan="3" class="col-md-12">コメント</th>
         </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
         <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
       </tr>
       <tr>
-	<td colspan="4" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %></td>
+	<td colspan="3" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %></td>
       </tr>
       <% end %>
     </tbody>
