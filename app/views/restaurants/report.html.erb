@@ -7,8 +7,10 @@
 <%= render '/mypage_block'%>
 
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
-  <%= f.label "店名" %>
-  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%> </br>
+  1.<%= f.label "店名" %>
+  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%></br>
+  <br>
+  2.<%= f.label "混雑度を選択しよう!" %>
   <table class="table">
     <tbody>
       <tr>
@@ -33,7 +35,7 @@
       </tr>
     </tbody>
   </table>
-  <%= f.label :伝えたい情報をコメントしよう!%>
+  3.<%= f.label "伝えたい情報をコメントしよう!" %>
   <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control" %>
   <%= f.submit "伝える", {class: 'btn btn-primary' }%>
 <% end %>
