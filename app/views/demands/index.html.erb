@@ -27,21 +27,21 @@
 
   <center><h1>追加待ちの飲食店(追加済みの飲食店は<%= link_to 'こちら', approved_demands_path %>)</h1></center> 
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>#</th>
-      <th>店名</th>
-      <th>伝えたい思い</th>
+      <th class="col-md-1">#</th>
+      <th class="col-md-3">店名</th>
+      <th class="col-md-8">伝えたい思い</th>
     </tr>
   </thead>
   <tbody>
     <% num = 1 %>
     <% @demands.each do |demand| %>
     <tr>
-      <th><%= num %></th>
-      <td><%= demand.demand_restaurant %></td> 
-      <td><%= demand.free %></td>
+      <th class="col-md-1"><%= num %></th>
+      <td class="col-md-3"><%= demand.demand_restaurant %></td> 
+      <td class="col-md-8"><%= demand.free %></td>
 
       <% num = num + 1 %>
     </tr>

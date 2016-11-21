@@ -14,9 +14,10 @@
   </div>
   <p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
 
-<%= render '/mypage_block'%>  
+<%= render '/mypage_block'%> 
   
-  <center><h1>今、空いてる順</h1></center>
+  <center><h1>今こんなお店がすいてます</h1></center>
+  <div style="border-style:solid ; border-width: 1px; padding: 10px 5px 10px 5px; border-color:#FAEBD7; color:black; background-color:#FAEBD7; border-radius: 10px;">
     <table class="table table-hover">
       <thead>
     	<tr>
@@ -45,8 +46,10 @@
 	<% end %>
       </tbody>
     </table>
+  </div>
 
-  <center><h1>新着</h1></center>
+  <center><h1>最近見れるようになったお店</h1></center>
+  <div style="border-style:solid ; border-width: 1px; padding: 10px 5px 10px 5px; border-color:#FAEBD7; color:black; background-color:#FAEBD7; border-radius: 10px;">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -67,3 +70,4 @@
       <% end %>
       </tbody>
     </table>
+    </div>
