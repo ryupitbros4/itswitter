@@ -7,12 +7,15 @@
 <%= render '/mypage_block'%>
 
 <center><h1>コメント一覧</h1></center>
+<div style="border-style:solid ; border-width: 1px; padding: 10px 5px 10px 5px; border-color:#FAEBD7; color:black; background-color:#FAEBD7; border-radius: 10px;">
 <table class="table table-hover">
   <thead>
     <tr>
-      <th class="col-md-2">混雑度</th>
-      <th class="col-md-3">最新更新時</th>
-      <th class="col-md-4">コメント</th>
+      <th class="col-md-4">混雑度</th>
+      <th class="col-md-8">最新更新時</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="col-md-12">コメント</th>
     </tr>
   </thead>
   <tbody>
@@ -25,8 +28,11 @@
       <tr>
         <td class="col-md-2"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
         <td class="col-md-3"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-        <td class="col-md-4"><%= cont %></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="col-md-12"><%= cont %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
