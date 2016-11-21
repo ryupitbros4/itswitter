@@ -76,19 +76,21 @@ class RestaurantsControllerTest < ActionController::TestCase
   end
 
   test "「いいね！」ボタンを押すとコメントしたユーザーに点数が加算される。" do 
-    session[:user_id] = users(:one).uid
-    before = users(:two).point
-    get :add_link_point, comment_id: comments(:two).id
-    assert_response :success
-    assert_equal users(:two).point, before + 2
+    session[:user_id] = users(:two).id # ユーザーはtwoさん
+    before = users(:one).point
+    # oneさんのコメントについていいね！をした
+    post :add_like_point, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+   
+    assert_equal before + 2, User.find_by(id: comments(:one).user_id).point
   end
 
   test "「いいね！」ボタンを押すといいねしたユーザーに点数が加算される。" do
-    session[:user_id] =users(:one).uid
-    before = users(:one).point
-    get :add_link_point, comment_id: comments(:two).id
-    assert_response :success
-    assert_equal users(:one).point, before + 1
+    session[:user_id] = users(:two).id # ユーザーはtwoさん
+    before = users(:two).point
+    # oneさんのコメントについていいね！をした
+    post :add_like_point, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+ 
+    assert_equal before + 1, User.find(session[:user_id]).point
   end
 
 

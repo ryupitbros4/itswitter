@@ -162,6 +162,9 @@ class RestaurantsController < ApplicationController
     current_user.save!
     
     redirect_to :back
+    # :backがテストでNo HTTP_REFEREになるためrescueする
+    rescue ActionController::RedirectBackError
+    redirect_to root_path
   end
   
   def cancel_like
