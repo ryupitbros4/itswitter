@@ -7,10 +7,11 @@
 <%= render '/mypage_block'%>
 
 <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
-  1.<%= f.label "店名" %>
-  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%></br>
+  <%= f.label "店名" %>
+  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%><span class="text-danger">(必須) </span> 
   <br>
-  2.<%= f.label "混雑度を選択しよう!" %>
+  2.<%= f.label "混雑度を選択しよう!" %><span class="text-danger">(必須)</span>
+
   <table class="table">
     <tbody>
       <tr>
