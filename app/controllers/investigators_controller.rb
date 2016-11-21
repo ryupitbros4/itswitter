@@ -6,7 +6,7 @@ class InvestigatorsController < ApplicationController
   end
 
   def create
-    new_rest = params.require(:restaurant).permit(:name, :hurigana, :start_hour, :start_minute, :end_hour, :end_minute, :holiday)
+    new_rest = params.require(:restaurant).permit(:name, :hurigana, :holiday)
     @investigator = Restaurant.new(new_rest)
     begin
       Restaurant.transaction do
@@ -41,7 +41,7 @@ class InvestigatorsController < ApplicationController
     investigator = Restaurant.find(params[:id])
     begin
       Restaurant.transaction do
-        investigator.update(name: params[:restaurant][:name], hurigana: params[:restaurant][:hurigana], start_hour: params[:restaurant][:start_hour], start_minute: params[:restaurant][:start_minute], end_hour: params[:restaurant][:end_hour], end_minute: params[:restaurant][:end_minute], holiday: params[:restaurant][:holiday])
+        investigator.update(name: params[:restaurant][:name], hurigana: params[:restaurant][:hurigana], holiday: params[:restaurant][:holiday])
         redirect_to '/investigators/delete'
       end
     rescue => e

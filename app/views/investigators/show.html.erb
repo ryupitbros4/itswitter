@@ -1,5 +1,5 @@
 <%= link_to "管理者ページ", admin_path %>
-<h2>店舗更新ページ</h2>
+<h2>店舗情報更新ページ</h2>
 <%= render '/flash_msg2' %>
 <%= render '/input_msg', object: @investigator %>
 
@@ -11,14 +11,6 @@
   <div>
     <%= f.label :ふりがな %>
     <%= f.text_field :hurigana %>
-  </div>
-  <div>
-    <%= f.label :営業開始時間 %>
-    <%= f.number_field :start_hour, {in: 0...25} %>時<%= f.number_field :start_minute, {in: 0...60, step: 10} %>分
-  </div>
-  <div>
-    <%= f.label :営業終了時間 %>
-    <%= f.number_field :end_hour, {in: 0...25} %>時<%= f.number_field :end_minute, {in: 0...60, step: 10} %>分
   </div>
   <div>
     <%= f.label :定休日 %>
@@ -42,14 +34,14 @@
       </thead>
       <tbody>
         <tr>
-          <th class="col-md-1">入力値</th>
-          <th class="col-md-2">0</th>
-          <th class="col-md-3">1</th>
-          <th class="col-md-4">2</th>
-          <th class="col-md-5">3</th>
-          <th class="col-md-6">4</th>
-          <th class="col-md-7">5</th>
-          <th class="col-md-8">6</th>
+          <td class="col-md-1">入力値</td>
+          <td class="col-md-2">0</td>
+          <td class="col-md-3">1</td>
+          <td class="col-md-4">2</td>
+          <td class="col-md-5">3</td>
+          <td class="col-md-6">4</td>
+          <td class="col-md-7">5</td>
+          <td class="col-md-8">6</td>
         </tr>
       <thbody>
     </table>

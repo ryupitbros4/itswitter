@@ -6,8 +6,8 @@
       <tr>
         <th class="col-md-4">店名</th>
         <th class="col-md-4">営業時間</th>
-        <th class="col-md-3">定休日</th>
-        <th class="col-md-1"></th>
+        <th class="col-md-2">定休日</th>
+        <th class="col-md-2"></th>
       </tr>
     </thead>
     <% @restaurants.each do |restaurant| %>
@@ -19,12 +19,18 @@
       <% end %>
       <thbody>
         <tr>
-          <th class="col-md-4"><%= restaurant.name %></th>
-          <th class="col-md-4"><%= restaurant.start_hour %>時<%= restaurant.start_minute %>分〜<%= restaurant.end_hour %>時<%= restaurant.end_minute %>分</th>
-          <th class="col-md-3"><%= holidays %><br><%= restaurant.holiday %></th>
-          <th class="col-md-1"><%= link_to "[削除]",delete_path(restaurant.id),
+          <td class="col-md-4"><%= restaurant.name %></td>
+          <td class="col-md-4">
+            <% if restaurant.opening_hours.present? %>
+              <% restaurant.opening_hours.each do |opening_hour| %>
+                <%= opening_hour.start_hour %>時<%= opening_hour.start_minute %>分〜<%= opening_hour.end_hour %>時<%= opening_hour.end_minute %>分<br>
+              <% end %>
+            <% end %>
+          </td>
+          <td class="col-md-2"><%= holidays %><br><%= restaurant.holiday %></td>
+          <td class="col-md-2"><%= link_to "[店舗情報削除]",delete_path(restaurant.id),
   method: :delete, data: {confirm: "削除してもよろしいですか"} %>
-          <br><%= link_to "[更新]", show_investigators_path(restaurant.id) %></th>
+          <br><%= link_to "[店舗情報更新]", show_investigators_path(restaurant.id) %></td>
 	</tr>
       </thbody>
     <% end %>
@@ -46,14 +52,14 @@
       </thead>
       <tbody>
         <tr>
-          <th class="col-md-1">入力値</th>
-          <th class="col-md-1">0</th>
-          <th class="col-md-1">1</th>
-          <th class="col-md-1">2</th>
-          <th class="col-md-1">3</th>
-          <th class="col-md-1">4</th>
-          <th class="col-md-1">5</th>
-          <th class="col-md-1">6</th>
+          <td class="col-md-1">入力値</td>
+          <td class="col-md-1">0</td>
+          <td class="col-md-1">1</td>
+          <td class="col-md-1">2</td>
+          <td class="col-md-1">3</td>
+          <td class="col-md-1">4</td>
+          <td class="col-md-1">5</td>
+          <td class="col-md-1">6</td>
         </tr>
       <thbody>
     </table>

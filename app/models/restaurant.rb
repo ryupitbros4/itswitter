@@ -3,6 +3,8 @@ class Restaurant < ActiveRecord::Base
   has_many :comments
   has_many :users, :through => :comments
 
+  has_many :opening_hours
+
   validates :name, presence: { message:"店名を入力してください"}, 
   length: { maximum: 24, message:"店名は24文字以下にしてください"}
 

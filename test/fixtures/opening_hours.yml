@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_hour: 1
+  start_minute: 1
+  end_hour: 1
+  end_minute: 1
+
+two:
+  start_hour: 1
+  start_minute: 1
+  end_hour: 1
+  end_minute: 1
