@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get "investigators/delete"
   get "investigators/show/:id" => 'investigators#show', as: :show_investigators
   patch "investigators/:id" => 'investigators#update', as: :update_investigators
+  get "investigators/opening_hour_new/:restaurant_id" => 'investigators#opening_hour_new', as: :opening_hour_new
+  post "investigators/opening_hour_new/" => 'investigators#opening_hour_create', as: :opening_hour_create
 
   # Admin
   get "admin" => 'admin#index'

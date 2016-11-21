@@ -1,0 +1,20 @@
+<%= link_to "管理者ページ", admin_path %>
+<h2>店新規登録</h2>
+<%= render '/flash_msg2' %>
+<%= render '/input_msg', object: @openinghour %>
+
+<h3><%= @openinghour.restaurant.name %></h3>
+<%= form_for @openinghour, url:opening_hour_create_path do |f| %>
+  <div>
+    <%= f.label :営業開始時間 %>
+    <%= f.number_field :start_hour, {in: 0...25} %>時<%= f.number_field :start_minute, {in: 0...60, step: 10} %>分
+  </div>
+  <div>
+    <%= f.label :営業終了時間 %>
+    <%= f.number_field :end_hour, {in: 0...25} %>時<%= f.number_field :end_minute, {in: 0...60, step: 10} %>分
+  </div>
+  <%= f.hidden_field :restaurant_id %>
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>

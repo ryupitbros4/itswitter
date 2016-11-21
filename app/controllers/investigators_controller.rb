@@ -22,6 +22,25 @@ class InvestigatorsController < ApplicationController
     end
   end
 
+  def opening_hour_new
+    @openinghour = OpeningHour.new(restaurant_id: params[:restaurant_id])
+  end
+
+  def opening_hour_create
+    new_rest = params.require(:opening_hour).permit(:restaurant_id, :start_hour, :start_minute, :end_hour, :end_minute)
+    @openinghour = OpeningHour.new(new_rest)
+    begin
+      OpeningHour.transaction do
+        @openinghour.save!
+        redirect_to '/investigators/delete'
+      end
+    rescue => e
+      logger.error e.backtrace.join("\n")
+      flash.now[:alert] = "営業時刻の新規登録に失敗しました。"
+      render :action => :opening_hour_new
+    end
+  end
+
   def destroy
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy

@@ -26,6 +26,7 @@
                 <%= opening_hour.start_hour %>時<%= opening_hour.start_minute %>分〜<%= opening_hour.end_hour %>時<%= opening_hour.end_minute %>分<br>
               <% end %>
             <% end %>
+          <%= link_to "[営業時間作成]", opening_hour_new_path(restaurant.id) %>
           </td>
           <td class="col-md-2"><%= holidays %><br><%= restaurant.holiday %></td>
           <td class="col-md-2"><%= link_to "[店舗情報削除]",delete_path(restaurant.id),
