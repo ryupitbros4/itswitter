@@ -9,12 +9,12 @@
 <%= form_for @feedback do |f| %>
 <div>
   <%= f.label :名前 %>
-  <% @feedback.name = "匿名" %>
+  <% @feedback.name = "匿名" %><span class="text-danger">(必須)</span>
   <%= f.text_field :name ,class:'form-control'%>
 </div>
 <br>
 <div class="form-group">
-<p><%= f.label "ご意見(必須)" %></p>
+<p><%= f.label "ご意見" %><span class="text-danger">(必須)</span></p>
 
   <%= f.text_area :opinion, rows:10, class:'form-control' %>
   <br>
