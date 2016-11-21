@@ -25,7 +25,18 @@
       <tr>
         <td class="col-md-2"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
         <td class="col-md-3"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-        <td class="col-md-4"><%= cont %></td>
+        <td class="col-md-4"><%= cont %>
+	  
+	  <% if (!(comment.user_id.blank?) && !(session[:user_id].blank?))  %>
+          <% if (PressedUser.find_by(comment_id: comment.id, user_id: comment.user_id).blank?) %>
+          <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          <% else %>
+          <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
+          <% end %>
+          報告者:<%= User.find(comment.user_id).nickname %>さん
+          <% end %>	  
+	  
+	</td>
       </tr>
     <% end %>
   </tbody>
