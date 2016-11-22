@@ -67,7 +67,7 @@ class RestaurantsController < ApplicationController
   
   def user_ranking
     user_rank = User.order("point DESC")
-    @up_rank = user_rank.limit(3)
+    @up_rank = user_rank.limit(30)
     
     if !(session[:user_id].blank?)
       your_info = User.find(session[:user_id])
