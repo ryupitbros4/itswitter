@@ -93,5 +93,13 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_equal before + 1, User.find(session[:user_id]).point
   end
 
+  test "「いいね！」ボタンを押すとレコードが追加される" do 
+    session[:user_id] = users(:two).id # ユーザーはtwoさん
+    before = PressedUser.count
+    # oneさんのコメントについていいね！をした
+    post :add_like_point, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+
+    assert_equal before + 1, PressedUser.count
+  end
 
 end
