@@ -151,7 +151,7 @@ class RestaurantsController < ApplicationController
     
     press_user = PressedUser.new()
     press_user.comment_id = comment_id
-    press_user.user_id = current_user.id
+    press_user.user_id = user_id
     press_user.save!
     
     comment_user = User.find_by(id: comment_user_id)    
