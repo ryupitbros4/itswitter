@@ -36,12 +36,12 @@
           <% end %>
         <tr>
 	  <td class="col-md-3"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
-          <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	  <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+        <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
+          <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
         </tr>
         <tr>
-          <td colspan="3" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %>
-	      
+	  <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %>
+	    
 	    <% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?))  %>
 	    
             <% if (PressedUser.find_by(comment_id: ranking.latest_comment_id, user_id: session[:user_id]).blank?) %>
@@ -52,8 +52,8 @@
 	    
             報告者:<%= User.find(ranking.comment_user_id).nickname %>さん
             <% end %>
-	    </td>
-          </tr>
+	  </td>
+	</tr>
 	<% end %>
       </tbody>
     </table>
