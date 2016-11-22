@@ -3,19 +3,23 @@
 one:
   name: te%st_
   hurigana: てすと1
+  holiday: "01"
   created_at: 2016-10-01 00:00:00
 
 two:
   name: te_st
   hurigana: てすと2
+  holiday: "02"
   created_at: 2016-10-02 00:00:00
 
 three:
   name: te\st
   hurigana: てすと3
+  holiday: "04"
   created_at: 2016-10-03 00:00:00
 
 four:
   name: test
   hurigana: テスト
+  holiday: "013"
   created_at: 2016-10-04 00:00:00
