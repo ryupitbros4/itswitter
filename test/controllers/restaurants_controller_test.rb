@@ -75,7 +75,7 @@ class RestaurantsControllerTest < ActionController::TestCase
     end
   end
 
-  test "「いいね！」ボタンを押すとコメントしたユーザーに点数が加算される。" do 
+  test "「いいね！」ボタンを押すとコメントしたユーザーに点数が加算される" do 
     session[:user_id] = users(:two).id # ユーザーはtwoさん
     before = users(:one).point
     # oneさんのコメントについていいね！をした
@@ -84,7 +84,7 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_equal before + 2, User.find_by(id: comments(:one).user_id).point
   end
 
-  test "「いいね！」ボタンを押すといいねしたユーザーに点数が加算される。" do
+  test "「いいね！」ボタンを押すといいねしたユーザーに点数が加算される" do
     session[:user_id] = users(:two).id # ユーザーはtwoさん
     before = users(:two).point
     # oneさんのコメントについていいね！をした
@@ -102,4 +102,27 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_equal before + 1, PressedUser.count
   end
 
+  test "「いいねを取り消す」ボタンを押すと、いいねした人といいねされた人の点数が減算される" do
+    session[:user_id] = users(:two).id # ユーザーはtwoさん
+    before_user = users(:two).point
+    before_commenter = users(:one).point
+    # oneさんのコメントについていいね！をした
+    post :add_like_point, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+
+    # oneさんのコメントについていいねを取り消した
+    post :cancel_like, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+    assert_equal before_user, User.find(session[:user_id]).point
+    assert_equal before_commenter, User.find_by(id: comments(:one).user_id).point
+  end
+  
+  test "「いいねを取り消す」ボタンを押すとレコードが削除される" do 
+    session[:user_id] = users(:two).id # ユーザーはtwoさん
+    before = PressedUser.count
+    # oneさんのコメントについていいね！をした
+    post :add_like_point, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+    # oneさんのコメントについていいねを取り消した
+    post :cancel_like, {user_id: comments(:one).user_id, comment_id: comments(:one).id}
+
+    assert_equal before, PressedUser.count
+  end
 end

@@ -145,15 +145,16 @@ class RestaurantsController < ApplicationController
   end
   
   def add_like_point
-    user_id = params[:user_id]
+    user_id = session[:user_id]
     comment_id = params[:comment_id]
+    comment_user_id = params[:user_id]
     
     press_user = PressedUser.new()
     press_user.comment_id = comment_id
     press_user.user_id = current_user.id
     press_user.save!
     
-    comment_user = User.find_by(id: user_id)    
+    comment_user = User.find_by(id: comment_user_id)    
     comment_user.point = comment_user.point + 2
     comment_user.save!
     
@@ -164,16 +165,22 @@ class RestaurantsController < ApplicationController
     redirect_to :back
     # :backがテストでNo HTTP_REFEREになるためrescueする
     rescue ActionController::RedirectBackError
-    redirect_to root_path
+      redirect_to root_path
   end
   
   def cancel_like
-    user_id = params[:user_id]
+    user_id = session[:user_id]
     comment_id = params[:comment_id]
+    comment_user_id = params[:user_id]
     
-    PressedUser.find_by(comment_id: comment_id, user_id: user_id).destroy
+    #PressedUser.find_by(comment_id: comment_id, user_id: user_id).destroy
+    @presse_and_commenter = PressedUser.find_by(comment_id: comment_id, user_id: user_id)
+
+    if @presse_and_commenter.present?
+      @presse_and_commenter.destroy
+    end
     
-    comment_user = User.find_by(id: user_id)
+    comment_user = User.find_by(id: comment_user_id)
     comment_user.point = comment_user.point - 2
     comment_user.save!
     
@@ -182,6 +189,9 @@ class RestaurantsController < ApplicationController
     current_user.save!
     
     redirect_to :back
+    # :backがテストでNo HTTP_REFEREになるためrescueする
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
   
   private
