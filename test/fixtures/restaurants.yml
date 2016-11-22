@@ -9,7 +9,7 @@ one:
 two:
   name: te_st
   hurigana: てすと2
-  holiday: "02"
+  holiday: ""
   created_at: 2016-10-02 00:00:00
 
 three:

@@ -8,20 +8,13 @@ one:
   end_minute: 0
 
 two:
-  restaurant: two
-  start_hour: 1
-  start_minute: 0
-  end_hour: 10
-  end_minute: 0
-
-three:
   restaurant: three
   start_hour: 1
   start_minute: 0
   end_hour: 21
   end_minute: 0
 
-four:
+three:
   restaurant: four
   start_hour: 1
   start_minute: 0
