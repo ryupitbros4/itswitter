@@ -40,7 +40,7 @@
 	    <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <tr>
-            <td colspan="3" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %></td>
+            <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
           </tr>
 	<% end %>
       </tbody>
