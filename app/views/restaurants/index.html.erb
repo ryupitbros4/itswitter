@@ -14,39 +14,43 @@
   </div>
   <p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
 
-<%= render '/mypage_block'%>  
-  
-  <center><h1>今、空いてる順</h1></center>
-    <table class="table table-hover">
+<%= render '/mypage_block'%> 
+  <div class="panel panel-success">
+  <div class="panel-heading"><center><h1 style="color:black;">今こんなお店がすいてます</h1></center></div>
+  <div class="panel-body panel-green"><table class="table table-hover">
       <thead>
     	<tr>
-          <th class="col-md-1">順位</th>
-          <th class="col-md-2">店名</th>
 	  <th class="col-md-3">混雑度</th>
-	  <th class="col-md-2">最新更新時</th>
-	  <th class="col-md-4">コメント</th>
+          <th class="col-md-5">店名</th>
+	  <th class="col-md-4">最新更新時</th>
     	</tr>
+        <tr>
+          <th colspan="3" class="col-md-12">コメント</th>
+        </tr>
       </thead>
       <tbody>
-	<% num=1 %>
 	<% @rank.each do |ranking| %>
           <% latest_comment = ranking.latest_comment %>          
           <% if latest_comment.blank? %>
             <% latest_comment = 'コメント無し' %>
           <% end %>
           <tr>
-            <th scope="row" class="col-md-1"><%= num %>位</th>
-            <td class="col-md-3"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	    <td class="col-md-2"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
-	    <td class="col-md-2"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
-            <td class="col-md-4"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %></td>
+	    <td class="col-md-3"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
+            <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
+	    <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
-          <% num = num+1 %>
+          <tr>
+            <td colspan="3" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %></td>
+          </tr>
 	<% end %>
       </tbody>
     </table>
-
-  <center><h1>新着</h1></center>
+  </div>
+  </div>
+  
+  <div class="panel panel-warning">
+  <div class="panel-heading"><center><h1 style="color:black;">最近見れるようになったお店</h1></center></div>
+  <div class="panel-body panel-yellow">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -67,3 +71,5 @@
       <% end %>
       </tbody>
     </table>
+  </div>
+  </div>
