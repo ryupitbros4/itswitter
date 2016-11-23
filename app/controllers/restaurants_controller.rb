@@ -157,10 +157,6 @@ class RestaurantsController < ApplicationController
     current_user.save!
   end
   
-  def authenticate_user!
-    redirect_to :root, flash: { alert: 'ログインして下さい' } unless !!session[:user_id]
-  end
-
   def treatment
   end
 

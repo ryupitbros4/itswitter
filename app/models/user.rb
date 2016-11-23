@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :comments
   has_many :restaurants, :through => :comments
+  has_many :favorite_restaurants
+  has_many :restaurants, :through => :favorite_restaurants
 
   has_many :pressed_users
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'my/favorite'
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get "/auth/failure" => "sessions#failure"

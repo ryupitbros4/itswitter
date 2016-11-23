@@ -1,0 +1,9 @@
+<%= render '/flash_msg2' %>
+<div class="jumbotron">
+  <h2><%= current_user.nickname %>さんがフォローしている飲食店</h2>
+</div>
+<%= render '/mypage_block'%>
+
+<% @my.restaurants.each do |r| %>
+    <p><%= r.inspect %></p>
+<% end %>

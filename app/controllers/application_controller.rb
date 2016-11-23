@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :logged_in?
+  helper_method :authenticate_user!, :authenticate_user!
 
   private
+
+  def authenticate_user!
+    redirect_to :root, flash: { alert: 'ログインして下さい' } unless !!session[:user_id]
+  end
 
   def current_user
     return unless session[:user_id]
