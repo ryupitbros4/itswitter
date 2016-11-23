@@ -8,12 +8,16 @@ class MyController < ApplicationController
   end
 
   def follow
-    current_user.restaurants << Restaurant.find(params[:restaurant_id])
+    unless current_user.restaurants.include?(Restaurant.find(params[:restaurant_id]))
+      current_user.restaurants << Restaurant.find(params[:restaurant_id])
+    end
     redirect_to :back
   end
 
   def unfollow
-    current_user.restaurants.destroy(params[:restaurant_id])
+    if current_user.restaurants.include?(Restaurant.find(params[:restaurant_id]))
+      current_user.restaurants.destroy(params[:restaurant_id])
+    end
     redirect_to :back
   end
 end

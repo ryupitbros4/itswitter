@@ -29,4 +29,24 @@ class MyControllerTest < ActionController::TestCase
     end
   end
 
+  test "フォロー中の店をフォローしてもフォロー中の数が変わらない" do
+    assert_no_difference "FavoriteRestaurant.count" do
+      session[:user_id] = users(:one).id
+      begin
+        post :follow, restaurant_id: restaurants(:two).id
+      rescue ActionController::RedirectBackError
+      end
+    end
+  end
+
+  test "フォロー中でない店をアンフォローしてもフォロー中の数が変わらない" do
+    assert_no_difference "FavoriteRestaurant.count" do
+      session[:user_id] = users(:one).id
+      begin
+        post :unfollow, restaurant_id: restaurants(:three).id
+      rescue ActionController::RedirectBackError
+      end
+    end
+  end
+
 end
