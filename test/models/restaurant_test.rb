@@ -53,8 +53,11 @@ class RestaurantTest < ActiveSupport::TestCase
   end
 
   test "crowdednessでソートされている" do
-    rs = Restaurant.order_by_crowdedness
-    assert_equal 'te%st_', rs.first.name
+    t = Time.utc(2016, 10, 12, 0, 5, 0)
+    Timecop.freeze(t) do
+      rs = Restaurant.order_by_crowdedness
+      assert_equal 'te%st_', rs.first.name
+    end
   end
 
   test "営業時間外の店のcrowdednessは5である" do

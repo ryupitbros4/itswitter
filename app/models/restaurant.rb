@@ -16,20 +16,22 @@ class Restaurant < ActiveRecord::Base
 
   #トップページの表示だけを変える。commentsテーブルのcrowdednessは変えない。
   def crowdedness
+    open = 0
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
-    #店に対する情報がある場合の処理。
-    if c.present?
-      #今日が定休日の場合の処理。
-      if c.restaurant.holiday.include?(Time.zone.now.strftime('%w'))
-        return 5
+    r = Restaurant.where(id: self.id).order(updated_at: :desc).limit(1).first
+    if r.present?
+      if r.holiday.present?
+        #今日が定休日の場合の処理。
+        if r.holiday.include?(Time.zone.now.strftime('%w'))
+          return 5
+        end
       end
       #今日が営業日の場合の処理。
       #店の営業時間を取得。
-      opening_hours = c.restaurant.opening_hours
+      opening_hours = r.opening_hours
       #店の営業時間が登録されている場合の処理。
       if opening_hours.present?
         #初期値は営業時間外。
-        open = 0
         #logger.debug opening_hours.inspect
         #logger.debug open.inspect
         now_time = Time.zone.now
@@ -49,62 +51,16 @@ class Restaurant < ActiveRecord::Base
         #logger.debug open.inspect
         #現在が営業中の場合の処理。
         if open == 1
-          return c.crowdedness if (Time.zone.now - c.updated_at).to_i <= 3600
+          return c.crowdedness if c and (Time.zone.now - c.updated_at).to_i <= 3600
           return 6
         #現在が営業時間外の場合の処理。
         else
           return 5
         end
-      #営業時間が登録されていない場合の処理。
+      #店の営業時間が登録されていない場合の処理。
       else
-        return c.crowdedness if (Time.zone.now - c.updated_at).to_i <= 3600
+        return c.crowdedness if c and (Time.zone.now - c.updated_at).to_i <= 3600
         return 6
-      end
-    #店に対する情報が無い場合(restaurant/report,restaurant/のため)の処理。
-    else
-      r = Restaurant.find_by(id: self.id)
-      if r.present?
-        if r.holiday.present?
-          #今日が定休日の場合の処理。
-          if r.holiday.include?(Time.zone.now.strftime('%w'))
-            return 5
-          end
-        end
-        #今日が営業日の場合の処理。
-        #店の営業時間を取得。
-        opening_hours = r.opening_hours
-        #店の営業時間が登録されている場合の処理。
-        if opening_hours.present?
-          #初期値は営業時間外。
-          open = 0
-          #logger.debug opening_hours.inspect
-          #logger.debug open.inspect
-          now_time = Time.zone.now
-          #logger.debug now_time.inspect
-          #現在が営業時間かを判定。
-          opening_hours.each do |opening_hour|
-            start_time = Time.zone.local(Time.zone.now.strftime('%Y'), Time.zone.now.strftime('%m'), Time.zone.now.strftime('%d'), opening_hour.start_hour, opening_hour.start_minute)
-            end_time = Time.zone.local(Time.zone.now.strftime('%Y'), Time.zone.now.strftime('%m'), Time.zone.now.strftime('%d'), opening_hour.end_hour, opening_hour.end_minute)
-            #logger.debug start_time.inspect
-            #logger.debug end_time.inspect
-            #現在が営業時間なら、営業中に変更。
-            if (now_time - start_time).to_i > 0 and (end_time - now_time).to_i > 0
-              open = 1
-              break
-            end
-          end
-          #logger.debug open.inspect
-          #現在が営業中の場合の処理。
-          if open == 1
-            return 6
-          #現在が営業時間外の場合の処理。
-          else
-            return 5
-          end
-        #店の営業時間が登録されていない場合の処理。
-        else
-          return 6
-        end
       end
     end
   end
