@@ -1,3 +1,4 @@
+
   <div class="panel-body panel-green"><table class="table table-hover">
       <thead>
     	<tr>
@@ -11,18 +12,30 @@
       </thead>
       <tbody>
 	<% rank.each do |ranking| %>
-          <% latest_comment = ranking.latest_comment %>          
+          <% latest_comment = ranking.latest_comment %>     
           <% if latest_comment.blank? %>
             <% latest_comment = 'コメント無し' %>
           <% end %>
-          <tr>
-	    <td class="col-md-3"><%= image_tag(crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to how_crowded[ranking.crowdedness], :controller => "restaurants", :action => "report", :resname => ranking.id %></td>
-            <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	    <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
-          </tr>
-          <tr>
-            <% if logged_in? %>
-              <td colspan="2" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => ranking.id %></td>
+        <tr>
+	  <td class="col-md-3"><%= image_tag(crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to how_crowded[ranking.crowdedness], :controller => "restaurants", :action => "report", :resname => ranking.id %></td>
+        <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
+          <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+        </tr>
+        <tr>
+      <% if logged_in? %>
+	  <td colspan="2" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => ranking.id %>
+	    
+	    <% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?) && (ranking.comment_user_id != session[:user_id]))  %>
+	    
+            <% if (PressedUser.find_by(comment_id: ranking.latest_comment_id, user_id: session[:user_id]).blank?) %>
+            <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            <% else %>
+            <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %>
+            <% end %>
+	    
+            報告者:<%= User.find(ranking.comment_user_id).nickname %>さん
+            <% end %>
+	  </td>
               <td class="col-md-2">
                 <% if current_user.restaurants.include? ranking %>
                   <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), method: :post %>
@@ -30,10 +43,22 @@
                   <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', follow_restaurant_path(ranking), method: :post %>
                 <% end %>
               </td>
+    <% else %>
+	  <td colspan="3" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %>
+	    
+	    <% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?) && (ranking.comment_user_id != session[:user_id]))  %>
+	    
+            <% if (PressedUser.find_by(comment_id: ranking.latest_comment_id, user_id: session[:user_id]).blank?) %>
+            <%= button_to "いいね!", {:action => "add_like_point", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             <% else %>
-              <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => ranking.id %></td>
+            <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %>
             <% end %>
-          </tr>
+	    
+            報告者:<%= User.find(ranking.comment_user_id).nickname %>さん
+            <% end %>
+	  </td>
+    <% end %>
+	</tr>
 	<% end %>
       </tbody>
     </table>

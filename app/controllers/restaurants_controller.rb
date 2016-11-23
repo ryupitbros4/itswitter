@@ -139,9 +139,59 @@ class RestaurantsController < ApplicationController
     end
     set_crowded_consts
   end
+  
+  def add_like_point
+    user_id = session[:user_id]
+    comment_id = params[:comment_id]
+    comment_user_id = params[:user_id]
+    
+    press_user = PressedUser.new()
+    press_user.comment_id = comment_id
+    press_user.user_id = user_id
+    press_user.save!
+    
+    comment_user = User.find_by(id: comment_user_id)    
+    comment_user.point = comment_user.point + 2
+    comment_user.save!
+    
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point + 1
+    current_user.save!
+    
+    redirect_to :back
+    # :backがテストでNo HTTP_REFEREになるためrescueする
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  
+  def cancel_like
+    user_id = session[:user_id]
+    comment_id = params[:comment_id]
+    comment_user_id = params[:user_id]
+    
+    #PressedUser.find_by(comment_id: comment_id, user_id: user_id).destroy
+    @presse_and_commenter = PressedUser.find_by(comment_id: comment_id, user_id: user_id)
 
+    if @presse_and_commenter.present?
+      @presse_and_commenter.destroy
+    end
+    
+    comment_user = User.find_by(id: comment_user_id)
+    comment_user.point = comment_user.point - 2
+    comment_user.save!
+    
+    current_user ||= User.find(session[:user_id])
+    current_user.point = current_user.point - 1
+    current_user.save!
+    
+    redirect_to :back
+    # :backがテストでNo HTTP_REFEREになるためrescueする
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+  end
+  
   private
-
+  
   def set_restaurants
     #五十音順で並び替えてnameとidを渡す
     @restaurant_names = Restaurant.all.restaurant_order_hurigana.pluck(:name, :id)
@@ -155,5 +205,5 @@ class RestaurantsController < ApplicationController
   
   def treatment
   end
-
+  
 end
