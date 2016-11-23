@@ -33,7 +33,7 @@
     <tr>
       <td colspan="2" class="col-md-12" style="word-wrap:break-word;"><%= cont %>
 	
-	<% if (!(comment.user_id.blank?) && !(session[:user_id].blank?))  %>
+	<% if (!(comment.user_id.blank?) && !(session[:user_id].blank?) && (comment.user_id != session[:user_id]))  %>
 	<% if (PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank?) %>
           <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
           <% else %>

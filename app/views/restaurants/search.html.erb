@@ -43,7 +43,7 @@
       <tr>
 	<td colspan="3" class="col-md-12"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(15), :action => "comment_log", :restaurant_id => ranking.id %>
 	
-	<% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?))  %>
+	<% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?) && (ranking.comment_user_id != session[:user_id]))  %>
           <% if (PressedUser.find_by(comment_id: ranking.latest_comment_id, user_id: session[:user_id]).blank?) %>
           <%= button_to "いいね!", {:action => "add_like_point", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
           <% else %>
