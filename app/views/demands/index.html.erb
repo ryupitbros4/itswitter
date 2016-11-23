@@ -7,14 +7,14 @@
 
 <%= form_for @demand, url:demands_new_path do |f| %>
 <div>
-  <%= f.label :店名 %>
+  <%= f.label "店名" %><span class="text-danger">(必須)</span>
   <%= f.text_field :demand_restaurant, class:'form-control' %>
 </div>
 
 <br>
 
 <div class="form-group">
-  <%= f.label :伝えたい思いをどうぞ！%>
+  <%= f.label "伝えたい思いをどうぞ！"%>
   <br>
   <%= f.text_area :free, rows:10, class:'form-control' %>
 </div>  
@@ -25,26 +25,29 @@
 
 <hr>
 
-  <center><h1>追加待ちの飲食店(追加済みの飲食店は<%= link_to 'こちら', approved_demands_path %>)</h1></center> 
-
-<table class="table">
+<div class="panel panel-success">
+<div class="panel-heading"><center><h1 style="color: black;">追加待ちの飲食店(追加済みの飲食店は<%= link_to 'こちら', approved_demands_path %>)</h1></center></div> 
+<div class="panel-body">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>#</th>
-      <th>店名</th>
-      <th>伝えたい思い</th>
+      <th class="col-md-1">#</th>
+      <th class="col-md-3">店名</th>
+      <th class="col-md-8">伝えたい思い</th>
     </tr>
   </thead>
   <tbody>
     <% num = 1 %>
     <% @demands.each do |demand| %>
     <tr>
-      <th><%= num %></th>
-      <td><%= demand.demand_restaurant %></td> 
-      <td><%= demand.free %></td>
+      <th class="col-md-1"><%= num %></th>
+      <td class="col-md-3"><%= demand.demand_restaurant %></td> 
+      <td class="col-md-8"><%= demand.free %></td>
 
       <% num = num + 1 %>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+</div>
