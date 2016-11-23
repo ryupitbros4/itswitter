@@ -11,6 +11,29 @@
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+<style type="text/css">
+  #footerFloatingMenu {
+  background-color: #222222;
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  z-index: 9999;
+  text-align: center;
+  padding: 0 auto;
+
+}
+
+#footerFloatingMenu div {
+  max-width: 99%
+  
+}
+#footerFloatingMenu div span{
+  line-height: 30px;
+}
+</style>
   </head>
   <body>
 
@@ -50,5 +73,17 @@
 	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
       </div>
     </footer>
+
+<div id="footerFloatingMenu">
+<center>
+  <div>
+    <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
+    <span class="col-xs-3"><%= link_to "Tell", report_restaurants_path,style: "color:white;" %></span>
+    <span class="col-xs-3"><%= link_to "Rank", restaurants_user_ranking_path,style: "color:white;" %></span>
+    <span class="col-xs-3"><%= link_to "Top", root_path, style: "color:white;" %></span>
+  </div>
+</center>
+</div>
+
   </body>
 </html>
