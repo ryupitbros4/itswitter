@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="180">
     <title>Suitell</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+<!--  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 <!--floating menuのcss-->
-    <%= stylesheet_link_tag 'layouts'%>
+    <%= stylesheet_link_tag 'layouts' %>
+</script>
   </head>
   <body>
 
@@ -58,10 +61,33 @@
   <div>
     <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
     <span class="col-xs-3"><%= link_to "Tell", report_restaurants_path,style: "color:white;" %></span>
-    <span class="col-xs-3"><%= link_to "Rank", restaurants_user_ranking_path,style: "color:white;" %></span>
-    <span class="col-xs-3"><%= link_to "Top", root_path, style: "color:white;" %></span>
+    <span class="col-xs-3"><%= link_to "Ranking", restaurants_user_ranking_path,style: "color:white;" %></span>
+    <span class="col-xs-3" id="pageTop" style="color: white">^</span>
   </div>
 </div>
 
+<!-- ページトップに戻るJS-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+$(function(){
+  var topBtn=$('#pageTop');
+  topBtn.hide();
+
+  $(window).scroll(function(){
+    if($(this).scrollTop()>40) {
+      topBtn.fadeIn();
+    } else {
+      topBtn.fadeOut();
+    }
+  });
+
+  topBtn.click(function(){
+    $('body,html').animate({
+      scrollTop: 0},500);
+      return false;
+  });
+
+});
+</script>
   </body>
 </html>

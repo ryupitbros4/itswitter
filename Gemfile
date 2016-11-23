@@ -18,7 +18,7 @@ ruby '2.2.5'
 
 
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 
 gem 'jbuilder', '~> 2.0'
 
