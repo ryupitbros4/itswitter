@@ -44,9 +44,9 @@
               <td colspan="2" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
               <td class="col-md-2">
                 <% if current_user.restaurants.include? ranking %>
-                  <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', '' %>
+                  <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), method: :post %>
                 <% else %>
-                  <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', '' %>
+                  <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', follow_restaurant_path(ranking), method: :post %>
                 <% end %>
               </td>
             <% else %>
