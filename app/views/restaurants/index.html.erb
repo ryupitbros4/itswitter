@@ -40,7 +40,18 @@
 	    <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
           </tr>
           <tr>
-            <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
+            <% if logged_in? %>
+              <td colspan="2" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
+              <td class="col-md-2">
+                <% if current_user.restaurants.include? ranking %>
+                  <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', '' %>
+                <% else %>
+                  <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', '' %>
+                <% end %>
+              </td>
+            <% else %>
+              <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
+            <% end %>
           </tr>
 	<% end %>
       </tbody>
