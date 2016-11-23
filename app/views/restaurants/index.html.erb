@@ -17,46 +17,7 @@
 <%= render '/mypage_block'%> 
   <div class="panel panel-success">
   <div class="panel-heading"><center><h1 style="color:black;">今こんなお店がすいてます</h1></center></div>
-  <div class="panel-body panel-green"><table class="table table-hover">
-      <thead>
-    	<tr>
-	  <th class="col-md-3">混雑度</th>
-          <th class="col-md-5">店名</th>
-	  <th class="col-md-4">最新更新時</th>
-    	</tr>
-        <tr>
-          <th colspan="3" class="col-md-12">コメント</th>
-        </tr>
-      </thead>
-      <tbody>
-	<% @rank.each do |ranking| %>
-          <% latest_comment = ranking.latest_comment %>          
-          <% if latest_comment.blank? %>
-            <% latest_comment = 'コメント無し' %>
-          <% end %>
-          <tr>
-	    <td class="col-md-3"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
-            <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-	    <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
-          </tr>
-          <tr>
-            <% if logged_in? %>
-              <td colspan="2" class="col-md-10" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
-              <td class="col-md-2">
-                <% if current_user.restaurants.include? ranking %>
-                  <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), method: :post %>
-                <% else %>
-                  <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', follow_restaurant_path(ranking), method: :post %>
-                <% end %>
-              </td>
-            <% else %>
-              <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %></td>
-            <% end %>
-          </tr>
-	<% end %>
-      </tbody>
-    </table>
-  </div>
+      <%= render partial: 'restaurants/not_crowd', locals: { rank: @rank, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
   </div>
   
   <div class="panel panel-warning">

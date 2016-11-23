@@ -4,6 +4,4 @@
 </div>
 <%= render '/mypage_block'%>
 
-<% @my.restaurants.each do |r| %>
-    <p><%= r.inspect %></p>
-<% end %>
+<%= render partial: 'restaurants/not_crowd', locals: { rank: @my.restaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>

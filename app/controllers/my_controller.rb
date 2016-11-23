@@ -3,6 +3,7 @@ class MyController < ApplicationController
   before_action :authenticate_user!
 
   def favorites
+    set_crowded_consts
     @my = User.find(session[:user_id])
   end
 
