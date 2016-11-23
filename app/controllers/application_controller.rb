@@ -5,14 +5,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user, :logged_in?
-  helper_method :authenticate_user!, :authenticate_user!
+
+  private
 
   def set_crowded_consts
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
   end
-
-  private
 
   def authenticate_user!
     redirect_to :root, flash: { alert: 'ログインして下さい' } unless !!session[:user_id]
