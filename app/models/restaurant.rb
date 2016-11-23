@@ -18,7 +18,7 @@ class Restaurant < ActiveRecord::Base
     return c.crowdedness if c and (Time.zone.now - c.updated_at).to_i <= 3600
     return 6
   end
-
+  
   def self.order_by_crowdedness
     Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
   end
@@ -27,5 +27,16 @@ class Restaurant < ActiveRecord::Base
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
     return c.comment if c
   end
-
+  
+  def latest_comment_id
+    c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
+    return c.id if c
+  end
+  
+  #最新コメントのユーザーidを取得
+  def comment_user_id
+    c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
+    return c.user_id if c
+  end
+  
 end
