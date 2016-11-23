@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'my/favorite'
+  get 'my/favorites', as: :favorite_restaurants
   post 'restaurants/:restaurant_id/follow' => 'my#follow', as: :follow_restaurant
   post 'restaurants/:restaurant_id/unfollow' => 'my#unfollow', as: :unfollow_restaurant
 
