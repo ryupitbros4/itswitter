@@ -50,7 +50,7 @@
 
       <%= yield %>   
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
       <div class="container">
 	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
       </div>
@@ -76,7 +76,7 @@ $(function(){
   topBtn.hide();
 
   $(window).scroll(function(){
-    if($(this).scrollTop()>100) {
+    if($(this).scrollTop()>60) {
       topBtn.fadeIn();
     } else {
       topBtn.fadeOut();
