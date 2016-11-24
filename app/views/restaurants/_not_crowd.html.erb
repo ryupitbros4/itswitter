@@ -38,9 +38,9 @@
 	  </td>
               <td class="col-md-2">
                 <% if current_user.restaurants.include? ranking %>
-                  <span class="glyphicon glyphicon-star"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), method: :post %>
+                  <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), { method: :post, remote: true }%>
                 <% else %>
-                  <span class="glyphicon glyphicon-star-empty"><%= link_to 'フォローする', follow_restaurant_path(ranking), method: :post %>
+                  <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォローする', follow_restaurant_path(ranking), { method: :post, remote: true }  %>
                 <% end %>
               </td>
     <% else %>
