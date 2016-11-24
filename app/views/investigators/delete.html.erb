@@ -1,5 +1,8 @@
 <%= link_to "管理者ページ", admin_path %>
 <h1>登録店舗削除ページ</h1>
+<h4>注意:</h4>
+<h4>営業時間が、日をまたぐ場合は、"営業開始時間〜24:00"と、"0:00〜営業終了時間"の２つの時間を登録して下さい。開始時間に終了時間より後の時間を記入しないようにして下さい。</h4>
+<h3>例:営業時間が22:00〜翌朝の5:00の場合、"22:00〜24:00"と"0:00〜5:00"</h3>
 <ul>
   <table class="table table-hover">
     <thead>
@@ -41,26 +44,26 @@
     <table class="table table-hover">
       <thread>
         <tr>
-          <th class="col-md-1">曜日</th>
-          <th class="col-md-1">日</th>
-          <th class="col-md-1">月</th>
-          <th class="col-md-1">火</th>
-          <th class="col-md-1">水</th>
-          <th class="col-md-1">木</th>
-          <th class="col-md-1">金</th>
-          <th class="col-md-1">土</th>
+          <th>曜日</th>
+          <th>日</th>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="col-md-1">入力値</td>
-          <td class="col-md-1">0</td>
-          <td class="col-md-1">1</td>
-          <td class="col-md-1">2</td>
-          <td class="col-md-1">3</td>
-          <td class="col-md-1">4</td>
-          <td class="col-md-1">5</td>
-          <td class="col-md-1">6</td>
+          <td>入力値</td>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
         </tr>
       <thbody>
     </table>
