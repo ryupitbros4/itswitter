@@ -28,15 +28,18 @@
         </tr>
       </thead>
       <tbody>
+	
 	<% @rank.each do |ranking| %>
-          <% latest_comment = ranking.latest_comment %>     
+         <% latest_comment = ranking.latest_comment %>     
           <% if latest_comment.blank? %>
             <% latest_comment = 'コメント無し' %>
           <% end %>
+	  
+	  <% if ((Time.zone.now - ranking.updated_at).to_i <= 600) %>
         <tr>
-	  <td class="col-md-3"><%= image_tag(@crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
+	<td class="col-md-3"><%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), :action => "report", :resname => ranking.id %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
         <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-          <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+        <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
         </tr>
         <tr>
 	  <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %>
@@ -54,9 +57,10 @@
 	  </td>
 	</tr>
 	<% end %>
-      </tbody>
-    </table>
-  </div>
+	<% end %>
+       </tbody>
+      </table>
+    </div>
   </div>
   
   <div class="panel panel-warning">
