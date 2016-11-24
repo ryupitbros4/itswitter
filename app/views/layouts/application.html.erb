@@ -11,10 +11,11 @@
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+
   </head>
   <body>
 
-    <div class="container">
+
 
       <!-- navbar -->
       <nav class="navbar navbar-default">
@@ -46,9 +47,7 @@
       <%= yield %>   
 
     <footer class="footer">
-      <div class="container">
 	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
-      </div>
     </footer>
   </body>
 </html>
