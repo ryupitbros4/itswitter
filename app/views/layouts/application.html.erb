@@ -59,9 +59,12 @@
 <!-- floatingmenu部分-->
 <div id="footerFloatingMenu">
   <div>
+<!-- 
     <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
-    <span class="col-xs-3"><%= link_to "Tell", report_restaurants_path,style: "color:white;" %></span>
-    <span class="col-xs-3"><%= link_to "Ranking", restaurants_user_ranking_path,style: "color:white;" %></span>
+-->
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
     <span class="col-xs-3" id="pageTop" style="color: white">^</span>
   </div>
 </div>
@@ -73,7 +76,7 @@ $(function(){
   topBtn.hide();
 
   $(window).scroll(function(){
-    if($(this).scrollTop()>40) {
+    if($(this).scrollTop()>100) {
       topBtn.fadeIn();
     } else {
       topBtn.fadeOut();
