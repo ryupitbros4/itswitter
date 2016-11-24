@@ -35,7 +35,11 @@ Rails.application.routes.draw do
   post "investigators" => 'investigators#create', as: :invest_update
   delete "investigators/:id" => 'investigators#destroy', as: :delete
   get "investigators/delete"
-
+  get "investigators/show/:id" => 'investigators#show', as: :show_investigators
+  patch "investigators/:id" => 'investigators#update', as: :update_investigators
+  get "investigators/opening_hour_new/:restaurant_id" => 'investigators#opening_hour_new', as: :opening_hour_new
+  post "investigators/opening_hour_new/" => 'investigators#opening_hour_create', as: :opening_hour_create
+  delete "investigators/opening_hour_delete/:id" => 'investigators#opening_hour_destroy', as: :opening_hour_delete
 
   # Admin
   get "admin" => 'admin#index'

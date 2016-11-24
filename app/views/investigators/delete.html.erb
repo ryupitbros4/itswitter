@@ -1,10 +1,71 @@
+<%= link_to "管理者ページ", admin_path %>
 <h1>登録店舗削除ページ</h1>
+<h4>注意:</h4>
+<h4>営業時間が、日をまたぐ場合は、"営業開始時間〜24:00"と、"0:00〜営業終了時間"の２つの時間を登録して下さい。開始時間に終了時間より後の時間を記入しないようにして下さい。</h4>
+<h3>例:営業時間が22:00〜翌朝の5:00の場合、"22:00〜24:00"と"0:00〜5:00"</h3>
 <ul>
-  <% @restaurants.each do |restaurant| %>
-<li>
-  <%= restaurant.name %>   <%= link_to "[削除]",delete_path(restaurant.id),
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-4">店名</th>
+        <th class="col-md-4">営業時間</th>
+        <th class="col-md-2">定休日</th>
+        <th class="col-md-2"></th>
+      </tr>
+    </thead>
+    <% @restaurants.each do |restaurant| %>
+      <% holidays = "" %>
+      <% if restaurant.holiday.present? %>
+        <% restaurant.holiday.chars.each do |day| %>
+          <% holidays += @week[day.to_i] %>
+        <% end %>
+      <% end %>
+      <thbody>
+        <tr>
+          <td class="col-md-4"><%= restaurant.name %></td>
+          <td class="col-md-4">
+            <% if restaurant.opening_hours.present? %>
+              <% restaurant.opening_hours.each do |opening_hour| %>
+                <%= opening_hour.start_hour %>時<%= opening_hour.start_minute %>分〜<%= opening_hour.end_hour %>時<%= opening_hour.end_minute %>分<%= link_to "[削除]", opening_hour_delete_path(opening_hour.id), method: :delete, data: {confirm: "削除してもよろしいですか"} %><br>
+              <% end %>
+            <% end %>
+          <%= link_to "[営業時間作成]", opening_hour_new_path(restaurant.id) %>
+          </td>
+          <td class="col-md-2"><%= holidays %><br><%= restaurant.holiday %></td>
+          <td class="col-md-2"><%= link_to "[店舗情報削除]",delete_path(restaurant.id),
   method: :delete, data: {confirm: "削除してもよろしいですか"} %>
-</li>
-  <% end %>
+          <br><%= link_to "[店舗情報更新]", show_investigators_path(restaurant.id) %></td>
+	</tr>
+      </thbody>
+    <% end %>
+  </table>
+  <h4>例.日曜と水曜と木曜が定休日 = 034</h4>
+  <center><h1>定休日表</h1>
+    <table class="table table-hover">
+      <thread>
+        <tr>
+          <th>曜日</th>
+          <th>日</th>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>入力値</td>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+      <thbody>
+    </table>
+  </center>
 </ul>
-

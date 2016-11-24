@@ -1,19 +1,21 @@
 <%= render '/flash_msg2' %>
-  <div class="jumbotron">
-    <center><h1>Suitell</h1>
-      <p>飯、待てぬ、食わねば。</p>
-      <%= form_tag(restaurants_search_path) do |f| %>
-	<div class="input-group">
-	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
-          <span class="input-group-btn">
-   	    <%= button_tag '検索', class: 'btn btn-default' %>
-          </span>
-	</div>
-      <% end %>
-    </center>
-  </div>
-  <p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
+<div class="jumbotron">
+  <center><h1>Suitell</h1>
+    <p>飯、待てぬ、食わねば。</p>
+  </center>
+</div>
 
+<p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
+
+<%= form_tag(restaurants_search_path) do |f| %>
+<div class="input-group">
+  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
+  <span class="input-group-btn">
+    <%= button_tag '検索', class: 'btn btn-default' %>
+  </span>
+</div>
+<% end %>
+<br>
 <%= render '/mypage_block'%> 
   <div class="panel panel-success">
   <div class="panel-heading"><center><h1 style="color:black;">今こんなお店がすいてます</h1></center></div>

@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20161123012341) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "opening_hours", force: :cascade do |t|
+    t.integer  "restaurant_id", null: false
+    t.integer  "start_hour",    null: false
+    t.integer  "start_minute",  null: false
+    t.integer  "end_hour",      null: false
+    t.integer  "end_minute",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "pressed_users", force: :cascade do |t|
     t.integer  "comment_id", null: false
     t.integer  "user_id",    null: false
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20161123012341) do
     t.string   "hurigana",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "holiday"
   end
 
   create_table "users", force: :cascade do |t|

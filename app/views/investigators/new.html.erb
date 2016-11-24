@@ -1,4 +1,3 @@
-<h1>料理、いつくる</h1>
 <%= link_to "管理者ページ", admin_path %>
 <h2>店新規登録</h2>
 <%= render '/flash_msg2' %>
@@ -10,9 +9,44 @@
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :ふりがな%>
+    <%= f.label :ふりがな %>
     <%= f.text_field :hurigana %>
   </div>
+  <div>
+    <%= f.label :定休日 %>
+    <%= f.text_field :holiday %>
+  </div>
+
+  <h4>定休日は、下の表を参考に入れてください。</h4>
+  <h4>例.日曜と水曜と木曜が定休日 = 034</h4>
+  <center><h1>定休日表</h1>
+    <table class="table table-hover">
+      <thread>
+        <tr>
+          <th class="col-md-1">曜日</th>
+          <th class="col-md-1">日</th>
+          <th class="col-md-1">月</th>
+          <th class="col-md-1">火</th>
+          <th class="col-md-1">水</th>
+          <th class="col-md-1">木</th>
+          <th class="col-md-1">金</th>
+          <th class="col-md-1">土</th>
+	</tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-md-1">入力値</td>
+          <td class="col-md-1">0</td>
+          <td class="col-md-1">1</td>
+          <td class="col-md-1">2</td>
+          <td class="col-md-1">3</td>
+          <td class="col-md-1">4</td>
+          <td class="col-md-1">5</td>
+          <td class="col-md-1">6</td>
+        </tr>
+      <thbody>
+    </table>
+  </center>
   <div>
     <%= f.submit "登録" %>
   </div>

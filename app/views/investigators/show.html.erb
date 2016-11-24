@@ -1,0 +1,52 @@
+<%= link_to "管理者ページ", admin_path %>
+<h2>店舗情報更新ページ</h2>
+<%= render '/flash_msg2' %>
+<%= render '/input_msg', object: @investigator %>
+
+<%= form_for @investigator, url:update_investigators_path(@investigator.id) do |f| %>
+  <div>
+    <%= f.label :店名 %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :ふりがな %>
+    <%= f.text_field :hurigana %>
+  </div>
+  <div>
+    <%= f.label :定休日 %>
+    <%= f.text_field :holiday %>
+  </div>
+  <h4>定休日は、下の表を参考に入れてください。</h4>
+  <h4>例.日曜と水曜と木曜が定休日 = 034</h4>
+  <center><h1>定休日表</h1>
+    <table class="table table-hover">
+      <thread>
+        <tr>
+          <th>曜日</th>
+          <th>日</th>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
+	</tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>入力値</td>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+      <thbody>
+    </table>
+  </center>
+  <div>
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
