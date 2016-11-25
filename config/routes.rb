@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'treatment'
       post 'add_like_point'
       post 'cancel_like'
+      get 'all_rest'
     end
   end 
   root 'restaurants#index'

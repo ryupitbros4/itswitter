@@ -1,90 +1,54 @@
-<%= render '/flash_msg2' %>
+  <%= render '/flash_msg2' %>
   <div class="jumbotron">
     <center><h1>Suitell</h1>
-      <p>飯、待てぬ、食わねば。</p>
-      <%= form_tag(restaurants_search_path) do |f| %>
-	<div class="input-group">
-	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
-          <span class="input-group-btn">
-   	    <%= button_tag '検索', class: 'btn btn-default' %>
-          </span>
-	</div>
-      <% end %>
+    <p>飯、待てぬ、食わねば。</p>
+    <%= form_tag(restaurants_search_path) do |f| %>
+      <div class="input-group">
+        <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
+        <span class="input-group-btn">
+   	  <%= button_tag '検索', class: 'btn btn-default' %>
+        </span>
+      </div>
+    <% end %>
     </center>
   </div>
-  <p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
 
-  <div class="panel panel-success">
-  <div class="panel-heading"><center><h1 style="color:black;">今こんなお店がすいてます</h1></center></div>
-  <div class="panel-body panel-green"><table class="table table-hover">
-      <thead>
-    	<tr>
-	  <th class="col-md-3">混雑度</th>
-          <th class="col-md-5">店名</th>
-	  <th class="col-md-4">最新更新時</th>
-    	</tr>
-        <tr>
-          <th colspan="3" class="col-md-12">コメント</th>
-        </tr>
-      </thead>
-      <tbody>
-	
-	<% @rank.each do |ranking| %>
-         <% latest_comment = ranking.latest_comment %>     
-          <% if latest_comment.blank? %>
-            <% latest_comment = 'コメント無し' %>
-          <% end %>
-	  
-	  <% if ((Time.zone.now - ranking.updated_at).to_i <= 600) %>
-        <tr>
-	<td class="col-md-3"><%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), :action => "report", :resname => ranking.id %>&nbsp;&nbsp;<%= link_to @how_crowded[ranking.crowdedness], :action => "report", :resname => ranking.id %></td>
-        <td class="col-md-5"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-        <td class="col-md-4"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
-        </tr>
-        <tr>
-	  <td colspan="3" class="col-md-12" style="word-wrap:break-word;" ><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %>
+  <p>
+    <span class="glyphicon glyphicon-info-sign"></span>更新情報 
+    <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe>
+  </p>
+
+  <%= render '/mypage_block'%>
+  <h3>今こんなお店がすいています</h3>
+  <p align="right">[<%= link_to "すべてのお店を見る", all_rest_restaurants_path %>]</p>
+  <div class="container">
+
+    <div class="row row-eq-height">
+      <% @rank.each do |ranking| %>
+        <% if ((Time.zone.now - ranking.updated_at).to_i <= 600) %>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+	  <div class="thumbnail">
+	    <!-- img -->
+	    <div class="caption">
+	   
+	      <p style="word-wrap:break-word;"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></p>
+	      <p align="right">
+	        <%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), {:action => "report", :resname => ranking.id}, {:class => "btn"} %>
+	        <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => ranking.id}, {:class => "btn"} %>
+	      </p>
 	    
-	    <% if (!(ranking.comment_user_id.blank?) && !(session[:user_id].blank?) && (ranking.comment_user_id != session[:user_id]))  %>
-	    
-            <% if (PressedUser.find_by(comment_id: ranking.latest_comment_id, user_id: session[:user_id]).blank?) %>
-            <%= button_to "いいね!", {:action => "add_like_point", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-            <% else %>
-            <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => ranking.comment_user_id, :comment_id => ranking.latest_comment_id} %>
-            <% end %>
-	    
-            報告者:<%= User.find(ranking.comment_user_id).nickname %>さん
-            <% end %>
-	  </td>
-	</tr>
-	<% end %>
-	<% end %>
-       </tbody>
-      </table>
-    </div>
-  </div>
-  
-  <div class="panel panel-warning">
-  <div class="panel-heading"><center><h1 style="color:black;">最近見れるようになったお店</h1></center></div>
-  <div class="panel-body panel-yellow">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th class="col-md-3">店名</th>
-          <th class="col-md-3">混雑度</th>
-          <th class="col-md-2">最新更新時</th>
-          <th class="col-md-4">登録日</th>
-        </tr>
-      </thead>
-      <tbody>
-	  <% @new_restaurants.each do |nr| %>
-        <tr>
-          <td class="col-md-3"><%= link_to nr.name, "https://www.google.co.jp/search?q=" + nr.name %></td>
-          <td class="col-md-3"><%= image_tag(@crowded_image[nr.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[nr.crowdedness], :action => "report", :resname => nr.id %></td>
-          <td class="col-md-2"><%= sec2h((Time.zone.now - nr.updated_at).to_i) %>前</td>
-          <td class="col-md-4"><%= nr.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-        </tr>
+	    </div>
+	  </div>
+        </div>
+        <% end %>
       <% end %>
-      </tbody>
-    </table>
+    </div>
+
   </div>
-  </div>
+
+
+
+
+
+  
+

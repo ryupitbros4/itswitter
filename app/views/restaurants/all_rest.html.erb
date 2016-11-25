@@ -1,0 +1,22 @@
+ <div class="container">
+
+   <div class="row row-eq-height">
+     <% @restaurants.each do |restaurant| %>
+       <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+         <div class="thumbnail">
+            <!-- img -->
+            <div class="caption">
+
+              <p style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></p>
+              <p align="right">
+                <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+                <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => restaurant.id}, {:class => "btn"} %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+ </div>
