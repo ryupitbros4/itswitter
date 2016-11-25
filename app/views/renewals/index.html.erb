@@ -1,11 +1,11 @@
 <h1>更新情報一覧</h1>
 
-<div>
+<div class="row1">
   <strong>更新日時</strong>
   <strong>更新内容</strong>
 </div>
 <% @renewals.each do |renewal| %>
-<div>
+<div class="row1">
   <span><%= format_date(renewal.updated_at) %></span>   <span><%= link_to renewal.update_info, renewal_path(renewal) %></span>
 </div>
 <% end %>
