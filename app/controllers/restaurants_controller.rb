@@ -193,6 +193,15 @@ class RestaurantsController < ApplicationController
     rescue ActionController::RedirectBackError
       redirect_to root_path
   end
+
+  def all_rest
+    @restaurants = Restaurant.all.restaurant_order_hurigana
+    @per_array = Array.new
+
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
+  end
+
   
   private
   

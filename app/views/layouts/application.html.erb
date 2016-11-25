@@ -13,13 +13,15 @@
 <!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+
 <!--floating menuのcss-->
     <%= stylesheet_link_tag 'layouts' %>
 </script>
+
   </head>
   <body>
 
-    <div class="container">
+
 
       <!-- navbar -->
       <nav class="navbar navbar-default">
@@ -32,8 +34,7 @@
               <span class="icon-bar"></span>
             </button>
             <%= link_to "トップページ", root_path, {class: 'navbar-brand'} %>
-	    <%= link_to "つかいかた", treatment_restaurants_path, {class: 'navbar-brand'} %>
-          </div>
+	  </div>
           <div class="collapse navbar-collapse navbar-right nav-menu-1">
             <ul class="nav navbar-nav">
 	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
@@ -43,6 +44,9 @@
 	      <% else %>
 	      <li><%= link_to "ログイン", "/auth/twitter" %></li>
 	      <% end %>
+	      <li><%= link_to "つかいかた", treatment_restaurants_path %></li>
+              <li><%= link_to "お店をリクエスト", demands_index_path %></li>
+              <li><%= link_to "ご意見", new_feedback_path %></li>
             </ul>
           </div>
 	</div>
@@ -51,9 +55,8 @@
       <%= yield %>   
 
     <footer class="footer" id="footer">
-      <div class="container">
+
 	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
-      </div>
     </footer>
 
 <!-- floatingmenu部分-->
