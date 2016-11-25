@@ -6,3 +6,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+table.table td {
+  border-style: none !important;
+}
