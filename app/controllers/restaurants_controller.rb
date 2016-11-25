@@ -195,7 +195,7 @@ class RestaurantsController < ApplicationController
   end
 
   def all_rest
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.all.restaurant_order_hurigana
     @per_array = Array.new
 
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
