@@ -15,8 +15,9 @@
 
   <p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
 
-<%= render '/mypage_block'%> 
-  <h1>今こんなお店がすいています</h1>
+<%= render '/mypage_block'%>
+  <h3>今こんなお店がすいています</h3>
+  <p align="right">[<%= link_to "すべてのお店を見る", all_rest_restaurants_path %>]</p>
   <div class="container">
 
     <div class="row row-eq-height">
@@ -25,13 +26,13 @@
 	<div class="thumbnail">
 	  <!-- img -->
 	  <div class="caption">
-
+	   
 	    <p style="word-wrap:break-word;"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></p>
 	    <p align="right">
 	      <%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), {:action => "report", :resname => ranking.id}, {:class => "btn"} %>
 	      <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => ranking.id}, {:class => "btn"} %>
 	    </p>
-
+	    
 	  </div>
 	</div>
       </div>
