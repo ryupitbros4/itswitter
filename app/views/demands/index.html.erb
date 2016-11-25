@@ -3,8 +3,6 @@
   <h2>私たちに飲食店を教えてください。</h2>
 </div>
 
-<%= render '/mypage_block'%>
-
 <%= form_for @demand, url:demands_new_path do |f| %>
 <div>
   <%= f.label "店名" %><span class="text-danger">(必須)</span>
