@@ -1,15 +1,17 @@
   <%= render '/flash_msg2' %>
-  <div class="jumbotron">
-    <center><h1>Suitell</h1>
-    <p>飯、待てぬ、食わねば。</p>
-    <%= form_tag(restaurants_search_path) do |f| %>
-      <div class="input-group">
-        <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
-        <span class="input-group-btn">
-   	  <%= button_tag '検索', class: 'btn btn-default' %>
-        </span>
-      </div>
-    <% end %>
+  <div class="jumbotron", style="height: 180px;">
+    <center>
+      <table class="table", frame="void", rules="none">
+        <tbody>
+          <tr>
+            <td class="col-md-6", rowspan="2", valign="top", align="right", style="padding: 0px 0px;"><%= image_tag("Suitell-1-1.png", :size => "128x128") %></td>
+            <td class="col-md-6", valign="bottom", align="left", style="vertical-align: bottom;padding: 20px 0px 0px;"><p>飯、待てぬ</p></td>
+            <tr>
+              <td valign="top", align="left"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食わねば</p></td>
+            </tr>
+          </tr>
+        </tbody>
+      </table>
     </center>
   </div>
 
@@ -17,6 +19,16 @@
     <span class="glyphicon glyphicon-info-sign"></span>更新情報 
     <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe>
   </p>
+
+  <%= form_tag(restaurants_search_path) do |f| %>
+    <div class="input-group">
+      <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
+      <span class="input-group-btn">
+        <%= button_tag '検索', class: 'btn btn-default' %>
+      </span>
+    </div>
+  <% end %>
+
 
   <h3>今こんなお店がすいています</h3>
   <p align="right">[<%= link_to "すべてのお店を見る", all_rest_restaurants_path %>]</p>
@@ -42,12 +54,4 @@
         <% end %>
       <% end %>
     </div>
-
   </div>
-
-
-
-
-
-  
-
