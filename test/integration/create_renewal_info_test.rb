@@ -9,7 +9,7 @@ class CreateRenewalInfoTest < ActionDispatch::IntegrationTest
 
     get "/renewals"
     assert_response :success
-    assert_select "div.row", :count => (renewal_count_before + 1)
+    assert_select "div.row1", :count => (renewal_count_before + 1)
     
     get "/renewals/new"
     assert_response :success
@@ -23,6 +23,6 @@ class CreateRenewalInfoTest < ActionDispatch::IntegrationTest
 
     get "/renewals"
     assert_response :success
-    assert_select "div.row", :count => Renewal.count + 1
+    assert_select "div.row1", :count => Renewal.count + 1
   end
 end

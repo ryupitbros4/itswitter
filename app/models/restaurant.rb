@@ -66,7 +66,9 @@ class Restaurant < ActiveRecord::Base
   end
   
   def self.order_by_crowdedness
-    Restaurant.order(updated_at: :desc).limit(10).sort_by(&:crowdedness)
+    #Restaurant.where('? - updated_at > 600', Time.zone.now.to_i ).order(updated_at: :desc).sort_by(&:crowdedness)
+    #Restaurant.where((Time.zone.now - self.updated_at).to_i < 600).order(updated_at: :desc).sort_by(&:crowdedness)
+    Restaurant.order(updated_at: :desc).sort_by(&:crowdedness)
   end
   
   def latest_comment

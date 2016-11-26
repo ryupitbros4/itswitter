@@ -13,7 +13,7 @@ class InvestigatorsController < ApplicationController
         @investigator.save!
         renewal = Renewal.new({ update_info: "新たな飲食店 「#{new_rest[:name]}」 が追加されました", restaurant_id: @investigator.id })
         renewal.save!
-        redirect_to '/investigators/delete'
+        redirect_to '/admin'
       end
     rescue => e
       logger.error e.backtrace.join("\n")

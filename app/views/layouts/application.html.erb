@@ -6,15 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="180">
     <title>Suitell</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+<!--  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+
+<!--floating menuのcss-->
+    <%= stylesheet_link_tag 'layouts' %>
+</script>
+
   </head>
   <body>
 
-    <div class="container">
+
 
       <!-- navbar -->
       <nav class="navbar navbar-default">
@@ -26,9 +33,8 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to "トップページ", root_path, {class: 'navbar-brand'} %>
-	    <%= link_to "つかいかた", treatment_restaurants_path, {class: 'navbar-brand'} %>
-          </div>
+            <%= link_to "Suitell", root_path, {class: 'navbar-brand'} %>
+	  </div>
           <div class="collapse navbar-collapse navbar-right nav-menu-1">
             <ul class="nav navbar-nav">
 	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
@@ -38,6 +44,9 @@
 	      <% else %>
 	      <li><%= link_to "ログイン", "/auth/twitter" %></li>
 	      <% end %>
+	      <li><%= link_to "Suitellの使い方", treatment_restaurants_path %></li>
+              <li><%= link_to "お店をリクエスト", demands_index_path %></li>
+              <li><%= link_to "ご意見", new_feedback_path %></li>
             </ul>
           </div>
 	</div>
@@ -45,10 +54,48 @@
 
       <%= yield %>   
 
+    <!--
     <footer class="footer">
       <div class="container">
-	<p class="text-muted">Powerd by RyuPiT Brother's 4 2016@enPit</p>
+	<p class="text-muted">RyuPiT Brother's 4@enPiT2016</p>
       </div>
     </footer>
+    -->
+    
+<!-- floatingmenu部分-->
+<div id="footerFloatingMenu">
+  <div>
+<!-- 
+    <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
+-->
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
+    <span class="col-xs-3" id="pageTop" style="color: white">^</span>
+  </div>
+</div>
+
+<!-- ページトップに戻るJS-->
+<script>
+$(function(){
+  var topBtn=$('#pageTop');
+  topBtn.hide();
+
+  $(window).scroll(function(){
+    if($(this).scrollTop()>60) {
+      topBtn.fadeIn();
+    } else {
+      topBtn.fadeOut();
+    }
+  });
+
+  topBtn.click(function(){
+    $('body,html').animate({
+      scrollTop: 0},500);
+      return false;
+  });
+
+});
+</script>
   </body>
 </html>
