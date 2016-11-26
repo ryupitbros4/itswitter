@@ -12,14 +12,14 @@
     <% end %>
     </center>
   </div>
-  
-  <!-- この中はコンテンツ --> 
+   
   <div class="contents">
     <p>
       <span class="glyphicon glyphicon-info-sign"></span>更新情報 
       <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe>
     </p>
-
+  </div>
+  <div class="contents">
     <h3>今このお店がすいています</h3>
     <p align="right">[<%= link_to "すべてのお店を見る", all_rest_restaurants_path %>]</p>
     <div class="container">
