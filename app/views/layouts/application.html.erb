@@ -38,9 +38,9 @@
           <div class="collapse navbar-collapse navbar-right nav-menu-1">
             <ul class="nav navbar-nav">
 	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
-	      
-              <li><%= link_to current_user.nickname + "さん", root_path %></li>
-              <li><%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, root_path %></li>
+	      <li><%= link_to image_tag(User.find(session[:user_id]).image_url, :size => "20x20"), favorite_restaurants_path %></li>
+              <li><%= link_to current_user.nickname + "さん", favorite_restaurants_path %></li>
+              <li><%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, restaurants_user_ranking_path %></li>
 	      <li><%= link_to "ログアウト", logout_path %></li>
 	      <% else %>
 	      <li><%= link_to "ログイン", "/auth/twitter" %></li>
