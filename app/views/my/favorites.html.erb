@@ -2,6 +2,5 @@
 <div class="jumbotron">
   <h2><%= current_user.nickname %>さんがフォローしている飲食店</h2>
 </div>
-<%= render '/mypage_block'%>
 
 <%= render partial: 'restaurants/not_crowd', locals: { rank: @my.restaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>

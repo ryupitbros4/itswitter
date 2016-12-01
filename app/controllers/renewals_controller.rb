@@ -2,7 +2,7 @@
 class RenewalsController < ApplicationController
 
   def index
-    @renewals = Renewal.all
+    @renewals = Renewal.all.order(created_at: :desc)
   end
 
   def new
