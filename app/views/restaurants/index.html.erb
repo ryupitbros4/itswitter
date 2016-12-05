@@ -47,6 +47,16 @@
 	      <div class="caption">
 
 	        <p style="word-wrap:break-word;"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></p>
+	      <!-- フォローボタン部分 -->
+		<p align="left">
+		  <% if logged_in? %>
+		  <% if current_user.restaurants.include? ranking %>
+		  <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), { method: :post, remote: true }%>
+		    <% else %>
+		    <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォローする', follow_restaurant_path(ranking), { method: :post, remote: true }  %>
+		      <% end %>
+		      <% end %>
+		</p>
 	        <p align="right">
 	          <%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), {:action => "report", :resname => ranking.id}, {:class => "btn"} %>
 	          <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => ranking.id}, {:class => "btn"} %>

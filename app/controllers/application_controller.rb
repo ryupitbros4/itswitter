@@ -8,6 +8,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_crowded_consts
+    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
+  end
+
+  def authenticate_user!
+    redirect_to :root, flash: { alert: 'ログインして下さい' } unless !!session[:user_id]
+  end
+
   def current_user
     return unless session[:user_id]
     @current_user ||= User.find(session[:user_id])

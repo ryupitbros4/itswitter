@@ -1,0 +1,3 @@
+$('#follow-unfollow-area-<%= restaurant.id %>').removeClass('glyphicon-star');
+$('#follow-unfollow-area-<%= restaurant.id %>').addClass('glyphicon-star-empty');
+$('#follow-unfollow-area-<%= restaurant.id %>').html("<%= j(link_to 'フォローする', follow_restaurant_path(restaurant), { method: :post, remote: true } ) %>");
