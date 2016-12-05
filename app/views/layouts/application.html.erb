@@ -21,8 +21,6 @@
   </head>
   <body>
 
-
-
       <!-- navbar -->
       <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -34,17 +32,18 @@
               <span class="icon-bar"></span>
             </button>
             <%= link_to "Suitell", root_path, {class: 'navbar-brand'} %>
+	    
+	    <% if logged_in? and User.where(:id => session[:user_id]).present? %>	    
+	    <%= link_to favorite_restaurants_path, {class: 'navbar-brand'} do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %>
+	    <%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, restaurants_user_ranking_path, {class: 'navbar-brand'} %>
+	    <%= link_to "ログアウト", logout_path, {class: 'navbar-brand'} %>
+	    <% else %>
+	    <%= link_to "ログイン", "/auth/twitter", {class: 'navbar-brand'} %>
+	    <% end %>
+	    
 	  </div>
           <div class="collapse navbar-collapse navbar-right nav-menu-1">
             <ul class="nav navbar-nav">
-	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
-	      
-	      <li><%= link_to favorite_restaurants_path do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
-              <li><%= link_to "現在のポイント:" + User.find(session[:user_id]).point.to_s, restaurants_user_ranking_path %></li>
-	      <li><%= link_to "ログアウト", logout_path %></li>
-	      <% else %>
-	      <li><%= link_to "ログイン", "/auth/twitter" %></li>
-	      <% end %>
 	      <li><%= link_to "Suitellの使い方", treatment_restaurants_path %></li>
               <li><%= link_to "お店をリクエスト", demands_index_path %></li>
               <li><%= link_to "ご意見", new_feedback_path %></li>

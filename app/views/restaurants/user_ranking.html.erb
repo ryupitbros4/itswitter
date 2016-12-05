@@ -15,11 +15,19 @@
   <tbody>
     <!--もし同率ポイントだった場合は順位をタイにする-->
     <% @up_rank.each do |urank| %>
+    <% if (session[:user_id] == urank.id) %>
+    <tr>
+      <th scope="row" class="col-md-1"><h4><font color="#ff0000"><%= urank.rank %>位</font></h4></th>
+      <td class="col-md-5"><%= image_tag(urank.image_url,:size => "40x40") %><font color="#ff0000"><%= urank.nickname %></font></td>
+      <td class="col-md-6"><h5><font color="#ff0000"><%= urank.point %></font></h5></td>
+    </tr>
+    <% else %>
     <tr>
       <th scope="row" class="col-md-1"><h4><%= urank.rank %>位</h4></th>
       <td class="col-md-5"><%= image_tag(urank.image_url,:size => "32x32") %> <%= urank.nickname %></td>
       <td class="col-md-6"><h5><%= urank.point %></h5></td>
     </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
@@ -37,11 +45,19 @@
   <tbody>
     <!--同率だった場合はタイにする-->
     <% @your_rank.each do |yrank| %>
+    <% if (session[:user_id] == yrank.id) %>
+    <tr>
+      <th scope="row" class="col-md-1"><h4><font color="#ff0000"><%= yrank.rank %>位</font></h4></th>
+      <td class="col-md-5"><%= image_tag(yrank.image_url,:size => "32x32") %><font color="#ff0000"><%= yrank.nickname %></font></td>
+      <td class="col-md-6"><h5><font color="#ff0000"><%= yrank.point %></font></h5></td>
+    </tr>
+    <% else %>
     <tr>
       <th scope="row" class="col-md-1"><h4><%= yrank.rank %>位</h4></th>
       <td class="col-md-5"><%= image_tag(yrank.image_url,:size => "32x32") %> <%= yrank.nickname %></td>
       <td class="col-md-6"><h5><%= yrank.point %></h5></td>
     </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
