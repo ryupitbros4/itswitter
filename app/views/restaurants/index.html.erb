@@ -18,24 +18,63 @@
   <div class="contents">
     <p>
       <span class="glyphicon glyphicon-info-sign"></span>更新情報 
-      <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe>
+      <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle" frameborder="0"></iframe>
     </p>
   </div>
   
   <div class="contents">
+    <h4>飲食店を検索しよう！</h4>
     <%= form_tag(restaurants_search_path) do |f| %>
       <div class="input-group">
-        <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
+        <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
         <span class="input-group-btn">
           <%= button_tag '検索', class: 'btn btn-default' %>
         </span>
+	<br>
       </div>
     <% end %>
   </div>
+<br>
+<!-- フォローの店表示部分-->
+<% if logged_in? %>
+  <div class="contents">
+    <h4>お気に入りの飲食店</h4>
+    <p align="right">[<%= link_to "フォローリスト", favorite_restaurants_path %>]</p>
+    <div class="container">
+
+    <div class="row row-eq-height">
+      <% @my.restaurants.each do |restaurant|%>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	<div class="thumbnail">
+	  <div class="caption">
+	    <p style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></p>
+
+	    <p align="left">
+              <% if current_user.restaurants.include? restaurant %>
+              <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= restaurant.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(restaurant), { method: :post, remote: true }%>
+              <% else %>
+                <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= restaurant.id %>"><%= link_to 'フォローする', follow_restaurant_path(restaurant), { method: :post, remote: true }  %>
+              <% end %>
+            </p>
+	    <p align="right">
+              <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+              <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => restaurant.id}, {:class => "btn"} %>
+            </p>
+	  </div>
+	</div>
+      </div>
+
+      <% end %>
+    </div>
+
+    </div>
+  </div>
+<% end %>
+<br>
 
   <div class="contents">
-    <h4>今このお店がすいています</h4>
-    <p align="right">[<%= link_to "すべてのお店を見る", all_rest_restaurants_path %>]</p>
+    <h4>今この飲食店がすいています(更新10分以内)</h4>
+    <p align="right">[<%= link_to "すべての飲食店を見る", all_rest_restaurants_path %>]</p>
     <div class="container">
 
       <div class="row row-eq-height">
