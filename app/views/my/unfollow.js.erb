@@ -1,3 +1,9 @@
 $('#follow-unfollow-area-<%= restaurant.id %>').removeClass('glyphicon-star');
 $('#follow-unfollow-area-<%= restaurant.id %>').addClass('glyphicon-star-empty');
-$('#follow-unfollow-area-<%= restaurant.id %>').html("<%= j(link_to 'フォローする', follow_restaurant_path(restaurant), { method: :post, remote: true } ) %>");
+$('#follow-unfollow-area-<%= restaurant.id %>').unwrap();
+$('#follow-unfollow-area-<%= restaurant.id %>').wrap("<%= j(link_to '', follow_restaurant_path(restaurant), { method: :post, remote: true } ) %>");
+
+$('#now-follow-unfollow-area-<%= restaurant.id %>').removeClass('glyphicon-star');
+$('#now-follow-unfollow-area-<%= restaurant.id %>').addClass('glyphicon-star-empty');
+$('#now-follow-unfollow-area-<%= restaurant.id %>').unwrap();
+$('#now-follow-unfollow-area-<%= restaurant.id %>').wrap("<%= j(link_to '', follow_restaurant_path(restaurant), { method: :post, remote: true } ) %>");
