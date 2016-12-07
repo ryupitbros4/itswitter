@@ -1,74 +1,37 @@
-  <%= render '/flash_msg2' %>
-  <div class="jumbotron", style="height: 180px;">
-    <center>
-      <table class="table", frame="void", rules="none">
-        <tbody>
-          <tr>
-            <td class="col-md-6", rowspan="2", valign="top", align="right", style="padding: 0px 0px;border-style: none;"><%= image_tag("Suitell-1-1.png", :size => "128x128") %></td>
-            <td class="col-md-6", valign="bottom", align="left", style="vertical-align: bottom;padding: 20px 0px 0px;border-style: none;"><p>飯、待てぬ</p></td>
-            <tr>
-              <td valign="top", align="left", style="border-style: none;"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食わねば</p></td>
-            </tr>
-          </tr>
-        </tbody>
-      </table>
-    </center>
-  </div>
+<%= render '/flash_msg2' %>
+<!-- Top image -->
+<%= render '/eyecatch' %>
 
-  <div class="contents">
-    <p>
-      <span class="glyphicon glyphicon-info-sign"></span>更新情報 
-      <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle" frameborder="0"></iframe>
-    </p>
-  </div>
+<div class="contents">
+  <p>
+    <span class="glyphicon glyphicon-info-sign"></span>更新情報 
+    <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle" frameborder="0"></iframe>
+  </p>
+</div>
   
-  <div class="contents">
-    <h4>飲食店を検索しよう！</h4>
-    <%= form_tag(restaurants_search_path) do |f| %>
-      <div class="input-group">
-        <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
-        <span class="input-group-btn">
-          <%= button_tag '検索', class: 'btn btn-default' %>
-        </span>
-	<br>
-      </div>
-    <% end %>
+<div class="contents">
+  <h4>飲食店を検索しよう！</h4>
+  <%= form_tag(restaurants_search_path) do |f| %>
+  <div class="input-group">
+    <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
+    <span class="input-group-btn">
+      <%= button_tag '検索', class: 'btn btn-default' %>
+    </span>
+    <br>
   </div>
+  <% end %>
+</div>
 <br>
+
 <!-- フォローの店表示部分-->
 <% if logged_in? %>
-  <div class="contents">
-    <h4>お気に入りの飲食店</h4>
-    <p align="right">[<%= link_to "フォローリスト", favorite_restaurants_path %>]</p>
-    <div class="container">
+<div class="contents">
+  <h4>お気に入りの飲食店</h4>
+  <p align="right">[<%= link_to "フォローリスト", favorite_restaurants_path %>]</p>
 
-    <div class="row row-eq-height">
-      <% @my.restaurants.limit(4).each do |restaurant|%>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="thumbnail">
-	  <div class="caption">
-<!-- フォローボタン部分-->
-	    <% if current_user.restaurants.include? restaurant %>
-            <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%><span class="glyphicon glyphicon-star color-gold" id="follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-            <% else %>
-            <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%><span class="glyphicon glyphicon-star-empty color-gold" id="follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-            <% end %>
+    <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc").limit(4), crowded_image: @crowded_image } %>
 
-	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
-
-	    <p align="right">
-              <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => restaurant.id}, {:class => "btn"} %>
-            </p>
-	  </div>
-	</div>
-      </div>
-
-      <% end %>
-    </div>
-
-    </div>
-  </div>
+</div>
 <% end %>
 <br>
 
@@ -93,7 +56,6 @@
             <%= link_to follow_restaurant_path(ranking), { method: :post, remote: true }  do%><span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span><% end %>
             <% end %>
             <% end %>
-
 
 	    <span style="word-wrap:break-word;"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></span>
 

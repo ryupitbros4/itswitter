@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row row-eq-height">
+    <% restaurants.each do |restaurant| %>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="thumbnail">
+        <!-- img -->
+        <div class="caption">
+	  <!-- フォローボタン部分-->
+          <% if logged_in?%>
+          <% if current_user.restaurants.include? restaurant %>
+          <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%>
+	  <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
+          <% else %>
+          <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%>
+	  <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
+          <% end %>
+          <% end %>
+
+          <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
+          <p align="right">
+            <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"),
+	    { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+            <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'),
+            { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id}, {:class => "btn"} %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

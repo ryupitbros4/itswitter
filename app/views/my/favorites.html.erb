@@ -1,46 +1,7 @@
 <%= render '/flash_msg2' %>
-
-<div class="jumbotron", style="height: 180px;">
-  <center>
-    <table class="table", frame="void", rules="none">
-      <tbody>
-        <tr>
-          <td class="col-md-6", rowspan="2", valign="top", align="right", style="padding: 0px 0px;border-style: none;"><%= image_tag("Suitell-1-1.png", :size => "128x128") %></td>
-          <td class="col-md-6", valign="bottom", align="left", style="vertical-align: bottom;padding: 20px 0px 0px;border-style: none;"><p>飯、待てぬ</p></td>
-        <tr>
-          <td valign="top", align="left", style="border-style: none;"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食わねば</p></td>
-        </tr>
-        </tr>
-      </tbody>
-    </table>
-  </center>
-</div>
+<%= render '/eyecatch' %>
 
 <div class="contents">
   <h4>お気に入りの飲食店一覧</h4>
-  <div class="container">
-    <div class="row row-eq-height">
-      <% @my.restaurants.each do |restaurant|%>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="thumbnail">
-	  <div class="caption">
-	    <!-- フォローボタン部分-->
-            <% if current_user.restaurants.include? restaurant %>
-            <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%><span class="glyphicon glyphicon-star color-gold" id="follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-            <% else %>
-            <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%><span class="glyphicon glyphicon-star-empty color-gold" id="follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-            <% end %>
-
-            <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
-
-            <p align="right">
-              <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id}, {:class => "btn"} %>
-            </p>
-	  </div>
-	</div>
-      </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc"), crowded_image: @crowded_image } %>
 </div>
