@@ -2,48 +2,95 @@
 <div class="jumbotron">
   <center><h2><%= @restaurant_name %>の混雑度ログ</h2></center>
 </div>
-<p><span class="glyphicon glyphicon-info-sign"></span>更新情報 <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="85%" scrolling="no" align="middle" frameborder="0"></iframe></p>
 
+<div class="contents">
+  <div class="container"><h1 style="color: black;">最新コメント</h1>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="col-md-4 success">混雑度</th>
+          <th class="col-md-8 success">最新更新時</th>
+        </tr>
+        <tr>
+          <th colspan="2" class="col-md-12" bgcolor="#FFFFFF">コメント</th>
+        </tr>
+      </thead>
+    </table>
+    <% comment = @comments[0] %>
+    <% if comment.comment.blank? %>
+      <% cont = 'コメント無し' %>
+    <% else %>
+      <% cont = comment.comment %>
+    <% end %>
+    <table class="table table-hover table-bordered">
+      <tbody>
+        <tr>
+          <td class="col-md-4 success"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
+          <td class="col-md-8 success"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="col-md-12" style="word-wrap:break-word;" bgcolor="#FFFFFF"><%= cont %>
+            <% if (!(comment.user_id.blank?) && !(session[:user_id].blank?) && (comment.user_id != session[:user_id]))  %>
+              <% if (PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank?) %>
+                <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              <% else %>
+                <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
+              <% end %>
+              報告者:<%= User.find(comment.user_id).nickname %>さん
+            <% end %>
 
-<div class="panel panel-success">
-<div class="panel-heading"><center><h1 style="color: black;">コメント一覧</h1></center></div>
-<div class="panel-body">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th class="col-md-4">混雑度</th>
-      <th class="col-md-8">最新更新時</th>
-    </tr>
-    <tr>
-      <th colspan="2" class="col-md-12">コメント</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @comments.each do |comment| %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+<div class="contents">
+  <div class="contaner"><h1 style="color: black;">コメント一覧</h1>
+
+<!--
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="col-md-4 success">混雑度</th>
+          <th class="col-md-8 success">最新更新時</th>
+        </tr>
+        <tr>
+          <th colspan="2" class="col-md-12" bgcolor="#FFFFFF">コメント</th>
+        </tr>
+      </thead>
+    </table>
+-->
+
+    <% @comments[1..-1].each do |comment| %>
       <% if comment.comment.blank? %>
         <% cont = 'コメント無し' %>
       <% else %>
         <% cont = comment.comment %>
       <% end %>
-      <tr>
-        <td class="col-md-2"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
-        <td class="col-md-3"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-      </tr>
-    <tr>
-      <td colspan="2" class="col-md-12" style="word-wrap:break-word;"><%= cont %>
-	
-	<% if (!(comment.user_id.blank?) && !(session[:user_id].blank?) && (comment.user_id != session[:user_id]))  %>
-	<% if (PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank?) %>
-          <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-          <% else %>
-          <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
-          <% end %>
-          報告者:<%= User.find(comment.user_id).nickname %>さん
-          <% end %>
-	  
-	</td>
-      </tr>
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td class="col-md-4 success"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
+            <td class="col-md-8 success"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="col-md-12" style="word-wrap:break-word;" bgcolor="#FFFFFF"><%= cont %>
+	      <% if (!(comment.user_id.blank?) && !(session[:user_id].blank?) && (comment.user_id != session[:user_id]))  %>
+	        <% if (PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank?) %>
+                  <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <% else %>
+                  <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
+                <% end %>
+                報告者:<%= User.find(comment.user_id).nickname %>さん
+              <% end %>  
+	    </td>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <br>
 </div>
