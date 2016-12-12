@@ -29,20 +29,15 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th class="col-md-1">#</th>
-      <th class="col-md-3">店名</th>
+      <th class="col-md-4">店名</th>
       <th class="col-md-8">伝えたい思い</th>
     </tr>
   </thead>
   <tbody>
-    <% num = 1 %>
     <% @demands.each do |demand| %>
     <tr>
-      <th class="col-md-1"><%= num %></th>
-      <td class="col-md-3"><%= demand.demand_restaurant %></td> 
+      <td class="col-md-4"><%= demand.demand_restaurant %></td> 
       <td class="col-md-8" style="word-wrap:break-word;"><%= demand.free %></td>
-
-      <% num = num + 1 %>
     </tr>
     <% end %>
   </tbody>
