@@ -1,58 +1,16 @@
-  <div class="jumbotron", style="height: 180px;">
-    <center>
-      <table class="table", frame="void", rules="none">
-        <tbody>
-          <tr>
-            <td class="col-md-6", rowspan="2", valign="top", align="right", style="padding: 0px 0px;"><%= image_tag("Suitell-1-1.png", :size => "128x128") %></td>
-            <td class="col-md-6", valign="bottom", align="left", style="vertical-align: bottom;padding: 20px 0px 0px;"><p>飯、待てぬ</p></td>
-            <tr>
-              <td valign="top", align="left"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食わねば</p></td>
-            </tr>
-          </tr>
-        </tbody>
-      </table>
-    </center>
-  </div>
-  <%= form_tag(restaurants_search_path) do |f| %>
-    <div class="input-group">
-      <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
-      <span class="input-group-btn">
-        <%= button_tag '検索', class: 'btn btn-default' %>
-      </span>
-    </div>
-  <% end %>
+<%= render '/eyecatch' %>
 
-  <center><p><%= @error %></p></center>
-  <center><h1>検索一覧</h1></center>
-  <div class="container">
+<%= form_tag(restaurants_search_path) do |f| %>
+<div class="input-group">
+  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '飲食店を検索しよう！' %>
+  <span class="input-group-btn">
+    <%= button_tag '検索', class: 'btn btn-default' %>
+  </span>
+</div>
+<% end %>
 
-    <div class="row row-eq-height">
-      <% @searched.each do |ranking| %>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          <div class="thumbnail">
-            <!-- img -->
-            <div class="caption">
-
-              <p style="word-wrap:break-word;"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></p>
-            <!-- フォローボタン部分 -->
-	      <p align="left">
-            <% if logged_in? %>
-            <% if current_user.restaurants.include? ranking %>
-	    <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(ranking), { method: :post, remote: true }%>
-	      <% else %>
-	      <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= ranking.id %>"><%= link_to 'フォローする', follow_restaurant_path(ranking), { method: :post, remote: true }  %>
-	    <% end %>
-	    <% end %>
-
-	      </p>
-              <p align="right">
-                <%= link_to image_tag(@crowded_image[ranking.crowdedness], :size => "32x32"), {:action => "report", :resname => ranking.id}, {:class => "btn"} %>
-                <%= link_to sanitize('<span class="glyphicon glyphicon-comment"></span>'), {:action => "comment_log", :restaurant_id => ranking.id}, {:class => "btn"} %>
-              </p>
-
-            </div>
-          </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
+<center><p><%= @error %></p></center>
+<div class="contents">
+<center><h2>検索一覧</h2></center>
+<%= render partial: '/restaurant_card', locals: { restaurants: @searched, crowded_image: @crowded_image } %>
+</div>

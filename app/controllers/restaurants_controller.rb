@@ -18,6 +18,9 @@ class RestaurantsController < ApplicationController
     @rank=Restaurant.order_by_crowdedness
     set_crowded_consts
     #@len_num = @rank.count
+
+    #フォローの店
+    @my = User.find(session[:user_id]) if session[:user_id]
   end
   
   def search
