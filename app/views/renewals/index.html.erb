@@ -1,17 +1,16 @@
-  <div class="contents">
-    <div class="container">
-      <h1>更新情報一覧</h1>
-
-      <div class="row1">
-	<strong>更新日時順</strong>
-      </div>
-	<% @renewals.each do |renewal| %>
-	<div class="row1">
-	  <div class="panel panel-info">
-          <div class="panel-heading"><%= format_date(renewal.updated_at) %></div>
-	  <div class="panel-body" style="word-break:break-all;"><%= link_to renewal.update_info, renewal_path(renewal) %></div>
-	  </div>
-	</div>
-	<% end %>
+<div class="contents">
+  <div class="container">
+    <h1>更新情報一覧</h1>
+    <div class="row1">
+      <strong>更新日時順</strong>
     </div>
+    <% @renewals.each do |renewal| %>
+    <div class="row1">
+      <div class="panel panel-info">
+        <div class="panel-heading"><%= format_date(renewal.updated_at) %></div>
+	<div class="panel-body" style="word-break:break-all;"><%= link_to renewal.update_info, renewal_path(renewal) %></div>
+      </div>
+    </div>
+    <% end %>
   </div>
+</div>
