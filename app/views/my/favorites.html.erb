@@ -1,6 +1,20 @@
 <%= render '/flash_msg2' %>
 <div class="jumbotron">
-  <h2><%= current_user.nickname %>さんがフォローしている飲食店</h2>
+  <center><h1><%= current_user.nickname %>さんのページ</h1></center>
+  <br>
+  <center>
+    <ul class="list-unstyled">
+      <li style="font-size: 20px;">
+        あなたのポイント：
+        <span class="badge" style="font-size: 20px;"><%= current_user.point %>pt</span>
+      </li>
+      <li style="font-size: 20px;">
+        あなたのランキング：
+        <span class="badge" style="font-size: 20px;"><%= current_user.rank %>位</span>
+      </li>
+    </ul>
+  </center>
 </div>
+
 
 <%= render partial: 'restaurants/not_crowd', locals: { rank: @my.restaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
