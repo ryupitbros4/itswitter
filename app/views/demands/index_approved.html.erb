@@ -1,20 +1,21 @@
-<h1>追加済みの飲食店一覧</h1>
-
-<table class="table">
+<div class="panel panel-success">
+<div class="panel-heading"><center><h1 style="color: black;">追加済みの飲食店一覧</h1></center></div>
+<div class="panel-body">
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>#</th>
-      <th>店名</th>
-      <th>伝えたい思い</th>
+      <th class="col-md-4">店名</th>
+      <th class="col-md-8">伝えたい思い</th>
     </tr>
   </thead>
   <tbody>
-    <% @demands.each.with_index do |demand, num| %>
+    <% @demands.each do |demand| %>
     <tr>
-      <th><%= num + 1 %></th>
-      <td><%= demand.demand_restaurant %></td> 
-      <td><%= demand.free %></td>
+      <td class="col-md-4"><%= demand.demand_restaurant %></td> 
+      <td class="col-md-8" style="word-wrap:break-word;"><%= demand.free %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>
+</div>

@@ -1,6 +1,7 @@
 <%= render '/flash_msg2' %>
-<div class="jumbotron">
-  <h2><%= current_user.nickname %>さんがフォローしている飲食店</h2>
-</div>
+<%= render '/eyecatch' %>
 
-<%= render partial: 'restaurants/not_crowd', locals: { rank: @my.restaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
+<div class="contents">
+  <h4>お気に入りの飲食店一覧</h4>
+  <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc"), crowded_image: @crowded_image } %>
+</div>

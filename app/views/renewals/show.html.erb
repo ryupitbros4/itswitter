@@ -1,12 +1,15 @@
-<h1>更新情報詳細</h1>
-<div>
-<strong>更新日時</strong>
-  <p><%= format_date(@renewal.updated_at) %></p>
+<div class="contents">
+  <div class="container">
+    <h1>更新情報詳細</h1>
+
+    <div class="row1">
+      <div class="panel panel-info">
+	<div class="panel-heading"><%= format_date(@renewal.updated_at)%></div>
+	<div class="panel-body" style="word-break:break-all;"><%= @renewal.update_info %></div>
+      </div>
+    </div>
+  </div>
+<p><%= link_to '更新情報一覧', renewals_path %></p>
 </div>
-<div>
-<strong>更新内容</strong>
-  <p><%= @renewal.update_info %></p>
-</div>
-<div>
-  <p><%= link_to '更新情報一覧', renewals_path %></p>
-</div>
+
+
