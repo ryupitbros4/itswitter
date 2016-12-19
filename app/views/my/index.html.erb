@@ -112,6 +112,13 @@
 -->
   <% if @mycomments.present? %>
   <% @mycomments.each do |posting| %>
+    いいねしたユーザ一覧
+    <% if posting.pressed_users.present? %>
+    <% posting.pressed_users.each do |pressed_user| %>
+      <%= pressed_user.user.nickname %>さん,
+    <% end %>
+    <% end %>
+
     <% comment = posting.comment %>
     <% if comment.blank? %>
       <% comment = 'コメント無し' %>
