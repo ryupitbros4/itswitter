@@ -78,6 +78,21 @@ body{
   font-size: 14px;
   line-height: 1.5;
 }
+.card-comment {
+  border-top: 1px solid #eee;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom:5px;
+}
+.card-comment a {
+  text-decoration: none;
+  color: #0bd;
+  margin: 0 10px;
+}
+.card-comment a:hover {
+  color: #0090aa;
+}
 .card-link {
   text-align: center;
   border-top: 1px solid #eee;
