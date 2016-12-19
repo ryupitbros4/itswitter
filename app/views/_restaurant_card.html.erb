@@ -10,12 +10,12 @@
 	<!-- follow system -->
 	<% if logged_in? %>
 	  <% if current_user.restaurants.include? restaurant %>
-	    <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do %>
+	    <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>
 	      <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
 	      <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
 	    <% end %>
 	  <% else %>
-	    <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true } do %>
+	    <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>
 	      <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
 	      <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
 	    <% end %>

@@ -69,40 +69,46 @@
     </footer>
     -->
     
-<!-- floatingmenu部分-->
-<div id="footerFloatingMenu">
-  <div>
-<!-- 
-    <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
--->
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
-    <span class="col-xs-3" id="pageTop" style="color: white">^</span>
-  </div>
-</div>
+    <!-- floatingmenu部分-->
+    <div id="footerFloatingMenu">
+      <div>
+    <!-- 
+      <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
+    -->
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
+        <span class="col-xs-3" id="pageTop" style="color: white">^</span>
+      </div>
+    </div>
 
-<!-- ページトップに戻るJS-->
-<script>
-$(function(){
-  var topBtn=$('#pageTop');
-  topBtn.hide();
+    <!-- ページトップに戻るJS-->
+    <script>
+      $(function(){
+        var topBtn=$('#pageTop');
+        topBtn.hide();
 
-  $(window).scroll(function(){
-    if($(this).scrollTop()>60) {
-      topBtn.fadeIn();
-    } else {
-      topBtn.fadeOut();
-    }
-  });
+      $(window).scroll(function(){
+        if($(this).scrollTop()>60) {
+          topBtn.fadeIn();
+        } else {
+          topBtn.fadeOut();
+        }
+      });
 
-  topBtn.click(function(){
-    $('body,html').animate({
-      scrollTop: 0},500);
-      return false;
-  });
+      topBtn.click(function(){
+        $('body,html').animate({
+          scrollTop: 0},500);
+          return false;
+        });
+      });
+    </script>
+    <!-- tooltip -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-});
-</script>
   </body>
 </html>
