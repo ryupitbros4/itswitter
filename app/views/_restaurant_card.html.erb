@@ -23,13 +23,17 @@
             <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"),
 	    { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
 	  </span>
-	    <% comment = restaurant.latest_comment.blank? ? "コメント無し" : restaurant.latest_comment %>
+	    <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
 
 <!-- コメント表示部分 -->
 	    <span class="relative">
 	      <%= image_tag("balloon_hand", :alt => 'balloon', :class => "balloon") %>
 	      <span class="tenn absolute">
-		<%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }  %>
+                <% if comment == "コメント無し" %>
+                  <%= comment %>
+                <% else %>
+		  <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }  %>
+                <% end %>
 	      </span>
 	    </span>
 

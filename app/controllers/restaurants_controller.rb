@@ -11,8 +11,10 @@ class RestaurantsController < ApplicationController
   
   def index
     @restaurants = Restaurant.all
+    #@comments = Comments.all
     @new_restaurants = Restaurant.where('created_at > ?', params[:from] ? params[:from] : 30.days.ago).order(created_at: :desc)
     @per_array = Array.new
+    @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     
     #占有率が低い順に並び替える
     @rank=Restaurant.order_by_crowdedness
