@@ -39,48 +39,45 @@
   <h4>今この飲食店がすいています(更新10分以内)</h4>
   <p align="right">[<%= link_to "すべての飲食店を見る", all_rest_restaurants_path %>]</p>
   <div class="container">
-    <div class="row row-eq-height">
-      <% @rank.each do |restaurant| %>
-        <% if ((Time.zone.now - restaurant.updated_at).to_i <= 600) %>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <div class="thumbnail">
-              <!-- img -->
-              <div class="caption">
-	        <!-- フォローボタン部分-->
-	        <div>
-                  <% if logged_in?%>
-                    <% if current_user.restaurants.include? restaurant %>
-                      <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%>
-	              <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-                    <% else %>
-                      <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%>
-	              <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
-                    <% end %>
-                  <% end %>
-                  <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
-	        </div>
-                <span align="left">
-                  <%= link_to image_tag(@crowded_image[restaurant.crowdedness]+ ".png", :size => "32x32"),
-	          { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-	        </span>
-	        <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
+    <% @rank.each do |restaurant| %>
+      <% if ((Time.zone.now - restaurant.updated_at).to_i <= 600) %>
+	 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	   <section class="card">
+	     <!-- img -->
+	     <div class="card-content">
+	       <h1 class="card-title">
+		 <!-- フォロー部分-->
+		 <% if logged_in?%>
+		 <% if current_user.restaurants.include? restaurant %>
+		 <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%>
+		 <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
+		 <% else %>
+		 <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%>
+		 <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span><% end %>
+		 <% end %>
+		 <% end %>
 
-                <!-- コメント表示部分 -->
-                <span class="relative">
-                  <%= image_tag("balloon_hand", :alt => 'balloon', :class => "balloon") %>
-	          <span class="tenn absolute">
-                    <% if comment == "コメント無し" %>
-                      <%= comment %>
-                    <% else %>
-                      <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }  %>
-                    <% end %>
-		  </span>
-		</span>
-              </div>
-            </div>
-          </div>
-        <% end %>
+		 <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
+	       </h1>
+	     </div>
+
+	     <div class="card-comment tenn">
+	       <span>
+		 <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+               </span>
+               <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
+               <span class="relative">
+		 <% if comment == "コメント無し" %>
+	         <%= comment %>
+		 <% else %>
+		 <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+		 <% end %>
+	       </span>
+	     </div>
+
+	   </section>
+	 </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
