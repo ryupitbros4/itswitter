@@ -36,7 +36,7 @@
 	    <div class="navbar-left">
 	      <ul class="nav navbar-nav">
 		<% if logged_in? and User.where(:id => session[:user_id]).present? %>
-		<li style="display: inline-block; _display: inline;"><%= link_to favorite_restaurants_path do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
+		<li style="display: inline-block; _display: inline;"><%= link_to mypage_path do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
 		<li style="display: inline-block; _display: inline;"><%= link_to User.find(session[:user_id]).point.to_s + "pt", restaurants_user_ranking_path %></li>
 		<% else %>
 		<li style="display: inline-block; _display: inline;"><%= link_to "ログイン", "/auth/twitter" %></li>
