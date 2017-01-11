@@ -1,0 +1,44 @@
+<div class="container">
+  <% restaurants.each do |restaurant| %>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <section class="card">
+        <!-- img -->
+        <!-- <img class="card-img" src="" alt=""> -->
+      <div class="card-content">
+        <h1 class="card-title">
+	  <!-- follow system -->
+	  <% if logged_in? %>
+	    <% if current_user.restaurants.include? restaurant %>
+	      <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>         
+	        <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+	      <% end %>
+	    <% else %>
+	      <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>             
+	        <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+	      <% end %>
+	    <% end %>
+	  <% end %>
+	  
+	  <!-- end of follow system -->
+	  
+	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span>
+	  
+	  </h1>	
+        </div>
+        <div class="card-comment tenn">
+	  <span>
+	    <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+	  </span>
+	  <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
+	    <span class="relative">
+	    <% if comment == "コメント無し" %>
+	      <%= comment %>
+	    <% else %>
+	      <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+	    <% end %>
+	  </span>
+        </div>
+      </section>
+    </div>
+  <% end %>
+</div>

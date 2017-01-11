@@ -2,6 +2,7 @@
 class Restaurant < ActiveRecord::Base
   has_many :comments
   has_many :users, :through => :comments
+  has_many :favorite_restaurants
   has_many :users, :through => :favorite_restaurants
 
   has_many :opening_hours, dependent: :destroy

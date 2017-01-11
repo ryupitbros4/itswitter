@@ -2,93 +2,185 @@
 <h2>このアプリの使い方</h2>
 </div>
 
-<a id="back"></a>
-<h1>何について知りたいですか？</h1>
-<h2><%= link_to "・Suitellってどんなアプリなの？",:anchor => 'what' %></h2>
-<h2><%= link_to "・Suitellでできること！",:anchor => 'ability' %></h2>
-<h2><%= link_to "・Suitellの各機能について",:anchor => 'function' %></h2>
-<ul>
-<h3><%= link_to "・まずはログインをしよう",:anchor => 'login' %></h3>
-<h3><%= link_to "・お店の混雑度を知ろう",:anchor => 'crowdedness' %></h3>
-<h3><%= link_to "・投稿された情報をもっと見たい",:anchor => 'log' %></h3>
-<h3><%= link_to "・コメントにイイねをしよう",:anchor => 'favorite' %></h3>
-<h3><%= link_to "・お店の状況を伝えよう",:anchor => 'report' %></h3>
-<h3><%= link_to "・どうやってポイントを稼ぐの？",:anchor => 'point' %></h3>
-</ul>
-<h2><%= link_to "・気になるお店がSuitellにない時は？",:anchor => 'demand' %></h2>
-<h2><%= link_to "・Suitellに言いたいことがある！",:anchor => 'feedback' %></h2>
-</br>
-</br>
-</br>
-</br>
-</br>
-<HR>
-<a id="what"></a>
-<h2><%= link_to "・Suitellってどんなアプリなの？",:anchor => 'back' %></h2>
-<ul>
-<h4>「お腹が空いた、何か食べたい、でもいざ立ち寄った飲食店が混んでいて入れなかった…」そんな経験ありますよね？Suitellはお店で待つのが嫌いなあなたの食事事情を快適にする素敵なツールです。</h4>
-<h4>Suitellでは飲食店の混雑状況をリアルタイムで提供し、あなたのお店選びのサポートをいたします。あなたはSuitellで今空いているお店を探すことで、待つことなくすぐに食事を食べることができるのです！</h4>
-</ul>
-<a id="ability"></a>
-<h2><%= link_to "・Suitellでできること!",:anchor => 'back' %></h2>
-<ul>
-<h4>・お店の最新の状況を把握できる</br>
-Suitellではお店の混雑状況を混雑度アイコンによってひと目で確認することが出来ます。更に、実際にお店に立ち寄った人から投稿されたコメントを見ることもでき、より詳しい情報を得ることも可能です。</h4>
-<h4>・お店の状況を伝える</br>
-Suitellではお店の混雑状況を見るだけでなく、実際に自分が混雑状況を伝える側になることも可能です。あなたの情報はSuitell上に載り、他のユーザーにとって役立つ情報となるのです！</h4>
-<h4>・ポイントを稼いでランキングに載ろう</br>
-あなたが情報を提供したり、その情報が他のユーザーの役に立ったときにはそれがポイントという形で反映されます。高得点を稼ぐとユーザーランキングにあなたの名前が乗ることも！それは即ちあなたが多くのユーザーのお役に立ったという証明です。たくさんポイントを稼いでトップリポーターを目指しましょう。</h4>
-</ul>
-<a id="function"></a>
-<h2><%= link_to "・Suitellの各機能について",:anchor => 'back' %></h2>
-<a id="login"></a>
-<h2><%= link_to "・まずはログインをしよう",:anchor => 'back' %></h2>
-<ul>
-<h4>Suitellではログインする事で、アプリ上のすべての機能を使うことが出来ます。ログインはトップページの右上にあるログインボタンから行うことが出来ます。ログイン状態になると、あなたのアカウント名と現在のポイントが右上に表示されます。</h4>
-</ul>
-<a id="crowdedness"></a>
-<h2><%= link_to "・お店の混雑度を知ろう",:anchor => 'back' %></h2>
-<ul>
-<h4>お店の混雑状況はトップページから参照することが出来ます。トップページでは今空いているお店や最近Suitellに追加されたお店をピックアップして表示しています。</h4>
-<h4>お店の状況は投稿された最新のものが表示されています。</h4>
-<h4>また、特定のお店を調べたいときは画面中央の検索バーにお店の名前を入れてください。検索結果より該当するお店の情報を確認出来ます。</h4>
-</ul>
-<a id="log"></a>
-<h2><%= link_to "・投稿された情報をもっと見たい",:anchor => 'back' %></h2>
-<ul>
-<h4>コメントアイコンの隣に表示されているコメント部分をクリックすると、そのお店に対して投稿された情報の一覧が表示されたページに行くことが出来ます。</h4>
-</ul>
-<a id="favorite"></a>
-<h2><%= link_to "・コメントにイイねをしよう",:anchor => 'back' %></h2>
-<ul>
-<h4>あなたが気になったコメントや、あなたの役に立った情報にはイイねをしましょう。コメントの下にあるイイねボタンを押すことでイイねを相手に送ることが出来ます。</h4>
-<h4>イイねは一つの情報に対して一度だけ送ることが出来ます。また、間違ってイイねをしてしまった場合やイイねを取り消したい場合は、いいねボタンをもう一度クリックすることで取り消すことが出来ます。</h4>
-</ul>
-<a id="report"></a>
-<h2><%= link_to "・お店の状況を伝えよう",:anchor => 'back' %></h2>
-<ul>
-<h4>「お店の混雑度を伝える」ボタンからページへ行くことが出来ます。ここでの手順は</h4>
-<h4>(1)お店を選択する(必須)</h4>
-<h4>(2)お店の今の状況に近いと思われるアイコンを1つ選択(必須)</h4>
-<h4>(3)お店の情報に関するコメントをする。(任意)</br>
-このコメントは詳しい混雑状況から、割引してるよ！と言った情報までなんでも好きなことを書いてください</h4>
-<h4>(4)伝えるボタンを押す</h4>
-<h4>伝えるボタンを押すとコメントログページへ移動し、あなたの投稿を確認することが出来ます。</h4>
-<h4>また、一度投稿すると3分間新たな投稿はできなくなります。</h4>
-</ul>
-<a id="point"></a>
-<h2><%= link_to "・どうやってポイントを稼ぐの？",:anchor => 'back' %></h2>
-<ul>
-<h4>ポイントは「混雑状況を伝える」「誰かの情報に対してイイねを押す」この2つの行動で加算されていきます。</h4>
-<h4>加算されるポイント数は、混雑状況を伝えた場合は10p、他ユーザーに対してイイねした場合は1p、あなたの投稿が誰かにイイねされた場合は2pとなっています。</h4>
-</ul>
-<a id="demand"></a>
-<h2><%= link_to "・気になるお店がSuitellにない時は？",:anchor => 'back' %></h2>
-<ul>
-<h4>検索した時に該当するお店がない場合、「お店をリクエストする」ボタンからそのお店を申請することが出来ます。申請ページでは、申請中のお店が下にログとして表示され、お店がSuitellに追加されると実際に検索することが可能になります。</h4>
-</ul>
-<a id="feedback"></a>
-<h2><%= link_to "・Suitellに言いたいことがある！",:anchor => 'back' %></h2>
-<ul>
-<h4>このサービスを使っている時に不便に感じたり、不具合を発見したり、はたまたこんな機能欲しい！と感じた時は、「Suitellへのご意見」ボタンから要望をお伝え下さい。このアプリはまだテスト版ですので、あなたのご意見をお待ちしております。</h4>
-</ul>
+<div class="container">
+
+  <h3>何について知りたいですか?</h3>
+  <!-- accordion -->
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <!-- panel1 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading1">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+            Suitellってどんなアプリなの？
+          </a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collpase collapse in" role="tabpanel" aria-labelledby="heading1">
+        <div class="panel-body">
+          <p>「お腹が空いた、何か食べたい、でもいざ立ち寄った飲食店が混んでいて入れなかった…」そんな経験ありますよね？Suitellはお店で待つのが嫌いなあなたの食事事情を快適にする素敵なツールです。</p>
+	  <p>Suitellでは飲食店の混雑状況をリアルタイムで提供し、あなたのお店選びのサポートをいたします。あなたはSuitellで今空いているお店を探すことで、待つことなくすぐに食事を食べることができるのです！</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel2 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading2">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            Suitellでできること！
+          </a>
+	  </h4>
+      </div>
+      <div id="collapse2" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading2">
+        <div class="panel-body">
+          
+	  <ul>
+	    <li>お店の最新の状況を把握できる</li>
+	      <p>Suitellではお店の混雑状況を混雑度アイコンによってひと目で確認することが出来ます。更に、実際にお店に立ち寄った人から投稿されたコメントを見ることもでき、より詳しい情報を得ることも可能です。</p>
+	    <li>お店の状況を伝える</li>
+	      <p>Suitellではお店の混雑状況を見るだけでなく、実際に自分が混雑状況を伝える側になることも可能です。あなたの情報はSuitell上に載り、他のユーザーにとって役立つ情報となるのです！</p>
+	    <li>ポイントを稼いでランキングに載ろう</li>
+	      <p>あなたが情報を提供したり、その情報が他のユーザーの役に立ったときにはそれがポイントという形で反映されます。高得点を稼ぐとユーザーランキングにあなたの名前が乗ることも！それは即ちあなたが多くのユーザーのお役に立ったという証明です。たくさんポイントを稼いでトップリポーターを目指しましょう。</p>
+	  </ul>
+
+        </div>
+      </div>
+    </div>
+    <!-- panel3 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading3">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+            まずはログインしよう
+          </a>
+          </h4>
+      </div>
+      <div id="collapse3" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading3">
+        <div class="panel-body">
+          <p>Suitellではログインする事で、アプリ上のすべての機能を使うことが出来ます。ログインはトップページの右上にあるログインボタンから行うことが出来ます。ログイン状態になると、あなたのアカウント名と現在のポイントが右上に表示されます。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel4 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading4">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+            お店の混雑度を知ろう
+          </a>
+          </h4>
+      </div>
+      <div id="collapse4" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading4">
+        <div class="panel-body">
+          <p>お店の混雑状況はトップページから参照することが出来ます。トップページでは今空いているお店や最近Suitellに追加されたお店をピックアップして表示しています。</p>
+	  <p>お店の状況は投稿された最新のものが表示されています。</p>
+	  <p>また、特定のお店を調べたいときは画面中央の検索バーにお店の名前を入れてください。検索結果より該当するお店の情報を確認出来ます。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel5 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading5">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+            投稿された情報をもっと見たい
+          </a>
+          </h4>
+      </div>
+      <div id="collapse5" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading5">
+        <div class="panel-body">
+          <p>コメントアイコンの隣に表示されているコメント部分をクリックすると、そのお店に対して投稿された情報の一覧が表示されたページに行くことが出来ます。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel6 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading6">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+            コメントにイイねをしよう
+          </a>
+          </h4>
+      </div>
+      <div id="collapse6" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading6">
+        <div class="panel-body">
+          <p>あなたが気になったコメントや、あなたの役に立った情報にはイイねをしましょう。コメントの下にあるイイねボタンを押すことでイイねを相手に送ることが出来ます。</p>
+	  <p>イイねは一つの情報に対して一度だけ送ることが出来ます。また、間違ってイイねをしてしまった場合やイイねを取り消したい場合は、いいねボタンをもう一度クリックすることで取り消すことが出来ます。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel7 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading7">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+            お店の状況を伝えよう
+          </a>
+          </h4>
+      </div>
+      <div id="collapse7" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading7">
+        <div class="panel-body">
+          <p>「お店の混雑度を伝える」ボタンからページへ行くことが出来ます。ここでの手順は</p>
+	  <ol>
+	    <li>お店を選択する(必須)</li>
+	    <li>お店の今の状況に近いと思われるアイコンを1つ選択(必須)</li>
+	    <li>お店の情報に関するコメントをする。(任意)</li>
+	      <p>このコメントは詳しい混雑状況から、割引してるよ！と言った情報までなんでも好きなことを書いてください</p>
+	    <li>伝えるボタンを押す</li>
+	      <p>伝えるボタンを押すとコメントログページへ移動し、あなたの投稿を確認することが出来ます。</p>
+	  </ol>
+	  <p>また、一度投稿すると3分間新たな投稿はできなくなります。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel8 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading8">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+            どうやってポイントを稼ぐの？
+          </a>
+          </h4>
+      </div>
+      <div id="collapse8" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading8">
+        <div class="panel-body">
+          <p>ポイントは「混雑状況を伝える」「誰かの情報に対してイイねを押す」この2つの行動で加算されていきます。</p>
+	  <p>加算されるポイント数は、混雑状況を伝えた場合は10p、他ユーザーに対してイイねした場合は1p、あなたの投稿が誰かにイイねされた場合は2pとなっています。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel9 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading9">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+            気になるお店がSuitellにないときは？
+          </a>
+          </h4>
+      </div>
+      <div id="collapse9" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading9">
+        <div class="panel-body">
+          <p>検索した時に該当するお店がない場合、「お店をリクエストする」ボタンからそのお店を申請することが出来ます。申請ページでは、申請中のお店が下にログとして表示され、お店がSuitellに追加されると実際に検索することが可能になります。</p>
+        </div>
+      </div>
+    </div>
+    <!-- panel10 -->
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading10">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
+            Suitellに言いたいことがある！
+          </a>
+          </h4>
+      </div>
+      <div id="collapse10" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading10">
+        <div class="panel-body">
+          <p>このサービスを使っている時に不便に感じたり、不具合を発見したり、はたまたこんな機能欲しい！と感じた時は、「Suitellへのご意見」ボタンから要望をお伝え下さい。このアプリはまだテスト版ですので、あなたのご意見をお待ちしております。</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
