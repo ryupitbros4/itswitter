@@ -1,16 +1,16 @@
 <%= render '/flash_msg2' %>
 <div class="jumbotron">
-  <center><h1><%= image_tag(current_user.image_url, :size => "60x60") %><%= current_user.nickname %>さんのページ</h1></center>
+  <center><h1><%= image_tag(@my.image_url, :size => "60x60") %><%= @my.nickname %>さんのページ</h1></center>
   <br>
   <center>
     <ul class="list-unstyled">
       <li style="font-size: 20px;">
         あなたのポイント：
-        <span class="badge" style="font-size: 20px;"><%= current_user.point %>pt</span>
+        <span class="badge" style="font-size: 20px;"><%= @my.point %>pt</span>
       </li>
       <li style="font-size: 20px;">
         あなたのランキング：
-        <span class="badge" style="font-size: 20px;"><%= current_user.rank %>位</span>
+        <span class="badge" style="font-size: 20px;"><%= @my.rank %>位</span>
       </li>
     </ul>
   </center>
@@ -64,7 +64,7 @@
               <% end %>
             </td>
             <td class="col-md-2" bgcolor="#FFFFFF">
-              <% if current_user.restaurants.include? posting.restaurant %>
+              <% if @my.restaurants.include? posting.restaurant %>
                 <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(posting.restaurant), { method: :post, remote: true }%>
               <% else %>
                 <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォローする', follow_restaurant_path(posting.restaurant), { method: :post, remote: true }  %>
