@@ -231,6 +231,16 @@
     background-size: 85px 85px;
 }
 
+/* 画面サイズによって表示変更 */
+@media screen and ( max-width:479px ){
+ #garagara + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'garagara.png' %>);
+    background-size: 80px 80px;
+ }
+}
+
 #yayakomi {
     display: none;
 }
@@ -240,6 +250,15 @@
     height: 85px;
     background: url(<%= asset_path 'yayakomi.png' %>);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #yayakomi + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'yayakomi.png' %>);
+    background-size: 80px 80px;
+ }
 }
 
 #komi {
@@ -253,6 +272,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #komi + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'komi.png' %>);
+    background-size: 80px 80px;
+ }
+}
+
 #yayamachi {
     display: none;
 }
@@ -262,6 +290,15 @@
     height: 85px;
     background: url(<%= asset_path 'yayamachi.png' %>);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #yayamachi + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'yayamachi.png' %>);
+    background-size: 80px 80px;
+ }
 }
 
 #machi {
@@ -275,6 +312,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #machi + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'machi.png' %>);
+    background-size: 80px 80px;
+ }
+}
+
 #close2 {
     display: none;
 }
@@ -286,6 +332,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #close2 + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'close2.png' %>);
+    background-size: 80px 80px;
+ }
+}
+
 #close {
     display: none;
 }
@@ -295,6 +350,15 @@
     height: 85px;
     background: url(<%= asset_path 'close.png' %>);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #close + label {
+    width: 80px;
+    height: 80px;
+    background: url(<%= asset_path 'close.png' %>);
+    background-size: 80px 80px;
+ }
 }
 
 input[type="radio"] {

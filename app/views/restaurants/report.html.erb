@@ -1,41 +1,67 @@
 <%= render '/flash_msg2' %>
 
 <div class="jumbotron" >
-<h2>飲食店の状況を伝えよう。</h2>
+  <h2>飲食店の状況を伝えよう。</h2>
 </div>
 
 
-<%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
-  1.<%= f.label "店名" %>
-  <%= f.select :id ,@restaurant_names, prompt: '選択してください'%><span class="text-danger">(必須) </span> 
-  <br>
-  2.<%= f.label "混雑度を選択しよう!" %><span class="text-danger">(必須)</span>
+<div class="container">
+  
+  <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
+  <!-- panel -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">1.伝えたい店名を選ぼう。<span class="text-danger">(必須)</span></h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+	<%= f.select :id ,@restaurant_names, {prompt: '選択してください'}, { class: 'form-control'} %>
+      </div>
+    </div>
+  </div>
 
-  <table class="table">
-    <tbody>
-      <tr>
-        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 0, {:id => 'garagara', :checked => false} %><%= label_tag nil, nil, for: 'garagara' %></td>
-        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 1, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></td>
-        <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 2, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></td>
-      </tr>
-      <tr>
-        <td class="col-md-4" align="center">席がガラガラ</td>
-        <td class="col-md-4" align="center">席が半分埋まってる</td>
-        <td class="col-md-4" align="center">席がほぼ埋まってる</td>
-      </tr>
-      <tr>
-	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 3, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %></td>
-	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 4, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %></td>
-	<td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 5, {:id => 'close2'} %><%= label_tag nil, nil, for: 'close2' %></td>
-      </tr>
-      <tr>
-	<td class="col-md-4" align="center">席に座れない人がいる</td>
-	<td class="col-md-4" align="center">席に座れない人がかなりいる</td>
-	<td class="col-md-4" align="center">飲食店が閉まっている</td>
-      </tr>
-    </tbody>
-  </table>
-  3.<%= f.label "伝えたい情報をコメントしよう!" %>
-  <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control" %>
-  <%= f.submit "伝える", {class: 'btn btn-primary' }%>
-<% end %>
+  <!-- panel -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">2.混雑度はどれくらいですか？<span class="text-danger">(必須)</span></h3>
+    </div>
+    <div class="panel-body">
+      <table class="table">
+	<tbody>
+	  <tr>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 0, {:id => 'garagara', :checked => false} %><%= label_tag nil, nil, for: 'garagara' %></td>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 1, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></td>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 2, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></td>
+	  </tr>
+	  <tr>
+            <td class="col-md-4" align="center">席がガラガラ</td>
+            <td class="col-md-4" align="center">席が半分埋まってる</td>
+            <td class="col-md-4" align="center">席がほぼ埋まってる</td>
+	  </tr>
+	  <tr>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 3, {:id => 'yayamachi'} %><%= label_tag nil, nil, for: 'yayamachi' %></td>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 4, {:id => 'machi'} %><%= label_tag nil, nil, for: 'machi' %></td>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 5, {:id => 'close2'} %><%= label_tag nil, nil, for: 'close2' %></td>
+	  </tr>
+	  <tr>
+            <td class="col-md-4" align="center">席に座れない人がいる</td>
+            <td class="col-md-4" align="center">席に座れない人がかなりいる</td>
+            <td class="col-md-4" align="center">飲食店が閉まっている</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- panel -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">3.伝えたいコメントはありますか？</h3>
+    </div>
+    <div class="panel-body">
+      <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control", placeholder: '例：５人待ちくらいです！' %>
+    </div>
+  </div>
+    <%= f.submit "伝える", {class: 'btn btn-primary btn-block' }%>
+  <% end %>
+</div>
