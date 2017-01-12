@@ -5,7 +5,8 @@ class MyController < ApplicationController
 
   def index
     set_crowded_consts
-    @my = User.find(session[:user_id])
+    @u_id = params[:u_id]
+    @my = User.find(@u_id)
     @postit = @my.comments
     @mycomments = Comment.where(user_id: @my.id)
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
