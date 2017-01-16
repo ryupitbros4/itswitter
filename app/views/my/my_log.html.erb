@@ -1,0 +1,7 @@
+<div class="contents">
+  <div class="container"><h2 style="color: black;"><%= @nickname + "さん" + @category %>コメント</h2>
+  <% if @list.present? %>
+    <%= render partial: '/comments_log_card', locals: { comments_log: @list.order("updated_at desc"), crowded_image: @crowded_image } %>
+  <% end %>
+  </div>
+</div>
