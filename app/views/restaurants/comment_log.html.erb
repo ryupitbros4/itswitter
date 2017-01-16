@@ -38,7 +38,7 @@
               <% else %>
                 <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
               <% end %>
-              報告者:<%= User.find(comment.user_id).nickname %>さん
+	      報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
             <% end %>
 
           </td>
@@ -87,7 +87,7 @@
                 <% else %>
                   <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
                 <% end %>
-                報告者:<%= User.find(comment.user_id).nickname %>さん
+		報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
               <% end %>  
 	    </td>
           </tr>
