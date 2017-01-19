@@ -48,3 +48,112 @@ table {
   white-space: nowrap;
 
 }
+
+//shop_info
+
+table.company {
+    width: 600px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    font-size: 14px;
+}
+ 
+table.company th,
+table.company td {
+    padding: 10px;
+}
+ 
+table.company th {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    width: 100px;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-weight: normal;
+    font-size: 18px;
+}
+ 
+table.company th:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: #295890;
+    border-width: 10px;
+    margin-top: -10px;
+}
+/* firefox */
+@-moz-document url-prefix() {
+    table.company th::after {
+        float: right;
+        padding: 0;
+        left: 30px;
+        top: 10px;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: relative;
+        pointer-events: none;
+        border: 10px solid transparent;
+        border-left: #295890 10px solid;
+        margin-top: -10px;
+    }
+}
+ 
+table.company td {
+    background: #f8f8f8;
+    width: 360px;
+    padding-left: 20px;
+}
+
+//スマホ
+@media only screen and (max-width:480px){
+table.company {
+    width: auto;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    font-size: 12px;
+}
+ 
+table.company th,
+table.company td {
+    display:block;
+    padding: 10px;
+}
+ 
+table.company th {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    width: 100%;
+    overflow: visible;
+//  position: relative;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+table.company th:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+//  position: absolute;
+    pointer-events: none;
+//  border-color: rgba(136, 183, 213, 0);
+//  border-left-color: #295890;
+//  border-width: 10px;
+//  margin-top: -10px;
+}
+}
