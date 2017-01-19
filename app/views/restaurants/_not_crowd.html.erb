@@ -27,13 +27,26 @@
     <table class="table table-hover table-bordered">
       <tbody>
         <tr>
-	  <td class="col-md-3 success"><%= image_tag(crowded_image[ranking.crowdedness], :size => "32x32") %>&nbsp;&nbsp;<%= link_to how_crowded[ranking.crowdedness], :controller => "restaurants", :action => "report", :resname => ranking.id %></td>
-          <td class="col-md-5 success"><%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %></td>
-          <td class="col-md-4 success"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
+          <td class="col-md-6 success">
+            <% if logged_in? %>
+              <% if current_user.restaurants.include? ranking %>
+                <%= link_to unfollow_restaurant_path(ranking), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>
+                <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
+                <% end %>
+              <% else %>
+                <%= link_to follow_restaurant_path(ranking), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>
+                <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %>
+          </td>
+	  <td class="col-md-4 success"><%= image_tag(crowded_image[ranking.crowdedness], :size => "32x32") %><br><%= link_to how_crowded[ranking.crowdedness], :controller => "restaurants", :action => "report", :resname => ranking.id %></td>
+          <td class="col-md-2 success"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
         </tr>
         <tr>
           <% if logged_in? %>
-	    <td colspan="2" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;
+	    <td colspan="3" class="col-md-12" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;
               <% if latest_comment != 'コメント無し' %>
                 <%= link_to latest_comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => ranking.id %>
               <% else %>
@@ -58,8 +71,8 @@
                   <% end %>
                 <% end %>
               <% end %>
-
 	    </td>
+<!--
             <td class="col-md-2" bgcolor="#FFFFFF">
               <% if current_user.restaurants.include? ranking %>
                 <%= link_to unfollow_restaurant_path(ranking), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>
@@ -71,8 +84,9 @@
                 <% end %>
               <% end %>
             </td>
+-->
           <% else %>
-	    <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :restaurant_id => ranking.id %>
+	    <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to latest_comment.truncate(23), :action => "comment_log", :controller => "restaurants", :restaurant_id => ranking.id %>
 
 <!--
 	    <% if (!(ranking.latest_comment.blank?) && !(session[:user_id].blank?) && (ranking.latest_comment.user_id != session[:user_id]))  %>
@@ -86,6 +100,7 @@
             <% end %>
 	    </td>
 -->
+            <br>報告者:<%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %><%= User.find(ranking.latest_comment.user_id).nickname %>さん<% end %>
             <br>いいねしたユーザ一覧
             <% if ranking.latest_comment.pressed_users.present? %>
               <% ranking.latest_comment.pressed_users.each do |pressed_user| %>

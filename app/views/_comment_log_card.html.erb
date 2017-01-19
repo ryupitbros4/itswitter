@@ -1,0 +1,46 @@
+    <% comments.each do |comment| %>
+      <% if comment.comment.blank? %>
+        <% cont = 'コメント無し' %>
+      <% else %>
+        <% cont = comment.comment %>
+      <% end %>
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td class="col-md-4 success"><%= image_tag(@crowded_image[comment.crowdedness], :size => "32x32") %><%= link_to @how_crowded[comment.crowdedness], :action => "report", :resname => comment.restaurant.id %></td>
+            <td class="col-md-8 success"><%= comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= cont %>
+              <% if logged_in? %>
+                <% if !(comment.user_id.blank?) && !(session[:user_id].blank?) %>
+                  <% if comment.user_id != session[:user_id] %>
+                    <% if PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank? %>
+                      <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <% else %>
+                    <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
+                    <% end %>
+                    報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
+                  <% else %>
+                    <br>いいねしたユーザ一覧
+                    <% if comment.pressed_users.present? %>
+                      <% comment.pressed_users.each do |pressed_user| %>
+                        <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <br>報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
+                <br>いいねしたユーザ一覧
+                <% if comment.pressed_users.present? %>
+                  <% comment.pressed_users.each do |pressed_user| %>
+                    <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>

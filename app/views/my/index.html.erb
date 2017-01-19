@@ -38,7 +38,7 @@
 -->
   <% if @postit.present? %>
     <p align="right">[<%= link_to "全てのいいねしたコメントを見る", {:action => "my_log", :category => '0', :uid => @my.id } %>]</p>
-    <%= render partial: '/comments_log_card', locals: { comments_log: @postit.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
+    <%= render partial: '/mypage_card', locals: { comments_log: @postit.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
   <% end %>
   </div>
 </div>
@@ -63,7 +63,7 @@
 -->
   <% if @mycomments.present? %>
     <p align="right">[<%= link_to "全ての投稿コメントを見る", {:action => "my_log", :category => '1', :uid => @my.id } %>]</p>
-    <%= render partial: '/comments_log_card', locals: { comments_log: @mycomments.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
+    <%= render partial: '/mypage_card', locals: { comments_log: @mycomments.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
   <% end %>
   </div>
 </div>

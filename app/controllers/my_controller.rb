@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class MyController < ApplicationController
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   def index
     set_crowded_consts

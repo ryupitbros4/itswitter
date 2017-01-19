@@ -1,0 +1,62 @@
+  <% comments_log.each do |posting| %>
+    <% comment = posting.comment %>
+    <% if comment.blank? %>
+      <% comment = 'コメント無し' %>
+    <% end %>
+    <table class="table table-hover table-bordered">
+      <tbody>
+        <tr>
+          <td class="col-md-6 success">
+            <% if logged_in? %>
+              <% if @my.restaurants.include? posting.restaurant %>
+                <%= link_to unfollow_restaurant_path(posting.restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>
+                <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= posting.restaurant.id %>"></span>
+                <% end %>
+              <% else %>
+                <%= link_to follow_restaurant_path(posting.restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>
+                <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= posting.restaurant.id %>"></span>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= link_to posting.restaurant.name, "https://www.google.co.jp/search?q=" + posting.restaurant.name %>
+          </td>
+          <td class="col-md-4 success"><%= image_tag(@crowded_image[posting.crowdedness] + ".png", :size => "32x32") %><br><%= link_to @how_crowded[posting.crowdedness], :controller => "restaurants", :action => "report", :resname => posting.restaurant_id %></td>
+          <td class="col-md-2 success"><%= sec2h((Time.zone.now - posting.updated_at).to_i) %>前</td>
+        </tr>
+        <tr>
+          <% if logged_in? %>
+            <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => posting.restaurant_id %>
+
+              <% if (!(posting.id.blank?) && !(session[:user_id].blank?)) %>
+                <% if session[:user_id] != posting.user.id %>
+                  <% if (PressedUser.find_by(comment_id: posting.id, user_id: session[:user_id]).blank?) %>
+                    <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => posting.user_id, :comment_id => posting.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                  <% else %>
+                    <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
+                  <% end %>
+                  報告者:<%= link_to mypage_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
+                <% else %>
+                  <br>いいねしたユーザ一覧
+                  <% if posting.pressed_users.present? %>
+                    <% posting.pressed_users.each do |pressed_user| %>
+                       <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          <% else %>
+            <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :action => "comment_log", :controller => "restaurants", :restaurant_id => posting.restaurant_id %>
+              <br>報告者:<%= link_to mypage_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
+              <br>いいねしたユーザ一覧
+              <% if posting.pressed_users.present? %>
+                <% posting.pressed_users.each do |pressed_user| %>
+                  <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
