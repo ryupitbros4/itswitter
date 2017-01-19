@@ -8,6 +8,10 @@ class RestaurantsController < ApplicationController
     @renewals = Renewal.order("created_at desc").limit(10)
     render :layout => false
   end
+
+  def promotion
+    render :layout => 'promotion'
+  end
   
   def index
     @restaurants = Restaurant.all
