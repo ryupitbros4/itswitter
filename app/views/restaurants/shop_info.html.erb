@@ -1,0 +1,61 @@
+<div class="jumbotron" >
+  <h2><%= @shop_name %>の基本情報</h1></h2>
+</div>
+
+<% if !@gnavi.nil? %>
+
+  <% if @gnavi[:shop_image1] != {} %>
+  <center>
+    <figure>
+      <img src=<%= @gnavi[:shop_image1] %> width="45%" height="45%" border="0" alt="提供:ぐるなび">
+      <figcaption style="font-size: 10px; ">提供:ぐるなび</figcaption>
+    </figure>
+  </center>
+  <% end %>
+
+<table class="company">
+  <tbody>
+      <tr>
+        <th class="arrow_box">店名</div></th>
+          <td>
+	    <p style="font-size: 10px;"><%= @gnavi[:name_kana] %></p>
+	    <p><%= raw @gnavi[:name] %></p>
+	  </td>
+       </tr>
+       <tr>
+         <th class="arrow_box">営業時間</th>
+         <td><%= raw @gnavi[:opentime] %></td>
+        </tr>
+        <tr>
+          <th>休業日</th>
+          <td>
+	    <%= raw @gnavi[:holiday] %>
+          </td>
+        </tr>
+        <tr>
+          <th>平均予算</th>
+          <td><%= raw @gnavi[:budget] %><%= "円" if @gnavi[:budget] != "情報なし" %></td>
+        </tr>
+        <tr>
+	  <th>電話番号</th>
+	  <td><%= raw @gnavi[:tel] %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= raw @gnavi[:address] %></td>
+        </tr>
+        <tr>
+          <th>URL<br>(ぐるなび)</th>
+          <td><%= link_to @gnavi[:name], @gnavi[:url] %></td>
+        </tr>
+    </tbody>
+</table>
+
+Powered by <a href="http://www.gnavi.co.jp/">ぐるなび</a>
+
+<% else %>
+  <h2>店舗情報がありません<h2>
+<% end %>
+
+
+

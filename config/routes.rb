@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'restaurants/user_ranking' 
   get 'restaurants/comment_log'
   post 'restaurants/comment_log', as: :comment_log
+
+  get 'restaurants/shop_info', as: :shop_info
   
   resources :restaurants do 
     collection do
