@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class InvestigatorsController < ApplicationController
 
+  before_action :basic_auth
+
   def new
     @investigator = Restaurant.new
   end
