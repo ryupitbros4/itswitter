@@ -15,7 +15,6 @@ class MyController < ApplicationController
 
   def my_log
     @my = User.find(params[:uid])
-    @nickname = @my.nickname
     if params[:category] == '0'
       @category = "がいいねした"
       @list = @my.comments

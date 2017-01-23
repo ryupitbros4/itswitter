@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
 
   get 'my/' => 'my#index', as: :mypage
-  get 'my/favorites', as: :favorite_restaurants
   get 'my/my_log' => 'my#my_log'
+
+  #resources :my do
+    #collection do
+      #get 'index', as: :mypage
+      #get 'my_log'
+    #end
+  #end
+
+  get 'my/favorites', as: :favorite_restaurants
+
   post 'restaurants/:restaurant_id/follow' => 'my#follow', as: :follow_restaurant
   post 'restaurants/:restaurant_id/unfollow' => 'my#unfollow', as: :unfollow_restaurant
 

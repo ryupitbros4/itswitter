@@ -30,13 +30,17 @@
           <td class="col-md-6 success">
             <% if logged_in? %>
               <% if current_user.restaurants.include? ranking %>
+
                 <%= link_to unfollow_restaurant_path(ranking), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>
-                <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
+                  <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
                 <% end %>
+
               <% else %>
+
                 <%= link_to follow_restaurant_path(ranking), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>
-                <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
+                  <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= ranking.id %>"></span>
                 <% end %>
+
               <% end %>
             <% end %>
             <%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %>
@@ -60,14 +64,21 @@
                   <% else %>
                     <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => ranking.latest_comment.user_id, :comment_id => ranking.latest_comment.id } %>
                   <% end %>
-                  報告者:<%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %><%= User.find(ranking.latest_comment.user_id).nickname %>さん<% end %>
+                  報告者:
+
+                  <%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %>
+                    <%= User.find(ranking.latest_comment.user_id).nickname %>さん
+                  <% end %>
+
                 <% else %>
 
                   <br>いいねしたユーザ一覧
                   <% if ranking.latest_comment.pressed_users.present? %>
+
                     <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
                       <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                     <% end %>
+
                   <% end %>
                 <% end %>
               <% end %>
@@ -100,12 +111,21 @@
             <% end %>
 	    </td>
 -->
-            <br>報告者:<%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %><%= User.find(ranking.latest_comment.user_id).nickname %>さん<% end %>
+            <br>報告者:
+
+              <%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %>
+                <%= User.find(ranking.latest_comment.user_id).nickname %>さん
+              <% end %>
+
             <br>いいねしたユーザ一覧
             <% if ranking.latest_comment.pressed_users.present? %>
+
               <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
-                <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                <%= link_to mypage_path(u_id: pressed_user.user.id) do %>
+                  <%= pressed_user.user.nickname %>さん
+                <% end %>,
               <% end %>
+
             <% end %>
           <% end %>
 	</tr>
