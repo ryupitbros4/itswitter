@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'my/' => 'my#index', as: :mypage
-  get 'my/my_log' => 'my#my_log'
-
-  #resources :my do
-    #collection do
-      #get 'index', as: :mypage
-      #get 'my_log'
-    #end
-  #end
+  resources :my, only: [:index]
+  get 'my/my_log' => 'my#my_log', as: :my_my_log
 
   get 'my/favorites', as: :favorite_restaurants
 

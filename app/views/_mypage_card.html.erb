@@ -34,12 +34,12 @@
                   <% else %>
                     <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
                   <% end %>
-                  報告者:<%= link_to mypage_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
+                  報告者:<%= link_to my_index_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
                 <% else %>
                   <br>いいねしたユーザ一覧
                   <% if posting.pressed_users.present? %>
                     <% posting.pressed_users.each do |pressed_user| %>
-                       <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                       <%= link_to my_index_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                     <% end %>
                   <% end %>
                 <% end %>
@@ -47,11 +47,11 @@
             </td>
           <% else %>
             <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :action => "comment_log", :controller => "restaurants", :restaurant_id => posting.restaurant_id %>
-              <br>報告者:<%= link_to mypage_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
+              <br>報告者:<%= link_to my_page_path(u_id: posting.user.id) do %><%= posting.user.nickname %>さん<% end %>
               <br>いいねしたユーザ一覧
               <% if posting.pressed_users.present? %>
                 <% posting.pressed_users.each do |pressed_user| %>
-                  <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                  <%= link_to my_page_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                 <% end %>
               <% end %>
             </td>

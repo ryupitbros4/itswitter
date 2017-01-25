@@ -40,22 +40,22 @@
                   <% else %>
                     <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
                   <% end %>
-	          報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
+	          報告者:<%= link_to my_index_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
                 <% else %>
                   <br>いいねしたユーザ一覧
                   <% if comment.pressed_users.present? %>
                     <% comment.pressed_users.each do |pressed_user| %>
-                      <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                      <%= link_to my_index_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                     <% end %>
                   <% end %>
                 <% end %>
               <% end %>
             <% else %>
-              <br>報告者:<%= link_to mypage_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
+              <br>報告者:<%= link_to my_index_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
               <br>いいねしたユーザ一覧
               <% if comment.pressed_users.present? %>
                 <% comment.pressed_users.each do |pressed_user| %>
-                  <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                  <%= link_to my_index_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                 <% end %>
               <% end %>
             <% end %>

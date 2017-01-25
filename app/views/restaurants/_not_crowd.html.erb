@@ -66,7 +66,7 @@
                   <% end %>
                   報告者:
 
-                  <%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %>
+                  <%= link_to my_index_path(u_id: ranking.latest_comment.user_id) do %>
                     <%= User.find(ranking.latest_comment.user_id).nickname %>さん
                   <% end %>
 
@@ -76,7 +76,7 @@
                   <% if ranking.latest_comment.pressed_users.present? %>
 
                     <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
-                      <%= link_to mypage_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
+                      <%= link_to my_index_path(u_id: pressed_user.user.id) do %><%= pressed_user.user.nickname %>さん<% end %>,
                     <% end %>
 
                   <% end %>
@@ -113,7 +113,7 @@
 -->
             <br>報告者:
 
-              <%= link_to mypage_path(u_id: ranking.latest_comment.user_id) do %>
+              <%= link_to my_index_path(u_id: ranking.latest_comment.user_id) do %>
                 <%= User.find(ranking.latest_comment.user_id).nickname %>さん
               <% end %>
 
@@ -121,7 +121,7 @@
             <% if ranking.latest_comment.pressed_users.present? %>
 
               <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
-                <%= link_to mypage_path(u_id: pressed_user.user.id) do %>
+                <%= link_to my_index_path(u_id: pressed_user.user.id) do %>
                   <%= pressed_user.user.nickname %>さん
                 <% end %>,
               <% end %>
