@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
 class AdminController < ApplicationController
+
+  before_action :basic_auth
+
   def index
     @unapproved_demands = Demand.unapproved.order(id: :desc)
     @approved_demands = Demand.approved.order(id: :desc)
@@ -29,4 +33,5 @@ class AdminController < ApplicationController
     demand.save!
     redirect_to :admin_index
   end
+
 end

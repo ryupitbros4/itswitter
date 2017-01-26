@@ -58,3 +58,13 @@ def login(h = {  })
     follow_redirect!
   end
 end
+
+#BASIC認証set
+def basic_auth_set
+  @username = ENV['BASIC_USER']
+  @password = ENV['BASIC_PASSWORD']
+  basic = ActionController::HttpAuthentication::Basic
+  @credentials = basic.encode_credentials(@username, @password)
+  #request.headers['Accept'] = 'application/json'
+  request.headers['Authorization'] = @credentials
+end
