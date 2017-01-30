@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
             end
           }
           @gnavi = { name: rest["name"], name_kana: rest["name_kana"], address: rest["address"], opentime: rest["opentime"], holiday: rest["holiday"],
-          tel: rest["tel"], budget: rest["budget"], areaname: rest["areaname"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"] }
+          tel: rest["tel"], budget: rest["budget"], areaname: rest["areaname"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"], lat: rest["latitude"], lon: rest["longitude"] }
         end
       elsif result["total_hit_count"].to_i == 1
         result["rest"].each{ |key, value|
@@ -33,7 +33,7 @@ class RestaurantsController < ApplicationController
         }
         @gnavi = { name: result["rest"]["name"], name_kana: result["rest"]["name_kana"], address: result["rest"]["address"],
         opentime: result["rest"]["opentime"], holiday: result["rest"]["holiday"], tel: result["rest"]["tel"],
-        budget: result["rest"]["budget"], areaname: result["rest"]["areaname"], shop_image1: result["rest"]["image_url"]["shop_image1"], url: result["rest"]["url"] }
+        budget: result["rest"]["budget"], areaname: result["rest"]["areaname"], shop_image1: result["rest"]["image_url"]["shop_image1"], url: result["rest"]["url"], lat: result["rest"]["latitude"], lon: result["rest"]["longitude"] }
       end
 
     else
