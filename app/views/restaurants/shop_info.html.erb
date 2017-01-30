@@ -3,12 +3,13 @@
 </div>
 
 <% if !@gnavi.nil? %>
-
+  <% addressStr = @gnavi[:address] %>
+  <% match = addressStr.match(/(\S+)\s(\S+)/) %>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0uJNHCwm0X0ulqcEd2YxL6oGb4MLC8Vg" type="text/javascript"></script>
 <script type="text/javascript">
 
   var geocoder = new google.maps.Geocoder();
-  var address = "<%= @gnavi[:address] %>";//住所
+  var address = "<%= match %>";//住所
   geocoder.geocode({'address': address,'language':'ja'},function(results, status){
   if (status == google.maps.GeocoderStatus.OK){
   var latlng=results[0].geometry.location;//緯度と経度を取得
