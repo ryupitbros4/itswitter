@@ -2,12 +2,12 @@
 require "test_helper"
 
 feature "VisitAllPage" do
-=begin
+
   scenario "ログインしていない状態でトップからリンクを辿ってエラーが起きないことを確認する" do
     visit root_path
     visit_all_links([])
   end
-=end
+
   scenario "ログインした状態でトップからリンクを辿ってエラーが起きないことを確認する" do
     login(cap: true)
     visit root_path

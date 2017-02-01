@@ -1,8 +1,12 @@
 <div class="jumbotron" >
   <h3><%= @shop_name %></h3>
-  <div align="right">
-    <span class="area_field">エリア：<%= @gnavi[:areaname] %></span>
-  </div>
+
+  <% if !@gnavi.nil? %>
+    <div align="right">
+      <span class="area_field">エリア：<%= @gnavi[:areaname] %></span>
+    </div>
+  <% end %>
+
 </div>
 
 <% if !@gnavi.nil? %>
