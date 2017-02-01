@@ -6,13 +6,15 @@
     background-size: cover;
     display: table;
 }
+
 .layer_filter {
     background-color: rgba(0,0,0,0.3);
     height: 800px;
 }
 
-p {
+a {
     &.reffer{
+      display: block;
       padding: 30px;
       text-align: right;
       color: #FFFFFF;
@@ -25,6 +27,9 @@ h2 {
        color: #FFFFFF;
        text-align: center;
        font-size: calc(500% + 0.25vw);
+     }
+     &.top-caption{
+       font-size: calc(150% + 0.25vw);
      }
 }
 
@@ -47,8 +52,8 @@ section {
     padding-bottom: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
-    @media screen and ( max-width:970px ){
+    text-align: center;
+    @media screen and ( max-width:991px ){
         display:none;
     }
 }
@@ -58,8 +63,8 @@ section {
     padding-bottom: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
-    @media screen and ( min-width:970px ){
+    text-align: center;
+    @media screen and ( min-width:992px ){
         display:none;
     }
 }
@@ -69,7 +74,7 @@ section {
     padding-bottom: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
+    text-align: center;
 }
 
 #top-text-down-large{
@@ -77,8 +82,8 @@ section {
     padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
-    @media screen and ( max-width:970px ){
+    text-align: center;
+    @media screen and ( max-width:991px ){
         display:none;
     }
 }
@@ -88,8 +93,8 @@ section {
     padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
-    @media screen and ( min-width:970px ){
+    text-align: center;
+    @media screen and ( min-width:992px ){
         display:none;
     }
 }
@@ -99,13 +104,23 @@ section {
     padding-bottom: 50px;
     padding-left: 50px;
     padding-right: 50px;
-    align-content: center;
+    text-align: center;
 }
 
 #top-img{
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    align-content: center;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (max-width:710px){
+        height: 200px;
+	width: 200px;
+    }
 }
