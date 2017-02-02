@@ -64,10 +64,12 @@
                   <% else %>
                     <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => ranking.latest_comment.user_id, :comment_id => ranking.latest_comment.id } %>
                   <% end %>
-                  報告者:
 
-                  <%= link_to my_index_path(u_id: ranking.latest_comment.user_id) do %>
-                    <%= User.find(ranking.latest_comment.user_id).nickname %>さん
+                  <% if last_comment != 'コメント無し' %>
+                    報告者:
+                    <%= link_to my_index_path(u_id: ranking.latest_comment.user_id) do %>
+                      <%= User.find(ranking.latest_comment.user_id).nickname %>さん
+                    <% end %>
                   <% end %>
 
                 <% else %>
@@ -111,21 +113,21 @@
             <% end %>
 	    </td>
 -->
-            <br>報告者:
-
+            <% if last_comment != 'コメント無し' %>
+              <br>報告者:
               <%= link_to my_index_path(u_id: ranking.latest_comment.user_id) do %>
                 <%= User.find(ranking.latest_comment.user_id).nickname %>さん
               <% end %>
 
-            <br>いいねしたユーザ一覧
-            <% if ranking.latest_comment.pressed_users.present? %>
+              <br>いいねしたユーザ一覧
+              <% if ranking.latest_comment.pressed_users.present? %>
 
-              <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
-                <%= link_to my_index_path(u_id: pressed_user.user.id) do %>
-                  <%= pressed_user.user.nickname %>さん
-                <% end %>,
+                <% ranking.latest_comment.pressed_users.each do |pressed_user| %>
+                  <%= link_to my_index_path(u_id: pressed_user.user.id) do %>
+                    <%= pressed_user.user.nickname %>さん
+                  <% end %>,
+                <% end %>
               <% end %>
-
             <% end %>
           <% end %>
 	</tr>
