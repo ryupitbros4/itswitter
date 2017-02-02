@@ -82,6 +82,10 @@
 	  </td>
         </tr>
         <tr>
+          <th>経路案内</th>
+	  <td><%= link_to @gnavi[:name]+"への道のり", "http://maps.google.com/maps?saddr=現在地&daddr=沖縄県 " + @gnavi[:name] %></td>
+        </tr>
+        <tr>
           <th>URL<br>(ぐるなび)</th>
           <td><%= link_to @gnavi[:name], @gnavi[:url] %></td>
         </tr>
