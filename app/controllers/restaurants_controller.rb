@@ -13,6 +13,11 @@ class RestaurantsController < ApplicationController
     render :layout => 'promotion'
   end
   
+  #promotionからの説明ページ
+  def slide_explain
+    render :layout => 'promotion'
+  end
+  
   def index
     @restaurants = Restaurant.all
     #@comments = Comments.all

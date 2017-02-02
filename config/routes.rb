@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       post 'cancel_like'
       get 'all_rest'
       get 'promotion'
+      get 'slide_explain'
     end
   end 
   root 'restaurants#index'
