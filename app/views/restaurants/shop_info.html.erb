@@ -101,7 +101,7 @@
   <% count = 0 %>
 
   <% @fav_users.each do |user| %>
-   <%= link_to mypage_path(u_id: user.id) do %><%= image_tag(User.find(user.id).image_url, :size => "32x32") %><% end %>
+   <%= link_to my_index_path(u_id: user.id) do %><%= image_tag(User.find(user.id).image_url, :size => "32x32") %><% end %>
     <% if count == 8 %>
       <span style="color: #444444;">...</span>
       <% break %>

@@ -18,7 +18,8 @@
                 <% end %>
               <% end %>
             <% end %>
-            <%= link_to posting.restaurant.name, "https://www.google.co.jp/search?q=" + posting.restaurant.name %>
+            <!-- <%= link_to posting.restaurant.name, "https://www.google.co.jp/search?q=" + posting.restaurant.name %> -->
+            <span style="word-wrap:break-word;"><%= link_to posting.restaurant.name, shop_info_path(:shop_name => posting.restaurant.name, :shop_id => posting.restaurant.id) %></span>
           </td>
           <td class="col-md-4 success"><%= image_tag(@crowded_image[posting.crowdedness] + ".png", :size => "32x32") %><br><%= link_to @how_crowded[posting.crowdedness], :controller => "restaurants", :action => "report", :resname => posting.restaurant_id %></td>
           <td class="col-md-2 success"><%= sec2h((Time.zone.now - posting.updated_at).to_i) %>前</td>

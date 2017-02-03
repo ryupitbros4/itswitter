@@ -132,6 +132,13 @@ width: 600px;
     border: 1px solid rgba(0, 0, 0, 0.2);    
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
+//アイコンの角に丸み
+.icon_round img {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
 
 //output area part
 .area_field {
