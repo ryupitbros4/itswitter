@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 require 'test_helper'
 
 class InvestigatorsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  #BASIC認証set
+  setup :basic_auth_set
 
   test "お店を登録すると、更新情報も登録される" do
     assert_difference "Renewal.count" do
@@ -16,4 +17,5 @@ class InvestigatorsControllerTest < ActionController::TestCase
     latest_restaurant = Restaurant.order(id: :desc).limit(1).first
     assert_not Renewal.where(restaurant_id: latest_restaurant.id).empty?
   end
+
 end

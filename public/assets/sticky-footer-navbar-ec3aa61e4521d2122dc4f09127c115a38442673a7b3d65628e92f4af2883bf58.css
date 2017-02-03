@@ -48,12 +48,6 @@ body{
   flex-wrap: wrap;
 }
 
-img#explain {
-  width: 80%;
-  height: auto;
-  max-width: 500px;
-  max-height: 400px;
-}
 /* card */
 .card {
   width: 100%;

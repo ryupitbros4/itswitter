@@ -1,6 +1,22 @@
+# -*- coding: utf-8 -*-
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
+
+  #BASIC認証set
+  setup :basic_auth_set
+
+  test 'vilid credentials レスポンスOKか' do
+    get :index
+    assert_equal 200, response.status
+  end
+
+  test 'レスポンスNGか' do
+    request.headers['Authorization'] = ''
+    get :index
+    assert_equal 401, response.status
+  end
+
   test "未承認の申請一覧が取得できている" do
     get :index
     assert_response :success
@@ -53,4 +69,5 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_equal before, Demand.all.order(:id).map(&:updated_at)
   end
+
 end

@@ -3,7 +3,7 @@
   <head>
     <%= render 'application/favicon' %>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- for port view -->
     <meta http-equiv="refresh" content="180">
     <title>Suitell</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -36,7 +36,9 @@
 	    <div class="navbar-left">
 	      <ul class="nav navbar-nav">
 		<% if logged_in? and User.where(:id => session[:user_id]).present? %>
-		<li style="display: inline-block; _display: inline;"><%= link_to favorite_restaurants_path do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
+		
+		<li style="display: inline-block; _display: inline;"><%= link_to mypage_path(u_id: session[:user_id]) do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
+		
 		<li style="display: inline-block; _display: inline;"><%= link_to User.find(session[:user_id]).point.to_s + "pt", restaurants_user_ranking_path %></li>
 		<% else %>
 		<li style="display: inline-block; _display: inline;"><%= link_to "ログイン", "/auth/twitter" %></li>
@@ -69,40 +71,46 @@
     </footer>
     -->
     
-<!-- floatingmenu部分-->
-<div id="footerFloatingMenu">
-  <div>
-<!-- 
-    <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
--->
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
-    <span class="col-xs-3" id="pageTop" style="color: white">^</span>
-  </div>
-</div>
+    <!-- floatingmenu部分-->
+    <div id="footerFloatingMenu">
+      <div>
+    <!-- 
+      <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
+    -->
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
+        <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
+        <span class="col-xs-3" id="pageTop" style="color: white">^</span>
+      </div>
+    </div>
 
-<!-- ページトップに戻るJS-->
-<script>
-$(function(){
-  var topBtn=$('#pageTop');
-  topBtn.hide();
+    <!-- ページトップに戻るJS-->
+    <script>
+      $(function(){
+        var topBtn=$('#pageTop');
+        topBtn.hide();
 
-  $(window).scroll(function(){
-    if($(this).scrollTop()>60) {
-      topBtn.fadeIn();
-    } else {
-      topBtn.fadeOut();
-    }
-  });
+      $(window).scroll(function(){
+        if($(this).scrollTop()>60) {
+          topBtn.fadeIn();
+        } else {
+          topBtn.fadeOut();
+        }
+      });
 
-  topBtn.click(function(){
-    $('body,html').animate({
-      scrollTop: 0},500);
-      return false;
-  });
+      topBtn.click(function(){
+        $('body,html').animate({
+          scrollTop: 0},500);
+          return false;
+        });
+      });
+    </script>
+    <!-- tooltip -->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
 
-});
-</script>
   </body>
 </html>

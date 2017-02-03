@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  #ベーシック認証
+  def basic_auth
+    authenticate_or_request_with_http_basic do |user, pass|
+      user == ENV['BASIC_USER'] && pass == ENV['BASIC_PASSWORD']
+    end
+  end
+
   def set_crowded_consts
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class RenewalsController < ApplicationController
 
+  before_action :basic_auth, only: [:new]
+
   def index
     @renewals = Renewal.all.order(created_at: :desc)
   end
