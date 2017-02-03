@@ -43,7 +43,8 @@
 
               <% end %>
             <% end %>
-            <%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %>
+            <!-- <%= link_to ranking.name, "https://www.google.co.jp/search?q=" + ranking.name %> -->
+            <span style="word-wrap:break-word;"><%= link_to ranking.name, shop_info_path(:shop_name => ranking.name, :shop_id => ranking.id) %></span>
           </td>
 	  <td class="col-md-4 success"><%= image_tag(crowded_image[ranking.crowdedness], :size => "32x32") %><br><%= link_to how_crowded[ranking.crowdedness], :controller => "restaurants", :action => "report", :resname => ranking.id %></td>
           <td class="col-md-2 success"><%= sec2h((Time.zone.now - ranking.updated_at).to_i) %>前</td>
