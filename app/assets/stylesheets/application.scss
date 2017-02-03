@@ -114,6 +114,42 @@ table.company td {
     padding-left: 20px;
 }
 
+
+//ファボユーザー表示部分
+.fav_user {
+width: 600px;
+    background-color: #F4A460;
+    border: 2px solid #F4A460;
+    box-shadow: 0 0 0 2px #F4A460;
+    color: #0a8915;
+    margin: 0 auto;
+    padding: 0em;
+}
+.fav_user img {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);    
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+//output area part
+.area_field {
+position: relative;
+padding: .25em 0 .5em .75em;
+border-left: 6px solid #3498db;
+font-size: 12px;
+}
+.area_field::after {
+position: absolute;
+left: 0;
+bottom: 0;
+content: '';
+width: 100%;
+height: 0;
+border-bottom: 1px solid #ccc;
+}
+
 //スマホ
 @media only screen and (max-width:480px){
 table.company {
@@ -156,23 +192,17 @@ table.company th:after {
 //  border-width: 10px;
 //  margin-top: -10px;
 }
+
+//スマホ用ファボユーザー表示部分
+.fav_user {
+    width: auto;
+    background-color: #F4A460;
+    border: 2px solid #F4A460;
+    box-shadow: 0 0 0 2px #F4A460;
+    color: #0a8915;
+    margin: 0 5px;
+    padding: 0em;
+//    padding: 1em;
+
 }
-
-
-//output area part
-
-.area_field {
-position: relative;
-padding: .25em 0 .5em .75em;
-border-left: 6px solid #3498db;
-font-size: 12px;
-}
-.area_field::after {
-position: absolute;
-left: 0;
-bottom: 0;
-content: '';
-width: 100%;
-height: 0;
-border-bottom: 1px solid #ccc;
 }

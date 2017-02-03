@@ -46,6 +46,11 @@ class RestaurantsController < ApplicationController
       @gnavi = nil
     end
 
+
+    #フォローユーザー表示部分
+    shop_id = params[:shop_id]
+    restaurant_column = Restaurant.find(shop_id)
+    @fav_users = restaurant_column.users
   end
 
 

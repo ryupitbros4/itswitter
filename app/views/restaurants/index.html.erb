@@ -62,7 +62,7 @@
 		 <% end %>
 
                  <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-		 <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name) %></span>
+		 <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>
 	       </h1>
 	     </div>
 
