@@ -1,5 +1,11 @@
 <div class="jumbotron" >
-  <h2><%= @shop_name %>の基本情報</h1></h2>
+  <h3><%= @shop_name %></h3>
+
+  <% if !@gnavi.nil? %>
+    <div align="right">
+      <span class="area_field">エリア：<%= @gnavi[:areaname] %></span>
+    </div>
+  <% end %>
 </div>
 
 <% if !@gnavi.nil? %>
@@ -75,14 +81,35 @@
 	  </td>
         </tr>
         <tr>
+          <th>経路案内</th>
+	  <td><%= link_to @gnavi[:name]+"への道のり", "http://maps.google.com/maps?saddr=現在地&daddr=沖縄県 " + @gnavi[:name] %></td>
+        </tr>
+        <tr>
           <th>URL<br>(ぐるなび)</th>
           <td><%= link_to @gnavi[:name], @gnavi[:url] %></td>
         </tr>
     </tbody>
 </table>
 
-Powered by <a href="http://www.gnavi.co.jp/">ぐるなび</a>
+
 
 <% else %>
-  <h2>店舗情報がありません<h2>
+  <h2>店舗情報がありません</h2>
 <% end %>
+
+<div class="fav_user">
+  <% count = 0 %>
+
+  <% @fav_users.each do |user| %>
+   <%= link_to my_index_path(u_id: user.id) do %><%= image_tag(User.find(user.id).image_url, :size => "32x32") %><% end %>
+    <% if count == 8 %>
+      <span style="color: #444444;">...</span>
+      <% break %>
+    <% else %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+Powered by <a href="http://www.gnavi.co.jp/">ぐるなび</a>

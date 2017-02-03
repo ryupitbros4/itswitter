@@ -1,0 +1,42 @@
+/* line 1, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+.head_img {
+  min-width: 320px;
+  height: 800px;
+  width: 100%;
+  background: url("head.png") no-repeat center top/cover padding-box border-box;
+  background-size: cover;
+  display: table;
+}
+
+/* line 9, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+.layer_filter {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 800px;
+}
+
+/* line 15, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+p.reffer {
+  padding: 30px;
+  text-align: right;
+  color: #FFFFFF;
+  font-size: calc(112.5% + 0.25vw);
+}
+
+/* line 24, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+h2.title {
+  color: #FFFFFF;
+  text-align: center;
+  font-size: calc(500% + 0.25vw);
+}
+
+/* line 32, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+h4.subtitle {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* line 39, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+section.cell {
+  padding-top: 50px;
+  padding-bottom: 150px;
+}

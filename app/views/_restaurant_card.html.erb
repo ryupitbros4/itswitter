@@ -22,19 +22,28 @@
 	  <!-- end of follow system -->
 	  
 <!--	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name) %></span>	  
+	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
 	  </h1>	
         </div>
         <div class="card-comment tenn">
 	  <span>
 	    <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
 	  </span>
-	  <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
-	    <span class="relative">
-	    <% if comment == "コメント無し" %>
-	      <%= comment %>
+
+          <% last_comment = 'コメント無し' %>
+          <% if restaurant.latest_comment.present? %>
+            <% if restaurant.latest_comment.comment.present? %>
+              <% last_comment = restaurant.latest_comment.comment %>
+            <% else %>
+              <% last_comment = '最新コメント無し' %>
+            <% end %>
+          <% end %>
+	    <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
+	  <span class="relative">
+	    <% if last_comment != 'コメント無し' %>
+	      <%= link_to last_comment.truncate(23), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	    <% else %>
-	      <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+	      <%= last_comment %>
 	    <% end %>
 	  </span>
         </div>
