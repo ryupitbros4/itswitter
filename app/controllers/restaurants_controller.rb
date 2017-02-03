@@ -76,8 +76,8 @@ class RestaurantsController < ApplicationController
   end
   
   def search
-    escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')    
-    
+    escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
+
     if escaped.blank?
       #flash[:warning] = '店名を入力してください'
       redirect_to :root, :alert => '店名を入力して下さい'
@@ -184,6 +184,7 @@ class RestaurantsController < ApplicationController
   end
 
   def comment_log
+    @my = User.find(session[:user_id]) if session[:user_id]
     if params[:restaurant_id].present?
       restaurant = Restaurant.find(params[:restaurant_id])
       @restaurant_name = restaurant.name

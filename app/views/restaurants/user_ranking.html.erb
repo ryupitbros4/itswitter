@@ -18,13 +18,13 @@
     <% if (session[:user_id] == urank.id) %>
     <tr>
       <th scope="row" class="col-md-1"><h4><font color="#ff0000"><%= urank.rank %>位</font></h4></th>
-      <td class="col-md-5"><%= link_to mypage_path(u_id: urank.id) do %><%= image_tag(User.find(urank.id).image_url, :size => "32x32") %><font color="#ff0000"><%= urank.nickname %><% end %></font></td>
+      <td class="col-md-5"><%= link_to my_index_path(u_id: urank.id) do %><%= image_tag(User.find(urank.id).image_url, :size => "32x32") %><font color="#ff0000"><%= urank.nickname %><% end %></font></td>
       <td class="col-md-6"><h5><font color="#ff0000"><%= urank.point %>pt</font></h5></td>
     </tr>
     <% else %>
     <tr>
       <th scope="row" class="col-md-1"><h4><%= urank.rank %>位</h4></th>
-      <td class="col-md-5"><%= link_to mypage_path(u_id: urank.id) do %><%= image_tag(User.find(urank.id).image_url, :size => "32x32") %><%= urank.nickname %><% end %></td>
+      <td class="col-md-5"><%= link_to my_index_path(u_id: urank.id) do %><%= image_tag(User.find(urank.id).image_url, :size => "32x32") %><%= urank.nickname %><% end %></td>
       <td class="col-md-6"><h5><%= urank.point %>pt</h5></td>
     </tr>
     <% end %>
@@ -48,13 +48,13 @@
     <% if (session[:user_id] == yrank.id) %>
     <tr>
       <th scope="row" class="col-md-1"><h4><font color="#ff0000"><%= yrank.rank %>位</font></h4></th>
-      <td class="col-md-5"><%= link_to mypage_path(u_id: yrank.id) do %><%= image_tag(User.find(yrank.id).image_url, :size => "32x32") %><font color="#ff0000"><%= yrank.nickname %><% end %></font></td>	
+      <td class="col-md-5"><%= link_to my_index_path(u_id: yrank.id) do %><%= image_tag(User.find(yrank.id).image_url, :size => "32x32") %><font color="#ff0000"><%= yrank.nickname %><% end %></font></td>	
       <td class="col-md-6"><h5><font color="#ff0000"><%= yrank.point %>pt</font></h5></td>
     </tr>
     <% else %>
     <tr>
       <th scope="row" class="col-md-1"><h4><%= yrank.rank %>位</h4></th>
-      <td class="col-md-5"><%= link_to mypage_path(u_id: yrank.id) do %><%= image_tag(User.find(yrank.id).image_url, :size => "32x32") %><%= yrank.nickname %><% end %></td>
+      <td class="col-md-5"><%= link_to my_index_path(u_id: yrank.id) do %><%= image_tag(User.find(yrank.id).image_url, :size => "32x32") %><%= yrank.nickname %><% end %></td>
       <td class="col-md-6"><h5><%= yrank.point %>pt</h5></td>
     </tr>
     <% end %>

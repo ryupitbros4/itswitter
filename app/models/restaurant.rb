@@ -75,18 +75,20 @@ class Restaurant < ActiveRecord::Base
   
   def latest_comment
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
-    return c.comment if c
+    return c if c
   end
-  
+
+""" 
   def latest_comment_id
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
     return c.id if c
   end
-  
+
   #最新コメントのユーザーidを取得
   def comment_user_id
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
     return c.user_id if c
   end
+"""
   
 end

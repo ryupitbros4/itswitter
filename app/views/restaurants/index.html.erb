@@ -70,12 +70,20 @@
 	       <span>
 		 <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
                </span>
-               <% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>
+               <% latest_comment = 'コメント無し' %>
+               <% if restaurant.latest_comment.present? %>
+                 <% if restaurant.latest_comment.comment.present? %>
+                   <% latest_comment = restaurant.latest_comment.comment %>
+                 <% else %>
+                   <% latest_comment = '最新コメント無し' %>
+                 <% end %>
+               <% end %>
+               <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
                <span class="relative">
-		 <% if comment == "コメント無し" %>
-	         <%= comment %>
+	         <% if latest_comment == "コメント無し" %>
+	           <%= latest_comment %>
 		 <% else %>
-		 <%= link_to comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+		   <%= link_to latest_comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 		 <% end %>
 	       </span>
 	     </div>
