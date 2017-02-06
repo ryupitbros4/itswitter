@@ -10,25 +10,23 @@
   <div class="tab-content">
     <% @gozyuuonn.each_with_index do |aiu,index| %>
     <% if index == 0 %> <div class="tab-pane active" id="tab_<%= aiu %>" role="tabpanel"> <% else %> <div class="tab-pane" id="tab_<%= aiu %>" role="tabpanel"> <% end %>
-
+	
         <ul class="nav nav-tabs" role="tablist">
           <% @gozyuuonn2[index][0..-1].each_with_index do |aiu2,index2| %>
           <% if index2 == 0 %> <li class="active" role="presentation"> <% else %> <li role="presentation"> <% end %>
-                <a aria-controls="tab_<%= aiu2 %>"  data-toggle="tab" href="#tab_<%= aiu2 %>" role="tab"><%= aiu2 %></a>
-                </li>
+            <a aria-controls="tab_<%= aiu2 %>"  data-toggle="tab" href="#tab_<%= aiu2 %>" role="tab"><%= aiu2 %></a>
+          </li>
           <% end %>
-          </ul>
-
+        </ul>
+	
         <div class="tab-content">
-            <% @gozyuuonn2[index][0..-1].each_with_index do |aiu2,index2| %>
-              <% if index2 == 0 %> <div class="tab-pane active" id="tab_<%= aiu2 %>" role="tabpanel"> <% else %> <div class="tab-pane" id="tab_<%= aiu2 %>" role="tabpanel"> <% end %>
-                        <%= render partial: '/restaurant_card', locals: { restaurants: @restaurants.where("hurigana like ?","%#{aiu2}%"), crowded_image: @crowded_image } %>
-                              </div>
-                  <% end %>
-                    </div>
-
-     </div>
-    <% end %>
-  </div>
-</div>
-
+          <% @gozyuuonn2[index][0..-1].each_with_index do |aiu2,index2| %>
+          <% if index2 == 0 %> <div class="tab-pane active" id="tab_<%= aiu2 %>" role="tabpanel"> <% else %> <div class="tab-pane" id="tab_<%= aiu2 %>" role="tabpanel"> <% end %>
+	      <%= render partial: '/restaurant_card', locals: { restaurants: @restaurants.initial_search(aiu2), crowded_image: @crowded_image } %>
+            </div>
+            <% end %>
+	  </div>
+        </div>
+      <% end %>
+      </div>
+    </div>

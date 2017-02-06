@@ -73,6 +73,18 @@ class Restaurant < ActiveRecord::Base
     Restaurant.order(updated_at: :desc).sort_by(&:crowdedness)
   end
   
+  def self.initial_search(initial_word)
+    r = Restaurant.where('hurigana LIKE ?', "%#{initial_word}%").order(:hurigana)
+    id = []
+    r.each do |restaurant|
+      if restaurant.hurigana.start_with?(initial_word)
+        id.push(restaurant.id)
+      end
+    end
+    r = Restaurant.find(id)
+    return r
+  end
+  
   def latest_comment
     c = Comment.where(restaurant_id: self.id).order(updated_at: :desc).limit(1).first
     return c if c

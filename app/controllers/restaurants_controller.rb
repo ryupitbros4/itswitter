@@ -248,6 +248,13 @@ class RestaurantsController < ApplicationController
 
   def all_rest
     @restaurants = Restaurant.all.restaurant_order_hurigana
+    #wor = "あ"
+    wor2 = "ま"
+    #@test = Restaurant.where('hurigana LIKE ?', "%#{wor}%").order(:hurigana)
+    #@test2 = Restaurant.where('hurigana LIKE ?', "%#{wor2}%").order(:hurigana)
+    
+    @test3 = Restaurant.initial_search(wor2)
+    
     @per_array = Array.new
     
     @gozyuuonn = ["あ","か","さ","た","な","は","ま","や","ら","わ"]
