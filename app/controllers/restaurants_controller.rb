@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
             end
           }
           if (rest["code"]["areaname_s"] == {}) || (rest["code"]["areaname_s"] == nil)
-            rest["code"]["areaname_s"] == "情報なし"
+            rest["code"]["areaname_s"] = "情報なし"
           end
           @gnavi = { name: rest["name"], name_kana: rest["name_kana"], address: rest["address"], opentime: rest["opentime"], holiday: rest["holiday"],
           tel: rest["tel"], budget: rest["budget"], areaname: rest["code"]["areaname_s"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"], lat: rest["latitude"], lon: rest["longitude"] }
@@ -34,8 +34,8 @@ class RestaurantsController < ApplicationController
             result["rest"][key] = "情報なし"
           end
         }
-        if (result["rest"]["code"]["areaname_s"]== {}) || (result["rest"]["code"]["areaname_s"] == nil)
-          result["rest"]["code"]["areaname_s"] == "情報なし"
+        if (result["rest"]["code"]["areaname_s"] == {}) || (result["rest"]["code"]["areaname_s"] == nil)
+          result["rest"]["code"]["areaname_s"] = "情報なし"
         end
         @gnavi = { name: result["rest"]["name"], name_kana: result["rest"]["name_kana"], address: result["rest"]["address"],
         opentime: result["rest"]["opentime"], holiday: result["rest"]["holiday"], tel: result["rest"]["tel"],
