@@ -23,6 +23,14 @@
           <% @gozyuuonn2[index][0..-1].each_with_index do |aiu2,index2| %>
           <% if index2 == 0 %> <div class="tab-pane active" id="tab_<%= aiu2 %>" role="tabpanel"> <% else %> <div class="tab-pane" id="tab_<%= aiu2 %>" role="tabpanel"> <% end %>
 	      <%= render partial: '/restaurant_card', locals: { restaurants: @restaurants.initial_search(aiu2), crowded_image: @crowded_image } %>
+	      
+	      <% if (index == 1 or index == 2 or index == 3 or index == 5) %>
+	      <%= render partial: '/restaurant_card', locals: { restaurants: @restaurants.initial_search(@gozyuuonnd[index - 1][index2]), crowded_image: @crowded_image } %>
+	      <% if (index == 5) %>
+	      <%= render partial: '/restaurant_card', locals: { restaurants: @restaurants.initial_search(@gozyuuonnd[3][index2]), crowded_image: @crowded_image } %>
+	      <% end %>
+	      <% end %>
+	      
             </div>
             <% end %>
 	  </div>

@@ -17,3 +17,34 @@ store = Restaurant.new({name: '鳥玉', hurigana: 'とりたま'})
 store.save
 store = Restaurant.new({name: '三竹寿', hurigana: 'さんちくじゅ'})
 store.save
+
+store = Restaurant.new({name: 'がががが', hurigana: 'がががが'})
+store.save
+store = Restaurant.new({name: 'ぎぎぎぎ', hurigana: 'ぎぎぎぎ'})
+store.save
+store = Restaurant.new({name: 'ぐぐぐぐ', hurigana: 'ぐぐぐぐ'})
+store.save
+store = Restaurant.new({name: 'げげげげ', hurigana: 'げげげげ'})
+store.save
+store = Restaurant.new({name: 'ごごごご', hurigana: 'ごごごご'})
+store.save
+
+store = Restaurant.new({name: 'ざざざざ', hurigana: 'ざざざざ'})
+store.save
+
+store = Restaurant.new({name: 'だだだだ', hurigana: 'だだだだ'})
+store.save
+
+store = Restaurant.new({name: 'ばばばば', hurigana: 'ばばばば'})
+store.save
+
+store = Restaurant.new({name: 'ぱぱぱぱ', hurigana: 'ぱぱぱぱ'})
+store.save
+store = Restaurant.new({name: 'ぴぴぴぴ', hurigana: 'ぴぴぴぴ'})
+store.save
+store = Restaurant.new({name: 'ぷぷぷぷ', hurigana: 'ぷぷぷぷ'})
+store.save
+store = Restaurant.new({name: 'ぺぺぺぺ', hurigana: 'ぺぺぺぺ'})
+store.save
+store = Restaurant.new({name: 'ぽぽぽぽ', hurigana: 'ぽぽぽぽ'})
+store.save
