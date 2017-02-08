@@ -8,7 +8,6 @@
       <li data-target="#carousel-example-generic" data-slide-to="2"></li>
       <li data-target="#carousel-example-generic" data-slide-to="3"></li>
       <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="5"></li>
     </ol>
 
     <!-- Wrapper fo slides -->
@@ -27,7 +26,7 @@
 	<%= image_tag('explain/congestion-lavel-explain.png', {:class => "explain-img"}) %>
 	<div class="carousel-caption">
 	  <!-- insert caption -->
-	  <h3>お店の混雑度を教える</h3>
+	  <h3>お店の混雑を教える</h3>
 	  <p>混雑度は全部で６つ！</p>
 	</div>
       </div>
@@ -55,6 +54,8 @@
         <div class="carousel-caption">
           <!-- insert caption -->
 	  <h3>さぁ、はじめよう！</h3>
+	  <p><button type="button" class="btn btn-primary btn-lg"><%= link_to "ログインして始める", "/auth/twitter", { :style => "color:#FFFFFF;"} %></button></p>
+	  <p><button type="button" class="btn btn-default btn-lg"><%= link_to "とりあえず見てみる", "/restaurants" %></button></p>
         </div>
       </div>
     </div>
