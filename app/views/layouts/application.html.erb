@@ -51,7 +51,6 @@
 	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
 	      <li style="display: inline-block; _display: inline;"><%= link_to "ログアウト", logout_path %></li>
 	      <% end %>
-	      <li><%= link_to "Suitellの使い方", treatment_restaurants_path %></li>
 	      <li><%= link_to "お店をリクエスト", demands_index_path %></li>
 	      <li><%= link_to "ご意見", new_feedback_path %></li>		
 	    </ul>
@@ -77,7 +76,8 @@
     <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
     <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), report_restaurants_path %></span>
     <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
-    <span class="col-xs-3" id="pageTop" style="color: white">^</span>
+    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/help_icon.png', {:border => '0', :size => '36x36', :alt => 'help'}), treatment_restaurants_path %>
+    <!-- <span class="col-xs-3" id="pageTop" style="color: white">^</span> -->
   </div>
 </div>
 
