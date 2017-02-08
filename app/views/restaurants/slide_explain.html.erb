@@ -6,21 +6,56 @@
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-example-generic" data-slide-to="1"></li>
       <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="5"></li>
     </ol>
 
     <!-- Wrapper fo slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
 	<!-- img -->
+	<%= image_tag('explain/search-explain.png', {:class => "explain-img"}) %>
 	<div class="carousel-caption">
 	  <!-- insert caption -->
+	  <h3>お店の混雑度を知る</h3>
+	  <p>キーワードで検索しよう！</p>
 	</div>
       </div>
       <div class="item">
 	<!-- img -->
+	<%= image_tag('explain/congestion-lavel-explain.png', {:class => "explain-img"}) %>
 	<div class="carousel-caption">
 	  <!-- insert caption -->
+	  <h3>お店の混雑度を教える</h3>
+	  <p>混雑度は全部で６つ！</p>
 	</div>
+      </div>
+      <div class="item">
+        <!-- img -->
+	<%= image_tag('explain/ranking-explain.png', {:class => "explain-img"}) %>
+        <div class="carousel-caption">
+          <!-- insert caption -->
+	  <h3>行動はポイントに</h3>
+	  <p>ベストレポーターになろう！</p>
+        </div>
+      </div>
+      <div class="item">
+        <!-- img -->
+	<%= image_tag('explain/help-explain.png', {:class => "explain-img"}) %>
+        <div class="carousel-caption">
+          <!-- insert caption -->
+	  <h3>詳しくはヘルプに</h3>
+	  <p>スマホから簡単にアクセスする方法など！</p>
+        </div>
+      </div>
+      <div class="item">
+        <!-- img -->
+	<%= image_tag('explain/plain.png', {:class => "explain-img"}) %>
+        <div class="carousel-caption">
+          <!-- insert caption -->
+	  <h3>さぁ、はじめよう！</h3>
+        </div>
       </div>
     </div>
 
@@ -36,3 +71,12 @@
     
   </div>
 </section>
+
+<script>
+$('.carousel').carousel({
+  interval: false,
+  pause: "hover",
+  wrap: false,
+  keybord:true
+});
+</script>
