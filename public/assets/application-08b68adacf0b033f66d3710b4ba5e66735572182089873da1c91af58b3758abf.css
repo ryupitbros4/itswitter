@@ -8076,3 +8076,113 @@ table {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* line 54, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+table.company {
+  width: 600px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0px 15px;
+  font-size: 14px;
+}
+
+/* line 62, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+table.company th,
+table.company td {
+  padding: 10px;
+}
+
+/* line 67, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+table.company th {
+  background: #295890;
+  vertical-align: middle;
+  text-align: left;
+  width: 100px;
+  overflow: visible;
+  position: relative;
+  color: #fff;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+/* line 79, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+table.company th:after {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: #295890;
+  border-width: 10px;
+  margin-top: -10px;
+}
+
+/* firefox */
+@-moz-document url-prefix() {
+  /* line 95, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  table.company th::after {
+    float: right;
+    padding: 0;
+    left: 30px;
+    top: 10px;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: relative;
+    pointer-events: none;
+    border: 10px solid transparent;
+    border-left: #295890 10px solid;
+    margin-top: -10px;
+  }
+}
+/* line 111, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+table.company td {
+  background: #f8f8f8;
+  width: 360px;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  /* line 119, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  table.company {
+    width: auto;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    font-size: 12px;
+  }
+
+  /* line 127, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  table.company th,
+  table.company td {
+    display: block;
+    padding: 10px;
+  }
+
+  /* line 133, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  table.company th {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    width: 100%;
+    overflow: visible;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
+  }
+
+  /* line 145, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  table.company th:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+}

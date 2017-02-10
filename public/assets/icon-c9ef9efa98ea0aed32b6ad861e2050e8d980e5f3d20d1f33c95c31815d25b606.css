@@ -231,6 +231,16 @@
     background-size: 85px 85px;
 }
 
+/* 画面サイズによって表示変更 */
+@media screen and ( max-width:479px ){
+ #garagara + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/garagara-e8006f2fb76c74e3a6fd225b26297cdd2ebde8d560ef6714f014fbc4f727c785.png);
+    background-size: 80px 80px;
+ }
+}
+
 #yayakomi {
     display: none;
 }
@@ -240,6 +250,15 @@
     height: 85px;
     background: url(/assets/yayakomi-4c9fbce0fd3c40eeb0118849709889400c0761774c6135a354eb795bf7642845.png);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #yayakomi + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/yayakomi-4c9fbce0fd3c40eeb0118849709889400c0761774c6135a354eb795bf7642845.png);
+    background-size: 80px 80px;
+ }
 }
 
 #komi {
@@ -253,6 +272,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #komi + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/komi-1090aac8483151d404de83e95b14567ebc189c956df5fc1acf3bc71627a04629.png);
+    background-size: 80px 80px;
+ }
+}
+
 #yayamachi {
     display: none;
 }
@@ -262,6 +290,15 @@
     height: 85px;
     background: url(/assets/yayamachi-403ddb5a037422ebfe05e08f7a0d9f4abc5e8d9e2228e7f111ec31b45d054120.png);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #yayamachi + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/yayamachi-403ddb5a037422ebfe05e08f7a0d9f4abc5e8d9e2228e7f111ec31b45d054120.png);
+    background-size: 80px 80px;
+ }
 }
 
 #machi {
@@ -275,6 +312,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #machi + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/machi-76e8fede88ad759dcef80569cc65795028e96dd925c6f5a606b1fe9466482308.png);
+    background-size: 80px 80px;
+ }
+}
+
 #close2 {
     display: none;
 }
@@ -286,6 +332,15 @@
     background-size: 85px 85px;
 }
 
+@media screen and ( max-width:479px ){
+ #close2 + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/close2-ddb5d0d3b3b8446f5886bfa22b0196e71781b108a4e5fed361a73d756990710d.png);
+    background-size: 80px 80px;
+ }
+}
+
 #close {
     display: none;
 }
@@ -295,6 +350,15 @@
     height: 85px;
     background: url(/assets/close-2c58e7f729a4222e931b2473a8ffc2e90c56599aa42547bc6635331cff68f734.png);
     background-size: 85px 85px;
+}
+
+@media screen and ( max-width:479px ){
+ #close + label {
+    width: 80px;
+    height: 80px;
+    background: url(/assets/close-2c58e7f729a4222e931b2473a8ffc2e90c56599aa42547bc6635331cff68f734.png);
+    background-size: 80px 80px;
+ }
 }
 
 input[type="radio"] {

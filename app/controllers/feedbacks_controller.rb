@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 class FeedbacksController < ApplicationController
 
+  before_action :basic_auth, only: [:index]
+
   def index
     @feedbacks = Feedback.all
   end

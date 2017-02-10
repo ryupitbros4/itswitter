@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'my/' => 'my#index', as: :mypage
   get 'my/favorites', as: :favorite_restaurants
   post 'restaurants/:restaurant_id/follow' => 'my#follow', as: :follow_restaurant
   post 'restaurants/:restaurant_id/unfollow' => 'my#unfollow', as: :unfollow_restaurant
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   get 'restaurants/user_ranking' 
   get 'restaurants/comment_log'
   post 'restaurants/comment_log', as: :comment_log
+
+  get 'restaurants/shop_info', as: :shop_info
   
   resources :restaurants do 
     collection do

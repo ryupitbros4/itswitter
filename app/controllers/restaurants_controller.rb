@@ -1,8 +1,47 @@
 # -*- coding: utf-8 -*-
 class RestaurantsController < ApplicationController
-  
+  require 'open-uri'
+  require 'uri'
   before_action :set_restaurants, only: [:report, :deliver]
   before_action :authenticate_user!, only: [:report, :deliver]
+
+#ぐるなびAPIからの店舗情報取得部分
+  def shop_info
+    @shop_name = params[:shop_name]
+    url = URI.escape('http://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=69a41a8fdd47711370393fef44c97b0a&format=json&area=AREA200&name='+ @shop_name)
+    res = open(url)
+    code, message = res.status
+
+    if code == '200'
+      result = ActiveSupport::JSON.decode res.read
+#取得店舗が一つしかないとうまく行かなかったので条件分岐
+      if !result["rest"].nil? && (result["total_hit_count"].to_i >= 2)
+        result["rest"].first(1).each do |rest|
+          rest.each{ |key, value|
+            if value == {}
+              rest[key] = "情報なし"
+            end
+          }
+          @gnavi = { name: rest["name"], name_kana: rest["name_kana"], address: rest["address"], opentime: rest["opentime"], holiday: rest["holiday"],
+          tel: rest["tel"], budget: rest["budget"], areaname: rest["areaname"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"] }
+        end
+      elsif result["total_hit_count"].to_i == 1
+        result["rest"].each{ |key, value|
+          if value == {}
+            result["rest"][key] = "情報なし"
+          end
+        }
+        @gnavi = { name: result["rest"]["name"], name_kana: result["rest"]["name_kana"], address: result["rest"]["address"],
+        opentime: result["rest"]["opentime"], holiday: result["rest"]["holiday"], tel: result["rest"]["tel"],
+        budget: result["rest"]["budget"], areaname: result["rest"]["areaname"], shop_image1: result["rest"]["image_url"]["shop_image1"], url: result["rest"]["url"] }
+      end
+
+    else
+      @gnavi = nil
+    end
+
+  end
+
 
   def slide_info
     @renewals = Renewal.order("created_at desc").limit(10)

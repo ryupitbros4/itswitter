@@ -24,29 +24,40 @@ a.reffer {
 }
 
 /* line 26, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+img.explain-img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 33, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 h2.title {
   color: #FFFFFF;
   text-align: center;
   font-size: calc(500% + 0.25vw);
 }
-/* line 31, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 38, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 h2.top-caption {
   font-size: calc(150% + 0.25vw);
 }
 
-/* line 37, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 44, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 h4.subtitle {
   color: #FFFFFF;
   text-align: center;
 }
 
-/* line 44, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 51, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 section.cell {
   padding-top: 50px;
   padding-bottom: 150px;
 }
 
-/* line 50, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 58, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+div.carousel-caption {
+  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.5));
+}
+
+/* line 63, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-up-large {
   padding-top: 50px;
   padding-bottom: 25px;
@@ -55,13 +66,13 @@ section.cell {
   text-align: center;
 }
 @media screen and (max-width: 991px) {
-  /* line 50, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  /* line 63, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
   #top-text-up-large {
     display: none;
   }
 }
 
-/* line 61, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 74, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-up-small {
   padding-top: 50px;
   padding-bottom: 25px;
@@ -70,13 +81,13 @@ section.cell {
   text-align: center;
 }
 @media screen and (min-width: 992px) {
-  /* line 61, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  /* line 74, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
   #top-text-up-small {
     display: none;
   }
 }
 
-/* line 72, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 85, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-up {
   padding-top: 50px;
   padding-bottom: 25px;
@@ -85,7 +96,7 @@ section.cell {
   text-align: center;
 }
 
-/* line 80, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 93, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-down-large {
   padding-top: 25px;
   padding-bottom: 50px;
@@ -94,13 +105,13 @@ section.cell {
   text-align: center;
 }
 @media screen and (max-width: 991px) {
-  /* line 80, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  /* line 93, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
   #top-text-down-large {
     display: none;
   }
 }
 
-/* line 91, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 104, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-down-small {
   padding-top: 25px;
   padding-bottom: 50px;
@@ -109,13 +120,13 @@ section.cell {
   text-align: center;
 }
 @media screen and (min-width: 992px) {
-  /* line 91, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  /* line 104, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
   #top-text-down-small {
     display: none;
   }
 }
 
-/* line 102, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 115, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-text-down {
   padding-top: 25px;
   padding-bottom: 50px;
@@ -124,7 +135,7 @@ section.cell {
   text-align: center;
 }
 
-/* line 110, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 123, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 #top-img {
   margin: auto;
   padding-top: 10px;
@@ -133,14 +144,14 @@ section.cell {
   padding-right: 10px;
 }
 
-/* line 118, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+/* line 131, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
 .top-img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 @media screen and (max-width: 710px) {
-  /* line 118, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  /* line 131, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
   .top-img {
     height: 200px;
     width: 200px;
