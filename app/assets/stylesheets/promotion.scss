@@ -1,0 +1,139 @@
+.head_img {
+    min-width: 320px;
+    height: 800px;
+    width: 100%;
+    background: url("head.png") no-repeat center top/cover padding-box border-box;
+    background-size: cover;
+    display: table;
+}
+
+.layer_filter {
+    background-color: rgba(0,0,0,0.3);
+    height: 800px;
+}
+
+a {
+    &.reffer{
+      display: block;
+      padding: 30px;
+      text-align: right;
+      color: #FFFFFF;
+      font-size: calc(112.5% + 0.25vw);
+    }
+}
+
+img {
+    &.explain-img{
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+h2 {
+     &.title{
+       color: #FFFFFF;
+       text-align: center;
+       font-size: calc(500% + 0.25vw);
+     }
+     &.top-caption{
+       font-size: calc(150% + 0.25vw);
+     }
+}
+
+h4 {
+     &.subtitle{
+       color: #FFFFFF;
+       text-align: center;
+     }
+}
+
+section {
+    &.cell {
+      padding-top: 50px;
+      padding-bottom: 150px;
+    }
+}
+
+div {
+    &.carousel-caption {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5));
+    }
+}
+
+#top-text-up-large{
+    padding-top: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    @media screen and ( max-width:991px ){
+        display:none;
+    }
+}
+
+#top-text-up-small{
+    padding-top: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    @media screen and ( min-width:992px ){
+        display:none;
+    }
+}
+
+#top-text-up{
+    padding-top: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+#top-text-down-large{
+    padding-top: 25px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    @media screen and ( max-width:991px ){
+        display:none;
+    }
+}
+
+#top-text-down-small{
+    padding-top: 25px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    @media screen and ( min-width:992px ){
+        display:none;
+    }
+}
+
+#top-text-down{
+    padding-top: 25px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+}
+
+#top-img{
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (max-width:710px){
+        height: 200px;
+	width: 200px;
+    }
+}

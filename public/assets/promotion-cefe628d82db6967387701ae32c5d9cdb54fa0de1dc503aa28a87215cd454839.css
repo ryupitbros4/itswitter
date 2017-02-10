@@ -1,0 +1,159 @@
+/* line 1, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+.head_img {
+  min-width: 320px;
+  height: 800px;
+  width: 100%;
+  background: url("head.png") no-repeat center top/cover padding-box border-box;
+  background-size: cover;
+  display: table;
+}
+
+/* line 10, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+.layer_filter {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 800px;
+}
+
+/* line 16, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+a.reffer {
+  display: block;
+  padding: 30px;
+  text-align: right;
+  color: #FFFFFF;
+  font-size: calc(112.5% + 0.25vw);
+}
+
+/* line 26, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+img.explain-img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 33, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+h2.title {
+  color: #FFFFFF;
+  text-align: center;
+  font-size: calc(500% + 0.25vw);
+}
+/* line 38, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+h2.top-caption {
+  font-size: calc(150% + 0.25vw);
+}
+
+/* line 44, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+h4.subtitle {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* line 51, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+section.cell {
+  padding-top: 50px;
+  padding-bottom: 150px;
+}
+
+/* line 58, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+div.carousel-caption {
+  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.5));
+}
+
+/* line 63, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-up-large {
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+@media screen and (max-width: 991px) {
+  /* line 63, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  #top-text-up-large {
+    display: none;
+  }
+}
+
+/* line 74, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-up-small {
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+@media screen and (min-width: 992px) {
+  /* line 74, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  #top-text-up-small {
+    display: none;
+  }
+}
+
+/* line 85, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-up {
+  padding-top: 50px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+/* line 93, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-down-large {
+  padding-top: 25px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+@media screen and (max-width: 991px) {
+  /* line 93, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  #top-text-down-large {
+    display: none;
+  }
+}
+
+/* line 104, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-down-small {
+  padding-top: 25px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+@media screen and (min-width: 992px) {
+  /* line 104, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  #top-text-down-small {
+    display: none;
+  }
+}
+
+/* line 115, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-text-down {
+  padding-top: 25px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+/* line 123, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+#top-img {
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* line 131, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+.top-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 710px) {
+  /* line 131, /home/vagrant/itswitter/app/assets/stylesheets/promotion.scss */
+  .top-img {
+    height: 200px;
+    width: 200px;
+  }
+}
