@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%= render 'application/favicon' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suitell</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+<!--  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
+    <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
+    <%= stylesheet_link_tag    'promotion', media: 'all' %>
+    <%= stylesheet_link_tag    'icon' , media: 'all' %>
+<!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+
+<!--floating menuのcss-->
+    <%= stylesheet_link_tag 'layouts' %>
+  </head>
+  <body>
+    <%= yield %>   
+  </body>
+</html>
