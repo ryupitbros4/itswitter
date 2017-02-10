@@ -1,8 +1,39 @@
 <div class="jumbotron" >
-  <h2><%= @shop_name %>の基本情報</h1></h2>
+  <h3><%= @shop_name %></h3>
+
+  <% if !@gnavi.nil? %>
+    <div align="right">
+      <span class="area_field">エリア：<%= @gnavi[:areaname] %></span>
+    </div>
+  <% end %>
 </div>
 
 <% if !@gnavi.nil? %>
+  <% addressStr = @gnavi[:address] %>
+  <% match = addressStr.match(/(\S+)\s(\S+)/) %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0uJNHCwm0X0ulqcEd2YxL6oGb4MLC8Vg" type="text/javascript"></script>
+<script type="text/javascript">
+
+  var geocoder = new google.maps.Geocoder();
+  var address = "<%= match %>";//住所
+  geocoder.geocode({'address': address,'language':'ja'},function(results, status){
+  if (status == google.maps.GeocoderStatus.OK){
+  var latlng=results[0].geometry.location;//緯度と経度を取得
+  var mapOpt = {
+  mapTypeControl: false,
+  center: latlng,//取得した緯度経度を地図の真ん中に設定
+  zoom: 17,//地図倍率1～20
+  mapTypeId: google.maps.MapTypeId.ROADMAP//普通の道路マップ
+  };
+  var map = new google.maps.Map(document.getElementById('google_map'),mapOpt);
+  var marker = new google.maps.Marker({//住所のポイントにマーカーを立てる
+  position: map.getCenter(),
+  map: map
+  });
+  }
+  });
+</script>
+
 
   <% if @gnavi[:shop_image1] != {} %>
   <center>
@@ -42,7 +73,16 @@
         </tr>
         <tr>
           <th>住所</th>
-          <td><%= raw @gnavi[:address] %></td>
+          <td>
+	    <%= raw @gnavi[:address] %>
+	    <% if @gnavi[:address] != "情報なし" %>
+	    <div id="google_map" style="width:99%;height:250px"></div>
+	    <% end %>
+	  </td>
+        </tr>
+        <tr>
+          <th>経路案内</th>
+	  <td><%= link_to @gnavi[:name]+"への道のり", "http://maps.google.com/maps?saddr=現在地&daddr=沖縄県 " + @gnavi[:name] %></td>
         </tr>
         <tr>
           <th>URL<br>(ぐるなび)</th>
@@ -51,11 +91,25 @@
     </tbody>
 </table>
 
-Powered by <a href="http://www.gnavi.co.jp/">ぐるなび</a>
+
 
 <% else %>
-  <h2>店舗情報がありません<h2>
+  <h2>店舗情報がありません</h2>
 <% end %>
 
+<div class="fav_user">
+  <% count = 0 %>
 
+  <% @fav_users.each do |user| %>
+   <%= link_to my_index_path(u_id: user.id) do %><%= image_tag(User.find(user.id).image_url, :size => "32x32") %><% end %>
+    <% if count == 8 %>
+      <span style="color: #444444;">...</span>
+      <% break %>
+    <% else %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+</div>
 
+<br>
+Powered by <a href="http://www.gnavi.co.jp/">ぐるなび</a>

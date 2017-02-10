@@ -8146,8 +8146,55 @@ table.company td {
   padding-left: 20px;
 }
 
+/* line 119, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+.fav_user {
+  width: 600px;
+  background-color: #F4A460;
+  border: 2px solid #F4A460;
+  box-shadow: 0 0 0 2px #F4A460;
+  color: #0a8915;
+  margin: 0 auto;
+  padding: 0em;
+}
+
+/* line 128, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+.fav_user img {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* line 136, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+.icon_round img {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* line 144, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+.area_field {
+  position: relative;
+  padding: .25em 0 .5em .75em;
+  border-left: 6px solid #3498db;
+  font-size: 12px;
+}
+
+/* line 150, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+.area_field::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  width: 100%;
+  height: 0;
+  border-bottom: 1px solid #ccc;
+}
+
 @media only screen and (max-width: 480px) {
-  /* line 119, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  /* line 162, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
   table.company {
     width: auto;
     margin: 0 auto;
@@ -8156,14 +8203,14 @@ table.company td {
     font-size: 12px;
   }
 
-  /* line 127, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  /* line 170, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
   table.company th,
   table.company td {
     display: block;
     padding: 10px;
   }
 
-  /* line 133, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  /* line 176, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
   table.company th {
     background: #295890;
     vertical-align: middle;
@@ -8175,7 +8222,7 @@ table.company td {
     font-size: 15px;
   }
 
-  /* line 145, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  /* line 188, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
   table.company th:after {
     left: 100%;
     top: 50%;
@@ -8184,5 +8231,16 @@ table.company td {
     height: 0;
     width: 0;
     pointer-events: none;
+  }
+
+  /* line 204, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+  .fav_user {
+    width: auto;
+    background-color: #F4A460;
+    border: 2px solid #F4A460;
+    box-shadow: 0 0 0 2px #F4A460;
+    color: #0a8915;
+    margin: 0 5px;
+    padding: 0em;
   }
 }

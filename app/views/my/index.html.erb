@@ -1,15 +1,15 @@
 <%= render '/flash_msg2' %>
-<div class="jumbotron">
+<div class="jumbotron icon_round">
   <center><h1><%= image_tag(@my.image_url, :size => "60x60") %><%= @my.nickname %>さんのページ</h1></center>
   <br>
   <center>
     <ul class="list-unstyled">
       <li style="font-size: 20px;">
-        あなたのポイント：
+        <%= @my.nickname %>さんのポイント：
         <span class="badge" style="font-size: 20px;"><%= @my.point %>pt</span>
       </li>
       <li style="font-size: 20px;">
-        あなたのランキング：
+        <%= @my.nickname %>さんのランキング：
         <span class="badge" style="font-size: 20px;"><%= @my.rank %>位</span>
       </li>
     </ul>
@@ -21,7 +21,7 @@
 <br>
 
 <div class="contents">
-  <div class="container"><h2 style="color: black;">あなたがいいねしたコメント</h2>
+  <div class="container"><h2 style="color: black;"><%= @my.nickname %>さんがいいねしたコメント</h2>
 <!--
     <table class="table table-hover">
       <thead>
@@ -37,57 +37,8 @@
     </table>
 -->
   <% if @postit.present? %>
-  <% @postit.each do |posting| %>
-    <% comment = posting.comment %>
-    <% if comment.blank? %>
-      <% comment = 'コメント無し' %>
-    <% end %>
-    <table class="table table-hover table-bordered">
-      <tbody>
-        <tr>
-          <td class="col-md-3 success"><%= image_tag(@crowded_image[posting.crowdedness] + ".png", :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[posting.crowdedness], :controller => "restaurants", :action => "report", :resname => posting.restaurant_id %></td>
-          <td class="col-md-5 success"><%= link_to posting.restaurant.name, "https://www.google.co.jp/search?q=" + posting.restaurant.name %></td>
-          <td class="col-md-4 success"><%= sec2h((Time.zone.now - posting.updated_at).to_i) %>前</td>
-        </tr>
-        <tr>
-          <% if logged_in? %>
-            <td colspan="2" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => posting.restaurant_id %>
-
-              <% if (!(posting.id.blank?) && !(session[:user_id].blank?) && (posting.user_id != session[:user_id]))  %>
-
-                <% if (PressedUser.find_by(comment_id: posting.id, user_id: session[:user_id]).blank?) %>
-                  <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => posting.user_id, :comment_id => posting.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                <% else %>
-                  <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
-                <% end %>
-                報告者:<%= posting.user.nickname %>さん
-              <% end %>
-            </td>
-            <td class="col-md-2" bgcolor="#FFFFFF">
-              <% if @my.restaurants.include? posting.restaurant %>
-                <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(posting.restaurant), { method: :post, remote: true }%>
-              <% else %>
-                <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォローする', follow_restaurant_path(posting.restaurant), { method: :post, remote: true }  %>
-              <% end %>
-            </td>
-          <% else %>
-            <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :action => "comment_log", :restaurant_id => posting.restaurant_id %>
-
-            <% if (!(posting.id.blank?) && !(session[:user_id].blank?) && (posting.id != session[:user_id])) %>
-
-              <% if (PressedUser.find_by(comment_id: posting.id, user_id: session[:user_id]).blank?) %>
-                <%= button_to "いいね!", {:action => "add_like_point", :user_id => posting.user_id, :comment_id => posting.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-              <% else %>
-                <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
-              <% end %>
-              報告者:<%= posting.user.nickname %>さん
-            <% end %>
-            </td>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+    <p align="right">[<%= link_to "全てのいいねしたコメントを見る", {:action => "my_log", :category => '0', :uid => @my.id } %>]</p>
+    <%= render partial: '/mypage_card', locals: { comments_log: @postit.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
   <% end %>
   </div>
 </div>
@@ -95,7 +46,7 @@
 
 
 <div class="contents">
-  <div class="container"><h2 style="color: black;">あなたの投稿コメント</h2>
+  <div class="container"><h2 style="color: black;"><%= @my.nickname %>さんの投稿コメント</h2>
 <!--
     <table class="table table-hover">
       <thead>
@@ -111,64 +62,8 @@
     </table>
 -->
   <% if @mycomments.present? %>
-  <% @mycomments.each do |posting| %>
-    いいねしたユーザ一覧
-    <% if posting.pressed_users.present? %>
-    <% posting.pressed_users.each do |pressed_user| %>
-      <%= pressed_user.user.nickname %>さん,
-    <% end %>
-    <% end %>
-
-    <% comment = posting.comment %>
-    <% if comment.blank? %>
-      <% comment = 'コメント無し' %>
-    <% end %>
-    <table class="table table-hover table-bordered">
-      <tbody>
-        <tr>
-          <td class="col-md-3 success"><%= image_tag(@crowded_image[posting.crowdedness] + ".png", :size => "32x32") %>&nbsp;&nbsp;<%= link_to @how_crowded[posting.crowdedness], :controller => "restaurants", :action => "report", :resname => posting.restaurant_id %></td>
-          <td class="col-md-5 success"><%= link_to posting.restaurant.name, "https://www.google.co.jp/search?q=" + posting.restaurant.name %></td>
-          <td class="col-md-4 success"><%= sec2h((Time.zone.now - posting.updated_at).to_i) %>前</td>
-        </tr>
-        <tr>
-          <% if logged_in? %>
-            <td colspan="2" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => posting.restaurant_id %>
-
-              <% if (!(posting.id.blank?) && !(session[:user_id].blank?) && (posting.user_id != session[:user_id]))  %>
-
-                <% if (PressedUser.find_by(comment_id: posting.id, user_id: session[:user_id]).blank?) %>
-                  <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => posting.user_id, :comment_id => posting.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                <% else %>
-                  <br><%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
-                <% end %>
-                報告者:<%= posting.user.nickname %>さん
-              <% end %>
-            </td>
-            <td class="col-md-2" bgcolor="#FFFFFF">
-              <% if current_user.restaurants.include? posting.restaurant %>
-                <span class="glyphicon glyphicon-star" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォロー解除', unfollow_restaurant_path(posting.restaurant), { method: :post, remote: true }%>
-              <% else %>
-                <span class="glyphicon glyphicon-star-empty" id="follow-unfollow-area-<%= posting.id %>"><%= link_to 'フォローする', follow_restaurant_path(posting.restaurant), { method: :post, remote: true }  %>
-              <% end %>
-            </td>
-          <% else %>
-            <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to comment.truncate(23), :action => "comment_log", :restaurant_id => posting.restaurant_id %>
-
-            <% if (!(posting.id.blank?) && !(session[:user_id].blank?) && (posting.id != session[:user_id])) %>
-
-              <% if (PressedUser.find_by(comment_id: posting.id, user_id: session[:user_id]).blank?) %>
-                <%= button_to "いいね!", {:action => "add_like_point", :user_id => posting.user_id, :comment_id => posting.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-              <% else %>
-                <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => posting.user_id, :comment_id => posting.id} %>
-              <% end %>
-              報告者:<%= posting.user.nickname %>さん
-            <% end %>
-            </td>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+    <p align="right">[<%= link_to "全ての投稿コメントを見る", {:action => "my_log", :category => '1', :uid => @my.id } %>]</p>
+    <%= render partial: '/mypage_card', locals: { comments_log: @mycomments.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
   <% end %>
   </div>
 </div>

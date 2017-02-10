@@ -22,8 +22,11 @@ class RestaurantsController < ApplicationController
               rest[key] = "情報なし"
             end
           }
+          if (rest["code"]["areaname_s"] == {}) || (rest["code"]["areaname_s"] == nil)
+            rest["code"]["areaname_s"] = "情報なし"
+          end
           @gnavi = { name: rest["name"], name_kana: rest["name_kana"], address: rest["address"], opentime: rest["opentime"], holiday: rest["holiday"],
-          tel: rest["tel"], budget: rest["budget"], areaname: rest["areaname"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"] }
+          tel: rest["tel"], budget: rest["budget"], areaname: rest["code"]["areaname_s"], shop_image1: rest["image_url"]["shop_image1"], url: rest["url"], lat: rest["latitude"], lon: rest["longitude"] }
         end
       elsif result["total_hit_count"].to_i == 1
         result["rest"].each{ |key, value|
@@ -31,15 +34,23 @@ class RestaurantsController < ApplicationController
             result["rest"][key] = "情報なし"
           end
         }
+        if (result["rest"]["code"]["areaname_s"] == {}) || (result["rest"]["code"]["areaname_s"] == nil)
+          result["rest"]["code"]["areaname_s"] = "情報なし"
+        end
         @gnavi = { name: result["rest"]["name"], name_kana: result["rest"]["name_kana"], address: result["rest"]["address"],
         opentime: result["rest"]["opentime"], holiday: result["rest"]["holiday"], tel: result["rest"]["tel"],
-        budget: result["rest"]["budget"], areaname: result["rest"]["areaname"], shop_image1: result["rest"]["image_url"]["shop_image1"], url: result["rest"]["url"] }
+        budget: result["rest"]["budget"], areaname: result["rest"]["code"]["areaname_s"], shop_image1: result["rest"]["image_url"]["shop_image1"], url: result["rest"]["url"], lat: result["rest"]["latitude"], lon: result["rest"]["longitude"] }
       end
 
     else
       @gnavi = nil
     end
 
+
+    #フォローユーザー表示部分
+    shop_id = params[:shop_id]
+    restaurant_column = Restaurant.find(shop_id)
+    @fav_users = restaurant_column.users
   end
 
 
@@ -74,8 +85,8 @@ class RestaurantsController < ApplicationController
   end
   
   def search
-    escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')    
-    
+    escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
+
     if escaped.blank?
       #flash[:warning] = '店名を入力してください'
       redirect_to :root, :alert => '店名を入力して下さい'
@@ -182,6 +193,7 @@ class RestaurantsController < ApplicationController
   end
 
   def comment_log
+    @my = User.find(session[:user_id]) if session[:user_id]
     if params[:restaurant_id].present?
       restaurant = Restaurant.find(params[:restaurant_id])
       @restaurant_name = restaurant.name

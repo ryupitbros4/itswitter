@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'my/' => 'my#index', as: :mypage
+  resources :my, only: [:index]
+  get 'my/my_log' => 'my#my_log', as: :my_my_log
+
   get 'my/favorites', as: :favorite_restaurants
+
   post 'restaurants/:restaurant_id/follow' => 'my#follow', as: :follow_restaurant
   post 'restaurants/:restaurant_id/unfollow' => 'my#unfollow', as: :unfollow_restaurant
 
