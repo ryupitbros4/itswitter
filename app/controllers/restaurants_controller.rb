@@ -136,7 +136,7 @@ class RestaurantsController < ApplicationController
       end
       one_up_your_rnk = your_index - 1
       @your_rank = user_rank.limit(scope).offset(one_up_your_rnk)
-    end
+     end
   end
   
   def deliver
@@ -249,7 +249,16 @@ class RestaurantsController < ApplicationController
   def all_rest
     @restaurants = Restaurant.all.restaurant_order_hurigana
     @per_array = Array.new
+    @next_index = params[:pre_index]
+    if @next_index.blank?
+      @next_index = 0
+    end
     
+    @initial_word = params[:pre_index2]
+    if @initial_word.blank?
+      @initial_word = 0
+    end
+      
     #五十音表の配列を宣言
     @gozyuuonn = ["あ","か","さ","た","な","は","ま","や","ら","わ"]
     @gozyuuonn2 = [["あ", "い", "う", "え", "お"], ["か", "き", "く", "け", "こ"], ["さ", "し", "す", "せ", "そ"], ["た", "ち", "つ", "て", "と"], ["な", "に", "ぬ", "ね", "の"], ["は", "ひ","ふ", "へ", "ほ"], ["ま", "み", "む", "め", "も"], ["や", "ゆ", "よ"], ["ら", "り", "る", "れ", "ろ"], ["わ", "を", "ん"]]
@@ -258,7 +267,7 @@ class RestaurantsController < ApplicationController
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
   end
-
+  
   
   private
   
