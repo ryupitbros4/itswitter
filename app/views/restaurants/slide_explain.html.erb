@@ -3,11 +3,11 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active" id="leftest"></li>
       <li data-target="#carousel-example-generic" data-slide-to="1"></li>
       <li data-target="#carousel-example-generic" data-slide-to="2"></li>
       <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4" id="rightest"></li>
     </ol>
 
     <!-- Wrapper fo slides -->
@@ -73,6 +73,7 @@
   </div>
 </section>
 
+<!-- carousel custom -->
 <script>
 $('.carousel').carousel({
   interval: false,
@@ -81,3 +82,13 @@ $('.carousel').carousel({
   keybord:true
 });
 </script>
+<!--
+<script>
+$(function() {
+  if($('#leftest').hasClass("active")) {
+    $('.left .carousel-control').css()
+  }
+});
+
+</script>
+-->
