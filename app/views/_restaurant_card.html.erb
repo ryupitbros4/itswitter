@@ -4,32 +4,45 @@
       <section class="card">
         <!-- img -->
         <!-- <img class="card-img" src="" alt=""> -->
-      <div class="card-content">
-        <h1 class="card-title">
-	  <!-- follow system -->
-	  <% if logged_in? %>
-	    <% if current_user.restaurants.include? restaurant %>
-	      <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>         
-	        <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-	      <% end %>
-	    <% else %>
-	      <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>             
-	        <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+        <div class="card-content">
+          <h1 class="card-title">
+	    <!-- follow system -->
+	    <% if logged_in? %>
+	      <% if current_user.restaurants.include? restaurant %>
+	        <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>         
+	          <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+	        <% end %>
+	      <% else %>
+	        <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>             
+	          <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+	        <% end %>
 	      <% end %>
 	    <% end %>
-	  <% end %>
 	  
-	  <!-- end of follow system -->
+	    <!-- end of follow system -->
 	  
-<!--	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-	  <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
+<!--	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
+	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
 	  </h1>	
         </div>
-        <div class="card-comment tenn">
-	  <span>
-	    <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-	  </span>
+        <div class="card-content">
+	  <table border="0">
+            <tr>
+              <td align="left">
+	        <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+              <td rowspan="2">
+                <%= link_to image_tag('menu_bar_icon_nw/tell_icon_brack.png', {:border => '0', :alt => 'tell', :size => "60x60"}), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+	      </td>
+            </tr>
+            <tr>
+              <td align="left">
+                <%= link_to how_crowded[restaurant.crowdedness], { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+              </td>
+            </tr>
+          </table>
+        </div>
 
+        <div class="card-comment tenn">
           <% last_comment = 'コメント無し' %>
           <% if restaurant.latest_comment.present? %>
             <% if restaurant.latest_comment.comment.present? %>
@@ -39,7 +52,7 @@
             <% end %>
           <% end %>
 	    <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
-	  <span class="relative">
+	  <span>
 	    <% if last_comment != 'コメント無し' %>
 	      <%= link_to last_comment.truncate(23), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	    <% else %>

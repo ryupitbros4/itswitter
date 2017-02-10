@@ -33,7 +33,7 @@
     <h4>お気に入りの飲食店</h4>
     <p align="right">[<%= link_to "フォローリスト", favorite_restaurants_path %>]</p>
 
-    <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc").limit(4), crowded_image: @crowded_image } %>
+    <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc").limit(4), crowded_image: @crowded_image, how_crowded: @how_crowded } %>
 
   </div>
 <% end %>
