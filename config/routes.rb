@@ -34,8 +34,13 @@ Rails.application.routes.draw do
       post 'add_like_point'
       post 'cancel_like'
       get 'all_rest'
+      
+      post 'rest_ind'
+      post 'rest_show'
     end
-  end 
+  end
+  
+  
   root 'restaurants#index'
 
   get "investigators/new" => 'investigators#new', as: :new_investigators
