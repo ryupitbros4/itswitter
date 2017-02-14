@@ -3,5 +3,5 @@
 
 <div class="contents">
   <h4>お気に入りの飲食店一覧</h4>
-  <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc"), crowded_image: @crowded_image } %>
+  <%= render partial: '/restaurant_card', locals: { restaurants: @my.restaurants.order("updated_at desc"), crowded_image: @crowded_image, how_crowded: @how_crowded } %>
 </div>

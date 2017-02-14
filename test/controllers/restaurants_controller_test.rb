@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
-
+=begin
   test "初期登録された店が表示されている" do
     Rails.application.load_seed
     get :index
@@ -13,7 +13,7 @@ class RestaurantsControllerTest < ActionController::TestCase
       assert shop_names_in_view.include?(shop)
     end
   end
-
+=end
   test "検索で%を特別扱いしない" do
     Rails.application.load_seed
     post :search, name: '%'
@@ -42,12 +42,6 @@ class RestaurantsControllerTest < ActionController::TestCase
     ra = Restaurant.find(r.id)
     assert_not_equal r.updated_at, ra.updated_at
   end
-
-  test "新着のお店が取得されている" do
-    get :index, from: '2016-10-02 12:00:00'
-    assert_equal 2, assigns(:new_restaurants).length
-  end
-
 
   test "ログインしていない場合はreportとdeliver出来ない" do
     get :report
