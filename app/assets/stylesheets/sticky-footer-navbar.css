@@ -85,10 +85,12 @@ img#explain {
 }
 .card-comment {
   border-top: 1px solid #eee;
+  /*
   padding-top: 5px;
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom:5px;
+  */
 }
 .card-comment a {
   text-decoration: none;
@@ -113,4 +115,49 @@ img#explain {
 }
 .card-link a:hover {
   color: #0090aa;
+}
+
+div .comment_report {
+  display: flex;
+}
+
+div .reporter_back {
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+  width: auto;
+  min-width: 115px;
+  height: 40px;
+  color: #F6F6F6;
+  line-height: 40px;
+  text-align: center;
+  background: #19283C;
+  z-index: 0;
+}
+
+div .reporter_back:after{
+  content: "";
+  position: absolute;
+  top: 50%; 
+  right: -10px;
+  margin-top: -10px;
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #19283C;
+}
+
+div .reporter {
+  padding: 0 5px;
+}
+
+div .comment_back{
+  padding: 0 10px;
+  text-align: center;
+}
+
+div .comment{
+  line-height: 40px;
 }

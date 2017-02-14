@@ -21,7 +21,7 @@
 	  
 	    <!-- end of follow system -->
 	  
-<!--	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
+	    <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
 	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
 	  </h1>	
         </div>
@@ -42,9 +42,12 @@
           </table>
         </div>
 
-        <div class="card-comment tenn">
+	<!-- col 3 -->
+        <div class="card-comment"><!-- tennを抜きました by akio -->
           <% last_comment = 'コメント無し' %>
+	  <% reporter = '報告者はいません' %>
           <% if restaurant.latest_comment.present? %>
+	    <% reporter = restaurant.latest_comment.user.nickname %>
             <% if restaurant.latest_comment.comment.present? %>
               <% last_comment = restaurant.latest_comment.comment %>
             <% else %>
@@ -52,14 +55,32 @@
             <% end %>
           <% end %>
 	    <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
-	  <span>
-	    <% if last_comment != 'コメント無し' %>
-	      <%= link_to last_comment.truncate(23), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
-	    <% else %>
-	      <%= last_comment %>
-	    <% end %>
-	  </span>
-        </div>
+	  
+	  <div class="comment_report">
+	    <!-- reporter part -->
+	    <div class="reporter_back">
+	      <div class="reporter">
+		<% if reporter != '報告者はいません' %>
+		  <%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id ) %>
+		<% else %>
+		  <%= reporter %>
+		<% end %>
+	      </div>
+	    </div>
+
+	    <!-- comment part -->
+	    <div class="comment_back">
+	      <div class="comment">
+		<% if last_comment != 'コメント無し' %>
+	          <%= link_to last_comment.truncate(16), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+		<% else %>
+	          <%= last_comment %>
+	        <% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div> 
+	 
       </section>
     </div>
   <% end %>
