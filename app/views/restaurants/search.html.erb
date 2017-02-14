@@ -12,5 +12,5 @@
 <center><p><%= @error %></p></center>
 <div class="contents">
 <center><h2>検索一覧</h2></center>
-<%= render partial: '/restaurant_card', locals: { restaurants: @searched, crowded_image: @crowded_image } %>
+<%= render partial: '/restaurant_card', locals: { restaurants: @searched, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
 </div>

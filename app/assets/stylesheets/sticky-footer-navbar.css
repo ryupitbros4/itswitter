@@ -62,14 +62,14 @@ body{
   height: auto;
 }
 .card-content {
-  padding-top: 5px;
+  padding-top: 1px;
   padding-right: 10px;
   padding-left: 10px;
-  padding-bottom: 5px;
+  /*padding-bottom: 5px;*/
 }
 .card-title {
   font-size: calc(15px + 0.5vw);
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   /* text-align: center; */
   color: #333;
 }
