@@ -37,6 +37,9 @@ Rails.application.routes.draw do
       
       post 'rest_ind'
       post 'rest_show'
+      
+      get 'promotion'
+      get 'slide_explain'
     end
   end
   

@@ -1,16 +1,111 @@
-<header>
-  <div>
-    <h1>Suitell</h1>
-    <h3>なんか書いとけ</h3>
-    <br>
-    <%= link_to "ログイン(要:twitterアカウント)", %>
+<script>
+$(function(){
+  $("#jump").click(function() {
+        var speed = 500;
+        var position = document.getElementById("about").offsetTop;
+        $('html, body').animate({ scrollTop: position }, speed, 'swing');
+        return false;
+  });
+});
+</script>
+
+<section class="container">
+  <!-- 1 col -->
+  <div class="head_img">
+    <div class="layer_filter">
+      <section>
+	<header>
+	  <a class="reffer" id="jump" href="#about">Suitellについて</a>
+	</header>
+	<section class="cell">
+	  <h2 class="title">Suitell</h2>
+	  <h4 class="subtitle">飯、待てぬ。くわねば。</h4>
+	</section>
+	<div class="button-top">
+	  <h4 class="subtitle"><button type="button" class="btn btn-primary btn-lg"><%= link_to "はじめる", slide_explain_restaurants_path, { :style => "color:#FFFFFF;"} %></button></h4>
+	</div>
+      </section>
+    </div>
   </div>
-</header>
-<article>
-  <section>
-  </section>
-  <section>
-  </section>
-</article>
-<footer>
-</footer>
+  <!-- 2 col -->
+  <div id="about">
+    <section class="row">
+      <% one = '<p >Suitellは、飲食店の混雑状況を<br>リアルタイムに知ることができるサービスです。<br>「飯、待てぬ。食わねば。」<br>すぐに食べれる飲食店を探すのに最適です。</p>' %>
+      <div class="col-md-6">
+	<div class="col-sm-12" id="top-text-up">
+	  <h2 class="top-caption">Suitellとは</h2>
+	</div>
+	<div class="col-sm-12" id="top-text-down-large">
+	  <%= one.html_safe %>
+	</div>
+      </div>
+      
+      <div class="col-sm-12 col-md-6">
+	<div class="col-sm-12 col-md-12" id="top-img">
+	  <%= image_tag("cafe.png", :class => "top-img") %>
+	</div>
+	<div class="col-sm-12" id="top-text-down-small">
+	  <%= one.html_safe %>
+        </div>
+      </div>
+
+    </section>
+    <section class="row">
+
+      <% two = '<p>混雑度は全部で６つ。<br>簡単にそのお店の状況がわかります。<br>お店に行った人のコメントを見ると、<br>最新情報がわかります。</p>' %>
+      <div class="col-sm-12 col-md-6">
+	<div class="col-sm-12" id="top-text-up-small">
+          <h2 class="top-caption">混雑度とコメントで</h2>
+	</div>
+	<div class="col-sm-12 col-md-12" id="top-img">
+          <%= image_tag("statement.png", :class => "top-img") %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+	<div class="col-sm-12" id="top-text-up-large">
+          <h2 class="top-caption">混雑度とコメントで</h2>
+        </div>
+	<div class="col-sm-12" id="top-text-down">
+	  <%= two.html_safe %>
+	</div>
+      </div>
+
+    </section>
+    <section class="row">
+
+      <% three = '<p>10秒で行ったお店の情報を伝えられます。<br>次にお店に行く人が、<br>あなたのコメントを頼りに行ってみるかも！</p>' %>
+      <div class="col-md-6">
+        <div class="col-sm-12" id="top-text-up">
+          <h2 class="top-caption">簡単に伝えられる</h2>
+        </div>
+        <div class="col-sm-12" id="top-text-down-large">
+	  <%= three.html_safe %>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-12" id="top-img">
+          <%= image_tag("tellnet.png", :class => "top-img") %>
+	</div>
+	<div class="col-sm-12" id="top-text-down-small">
+	  <%= three.html_safe %>
+	</div>
+      </div>
+
+      
+    </section>
+  </div>
+
+  <!-- 3 col -->
+  <div>
+    <section>
+      <div class="button-top">
+        <h4 class="subtitle"><button type="button" class="btn btn-primary btn-lg"><%= link_to "はじめる", slide_explain_restaurants_path, { :style => "color:#FFFFFF;"} %></button></h4>
+      </div>
+      <div id="top-text-up">
+	<p align="center">Copyright (C) 2016 Suitell. All rights reserved.</p>
+      </div>
+    </section>
+  </div>
+</section>
