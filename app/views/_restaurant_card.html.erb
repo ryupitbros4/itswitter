@@ -28,14 +28,14 @@
         <div class="card-content">
 	  <table class="table-hover" border="0">
             <tr>
-              <td align="left">
+              <td align="center">
 	        <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              <td rowspan="2">
+              <td align="center" rowspan="2">
                 <%= link_to image_tag('menu_bar_icon_nw/tell_icon_brack.png', {:border => '0', :alt => 'tell', :size => "60x60"}), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
 	      </td>
             </tr>
             <tr>
-              <td align="left">
+              <td align="center">
                 <%= link_to how_crowded[restaurant.crowdedness], { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
               </td>
             </tr>
