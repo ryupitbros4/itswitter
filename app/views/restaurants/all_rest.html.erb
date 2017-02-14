@@ -1,1 +1,38 @@
-<%= render partial: '/restaurant_card', locals: { restaurants: @restaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
+<div class="container">
+  <div class="btn-group akasatana" id="akasatana">
+    <% @gozyuuonn.each_with_index do |aiu,index| %>
+    <button type="button" id="<%= index %>" class="btn btn-primary" name="<%= aiu %>" > <font size="5"><%= aiu %></font> </button>
+    <% end %>
+  </div>
+  
+  <br>
+  <br>
+  
+  <div class="btn-group aiueo" id="aiueo">
+    <% @gozyuuonn2[@next_index][0..-1].each_with_index do |aiu2,index2| %>
+    <button type="button" id="<%= @next_index %>-<%= index2 %>" class="btn btn-primary" name="<%= aiu2 %>" > <font size="4"> <%= aiu2 %> </font> </button>
+    <% end %>
+  </div>
+  <div id="show">
+  </div>
+</div>
+
+<script>
+  $(".akasatana .btn").on("click", function(){
+  var id = $(this).attr("id");
+  $.ajax({
+  url: "/restaurants/rest_ind",
+  type: "post",
+  data: {pre_id: id}
+  })
+  });
+  
+  $(".aiueo .btn").on("click", function(){
+  var name = $(this).attr("name");
+  $.ajax({
+  url: "/restaurants/rest_show",
+  type: "post",
+  data: {res_name: name}
+  })
+  });
+</script>

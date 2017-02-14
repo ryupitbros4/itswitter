@@ -4,7 +4,7 @@ html,body{
 }
 
 body{
-  margin-bottom: 60px;
+  margin-bottom: 70px;
   background-color: #F4A460;
 }
 
@@ -28,9 +28,8 @@ body{
 
 .container{
   width: 100%;
-  margin-right: 0px;
-  margin-left: 0px;
-  padding: 0 0px;
+  padding: 0px;
+  overflow: hidden;
 }
 
 .container .text-muted {
@@ -48,6 +47,12 @@ body{
   flex-wrap: wrap;
 }
 
+img#explain {
+  width: 80%;
+  height: auto;
+  max-width: 500px;
+  max-height: 400px;
+}
 /* card */
 .card {
   width: 100%;
