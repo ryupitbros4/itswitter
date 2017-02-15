@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   require 'open-uri'
   require 'uri'
   before_action :set_restaurants, only: [:report, :deliver]
-  before_action :authenticate_user!, only: [:report, :deliver]
+  before_action :authenticate_user!, only: [:report, :deliver, :tell_index, :tell_search]
 
 #ぐるなびAPIからの店舗情報取得部分
   def shop_info
@@ -53,6 +53,32 @@ class RestaurantsController < ApplicationController
     @fav_users = restaurant_column.users
   end
 
+  def tell_index
+#ログイン、usersテーブルのuserデータの有無を確認。                                                                                                                                    
+    if logged_in? and User.where(:id => session[:user_id]).present?
+      user_info = User.find(session[:user_id])
+      if user_info.comments.present?
+        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        if (Time.zone.now - informTime.updated_at).to_i < 60*3
+          flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
+          redirect_to :root and return
+        end
+      end
+    else
+      redirect_to :root and return
+    end
+  end
+
+  def tell_search
+    tell_escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
+    if tell_escaped.blank?
+      redirect_to :tell_index, :alert => '店名を入力して下さい'
+    end
+    @tell_searched = Restaurant.where("name like ? or hurigana like ?", "%#{tell_escaped}%", "%#{tell_escaped}%")
+    if @tell_searched.empty?
+      redirect_to :tell_index, :alert => 'お店がヒットしませんでした'
+    end
+  end
 
   def slide_info
     @renewals = Renewal.order("created_at desc").limit(10)
@@ -69,17 +95,12 @@ class RestaurantsController < ApplicationController
   end
   
   def index
-    #@restaurants = Restaurant.all
-    #@comments = Comments.all
-    #@new_restaurants = Restaurant.where('created_at > ?', params[:from] ? params[:from] : 30.days.ago).order(created_at: :desc)
-    #@per_array = Array.new
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
     
     #占有率が低い順に並び替える
     @rank=Restaurant.order_by_crowdedness
     set_crowded_consts
-    #@len_num = @rank.count
 
     #フォローの店
     @my = User.find(session[:user_id]) if session[:user_id]
@@ -90,7 +111,6 @@ class RestaurantsController < ApplicationController
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
 
     if escaped.blank?
-      #flash[:warning] = '店名を入力してください'
       redirect_to :root, :alert => '店名を入力して下さい'
     end
     
@@ -122,7 +142,8 @@ class RestaurantsController < ApplicationController
     @restaurant_id = Restaurant.find_by(id: params[:resname])
     #restaurantidがnilだった場合は指定なし、そうでない場合は指定ありで初期値が設定される
     if @restaurant_id.nil? then
-      @restaurant = Restaurant.new()
+      #店が選択出来てない場合rootに飛ばす
+      redirect_to :root and return
     else
       @restaurant = Restaurant.new(:id => @restaurant_id.id)
     end
@@ -167,12 +188,10 @@ class RestaurantsController < ApplicationController
     end
 
     if id.blank?
-      #flash[:warning] = '店名を選択して下さい'
       redirect_to :report_restaurants, :alert => '店名を選択して下さい' and return
     end
     
     if params[:restaurant][:crowdedness].blank?
-      #flash[:warning] = '混雑度を選択して下さい'
       redirect_to :report_restaurants, :alert => '混雑度を選択して下さい' and return
     end
     
@@ -180,7 +199,6 @@ class RestaurantsController < ApplicationController
     restaurant = Restaurant.find(id)
     crowd = params[:restaurant][:crowdedness]
     if crowd.blank?
-      #flash[:warning] = '店の混雑度を選択して下さい'
       redirect_to :report_restaurants, :alert => '店の混雑度を選択して下さい' and return
     end
     
