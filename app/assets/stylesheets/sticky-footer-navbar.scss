@@ -15,6 +15,7 @@ $CardShadow:#ccc;
 $CardTitle:#333;
 $CardText:#777;
 $CardTopBoder:#eee;
+$CardSideBoder:$CardTopBoder;
 $CardComment:#0bd;
 $CardCommentHover:#0090aa;
 $CardCommentLinkBoder:$CardTopBoder;
@@ -85,104 +86,77 @@ img#explain {
   box-shadow: 0 2px 5px $CardShadow;
   margin-bottom: 20px;
 }
-.card-img {
-  border-radius: 5px 5px 0 0;
-  max-width: 100%;
-  height: auto;
-}
-.card-content {
-  padding-top: 1px;
-  padding-right: 10px;
-  padding-left: 10px;
-  /*padding-bottom: 5px;*/
-}
-.card-title {
-  font-size: calc(15px + 0.5vw);
-  /*margin-bottom: 20px;*/
-  /* text-align: center; */
-  color: $CardTitle;
-}
-.card-text {
-  color: $CardText;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.card-comment {
-  border-top: 1px solid $CardTopBoder;
-  /*
-  padding-top: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-bottom:5px;
-  */
-}
-.card-comment a {
-  text-decoration: none;
-  color: $CardComment;
-  margin: 0 10px;
-}
-.card-comment a:hover {
-  color: $CardCommentHover;
-}
-.card-link {
-  text-align: center;
-  border-top: 1px solid $CardCommentLinkBoder;
-  padding-top: 5px;
-  padding-right: 10px;
-  padding-left:10px;
-  padding-bottom:5px;
-}
-.card-link a {
-  text-decoration: none;
-  color: $CardLink;
-  margin: 0 10px;
-}
-.card-link a:hover {
-  color: $CardLinkHover;
-}
 
-div .comment_report {
-  display: flex;
-}
+article {
+  &.card-content-row-1 {
+    & p{
+      margin: 0px;
+    }
+    padding: 5px;
+  }
 
-div .reporter_back {
-  position: relative;
-  display: inline-block;
-  padding: 0 15px;
-  width: auto;
-  min-width: 40px; /*default : 115px*/
-  height: 30px;
-  color: #F6F6F6;
-  line-height: 30px;
-  text-align: center;
-  background: #19283C;
-  z-index: 0;
-  border-radius: 0px 0px 0px 5px / 0px 0px 0px 5px;
-}
+  &.card-content-row-2 {
+    & div {     
+      &.state-part {
+        & div {
+	  &.state-icon {
+	    text-align: center;
+	  }
+	  &.state-caption {
+	    & p{
+	      margin: 0px;
+	    }
+	    text-align: center;
+	  }
+	}
+	border-right: solid 1px $CardSideBoder;
+      }
+      &.user-comment {
+        & div {
+	  &.comment-part {
+	    & p {
+	      margin: 0px;
+	    }
+	  }
+	  &.commenter-part {
+	    & p{
+	      margin: 0px;
+	    }
+	  }
+	}
+      }
+    } 
+    border-top:	1px solid $CardTopBoder;
+    padding: 5px;
+    display: flex;
+  }
 
-div .reporter_back:after{
-  content: "";
-  position: absolute;
-  top: 50%; 
-  right: -9px;
-  margin-top: -10px;
-  display: block;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #19283C;
-}
-
-div .reporter {
-  padding: 0 5px;
-}
-
-div .comment_back{
-  padding: 0 10px;
-  text-align: center;
-}
-
-div .comment{
-  line-height: 30px;
+  &.card-content-row-3 {
+    & div {
+      &.watch-part {
+        & p{
+	  margin: 0px;
+    	}
+	text-align: center;
+	border-right: solid 1px $CardSideBoder;
+      }
+      &.tell-part {
+        & p{
+      	  margin: 0px;
+        }
+	text-align: center;
+	border-right: solid 1px $CardSideBoder;
+      }
+      &.good-part {
+        & p{
+          margin: 0px;
+        }
+	text-align: center;
+      }
+      padding: 5px;
+    }
+    border-top: 1px solid $CardTopBoder;
+    padding: 5px;
+    display: flex;
+  }
 }

@@ -2,86 +2,48 @@
   <% restaurants.each do |restaurant| %>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <section class="card">
-        <!-- img -->
-        <!-- <img class="card-img" src="" alt=""> -->
-        <div class="card-content">
-          <h1 class="card-title">
-	    <!-- follow system -->
-	    <% if logged_in? %>
-	      <% if current_user.restaurants.include? restaurant %>
-	        <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>         
-	          <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-	        <% end %>
-	      <% else %>
-	        <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>             
-	          <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-	        <% end %>
-	      <% end %>
-	    <% end %>
-	  
-	    <!-- end of follow system -->
-	  
-	    <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
-	  </h1>	
-        </div>
-        <div class="card-content">
-	  <table class="table-hover" border="0">
-            <tr>
-              <td align="center">
-	        <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              <td align="center" rowspan="2">
-                <%= link_to image_tag('menu_bar_icon_nw/tell_icon_brack.png', {:border => '0', :alt => 'tell', :size => "60x60"}), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-	      </td>
-            </tr>
-            <tr>
-              <td align="center">
-                <%= link_to how_crowded[restaurant.crowdedness], { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              </td>
-            </tr>
-          </table>
-        </div>
 
-	<!-- col 3 -->
-        <div class="card-comment"><!-- tennを抜きました by akio -->
-          <% last_comment = 'コメント無し' %>
-	  <% non_reporter = '報告者がいません' %>
-	  <% reporter = non_reporter %>
-          <% if restaurant.latest_comment.present? %>
-	    <% reporter = restaurant.latest_comment.user.nickname %>
-            <% if restaurant.latest_comment.comment.present? %>
-              <% last_comment = restaurant.latest_comment.comment %>
-            <% else %>
-              <% last_comment = '最新コメント無し' %>
-            <% end %>
-          <% end %>
-	    <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
-	  
-	  <div class="comment_report">
-	    <!-- reporter part -->
-	    <div class="reporter_back">
-	      <div class="reporter">
-		<% if reporter != non_reporter %>
-		  <%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id ) %>
-		<% else %>
-		  <%= reporter %>
-		<% end %>
-	      </div>
+	<!-- store title -->
+	<article class="card-content-row-1">
+	  <p>あがり</p>
+        </article>
+
+	<!-- state & comment & commenter -->
+        <article class="card-content-row-2">
+	  <div class="state-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <div class="state-icon">
+	      <%= image_tag(crowded_image[0], :size => "40x40") %>
 	    </div>
-
-	    <!-- comment part -->
-	    <div class="comment_back">
-	      <div class="comment">
-		<% if last_comment != 'コメント無し' %>
-	          <%= link_to last_comment.truncate(16), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
-		<% else %>
-	          <%= last_comment %>
-	        <% end %>
-	      </div>
+	    <div class="state-caption">
+	      <p>すいてる</p>
 	    </div>
 	  </div>
-	</div> 
-	 
+	  <div class="user-comment col-xs-8 col-sm-8 col-md-8 col-lg-8">
+	    <div class="comment-part">
+	      <p>ここにコメントを書けばいいのか。</p>
+	    </div>
+	    <div class="commenter-part">
+	      <p>@akio_r</p>
+	    </div>
+	  </div>
+	</article>
+
+	<!-- watch & tell & good! buttons -->
+	<article class="card-content-row-3">
+	  <div class="watch-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>お店を</p>
+	    <button type="button" class="btn btn-default btn-xs">watch</button>
+	  </div>
+	  <div class="tell-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>状況を</p>
+	    <button type="button" class="btn btn-default btn-xs">伝える</button>
+	  </div>
+	  <div class="good-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>コメントを</p>
+	    <button type="button" class="btn btn-default btn-xs">いいね！</button>
+	  </div>
+	</article>
+
       </section>
     </div>
   <% end %>
