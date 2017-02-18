@@ -45,7 +45,8 @@
 	<!-- col 3 -->
         <div class="card-comment"><!-- tennを抜きました by akio -->
           <% last_comment = 'コメント無し' %>
-	  <% reporter = '報告者はいません' %>
+	  <% non_reporter = 'abcdefghijklmnopqrstuvwxyz' %>
+	  <% reporter = non_reporter %>
           <% if restaurant.latest_comment.present? %>
 	    <% reporter = restaurant.latest_comment.user.nickname %>
             <% if restaurant.latest_comment.comment.present? %>
@@ -60,7 +61,7 @@
 	    <!-- reporter part -->
 	    <div class="reporter_back">
 	      <div class="reporter">
-		<% if reporter != '報告者はいません' %>
+		<% if reporter != non_reporter %>
 		  <%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id ) %>
 		<% else %>
 		  <%= reporter %>

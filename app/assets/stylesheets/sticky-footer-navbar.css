@@ -126,10 +126,10 @@ div .reporter_back {
   display: inline-block;
   padding: 0 15px;
   width: auto;
-  min-width: 115px;
-  height: 40px;
+  min-width: 40px; /*default : 115px*/
+  height: 30px;
   color: #F6F6F6;
-  line-height: 40px;
+  line-height: 30px;
   text-align: center;
   background: #19283C;
   z-index: 0;
@@ -139,7 +139,7 @@ div .reporter_back:after{
   content: "";
   position: absolute;
   top: 50%; 
-  right: -10px;
+  right: -9px;
   margin-top: -10px;
   display: block;
   width: 0px;
@@ -159,5 +159,5 @@ div .comment_back{
 }
 
 div .comment{
-  line-height: 40px;
+  line-height: 30px;
 }
