@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   
   post 'restaurants/search' => 'restaurants#search', as: :restaurants_search
   get 'restaurants/search' => 'restaurants#index'
-  
+  get 'restaurants/tell_search' => 'restaurants#tell_index', as: :tell_index
+  post 'restaurants/tell_search' => 'restaurants#tell_search', as: :tell_search
+
   get 'restaurants/user_ranking' 
   get 'restaurants/comment_log'
   post 'restaurants/comment_log', as: :comment_log
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
       post 'add_like_point'
       post 'cancel_like'
       get 'all_rest'
-      
       post 'rest_ind'
       post 'rest_show'
       

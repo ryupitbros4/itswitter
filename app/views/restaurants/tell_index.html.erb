@@ -1,0 +1,13 @@
+<%= render '/flash_msg2' %>
+<div class="contents">
+<h3>伝えたいお店を検索しよう</h3>
+
+<%= form_tag(tell_search_path) do |f| %>
+<div class="input-group">
+  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '店名を入力してください' %>
+  <span class="input-group-btn">
+    <%= button_tag '検索', class: 'btn btn-default' %>
+  </span>
+</div>
+<% end %>
+</div>
