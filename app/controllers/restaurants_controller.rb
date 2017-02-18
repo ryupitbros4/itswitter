@@ -72,11 +72,11 @@ class RestaurantsController < ApplicationController
   def tell_search
     tell_escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
     if tell_escaped.blank?
-      redirect_to :tell_index, :alert => '店名を入力して下さい'
+      redirect_to :tell_index, :alert => '店名を入力して下さい' and return
     end
     @tell_searched = Restaurant.where("name like ? or hurigana like ?", "%#{tell_escaped}%", "%#{tell_escaped}%")
     if @tell_searched.empty?
-      redirect_to :tell_index, :alert => 'お店がヒットしませんでした'
+      redirect_to :tell_index, :alert => 'お店がヒットしませんでした' and return
     end
   end
 
@@ -111,7 +111,7 @@ class RestaurantsController < ApplicationController
     @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
 
     if escaped.blank?
-      redirect_to :root, :alert => '店名を入力して下さい'
+      redirect_to :root, :alert => '店名を入力して下さい' and return
     end
     
     @searched = Restaurant.where("name like ? or hurigana like ?", "%#{escaped}%", "%#{escaped}%")
