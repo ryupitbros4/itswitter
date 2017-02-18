@@ -1,35 +1,23 @@
 <%= render '/flash_msg2' %>
-
 <div class="jumbotron" >
-  <h2>飲食店の状況を伝えよう。</h2>
+  <h3><%= @restaurant_id.name %><br></h3>
+  <h4>お店の状況を伝えよう。</h4>
 </div>
 
-
 <div class="container">
-  
   <%= form_for @restaurant, url: { action: 'deliver' } do |f| %>
+  <!-- 店のid-->
+        <%= f.hidden_field :id , :value => @restaurant_id.id %> 
   <!-- panel -->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">1.伝えたい店名を選ぼう。<span class="text-danger">(必須)</span></h3>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-	<%= f.select :id ,@restaurant_names, {prompt: '選択してください'}, { class: 'form-control'} %>
-      </div>
-    </div>
-  </div>
-
-  <!-- panel -->
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">2.混雑度はどれくらいですか？<span class="text-danger">(必須)</span></h3>
+      <h3 class="panel-title">1.混雑度はどれくらいですか？<span class="text-danger">(必須)</span></h3>
     </div>
     <div class="panel-body">
       <table class="table">
 	<tbody>
 	  <tr>
-            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 0, {:id => 'garagara', :checked => false} %><%= label_tag nil, nil, for: 'garagara' %></td>
+            <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 0, {:id => 'garagara', :checked => true} %><%= label_tag nil, nil, for: 'garagara' %></td>
             <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 1, {:id => 'yayakomi'} %><%= label_tag nil, nil, for: 'yayakomi' %></td>
             <td class="col-md-4" align="center"><%= f.radio_button :crowdedness, 2, {:id => 'komi'} %><%= label_tag nil, nil, for: 'komi' %></td>
 	  </tr>
@@ -56,7 +44,7 @@
   <!-- panel -->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">3.伝えたいコメントはありますか？</h3>
+      <h3 class="panel-title">2.伝えたいコメントはありますか？</h3>
     </div>
     <div class="panel-body">
       <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control", placeholder: '例：５人待ちくらいです！' %>

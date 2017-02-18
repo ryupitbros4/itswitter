@@ -68,9 +68,51 @@ class Restaurant < ActiveRecord::Base
   end
   
   def self.order_by_crowdedness
-    #Restaurant.where('? - updated_at > 600', Time.zone.now.to_i ).order(updated_at: :desc).sort_by(&:crowdedness)
-    #Restaurant.where((Time.zone.now - self.updated_at).to_i < 600).order(updated_at: :desc).sort_by(&:crowdedness)
-    Restaurant.order(updated_at: :desc).sort_by(&:crowdedness)
+    Restaurant.where('updated_at > ?', 10.minutes.ago).order(updated_at: :desc).sort_by(&:crowdedness)
+    #Restaurant.order(updated_at: :desc).sort_by(&:crowdedness)
+  end
+  
+  #頭文字が一致する店名を取得する
+  def self.initial_search(initial_word)
+    #文字を含む店名を取得
+    r = Restaurant.where('hurigana LIKE ?', "%#{initial_word}%").order(:hurigana)
+    
+    #濁音、半濁音に対応させるための表
+    gozyuuonnd_list = ["か", "き", "く", "け", "こ","さ", "し", "す", "せ", "そ","た", "ち", "つ", "て", "と","は", "ひ","ふ", "へ", "ほ"]
+    gozyuuonnd = ["が", "ぎ", "ぐ", "げ", "ご","ざ", "じ", "ず", "ぜ", "ぞ","だ", "ぢ", "づ", "で", "ど","ば", "び","ぶ", "べ", "ぼ","ぱ","ぴ","ぷ","ぺ","ぽ"]
+    
+    id = []
+     
+    #頭文字が一致する店名のidを取得
+    r.each do |restaurant|
+      if restaurant.hurigana.start_with?(initial_word)
+        id.push(restaurant.id)
+      end
+    end
+    
+    #文字が表に含まれる場合(濁音、半濁音化できる文字)
+    if gozyuuonnd_list.include?(initial_word)
+      ind = gozyuuonnd_list.index(initial_word)
+      r_d = Restaurant.where('hurigana LIKE ?', "%#{gozyuuonnd[ind]}%").order(:hurigana)
+      
+      r_d.each do |restaurant_d|
+        if restaurant_d.hurigana.start_with?(gozyuuonnd[ind])
+          id.push(restaurant_d.id)
+        end
+      end
+      
+      if ind >= 15
+        r_p = Restaurant.where('hurigana LIKE ?', "%#{gozyuuonnd[ind + 5]}%").order(:hurigana)
+        r_p.each do |restaurant_p|
+          if restaurant_p.hurigana.start_with?(gozyuuonnd[ind + 5])
+            id.push(restaurant_p.id)
+          end
+        end
+      end
+    end
+    
+    r = Restaurant.find(id)
+    return r
   end
   
   def latest_comment

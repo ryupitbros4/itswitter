@@ -1,0 +1,21 @@
+<div class="contents">
+<h3>伝えたいお店を検索しよう</h3>
+
+<%= form_tag(tell_search_path) do |f| %>
+<div class="input-group">
+  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '店名を入力してください' %>
+  <span class="input-group-btn">
+    <%= button_tag '検索', class: 'btn btn-default' %>
+  </span>
+</div>
+<% end %>
+</div>
+
+<div class="contents">
+<h2>検索店舗一覧</h2>
+<% @tell_searched.each do |shop| %>
+<%= link_to shop.name, { :controller => "restaurants", :action => "report", :resname => shop.id}, {:class => "btn"} %>
+<br>
+<% end %>
+
+</div>
