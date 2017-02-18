@@ -45,7 +45,7 @@
 	<!-- col 3 -->
         <div class="card-comment"><!-- tennを抜きました by akio -->
           <% last_comment = 'コメント無し' %>
-	  <% non_reporter = 'abcdefghijklmnopqrstuvwxyz' %>
+	  <% non_reporter = '報告者がいません' %>
 	  <% reporter = non_reporter %>
           <% if restaurant.latest_comment.present? %>
 	    <% reporter = restaurant.latest_comment.user.nickname %>
