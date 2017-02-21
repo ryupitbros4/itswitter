@@ -96,7 +96,7 @@ class RestaurantsController < ApplicationController
   
   def index
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","記録なし"]
     
     #占有率が低い順に並び替える
     @rank=Restaurant.order_by_crowdedness
@@ -108,7 +108,7 @@ class RestaurantsController < ApplicationController
   
   def search
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","記録なし"]
 
     if escaped.blank?
       redirect_to :root, :alert => '店名を入力して下さい' and return
@@ -283,7 +283,7 @@ class RestaurantsController < ApplicationController
     #五十音表の配列を宣言
     @gozyuuonn = ["あ","か","さ","た","な","は","ま","や","ら","わ"]
     @gozyuuonn2 = [["あ", "い", "う", "え", "お"], ["か", "き", "く", "け", "こ"], ["さ", "し", "す", "せ", "そ"], ["た", "ち", "つ", "て", "と"], ["な", "に", "ぬ", "ね", "の"], ["は", "ひ","ふ", "へ", "ほ"], ["ま", "み", "む", "め", "も"], ["や", "ゆ", "よ"], ["ら", "り", "る", "れ", "ろ"], ["わ", "を", "ん"]]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","記録なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
   end
   
@@ -300,7 +300,7 @@ class RestaurantsController < ApplicationController
   
   def rest_show
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","記録なし"]
 
     if params["res_name"].blank?
       @name = ""

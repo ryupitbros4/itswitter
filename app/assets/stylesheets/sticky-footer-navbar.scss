@@ -1,20 +1,21 @@
 
 /* color set */
-$Thema:#f0a202;
-$SubThema:#efe9e7;
-$Accent:#ef6461;
-$Highlight:#272d2d;
-$Flat:#81c14b;
+$Thema:#1d1a05;
+$SubThema:#ffbf69;
+$Accent:#a92541;
+$Highlight:#035e7b;
+$Flat:#f3eac5;
 
 /* all color valuable */
-$BodyThema:$Thema; /*#F4A460*/
-$ContentsThema: rgba(255,255,255,0.7);
+$BodyThema:$Flat; /*#F4A460*/
+$ContentsThema:rgba(255,255,255,0.7);
+$JumbotronColor:$Flat;
 $FooterThema:$SubThema; /*#f5f5f5*/
 $CardThema:#fff; /*#fff*/
 $CardShadow:#ccc;
-$CardTitle:#333;
+$CardTitle:$Flat; /*#333*/
 $CardText:#777;
-$CardTopBoder:#eee;
+$CardTopBoder:$Thema;
 $CardSideBoder:$CardTopBoder;
 $CardComment:#0bd;
 $CardCommentHover:#0090aa;
@@ -31,6 +32,12 @@ body{
   margin-bottom: 70px;
   background-color: $BodyThema; 
 }
+
+.jumbotron{
+  background-color: $JumbotronColor;
+  /*color: #FFFFFF;*/
+}
+
 
 .contents{
   margin-right: 10px;
