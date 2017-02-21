@@ -63,12 +63,12 @@
 	        <!-- watchフラグを下ろす  -->
 		<% follow_card_func = 'follow_system.unfollowIt(' + restaurant.id.to_s + ')' %>
 		<% follow_card = 'follow-' + restaurant.id.to_s %>
-	        <button type="button" class="btn btn-default btn-xs"><%= link_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, 'onclick' => follow_card_func, id: follow_card } %></button>
+	        <button type="button" class="btn btn-default btn-xs"><%= link_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, id: follow_card } %></button>
 	      <% else # follow no %>
 	        <% unfollow_card_func = 'follow_system.followIt(' + restaurant.id.to_s + ')' %>
 		<% unfollow_card = 'unfollow-' + restaurant.id.to_s %>
 	        <!-- watchフラグを上げる-->
-	        <button type="button" class="btn btn-default btn-xs"><%= link_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, 'onclick' => unfollow_card_func, id: unfollow_card } %></button>
+	        <button type="button" class="btn btn-default btn-xs"><%= link_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, id: unfollow_card } %></button>
 	      <% end %>
 	    <% else %>
 	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">ブクマする</button>

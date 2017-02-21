@@ -4,18 +4,19 @@
 
 class @FollowSystem
   unfollowIt: (restaurantNumber) ->
-    newURL = "restaurants/#{restaurantNumber}/follow"
+    newURL = "/restaurants/#{restaurantNumber}/follow"
     thisId = "follow-#{restaurantNumber}" 
     document.getElementById(thisId).href = newURL
-    newClick = "followIt(#{restaurantNumber})"
-    document.getElementById(thisId).onclick = newClick
+    newId = "unfollow-#{restaurantNumber}"
+    document.getElementById(thisId).id = newId
+    document.getElementById(newId).innerHTML = "ブクマする"
 
   followIt: (restaurantNumber) ->
-    newURL = "restaurants/#{restaurantNumber}/unfollow"
+    newURL = "/restaurants/#{restaurantNumber}/unfollow"
     thisId = "unfollow-#{restaurantNumber}"
     document.getElementById(thisId).href = newURL
-    newClick = "unfollowIt(#{restaurantNumber})"
-    document.getElementById(thisId).onclick = newClick
-
+    newId = "follow-#{restaurantNumber}"
+    document.getElementById(thisId).id = newId
+    document.getElementById(newId).innerHTML = "ブクマはずす"
 
 @follow_system = new FollowSystem()
