@@ -111,6 +111,7 @@ article {
 	  }
 	  &.state-caption {
 	    & p{
+	      font-size: calc(80% + 0.5vw);
 	      margin: 0px;
 	    }
 	    text-align: center;
@@ -121,9 +122,11 @@ article {
       &.user-comment {
         & div {
 	  &.comment-part {
-	    & p {
+	    & a {
+	      font-size: calc(80% + 0.5vw);
 	      margin: 0px;
 	    }
+	    margin-top: 2px;
 	  }
 	  &.commenter-part {
 	    & p{
