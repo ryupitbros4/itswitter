@@ -28,6 +28,9 @@ Rails.application.routes.draw do
 
   get 'restaurants/shop_info', as: :shop_info
   
+  #post 'add_like_point', as: :add_like_point
+  #post 'cancel_like', as: :cancel_like
+  
   resources :restaurants do 
     collection do
       get 'report'

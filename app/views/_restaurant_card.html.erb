@@ -87,25 +87,31 @@
 	  <div class="good-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
 	    
 	    <p>コメントを</p>
-	    <% if login_check && (restaurant.latest_comment.user_id != session[:user_id]) && (!restaurant.latest_comment.user_id.blank?) %>
+	    
+	    <% if !(restaurant.latest_comment.blank?) && !(session[:user_id].blank?) %>
+	    <% if login_check && (restaurant.latest_comment.user_id != session[:user_id]) %>
 	    <!-- ここに分岐 -->
 	    <% if PressedUser.find_by(comment_id: restaurant.latest_comment.id, user_id: session[:user_id]).blank? %>
+	    
 	    <button type="button" class="btn btn-default btn-xs">
-	      <%= link_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
+	      <%= link_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
 	    </button>
+	    <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
 	    <% else %>
 	    <button type="button" class="btn btn-default btn-xs">
-	      <%= link_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
+	      <%= link_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
 	    </button>
+	    <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id} %>
 	    <% end %>
-	    
 	    <% else %>
 	    <button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
 	    <% end %>
+	    <% else %>
+	    <button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
+	    <% end %>
+	    
 	  </div>
-	  
 	</article>
-	
       </section>
     </div>
     <% end %>

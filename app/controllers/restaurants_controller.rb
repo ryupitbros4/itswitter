@@ -311,7 +311,7 @@ class RestaurantsController < ApplicationController
     @restaurants_initial = Restaurant.initial_search(@name)
     render :rest_show
   end 
-  
+    
   private
   
   def set_restaurants
