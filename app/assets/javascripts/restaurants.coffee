@@ -34,7 +34,7 @@ class @GoodnessSystem
     thisId = "not-good-#{restaurantNumber}"
     newId = "good-#{restaurantNumber}"
 
-    document.getElementById(thisId).value = "いいね!"
+    document.getElementById(thisId).value = "いいね！取り消し"
     document.getElementById(thisId).id = newId
     document.getElementById(newID).parentNode.setAttribute('action', newURL)
 
@@ -46,7 +46,7 @@ class @GoodnessSystem
     thisId = "good-#{restaurantNumber}"
     newId = "not-good-#{restaurantNumber}"
 
-    document.getElementById(thisId).value = "いいね!取り消し"
+    document.getElementById(thisId).value = "いいね！"
     document.getElementById(thisId).id = newId
     document.getElementById(newID).parentNode.setAttribute('action', newURL)
 
