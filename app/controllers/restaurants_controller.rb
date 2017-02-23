@@ -242,11 +242,15 @@ class RestaurantsController < ApplicationController
     current_user ||= User.find(session[:user_id])
     current_user.point = current_user.point + 1
     current_user.save!
-    
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'restaurant/add_like_point', locals: { restaurant: Restaurant.find(params[:restaurant_id]) } }
+    end
+
     # :backがテストでNo HTTP_REFEREになるためrescueする
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
+    #rescue ActionController::RedirectBackError
+      #redirect_to root_path
   end
   
   def cancel_like
@@ -269,10 +273,13 @@ class RestaurantsController < ApplicationController
     current_user.point = current_user.point - 1
     current_user.save!
     
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'restaurant/cancel_link', locals: { restaurant: Restaurant.find(params[:restaurant_id]) } }
+    end
     # :backがテストでNo HTTP_REFEREになるためrescueする
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
+    #rescue ActionController::RedirectBackError
+      #redirect_to root_path
   end
 
   def all_rest
