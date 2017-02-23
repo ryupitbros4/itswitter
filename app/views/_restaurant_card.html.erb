@@ -63,34 +63,32 @@
 	        <!-- watchフラグを下ろす  -->
 		<% follow_card_func = 'follow_system.unfollowIt(' + restaurant.id.to_s + ')' %>
 		<% follow_card = 'follow-' + restaurant.id.to_s %>
-	        <button type="button" class="btn btn-default btn-xs">
-                  <%= link_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, id: follow_card } %>
-                </button>
+		
+		<%= button_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, id: follow_card, class: "btn btn-default btn-xs" } %>
+		
 	      <% else # follow no %>
 	        <% unfollow_card_func = 'follow_system.followIt(' + restaurant.id.to_s + ')' %>
 		<% unfollow_card = 'unfollow-' + restaurant.id.to_s %>
 	        <!-- watchフラグを上げる-->
-	        <button type="button" class="btn btn-default btn-xs">
-                  <%= link_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, id: unfollow_card } %>
-                </button>
+		
+		<%= button_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, id: unfollow_card, class: "btn btn-default btn-xs" } %>
+		
 	      <% end %>
 	    <% else %>
 	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">ブクマする</button>
 	    <% end %>
 	  </div>
-
+	  
 	  <div class="tell-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
 	    <p>状況を</p>
 	    <% if login_check %>
-	      <button type="button" class="btn btn-default btn-xs">
-                <%= link_to '伝える', { :controller => "restaurants", :action => "report", :resname => restaurant.id} %>
-              </button>
-	      <%#= button_to "伝える", { :controller => "restaurants", :action => "report", :resname => restaurant.id}, class: "btn btn-default btn-xs" %>
+	    <input type="button" onclick="location.href='<%= report_restaurants_path(:resname => restaurant.id) %> '" value="伝える" class="btn btn-default btn-xs">
+	      
 	    <% else %>
 	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">伝える</button>
 	    <% end %>
 	  </div>
-
+	  
 	  <div class="good-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
 	    <p>コメントを</p>
 	    <% if !(restaurant.latest_comment.blank?) && !(session[:user_id].blank?) # コメントが空？ and ログインしていない？ %>
@@ -103,12 +101,13 @@
 
                   <% good_card = 'good-' + restaurant.id.to_s %>
 	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { class: "btn btn-default btn-xs", id: good_card } %>
+
 	        <% end %>
-	      <% else %>
-	        <%= button_to "いいね!",  {:action => "add_like_point"}, {:disabled=>true, class: "btn btn-default btn-xs"} %>
+		<% else %>
+		<button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
 	      <% end %>
 	    <% else %>
-	      <%= button_to "いいね!",  {:action => "add_like_point"}, {:disabled=>true, class: "btn btn-default btn-xs"} %>
+	    <button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
 	    <% end %>
 	  </div>
 	</article>
