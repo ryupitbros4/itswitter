@@ -1,10 +1,12 @@
 <div class="container">
-  <div class="btn-group akasatana" id="akasatana">
+  <div style="height:48px; width:300px; overflow-x:auto; overflow-y: hidden;">
+  <div class="btn-group akasatana" id="akasatana" >
     <% @gozyuuonn.each_with_index do |aiu,index| %>
     <button type="button" id="<%= index %>" class="btn btn-primary" name="<%= aiu %>" > <font size="5"><%= aiu %></font> </button>
     <% end %>
   </div>
-  
+  </div>
+
   <br>
   <br>
   
@@ -16,6 +18,17 @@
   <div id="show">
   </div>
 </div>
+
+<div style="height:100px; width:100px; overflow-x:scroll;">
+<center>
+せる2
+<br>
+<br>
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</center>
+</div>
+
 
 <script>
   $(".akasatana .btn").on("click", function(){
