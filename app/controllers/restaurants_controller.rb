@@ -245,7 +245,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js { render 'restaurant/add_like_point', locals: { restaurant: Restaurant.find(params[:restaurant_id]) } }
+      format.js { render 'restaurant/add_like_point', locals: { restaurant: Restaurant.find(params[:restaurant_id], commentID: comment_id, userID: comment_user_id) } }
     end
 
     # :backがテストでNo HTTP_REFEREになるためrescueする
@@ -275,7 +275,7 @@ class RestaurantsController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js { render 'restaurant/cancel_link', locals: { restaurant: Restaurant.find(params[:restaurant_id]) } }
+      format.js { render 'restaurant/cancel_link', locals: { restaurant: Restaurant.find(params[:restaurant_id]), commentID: comment_id, userID: user_id } }
     end
     # :backがテストでNo HTTP_REFEREになるためrescueする
     #rescue ActionController::RedirectBackError
