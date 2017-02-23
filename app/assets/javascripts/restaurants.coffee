@@ -6,24 +6,24 @@ class @FollowSystem
   unfollowIt: (restaurantNumber) ->
     newURL = "/restaurants/#{restaurantNumber}/follow"
     thisId = "follow-#{restaurantNumber}" 
-    document.getElementById(thisId).href = newURL
+    document.getElementById(thisId).value = "ブクマする"
     newId = "unfollow-#{restaurantNumber}"
     document.getElementById(thisId).id = newId
-    document.getElementById(newId).innerHTML = "ブクマする"
+    document.getElementById(newId).parentNode.setAttribute('action', newURL )
 
   followIt: (restaurantNumber) ->
     newURL = "/restaurants/#{restaurantNumber}/unfollow"
     thisId = "unfollow-#{restaurantNumber}"
-    document.getElementById(thisId).href = newURL
+    document.getElementById(thisId).value = "ブクマはずす"
     newId = "follow-#{restaurantNumber}"
     document.getElementById(thisId).id = newId
-    document.getElementById(newId).innerHTML = "ブクマはずす"
+    document.getElementById(newId).parentNode.setAttribute('action', newURL)
 
 @follow_system = new FollowSystem()
 
 class @GoodnessSystem
   notGoodIt: (restaurantNumber) ->
-  
+    
   goodIt: (restaurantNumber) ->
 
 
