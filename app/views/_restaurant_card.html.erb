@@ -98,11 +98,11 @@
 	        <% else %>
 	          <%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id}, class: "btn btn-default btn-xs" %>
 	        <% end %>
-	      <% else %>
-	        <%= button_to "いいね!",  {:action => "add_like_point"}, {:disabled=>true, class: "btn btn-default btn-xs"} %>
+		<% else %>
+		<button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
 	      <% end %>
 	    <% else %>
-	      <%= button_to "いいね!",  {:action => "add_like_point"}, {:disabled=>true, class: "btn btn-default btn-xs"} %>
+	    <button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
 	    <% end %>
 	  </div>
 	</article>
