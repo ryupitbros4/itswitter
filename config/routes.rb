@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'all_rest'
       post 'rest_ind'
       post 'rest_show'
+
       
       get 'promotion'
       get 'slide_explain'

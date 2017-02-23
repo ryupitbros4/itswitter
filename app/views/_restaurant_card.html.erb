@@ -94,9 +94,14 @@
 	    <% if !(restaurant.latest_comment.blank?) && !(session[:user_id].blank?) # コメントが空？ and ログインしていない？ %>
 	      <% if login_check && (restaurant.latest_comment.user_id != session[:user_id]) # ログインしているか？ and 報告者とログイン者は同じか？ %>
 	        <% if PressedUser.find_by(comment_id: restaurant.latest_comment.id, user_id: session[:user_id]).blank?  # すでにいいねされていない？%>
-	          <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id}, class: "btn btn-default btn-xs" %>
+
+                  <% not_good_card = 'not-good-' + restaurant.id.to_s %>
+	          <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { class: "btn btn-default btn-xs", id: not_good_card } %>	    
 	        <% else %>
-	          <%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id}, class: "btn btn-default btn-xs" %>
+
+                  <% good_card = 'good-' + restaurant.id.to_s %>
+	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { class: "btn btn-default btn-xs", id: good_card } %>
+
 	        <% end %>
 		<% else %>
 		<button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
