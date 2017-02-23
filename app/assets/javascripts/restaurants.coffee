@@ -30,7 +30,7 @@ class @GoodnessSystem
     commentId = commentNumber
     restaurantId = restaurantNumber
     userId = userNumber
-    newURL = "/restaurants/cancel_link?comment_id=#{commentId}&amp;restaurant_id=#{restaurantId}&amp;user_id=#{userId}"
+    newURL = "/restaurants/cancel_like?comment_id=#{commentId}&amp;restaurant_id=#{restaurantId}&amp;user_id=#{userId}"
     thisId = "not-good-#{restaurantNumber}"
     newId = "good-#{restaurantNumber}"
 
