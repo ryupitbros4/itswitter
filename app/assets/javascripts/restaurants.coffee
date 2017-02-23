@@ -36,7 +36,7 @@ class @GoodnessSystem
 
     document.getElementById(thisId).value = "いいね！取り消し"
     document.getElementById(thisId).id = newId
-    document.getElementById(newID).parentNode.setAttribute('action', newURL)
+    document.getElementById(newId).parentNode.setAttribute('action', newURL)
 
   goodIt: (commentNumber, restaurantNumber, userNumber) ->
     commentId = commentNumber
@@ -48,6 +48,6 @@ class @GoodnessSystem
 
     document.getElementById(thisId).value = "いいね！"
     document.getElementById(thisId).id = newId
-    document.getElementById(newID).parentNode.setAttribute('action', newURL)
+    document.getElementById(newId).parentNode.setAttribute('action', newURL)
 
 @goodness_system = new GoodnessSystem()
