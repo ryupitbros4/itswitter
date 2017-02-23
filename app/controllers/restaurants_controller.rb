@@ -249,8 +249,8 @@ class RestaurantsController < ApplicationController
     end
 
     # :backがテストでNo HTTP_REFEREになるためrescueする
-    #rescue ActionController::RedirectBackError
-      #redirect_to root_path
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
   
   def cancel_like
@@ -278,8 +278,8 @@ class RestaurantsController < ApplicationController
       format.js { render 'cancel_like', locals: { restaurant: Restaurant.find(params[:restaurant_id]), commentID: comment_id, userID: comment_user_id } }
     end
     # :backがテストでNo HTTP_REFEREになるためrescueする
-    #rescue ActionController::RedirectBackError
-      #redirect_to root_path
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
 
   def all_rest
