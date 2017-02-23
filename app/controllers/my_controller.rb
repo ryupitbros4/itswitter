@@ -51,4 +51,5 @@ class MyController < ApplicationController
       format.js { render 'my/unfollow', locals: { restaurant: Restaurant.find(params[:restaurant_id]) } }
     end
   end
+
 end

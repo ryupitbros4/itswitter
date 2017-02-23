@@ -1,88 +1,117 @@
 <div class="container">
   <% restaurants.each do |restaurant| %>
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <section class="card">
-        <!-- img -->
-        <!-- <img class="card-img" src="" alt=""> -->
-        <div class="card-content">
-          <h1 class="card-title">
-	    <!-- follow system -->
-	    <% if logged_in? %>
-	      <% if current_user.restaurants.include? restaurant %>
-	        <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォロー解除する' } do %>         
-	          <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-	        <% end %>
-	      <% else %>
-	        <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'フォローする' } do %>             
-	          <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-	        <% end %>
-	      <% end %>
-	    <% end %>
-	  
-	    <!-- end of follow system -->
-	  
-	    <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-	    <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>	  
-	  </h1>	
-        </div>
-        <div class="card-content">
-	  <table class="table-hover" border="0">
-            <tr>
-              <td align="center">
-	        <%= link_to image_tag(crowded_image[restaurant.crowdedness], :size => "32x32"), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              <td align="center" rowspan="2">
-                <%= link_to image_tag('menu_bar_icon_nw/tell_icon_brack.png', {:border => '0', :alt => 'tell', :size => "60x60"}), { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-	      </td>
-            </tr>
-            <tr>
-              <td align="center">
-                <%= link_to how_crowded[restaurant.crowdedness], { :controller => "restaurants", :action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              </td>
-            </tr>
-          </table>
-        </div>
 
-	<!-- col 3 -->
-        <div class="card-comment"><!-- tennを抜きました by akio -->
-          <% last_comment = 'コメント無し' %>
-	  <% non_reporter = '報告者がいません' %>
-	  <% reporter = non_reporter %>
-          <% if restaurant.latest_comment.present? %>
-	    <% reporter = restaurant.latest_comment.user.nickname %>
-            <% if restaurant.latest_comment.comment.present? %>
-              <% last_comment = restaurant.latest_comment.comment %>
-            <% else %>
-              <% last_comment = '最新コメント無し' %>
-            <% end %>
-          <% end %>
-	    <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
-	  
-	  <div class="comment_report">
-	    <!-- reporter part -->
-	    <div class="reporter_back">
-	      <div class="reporter">
-		<% if reporter != non_reporter %>
-		  <%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id ) %>
-		<% else %>
-		  <%= reporter %>
-		<% end %>
-	      </div>
+	<!-- store title -->
+	<article class="card-content-row-1">
+	  <%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %>
+        </article>
+
+	<!-- state & comment & commenter -->
+        <article class="card-content-row-2">
+	  <div class="state-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <div class="state-icon">
+	      <%= image_tag(crowded_image[restaurant.crowdedness], :size => "40x40") %>
 	    </div>
-
-	    <!-- comment part -->
-	    <div class="comment_back">
-	      <div class="comment">
-		<% if last_comment != 'コメント無し' %>
-	          <%= link_to last_comment.truncate(16), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
-		<% else %>
-	          <%= last_comment %>
-	        <% end %>
-	      </div>
+	    <div class="state-caption">
+	      <p><%= how_crowded[restaurant.crowdedness] %></p>
 	    </div>
 	  </div>
-	</div> 
-	 
+
+	  <div class="user-comment col-xs-8 col-sm-8 col-md-8 col-lg-8">
+	    <% no_comment = 'まだコメントがありません。' %>
+	    <% last_comment = no_comment %>
+	    <% non_reporter = '報告者がいません' %>
+	    <% reporter = non_reporter %>
+
+	    <% if restaurant.latest_comment.present? %>
+	      <% reporter = restaurant.latest_comment.user.nickname %>
+	      <% if restaurant.latest_comment.comment.present? %>
+	        <% last_comment = restaurant.latest_comment.comment %>
+	      <% else %>
+	        <% last_comment = '最新コメントなし' %>
+	      <% end %>
+	    <% end %>
+	    
+	    <div class="commenter-part">
+	      <% if reporter != non_reporter %>
+	        <%= image_tag(User.find(restaurant.latest_comment.user_id).image_url, size: "19x19") %>
+		<%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id )%>
+	      <% else %>
+	        <p><%= reporter %></p>
+	      <% end %>
+            </div>
+	    <div class="comment-part">
+	      <% if last_comment != no_comment %>
+	        <%= link_to last_comment.truncate(24), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+	      <% else %>
+	        <p><%= last_comment %></p>
+	      <% end %>
+	    </div>
+	  </div>
+
+	</article>
+
+	<!-- watch & tell & good! buttons -->
+	<article class="card-content-row-3">
+	  <% login_check = logged_in? %>
+	  <div class="watch-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>お店を</p>
+	    <% if login_check %>
+	      <% if current_user.restaurants.include? restaurant # follow yes %>
+	        <!-- watchフラグを下ろす  -->
+		<% follow_card_func = 'follow_system.unfollowIt(' + restaurant.id.to_s + ')' %>
+		<% follow_card = 'follow-' + restaurant.id.to_s %>
+		
+		<%= button_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, id: follow_card, class: "btn btn-default btn-xs" } %>
+		
+	      <% else # follow no %>
+	        <% unfollow_card_func = 'follow_system.followIt(' + restaurant.id.to_s + ')' %>
+		<% unfollow_card = 'unfollow-' + restaurant.id.to_s %>
+	        <!-- watchフラグを上げる-->
+		
+		<%= button_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, id: unfollow_card, class: "btn btn-default btn-xs" } %>
+		
+	      <% end %>
+	    <% else %>
+	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">ブクマする</button>
+	    <% end %>
+	  </div>
+	  
+	  <div class="tell-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>状況を</p>
+	    <% if login_check %>
+	    <input type="button" onclick="location.href='<%= report_restaurants_path(:resname => restaurant.id) %> '" value="伝える" class="btn btn-default btn-xs">
+	      
+	    <% else %>
+	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">伝える</button>
+	    <% end %>
+	  </div>
+	  
+	  <div class="good-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	    <p>コメントを</p>
+	    <% if !(restaurant.latest_comment.blank?) && !(session[:user_id].blank?) # コメントが空？ and ログインしていない？ %>
+	      <% if login_check && (restaurant.latest_comment.user_id != session[:user_id]) # ログインしているか？ and 報告者とログイン者は同じか？ %>
+	        <% if PressedUser.find_by(comment_id: restaurant.latest_comment.id, user_id: session[:user_id]).blank?  # すでにいいねされていない？%>
+
+                  <% not_good_card = 'not-good-' + restaurant.id.to_s %>
+	          <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>	    
+	        <% else %>
+
+                  <% good_card = 'good-' + restaurant.id.to_s %>
+	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
+
+	        <% end %>
+		<% else %>
+		<button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
+	      <% end %>
+	      <% else %>
+	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">いいね!</button>
+	      <% end %>
+	  </div>
+	</article>
       </section>
     </div>
-  <% end %>
+    <% end %>
 </div>
