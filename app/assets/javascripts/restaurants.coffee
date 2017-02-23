@@ -20,3 +20,11 @@ class @FollowSystem
     document.getElementById(newId).innerHTML = "ブクマはずす"
 
 @follow_system = new FollowSystem()
+
+class @GoodnessSystem
+  notGoodIt: (restaurantNumber) ->
+  
+  goodIt: (restaurantNumber) ->
+
+
+@goodness_system = new GoodnessSystem()
