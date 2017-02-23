@@ -82,11 +82,7 @@
 	  <div class="tell-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
 	    <p>状況を</p>
 	    <% if login_check %>
-	    
-	    <!-- button_to でmathod: :get の状態でパラメータが飛ばせないのでどうにかする必要がある -->
-	      <button type="button" class="btn btn-default btn-xs">
-                <%= link_to '伝える', { :controller => "restaurants", :action => "report", :resname => restaurant.id} %>
-              </button>
+	    <input type="button" onclick="location.href='<%= report_restaurants_path(:resname => restaurant.id) %> '" value="伝える" class="btn btn-default btn-xs">
 	      
 	    <% else %>
 	      <button type="button" class="btn btn-default btn-xs" disabled="disabled">伝える</button>
