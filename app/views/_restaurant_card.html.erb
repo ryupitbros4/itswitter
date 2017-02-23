@@ -96,11 +96,11 @@
 	        <% if PressedUser.find_by(comment_id: restaurant.latest_comment.id, user_id: session[:user_id]).blank?  # すでにいいねされていない？%>
 
                   <% not_good_card = 'not-good-' + restaurant.id.to_s %>
-	          <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id, :remote => true }, { class: "btn btn-default btn-xs", id: not_good_card } %>	    
+	          <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>	    
 	        <% else %>
 
                   <% good_card = 'good-' + restaurant.id.to_s %>
-	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id, :remote => true }, { class: "btn btn-default btn-xs", id: good_card } %>
+	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => class: "btn btn-default btn-xs", id: good_card } %>
 
 	        <% end %>
 		<% else %>
