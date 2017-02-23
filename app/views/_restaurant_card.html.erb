@@ -100,7 +100,7 @@
 	        <% else %>
 
                   <% good_card = 'good-' + restaurant.id.to_s %>
-	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => class: "btn btn-default btn-xs", id: good_card } %>
+	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
 
 	        <% end %>
 		<% else %>
