@@ -11591,7 +11591,23 @@ return jQuery;
 
 }).call(this);
 (function() {
+  var followIt, unfollowIt;
 
+  unfollowIt = function(element, restaurantNumber) {
+    var newClick, newURL;
+    newURL = "restaurants/" + restaurantNumber + "/follow";
+    element.attr("href", newURL);
+    newClick = "followIt(" + element + ", " + restaurantNumber + ")";
+    return element.attr("onclick", newClick);
+  };
+
+  followIt = function(element, restaurantNumber) {
+    var newClick, newURL;
+    newURL = "restaurants/" + restaurantNumber + "/unfollow";
+    element.attr("href", newURL);
+    newClick = "unfollowIt(" + element + ", " + restaurantNumber + ")";
+    return element.attr("onclick", newClick);
+  };
 
 }).call(this);
 /* ========================================================================

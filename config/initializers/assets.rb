@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( sticky-footer-navbar.css )
+Rails.application.config.assets.precompile += %w( sticky-footer-navbar.scss )
 Rails.application.config.assets.precompile += %w( icon.css )
 Rails.application.config.assets.precompile += %w( layouts.scss )
 Rails.application.config.assets.precompile += %w( promotion.scss )
