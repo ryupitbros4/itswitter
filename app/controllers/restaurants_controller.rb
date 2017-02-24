@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurants, only: [:report, :deliver]
   before_action :authenticate_user!, only: [:report, :deliver, :tell_index, :tell_search]
 
-#ぐるなびAPIからの店舗情報取得部分
+  #ぐるなびAPIからの店舗情報取得部分
   def shop_info
     @shop_name = params[:shop_name]
     url = URI.escape('http://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid=69a41a8fdd47711370393fef44c97b0a&format=json&area=AREA200&name='+ @shop_name)
@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
 
     if code == '200'
       result = ActiveSupport::JSON.decode res.read
-#取得店舗が一つしかないとうまく行かなかったので条件分岐
+      #取得店舗が一つしかないとうまく行かなかったので条件分岐
       if !result["rest"].nil? && (result["total_hit_count"].to_i >= 2)
         result["rest"].first(1).each do |rest|
           rest.each{ |key, value|
@@ -46,15 +46,15 @@ class RestaurantsController < ApplicationController
       @gnavi = nil
     end
 
-
     #フォローユーザー表示部分
     shop_id = params[:shop_id]
     restaurant_column = Restaurant.find(shop_id)
     @fav_users = restaurant_column.users
+
   end
 
   def tell_index
-#ログイン、usersテーブルのuserデータの有無を確認。                                                                                                                                    
+    #ログイン、usersテーブルのuserデータの有無を確認。                                                                                                                                    
     if logged_in? and User.where(:id => session[:user_id]).present?
       user_info = User.find(session[:user_id])
       if user_info.comments.present?
@@ -96,7 +96,7 @@ class RestaurantsController < ApplicationController
   
   def index
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","報告なし"]
     
     #占有率が低い順に並び替える
     @rank=Restaurant.order_by_crowdedness
@@ -108,7 +108,7 @@ class RestaurantsController < ApplicationController
   
   def search
     escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","報告なし"]
 
     if escaped.blank?
       redirect_to :root, :alert => '店名を入力して下さい' and return
@@ -242,8 +242,12 @@ class RestaurantsController < ApplicationController
     current_user ||= User.find(session[:user_id])
     current_user.point = current_user.point + 1
     current_user.save!
-    
-    redirect_to :back
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'add_like_point', locals: { restaurant: Restaurant.find(params[:restaurant_id]), commentID: comment_id, userID: comment_user_id } }
+    end
+
     # :backがテストでNo HTTP_REFEREになるためrescueする
     rescue ActionController::RedirectBackError
       redirect_to root_path
@@ -269,7 +273,10 @@ class RestaurantsController < ApplicationController
     current_user.point = current_user.point - 1
     current_user.save!
     
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'cancel_like', locals: { restaurant: Restaurant.find(params[:restaurant_id]), commentID: comment_id, userID: comment_user_id } }
+    end
     # :backがテストでNo HTTP_REFEREになるためrescueする
     rescue ActionController::RedirectBackError
       redirect_to root_path
@@ -283,7 +290,7 @@ class RestaurantsController < ApplicationController
     #五十音表の配列を宣言
     @gozyuuonn = ["あ","か","さ","た","な","は","ま","や","ら","わ"]
     @gozyuuonn2 = [["あ", "い", "う", "え", "お"], ["か", "き", "く", "け", "こ"], ["さ", "し", "す", "せ", "そ"], ["た", "ち", "つ", "て", "と"], ["な", "に", "ぬ", "ね", "の"], ["は", "ひ","ふ", "へ", "ほ"], ["ま", "み", "む", "め", "も"], ["や", "ゆ", "よ"], ["ら", "り", "る", "れ", "ろ"], ["わ", "を", "ん"]]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","報告なし"]
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
   end
   
@@ -300,7 +307,7 @@ class RestaurantsController < ApplicationController
   
   def rest_show
     @crowded_image = ["garagara","yayakomi","komi","yayamachi","machi","close2","close"]
-    @how_crowded = ["席がガラガラ","席が半分埋まってる","席がほぼ埋まってる","席に座れない人がいる","席に座れない人がかなりいる","CLOSE","記録なし"]
+    @how_crowded = ["席ガラガラ","席が半分","埋まってる","外にも人が","長蛇の列","CLOSE","報告なし"]
 
     if params["res_name"].blank?
       @name = ""
@@ -311,7 +318,7 @@ class RestaurantsController < ApplicationController
     @restaurants_initial = Restaurant.initial_search(@name)
     render :rest_show
   end 
-  
+    
   private
   
   def set_restaurants

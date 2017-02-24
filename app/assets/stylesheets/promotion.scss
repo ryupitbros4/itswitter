@@ -1,3 +1,18 @@
+
+/* color set */
+$Thema:#f0a202;
+$SubThema:#efe9e7;
+$Accent:#ef6461;
+$Highlight:#272d2d;
+$Flat:#81c14b;
+
+/* all color valuable  */
+$LayerFilter:rgba(0,0,0,0.3);
+$InsideRefference: #FFFFFF;
+$SuitellTitle: #FFFFFF;
+$SuitellSubTitle: $SuitellTitle;
+
+
 .head_img {
     min-width: 320px;
     height: 800px;
@@ -8,7 +23,7 @@
 }
 
 .layer_filter {
-    background-color: rgba(0,0,0,0.3);
+    background-color: $LayerFilter;
     height: 800px;
 }
 
@@ -17,7 +32,7 @@ a {
       display: block;
       padding: 30px;
       text-align: right;
-      color: #FFFFFF;
+      color: #InsideRefference;
       font-size: calc(112.5% + 0.25vw);
     }
 }
@@ -31,7 +46,7 @@ img {
 
 h2 {
      &.title{
-       color: #FFFFFF;
+       color: $SuitellTitle;
        text-align: center;
        font-size: calc(500% + 0.25vw);
      }
@@ -42,7 +57,7 @@ h2 {
 
 h4 {
      &.subtitle{
-       color: #FFFFFF;
+       color: $SuitellSubTitle;
        text-align: center;
      }
 }
