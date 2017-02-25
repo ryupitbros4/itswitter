@@ -11591,23 +11591,69 @@ return jQuery;
 
 }).call(this);
 (function() {
-  var followIt, unfollowIt;
+  this.FollowSystem = (function() {
+    function FollowSystem() {}
 
-  unfollowIt = function(element, restaurantNumber) {
-    var newClick, newURL;
-    newURL = "restaurants/" + restaurantNumber + "/follow";
-    element.attr("href", newURL);
-    newClick = "followIt(" + element + ", " + restaurantNumber + ")";
-    return element.attr("onclick", newClick);
-  };
+    FollowSystem.prototype.unfollowIt = function(restaurantNumber) {
+      var newId, newURL, thisId;
+      newURL = "/restaurants/" + restaurantNumber + "/follow";
+      thisId = "follow-" + restaurantNumber;
+      document.getElementById(thisId).value = "ブクマする";
+      newId = "unfollow-" + restaurantNumber;
+      document.getElementById(thisId).id = newId;
+      return document.getElementById(newId).parentNode.setAttribute('action', newURL);
+    };
 
-  followIt = function(element, restaurantNumber) {
-    var newClick, newURL;
-    newURL = "restaurants/" + restaurantNumber + "/unfollow";
-    element.attr("href", newURL);
-    newClick = "unfollowIt(" + element + ", " + restaurantNumber + ")";
-    return element.attr("onclick", newClick);
-  };
+    FollowSystem.prototype.followIt = function(restaurantNumber) {
+      var newId, newURL, thisId;
+      newURL = "/restaurants/" + restaurantNumber + "/unfollow";
+      thisId = "unfollow-" + restaurantNumber;
+      document.getElementById(thisId).value = "ブクマはずす";
+      newId = "follow-" + restaurantNumber;
+      document.getElementById(thisId).id = newId;
+      return document.getElementById(newId).parentNode.setAttribute('action', newURL);
+    };
+
+    return FollowSystem;
+
+  })();
+
+  this.follow_system = new FollowSystem();
+
+  this.GoodnessSystem = (function() {
+    function GoodnessSystem() {}
+
+    GoodnessSystem.prototype.notGoodIt = function(commentNumber, restaurantNumber, userNumber) {
+      var commentId, newId, newURL, restaurantId, thisId, userId;
+      commentId = commentNumber;
+      restaurantId = restaurantNumber;
+      userId = userNumber;
+      newURL = "/restaurants/cancel_like?comment_id=" + commentId + "&amp;restaurant_id=" + restaurantId + "&amp;user_id=" + userId;
+      thisId = "not-good-" + restaurantNumber;
+      newId = "good-" + restaurantNumber;
+      document.getElementById(thisId).value = "いいね！取り消し";
+      document.getElementById(thisId).id = newId;
+      return document.getElementById(newId).parentNode.setAttribute('action', newURL);
+    };
+
+    GoodnessSystem.prototype.goodIt = function(commentNumber, restaurantNumber, userNumber) {
+      var commentId, newId, newURL, restaurantId, thisId, userId;
+      commentId = commentNumber;
+      restaurantId = restaurantNumber;
+      userId = userNumber;
+      newURL = "/restaurants/add_like_point?comment_id=" + commentId + "&amp;restaurant_id=" + restaurantId + "&amp;user_id=" + userId;
+      thisId = "good-" + restaurantNumber;
+      newId = "not-good-" + restaurantNumber;
+      document.getElementById(thisId).value = "いいね！";
+      document.getElementById(thisId).id = newId;
+      return document.getElementById(newId).parentNode.setAttribute('action', newURL);
+    };
+
+    return GoodnessSystem;
+
+  })();
+
+  this.goodness_system = new GoodnessSystem();
 
 }).call(this);
 /* ========================================================================
