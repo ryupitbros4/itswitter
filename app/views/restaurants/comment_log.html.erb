@@ -35,8 +35,6 @@
             <% if logged_in? %>
               <% if !(comment.user_id.blank?) && !(session[:user_id].blank?) %>
                 <% if comment.user_id != session[:user_id] %>
-		<%= p comment.id %>
-		<%= p comment.user_id%>
                   <% if PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank? %>
 
                   <% not_good_card = 'not-good-' + @restaurant_id.to_s + '-' + comment.id.to_s %>
