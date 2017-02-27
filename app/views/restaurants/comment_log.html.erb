@@ -39,10 +39,10 @@
 		<%= p comment.user_id%>
                   <% if PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank? %>
 
-                  <% not_good_card = 'not-good-' + @restaurant_id.to_s %>
+                  <% not_good_card = 'not-good-' + @restaurant_id.to_s + '-' + comment.id.to_s %>
                   <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id, :restaurant_id => @restaurant_id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>
                     <% else %>
-                    <% good_card = 'good-' + @restaurant_id.to_s %>
+                    <% good_card = 'good-' + @restaurant_id.to_s + '-' + comment.id.to_s %>
                     <%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => comment.user_id, :comment_id =>  comment.id, :restaurant_id => @restaurant_id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
 
                   <% end %>

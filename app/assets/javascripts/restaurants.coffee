@@ -31,8 +31,8 @@ class @GoodnessSystem
     restaurantId = restaurantNumber
     userId = userNumber
     newURL = "/restaurants/cancel_like?comment_id=#{commentId}&amp;restaurant_id=#{restaurantId}&amp;user_id=#{userId}"
-    thisId = "not-good-#{restaurantNumber}"
-    newId = "good-#{restaurantNumber}"
+    thisId = "not-good-#{restaurantNumber}-#{commentNumber}"
+    newId = "good-#{restaurantNumber}-#{commentNumber}"
 
     document.getElementById(thisId).value = "いいね！取り消し"
     document.getElementById(thisId).id = newId
@@ -43,8 +43,8 @@ class @GoodnessSystem
     restaurantId = restaurantNumber
     userId = userNumber
     newURL = "/restaurants/add_like_point?comment_id=#{commentId}&amp;restaurant_id=#{restaurantId}&amp;user_id=#{userId}"
-    thisId = "good-#{restaurantNumber}"
-    newId = "not-good-#{restaurantNumber}"
+    thisId = "good-#{restaurantNumber}-#{commentNumber}"
+    newId = "not-good-#{restaurantNumber}-#{commentNumber}"
 
     document.getElementById(thisId).value = "いいね！"
     document.getElementById(thisId).id = newId
