@@ -8,7 +8,7 @@
   <%= f.text_field :update_info %>
 </div>
 <div>
-  <%= f.submit "更新" %>
+  <%= f.submit "更新", data: { disable_with: '送信中...' } %>
 </div>
 <% end %>
 <br>
