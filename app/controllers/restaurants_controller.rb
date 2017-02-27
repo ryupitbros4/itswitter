@@ -54,11 +54,16 @@ class RestaurantsController < ApplicationController
   end
 
   def tell_index
-    #ログイン、usersテーブルのuserデータの有無を確認。                                                                                                                                    
+    #ログイン、usersテーブルのuserデータの有無を確認。
     if logged_in? and User.where(:id => session[:user_id]).present?
       user_info = User.find(session[:user_id])
+      #logger.debug user_info.nickname
       if user_info.comments.present?
-        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        informTime = Comment.where(user_id: user_info.id).order(updated_at: :desc).limit(1).first
+        #user_info.comments.each do |comment|
+          #logger.debug "comment"
+          #logger.debug comment.user.nickname
+        #end
         if (Time.zone.now - informTime.updated_at).to_i < 60*3
           flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
           redirect_to :root and return
@@ -68,6 +73,7 @@ class RestaurantsController < ApplicationController
       redirect_to :root and return
     end
   end
+
 
   def tell_search
     tell_escaped = params[:name].gsub('\\', '\\\\\\\\').gsub('%', '\%').gsub('_', '\_')
@@ -79,6 +85,7 @@ class RestaurantsController < ApplicationController
       redirect_to :tell_index, :alert => 'お店がヒットしませんでした' and return
     end
   end
+
 
   def slide_info
     @renewals = Renewal.order("created_at desc").limit(10)
@@ -128,7 +135,7 @@ class RestaurantsController < ApplicationController
     if logged_in? and User.where(:id => session[:user_id]).present?
       user_info = User.find(session[:user_id])
       if user_info.comments.present?
-        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        informTime = Comment.where(user_id: user_info.id).order(updated_at: :desc).limit(1).first
         if (Time.zone.now - informTime.updated_at).to_i < 60*3
           flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
           redirect_to :root and return
@@ -177,7 +184,7 @@ class RestaurantsController < ApplicationController
       id = params[:restaurant][:id]
       user_info = User.find(session[:user_id])
       if user_info.comments.present?
-        informTime = user_info.comments.order(updated_at: :desc).limit(1).first
+        informTime = Comment.where(user_id: user_info.id).order(updated_at: :desc).limit(1).first
         if (Time.zone.now - informTime.updated_at).to_i < 60*3
           flash[:alert] = session[:nickname] + 'さんの次の情報更新まで' + (180 - (Time.zone.now - informTime.updated_at).to_i).to_s + '秒掛かります'
           redirect_to :report_restaurants and return
