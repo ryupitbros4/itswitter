@@ -15,10 +15,16 @@
               <% if logged_in? %>
                 <% if !(comment.user_id.blank?) && !(session[:user_id].blank?) %>
                   <% if comment.user_id != session[:user_id] %>
+		  <%= p comment.id %>
+		  <%= p comment.user_id%>
                     <% if PressedUser.find_by(comment_id: comment.id, user_id: session[:user_id]).blank? %>
-                      <%= button_to "いいね!", {:action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id} %><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+		    
+                    <% not_good_card = 'not-good-' + restaurant_id.to_s %>
+                    <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => comment.user_id, :comment_id => comment.id, :restaurant_id => restaurant_id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>
                     <% else %>
-                    <br><%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id} %>
+                    <% good_card = 'good-' + restaurant_id.to_s %>
+                    <%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => comment.user_id, :comment_id => comment.id, :restaurant_id => restaurant_id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
+		    
                     <% end %>
                     報告者:<%= link_to my_index_path(u_id: User.find(comment.user_id).id) do %> <%= User.find(comment.user_id).nickname %>さん<% end %>
                   <% else %>

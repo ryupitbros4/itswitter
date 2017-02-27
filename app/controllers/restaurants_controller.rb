@@ -223,6 +223,7 @@ class RestaurantsController < ApplicationController
     @my = User.find(session[:user_id]) if session[:user_id]
     if params[:restaurant_id].present?
       restaurant = Restaurant.find(params[:restaurant_id])
+      @restaurant_id = restaurant.id
       @restaurant_name = restaurant.name
       @comments = restaurant.comments.order(updated_at: :desc)
     else
