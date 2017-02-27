@@ -50,6 +50,6 @@
       <%= f.text_area :latest_comment, :value=>"", :size=>"60x10", class: "form-control", placeholder: '例：５人待ちくらいです！' %>
     </div>
   </div>
-    <%= f.submit "伝える", {class: 'btn btn-primary btn-block' }%>
+  <%= f.submit "伝える", data: { disable_with: '送信中...'}, class: 'btn btn-primary btn-block'  %>
   <% end %>
 </div>
