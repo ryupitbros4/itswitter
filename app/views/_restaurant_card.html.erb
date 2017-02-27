@@ -44,7 +44,7 @@
             </div>
 	    <div class="comment-part">
 	      <% if last_comment != no_comment %>
-	        <%= link_to last_comment.truncate(24), { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+	        <%= link_to last_comment.truncate(10), {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	      <% else %>
 	        <p><%= last_comment %></p>
 	      <% end %>
@@ -96,11 +96,11 @@
 	        <% if PressedUser.find_by(comment_id: restaurant.latest_comment.id, user_id: session[:user_id]).blank?  # すでにいいねされていない？%>
 
                   <% not_good_card = 'not-good-' + restaurant.id.to_s %>
-	          <%= button_to "いいね!", {:action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>	    
+	          <%= button_to "いいね!", {:controller => "restaurants", :action => "add_like_point", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: not_good_card } %>	    
 	        <% else %>
 
                   <% good_card = 'good-' + restaurant.id.to_s %>
-	          <%= button_to "いいね!取り消し", {:action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
+	          <%= button_to "いいね!取り消し", {:controller => "restaurants", :action => "cancel_like", :user_id => restaurant.latest_comment.user_id, :comment_id => restaurant.latest_comment.id, :restaurant_id => restaurant.id }, { :remote => true, class: "btn btn-default btn-xs", id: good_card } %>
 
 	        <% end %>
 		<% else %>
