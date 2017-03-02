@@ -69,20 +69,19 @@
     </footer>
     -->
     
-<!-- floatingmenu部分-->
-<div id="footerFloatingMenu">
-  <div>
-<!-- 
-    <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span>
--->
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), tell_index_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
-    <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/help_icon.png', {:border => '0', :size => '36x36', :alt => 'help'}), treatment_restaurants_path %>
-    <!-- <span class="col-xs-3" id="pageTop" style="color: white">^</span> -->
-  </div>
-</div>
-
+      <!-- floatingmenu部分-->
+      <div class="container">
+        <div id="footerFloatingMenu">
+          <div>
+            <!-- <span class="col-xs-3"><%= link_to "Top", root_path,style: "color:white;" %></span> -->
+            <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/home_icon.png', {:border => '0', :alt => 'home'}), root_path %></span>
+            <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/tell_icon.png', {:border => '0', :alt => 'tell'}), tell_index_path %></span>
+            <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/rank_icon.png', {:border => '0', :alt => 'rank'}), restaurants_user_ranking_path %></span>
+            <span class="col-xs-3"><%= link_to image_tag('menu_bar_icon/help_icon.png', {:border => '0', :size => '36x36', :alt => 'help'}), treatment_restaurants_path %>
+            <!-- <span class="col-xs-3" id="pageTop" style="color: white">^</span> -->
+          </div>
+        </div>
+    </div>
     <!-- ページトップに戻るJS-->
     <script>
       $(function(){
