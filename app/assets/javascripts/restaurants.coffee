@@ -9,6 +9,7 @@ class @FollowSystem
     thisId = "follow-#{restaurantNumber}"
     newId = "unfollow-#{restaurantNumber}"
 
+#Tenは10分以内の店用
     thisIdTen = "follow_ten-#{restaurantNumber}"
     newIdTen = "unfollow_ten-#{restaurantNumber}"
 
@@ -40,26 +41,6 @@ class @FollowSystem
       document.getElementById(thisId).id = newId
       document.getElementById(newId).parentNode.setAttribute('action', newURL)
 
-###
-  unfollowItTen: (restaurantNumber) ->
-
-    newURL = "/restaurants/#{restaurantNumber}/follow"
-    thisId = "follow_ten-#{restaurantNumber}"
-    newId = "unfollow_ten-#{restaurantNumber}"
-
-    document.getElementById(thisId).value = "ブクマする"
-    document.getElementById(thisId).id = newId
-    document.getElementById(newId).parentNode.setAttribute('action', newURL )
-
-  followItTen: (restaurantNumber) ->
-    newURL = "/restaurants/#{restaurantNumber}/unfollow"
-    thisId = "unfollow_ten-#{restaurantNumber}"
-    newId = "follow_ten-#{restaurantNumber}"
-
-    document.getElementById(thisId).value = "ブクマはずす"
-    document.getElementById(thisId).id = newId
-    document.getElementById(newId).parentNode.setAttribute('action', newURL)
-###
 @follow_system = new FollowSystem()
 
 class @GoodnessSystem
@@ -68,12 +49,22 @@ class @GoodnessSystem
     restaurantId = restaurantNumber
     userId = userNumber
     newURL = "/restaurants/cancel_like?comment_id=#{commentId}&amp;restaurant_id=#{restaurantId}&amp;user_id=#{userId}"
+
     thisId = "not-good-#{restaurantNumber}-#{commentNumber}"
     newId = "good-#{restaurantNumber}-#{commentNumber}"
 
-    document.getElementById(thisId).value = "いいね！取り消し"
-    document.getElementById(thisId).id = newId
-    document.getElementById(newId).parentNode.setAttribute('action', newURL)
+    thisIdTen = "not-good-ten-#{restaurantNumber}-#{commentNumber}"
+    newIdTen = "good-ten-#{restaurantNumber}-#{commentNumber}"
+
+    if document.getElementById(thisId)
+      document.getElementById(thisId).value = "いいね！取り消し"
+      document.getElementById(thisId).id = newId
+      document.getElementById(newId).parentNode.setAttribute('action', newURL)
+
+    if document.getElementById(thisIdTen)
+      document.getElementById(thisIdTen).value = "いいね！取り消し"
+      document.getElementById(thisIdTen).id = newIdTen
+      document.getElementById(newIdTen).parentNode.setAttribute('action', newURL)
 
   goodIt: (commentNumber, restaurantNumber, userNumber) ->
     commentId = commentNumber
@@ -83,8 +74,17 @@ class @GoodnessSystem
     thisId = "good-#{restaurantNumber}-#{commentNumber}"
     newId = "not-good-#{restaurantNumber}-#{commentNumber}"
 
-    document.getElementById(thisId).value = "いいね！"
-    document.getElementById(thisId).id = newId
-    document.getElementById(newId).parentNode.setAttribute('action', newURL)
+    thisIdTen = "good-ten-#{restaurantNumber}-#{commentNumber}"
+    newIdTen = "not-good-ten-#{restaurantNumber}-#{commentNumber}"
+
+    if document.getElementById(thisId)
+      document.getElementById(thisId).value = "いいね！"
+      document.getElementById(thisId).id = newId
+      document.getElementById(newId).parentNode.setAttribute('action', newURL)
+
+    if document.getElementById(thisIdTen)
+      document.getElementById(thisIdTen).value = "いいね！"
+      document.getElementById(thisIdTen).id = newIdTen
+      document.getElementById(newIdTen).parentNode.setAttribute('action', newURL)
 
 @goodness_system = new GoodnessSystem()
