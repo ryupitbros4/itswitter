@@ -32,7 +32,7 @@
     <article class="aiu-button  col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="btn-group aiueo" id="aiueo">
         <% @gozyuuonn2[@next_index][0..-1].each_with_index do | aiu2, index2 | %> 
-          <button type="button" class="btn btn-primary" id="<%= index2 %>" name="<%= aiu2 %>">
+          <button type="button" class="btn btn-default" id="<%= index2 %>" name="<%= aiu2 %>">
             <font size="5">
               <%= aiu2 %>
             </font>
@@ -62,7 +62,7 @@
 
   $(".aiueo .btn").on("click", function(){
     var name = $(this).attr("name");
-    $(this).attr("class", "btn btn-primary active");
+    $(this).attr("class", "btn btn-default active");
     
     $.ajax({
       url: "/restaurants/rest_show",

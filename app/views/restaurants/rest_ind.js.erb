@@ -1,8 +1,8 @@
 
 <% # ここは改行したら動作しないみたいです %>
-$("#aiueo").html("<% @gozyuuonn2[@next_index.to_i][0..-1].each_with_index do | aiu2, index2 | %><button type='button' class='btn btn-primary' id='<%= @next_index %>-<%= index2 %>' name='<%= aiu2 %>'><font size='5'><%= aiu2 %></font></button><% end %>");
+$("#aiueo").html("<% @gozyuuonn2[@next_index.to_i][0..-1].each_with_index do | aiu2, index2 | %><button type='button' class='btn btn-default' id='<%= @next_index %>-<%= index2 %>' name='<%= aiu2 %>'><font size='5'><%= aiu2 %></font></button><% end %>");
 
-$("#show").html("");
+$("#show").html("<%= (j render partial: '/restaurant_card', locals: { restaurants: @restaurants_fast_initial, crowded_image: @crowded_image, how_crowded: @how_crowded }) %>");
 
 $(".aiueo .btn").on("click", function(){
   var name = $(this).attr("name");
