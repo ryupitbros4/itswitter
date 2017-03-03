@@ -13,4 +13,3 @@ Rails.application.config.assets.precompile += %w( sticky-footer-navbar.scss )
 Rails.application.config.assets.precompile += %w( icon.css )
 Rails.application.config.assets.precompile += %w( layouts.scss )
 Rails.application.config.assets.precompile += %w( promotion.scss )
-

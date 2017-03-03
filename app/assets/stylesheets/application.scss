@@ -159,21 +159,21 @@ border-bottom: 1px solid #ccc;
 
 //スマホ
 @media only screen and (max-width:480px){
-table.company {
+  table.company {
     width: auto;
     margin: 0 auto;
     border-collapse: separate;
     border-spacing: 0px 15px;
     font-size: 12px;
-}
+  }
  
-table.company th,
-table.company td {
+  table.company th,
+  table.company td {
     display:block;
     padding: 10px;
-}
+  }
  
-table.company th {
+  table.company th {
     background: #295890;
     vertical-align: middle;
     text-align: left;
@@ -183,9 +183,9 @@ table.company th {
     color: #fff;
     font-weight: normal;
     font-size: 15px;
-}
+  }
 
-table.company th:after {
+  table.company th:after {
     left: 100%;
     top: 50%;
     border: solid transparent;
@@ -198,10 +198,10 @@ table.company th:after {
 //  border-left-color: #295890;
 //  border-width: 10px;
 //  margin-top: -10px;
-}
+  }
 
-//スマホ用ファボユーザー表示部分
-.fav_user {
+  //スマホ用ファボユーザー表示部分
+  .fav_user {
     width: auto;
     background-color: #F4A460;
     border: 2px solid #F4A460;
@@ -211,5 +211,33 @@ table.company th:after {
     padding: 0em;
 //    padding: 1em;
 
+  }
 }
+
+section {
+  &.header-tab {
+    text-align: center;
+    & article {
+      &.akasa-button {
+        height: 98px;
+        background: #4aad52;
+	box-shadow: 0 0 5px 0px #ddd5b4;
+        -moz-box-shadow: 0 0 5px 0px #ddd5b4; 
+        -webkit-box-shadow: 0 0 5px 0px #ddd5b4;
+        border:1px solid #c7c0a2;
+        & div {
+          
+        }
+      }
+      &.aiu-button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background: #FFFFFF;
+        box-shadow: 0 0 5px 0px #ddd5b4;
+      	-moz-box-shadow: 0 0 5px 0px #ddd5b4;
+      	-webkit-box-shadow: 0 0 5px 0px #ddd5b4;
+        border:1px solid #c7c0a2;
+      }
+    }
+  }
 }
