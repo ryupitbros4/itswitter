@@ -138,6 +138,7 @@ article {
     } 
     border-top:	1px solid $CardTopBoder;
     padding: 5px;
+    display: -webkit-flex;
     display: flex;
   }
 
@@ -167,6 +168,7 @@ article {
     }
     border-top: 1px solid $CardTopBoder;
     padding: 5px;
+    display: -webkit-flex;
     display: flex;
   }
 }
