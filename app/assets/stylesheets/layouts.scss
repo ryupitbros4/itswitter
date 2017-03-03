@@ -16,7 +16,6 @@
   bottom: 0px;
   z-index: 9999;
   text-align: center;
-  padding: 0 auto;
 
 }
 
@@ -26,4 +25,6 @@
 }
 #footerFloatingMenu div span{
   line-height: 45px;
+  padding-left: 0px;
+  padding-right: 0px;
 }

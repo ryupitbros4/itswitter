@@ -27,6 +27,10 @@ html, body{
   position: relative;
   min-height: 100%;
 }
+/* 画面右にできる隙間対策 */
+.wrap {
+ overflow: hidden;
+}
 
 body{
   margin-bottom: 70px;
