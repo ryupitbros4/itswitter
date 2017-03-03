@@ -305,13 +305,14 @@ class RestaurantsController < ApplicationController
       @next_index = params["pre_id"]
     end
     
-    # ここはforでは直せそうにないです。
     @restaurants_fast_initial = Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][0])
     @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][1])
     @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][2])
-    @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][3])
-    @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][4])
-
+    # ここはforでは直せそうにないです。
+    unless @next_index.to_i == 7 || @next_index.to_i == 9
+      @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][3])
+      @restaurants_fast_initial += Restaurant.initial_search(@gozyuuonn2[@next_index.to_i][4])
+    end
     render :rest_ind
   end
   
