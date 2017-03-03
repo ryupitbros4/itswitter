@@ -8244,3 +8244,26 @@ table.company td {
     padding: 0em;
   }
 }
+/* line 218, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+section.header-tab {
+  text-align: center;
+}
+/* line 221, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+section.header-tab article.akasa-button {
+  height: 98px;
+  background: #4aad52;
+  box-shadow: 0 0 5px 0px #ddd5b4;
+  -moz-box-shadow: 0 0 5px 0px #ddd5b4;
+  -webkit-box-shadow: 0 0 5px 0px #ddd5b4;
+  border: 1px solid #c7c0a2;
+}
+/* line 232, /home/vagrant/itswitter/app/assets/stylesheets/application.scss */
+section.header-tab article.aiu-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #FFFFFF;
+  box-shadow: 0 0 5px 0px #ddd5b4;
+  -moz-box-shadow: 0 0 5px 0px #ddd5b4;
+  -webkit-box-shadow: 0 0 5px 0px #ddd5b4;
+  border: 1px solid #c7c0a2;
+}
