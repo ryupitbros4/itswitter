@@ -7,20 +7,24 @@
     <meta http-equiv="refresh" content="180">
     <title>Suitell</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
-<!--  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
+<!--  
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> 
+-->
     <%= stylesheet_link_tag    'sticky-footer-navbar' , media: 'all' %>
     <%= stylesheet_link_tag    'icon' , media: 'all' %>
-<!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+<!--  
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+ -->
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
 <!--floating menuのcss-->
     <%= stylesheet_link_tag 'layouts' %>
-</script>
+    </script>
 
   </head>
   <body>
-
+    <div class="wrap">
       <!-- navbar -->
       <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -35,13 +39,11 @@
             <%= link_to "Suitell", root_path, {class: 'navbar-brand'} %>
 	    <div class="navbar-left">
 	      <ul class="nav navbar-nav">
-		<% if logged_in? and User.where(:id => session[:user_id]).present? %>
-		
-		<li style="display: inline-block; _display: inline;" class="icon_round"><%= link_to my_index_path(u_id: session[:user_id]) do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
-		
-		<li style="display: inline-block; _display: inline;"><%= link_to User.find(session[:user_id]).point.to_s + "pt", restaurants_user_ranking_path %></li>
+		<% if logged_in? and User.where(:id => session[:user_id]).present? %>		
+		  <li style="display: inline-block; _display: inline;" class="icon_round"><%= link_to my_index_path(u_id: session[:user_id]) do %><%= image_tag(User.find(session[:user_id]).image_url, :size => "20x20") %><%= current_user.nickname + "さん" %><% end %></li>
+		  <li style="display: inline-block; _display: inline;"><%= link_to User.find(session[:user_id]).point.to_s + "pt", restaurants_user_ranking_path %></li>
 		<% else %>
-		<li style="display: inline-block; _display: inline;"><%= link_to "ログイン", "/auth/twitter" %></li>
+		  <li style="display: inline-block; _display: inline;"><%= link_to "ログイン", "/auth/twitter" %></li>
 		<% end %>
 	      </ul>
 	    </div>
@@ -51,7 +53,7 @@
 	  <div class="collapse navbar-collapse nav-menu-1 navbar-right">
 	    <ul class="nav navbar-nav">
 	      <% if logged_in? and User.where(:id => session[:user_id]).present? %>
-	      <li style="display: inline-block; _display: inline;"><%= link_to "ログアウト", logout_path %></li>
+	        <li style="display: inline-block; _display: inline;"><%= link_to "ログアウト", logout_path %></li>
 	      <% end %>
 	      <li><%= link_to "お店をリクエスト", demands_index_path %></li>
 	      <li><%= link_to "ご意見", new_feedback_path %></li>		
@@ -61,14 +63,7 @@
       </nav>
 
       <%= yield %>   
-    <!--
-    <footer class="footer">
-      <div class="container">
-	<p class="text-muted">RyuPiT Brother's 4@enPiT2016</p>
-      </div>
-    </footer>
-    -->
-    
+
       <!-- floatingmenu部分-->
       <div class="container">
         <div id="footerFloatingMenu">
@@ -81,7 +76,10 @@
             <!-- <span class="col-xs-3" id="pageTop" style="color: white">^</span> -->
           </div>
         </div>
-    </div>
+      </div>
+
+    </div> <!-- end of wrap -->
+
     <!-- ページトップに戻るJS-->
     <script>
       $(function(){
@@ -101,12 +99,6 @@
           scrollTop: 0},500);
           return false;
         });
-      });
-    </script>
-    <!-- tooltip -->
-    <script>
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
       });
     </script>
 
