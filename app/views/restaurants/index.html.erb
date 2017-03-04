@@ -1,41 +1,63 @@
 <%= render '/flash_msg2' %>
+
 <!-- Top image -->
 <%= render '/eyecatch' %>
 
-<p>
-  <div class="contents">
-    <span class="glyphicon glyphicon-info-sign"></span>更新情報 
-    <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle" frameborder="0"></iframe>
+<!-- 更新情報 -->
+<section class="contents">
+  <div class="contents-title">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    更新情報 
   </div>
-</p>
 
-<div class="contents">
-  <h4>飲食店を検索しよう！</h4>
+  <iframe src=<%= url_for(restaurants_slide_info_path) %> height="30" width="90%" scrolling="no" align="middle" frameborder="0"></iframe>
+</section>
+
+<!-- 知る -->
+<section class="contents">
+  <div class="contents-title">
+    <span class="glyphicon glyphicon-search"></span>
+    飲食店を検索しよう！
+  </div>
+
   <%= form_tag(restaurants_search_path) do |f| %>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="input-group">
-	<%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
-	<span class="input-group-btn">
-	  <%= button_tag '検索', class: 'btn btn-default' %>
-	</span>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
+	  <span class="input-group-btn">
+	    <%= button_tag '検索', class: 'btn btn-default' %>
+	  </span>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
-  <p align="right">[<%= link_to "飲食店の最新コメントを見てみよう！", all_rest_restaurants_path %>]</p>
-</div>
 
-<br>
+  <div align="right">
+    <%= link_to "飲食店の最新コメントを見てみよう！", all_rest_restaurants_path %>
+  </div>
+</section>
 
-<div class="contents">
-  <h4>今この飲食店がすいています<br>(更新10分以内)</h4>
+<!-- 伝える -->
+<section class="contents">
+  <div class="contents-title">
+    <span class="glyphicon glyphicon-cutlery"></span>
+    今この飲食店がすいています
+  </div>
+  
+  <div class="contents-title-notice">
+    ＊情報が更新されて10分以内のものを表示します。
+  <div>  
+
   <div class="container">
+
+    <% # 更新情報表示システム %>
     <% if @rank.present? %>
       <% @rank.each do |restaurant| %>
+
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 	  <section class="card">
-	    <!-- img -->
+
 	    <div class="card-content">
 	      <h1 class="card-title">
 
@@ -52,8 +74,10 @@
 		  <% end %>
 	        <% end %>
 
-                <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
-                <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>
+                <span style="word-wrap:break-word;">
+                  <%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %>
+                </span>
+
 	      </h1>
 	    </div>
 
@@ -71,50 +95,50 @@
                 <% end %>
               <% end %>
 
-              <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
               <span class="relative">
-
 	        <% if latest_comment == "コメント無し" %>
 	          <%= latest_comment %>
 	        <% else %>
 	          <%= link_to latest_comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	        <% end %>
-
               </span>
             </div>
+
           </section>
         </div>
       <% end %>
     <% else %>
-      <h4 align="center">「最新情報はありません」</h4>
-      <h4><%= link_to "お店の混雑度を知らせてみよう！", tell_index_path %></h4>
+      <h4 align="center">最新情報はありません</h4>
+      <h4><%= link_to "お店の混雑度を知らせてみよう！！", tell_index_path %></h4>
       <h4><%= link_to "お店の最新コメントを見てみよう！", all_rest_restaurants_path %></h4>
     <% end %>
-  </div>
-</div>
 
-<br>
+  </div>
+</section>
 
 <!-- フォローの店表示部分-->
 <% if logged_in? %>
-  <div class="contents">
-    <table border=0>
-      <tr>
-        <td>
-          <h4>お気に入りの飲食店</h4>
-        </td>
-        <td>
-          <p align="right">[<%= link_to "フォローリスト", favorite_restaurants_path %>]</p>
-        </td>
-      </tr>
-    </table>
-    <% myRestaurants = @my.restaurants.order("updated_at desc").limit(4) %>
-    <% if myRestaurants.present? %>
-      <%= render partial: '/restaurant_card', locals: { restaurants: myRestaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
-    <% else %>
-      <h4><%= link_to "お店をフォローしてみよう！", all_rest_restaurants_path %></h4>
-    <% end %>
-  </div>
+  <section class="contents">
+    <div class="contents-title">
+      <span class="glyphicon glyphicon-heart"></span>
+      お気に入りの飲食店
+    </div>
+
+    <div align="right">
+      <%= link_to "myブクマリスト", favorite_restaurants_path %>
+    </div>
+
+    <article>
+      <% myRestaurants = @my.restaurants.order("updated_at desc").limit(4) %>
+      <% if myRestaurants.present? %>
+        <%= render partial: '/restaurant_card', locals: { restaurants: myRestaurants, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
+      <% else %>
+        <h4 align="center">
+          <%= link_to "お店をフォローしてみよう！", all_rest_restaurants_path %>
+        </h4>
+      <% end %>
+    <article>
+
+  </section>
 <% end %>
-<br>
 
