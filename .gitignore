@@ -18,3 +18,5 @@
 .\#*
 
 config/database.yml
+/public/assets/*
+!/public/assets/.sprockets-manifest-c3166dfe8f140d3646e0fff9722b7df6.json
