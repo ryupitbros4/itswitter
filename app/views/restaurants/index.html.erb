@@ -38,9 +38,63 @@
   </div>
 <% end %>
 <br>
-<!-- 更新10分以内の店表示-->
+
 <div class="contents">
   <h4>今この飲食店がすいています<br>(更新10分以内)</h4>
   <p align="right">[<%= link_to "すべての飲食店を見る", all_rest_restaurants_path %>]</p>
-    <%= render partial: '/restaurant_card_ten', locals: { restaurants: @rank, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
+  <div class="container">
+    <% @rank.each do |restaurant| %>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	<section class="card">
+	  <!-- img -->
+	  <div class="card-content">
+	    <h1 class="card-title">
+
+              <!-- フォロー部分-->
+	      <% if logged_in?%>
+		<% if current_user.restaurants.include? restaurant %>
+		  <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%>
+		    <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+                  <% end %>
+	        <% else %>
+		  <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%>
+		    <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
+                  <% end %>
+		<% end %>
+	      <% end %>
+
+              <!-- <span style="word-wrap:break-word;"><%= link_to restaurant.name, "https://www.google.co.jp/search?q=" + restaurant.name %></span> -->
+              <span style="word-wrap:break-word;"><%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %></span>
+	    </h1>
+	  </div>
+
+	  <div class="card-comment tenn">
+	    <span>
+	      <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
+            </span>
+            <% latest_comment = 'コメント無し' %>
+
+            <% if restaurant.latest_comment.present? %>
+              <% if restaurant.latest_comment.comment.present? %>
+                <% latest_comment = restaurant.latest_comment.comment %>
+              <% else %>
+                <% latest_comment = '最新コメント無し' %>
+              <% end %>
+            <% end %>
+
+            <!--<% comment = restaurant.latest_comment.nil? ? "コメント無し" : restaurant.latest_comment.blank? ? "最新コメント無し" : restaurant.latest_comment %>-->
+            <span class="relative">
+
+	      <% if latest_comment == "コメント無し" %>
+	        <%= latest_comment %>
+	      <% else %>
+	        <%= link_to latest_comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+	      <% end %>
+
+            </span>
+          </div>
+        </section>
+      </div>
+    <% end %>
+  </div>
 </div>
