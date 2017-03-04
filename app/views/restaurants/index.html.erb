@@ -19,12 +19,12 @@
     <span class="glyphicon glyphicon-search"></span>
     飲食店を検索しよう！
   </div>
-
+  
   <%= form_tag(restaurants_search_path) do |f| %>
     <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: '検索' %>
+	  <%= text_field_tag :name,"" ,class: 'form-control', placeholder: 'お店の名前で検索する' %>
 	  <span class="input-group-btn">
 	    <%= button_tag '検索', class: 'btn btn-default' %>
 	  </span>
@@ -32,9 +32,16 @@
       </div>
     </div>
   <% end %>
-
-  <div align="right">
-    <%= link_to "飲食店の最新コメントを見てみよう！", all_rest_restaurants_path %>
+  
+  <div class="container">
+    <div class="row">
+    <div class="block-link" id="fifty-syl">
+      <%= link_to "50音順で検索する", all_rest_restaurants_path %>
+    </div>
+    <div class="block-link" id="genre">
+      準備中
+    </div>
+    </div>
   </div>
 </section>
 
@@ -109,8 +116,8 @@
       <% end %>
     <% else %>
       <h4 align="center">最新情報はありません</h4>
+      <h4><%= link_to "すべてのお店の情報を見てみよう！", all_rest_restaurants_path %></h4>
       <h4><%= link_to "お店の混雑度を知らせてみよう！！", tell_index_path %></h4>
-      <h4><%= link_to "お店の最新コメントを見てみよう！", all_rest_restaurants_path %></h4>
     <% end %>
 
   </div>
