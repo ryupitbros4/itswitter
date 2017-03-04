@@ -2,12 +2,31 @@
   <% restaurants.each do |restaurant| %>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
       <section class="card">
+          <% no_comment = 'まだコメントがありません。' %>
+            <% last_comment = no_comment %>
+            <% comment_time = '情報なし' %>
+            <% non_reporter = '報告者がいません' %>
+            <% reporter = non_reporter %>
 
+            <% if restaurant.latest_comment.present? %>
+              <% reporter = restaurant.latest_comment.user.nickname %>
+              <% if ((Time.zone.now - restaurant.latest_comment.updated_at).to_i <= 3600) %>
+                <% comment_time = sec2h((Time.zone.now - restaurant.latest_comment.updated_at).to_i).to_s + '前' %>
+              <% else %>
+                <% # comment_time = restaurant.latest_comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %>
+                <% comment_time = restaurant.latest_comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
+              <% end %>
+              <% if restaurant.latest_comment.comment.present? %>
+                <% last_comment = restaurant.latest_comment.comment %>
+              <% else %>
+                <% last_comment = '最新コメントなし' %>
+              <% end %>
+            <% end %>
 	<!-- store title -->
 	<article class="card-content-row-1">
 	  <%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %>
         </article>
-
+        
 	<!-- state & comment & commenter -->
         <article class="card-content-row-2">
 	  <div class="state-part col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -20,20 +39,7 @@
 	  </div>
 
 	  <div class="user-comment col-xs-8 col-sm-8 col-md-8 col-lg-8">
-	    <% no_comment = 'まだコメントがありません。' %>
-	    <% last_comment = no_comment %>
-	    <% non_reporter = '報告者がいません' %>
-	    <% reporter = non_reporter %>
 
-	    <% if restaurant.latest_comment.present? %>
-	      <% reporter = restaurant.latest_comment.user.nickname %>
-	      <% if restaurant.latest_comment.comment.present? %>
-	        <% last_comment = restaurant.latest_comment.comment %>
-	      <% else %>
-	        <% last_comment = '最新コメントなし' %>
-	      <% end %>
-	    <% end %>
-	    
 	    <div class="commenter-part icon_round">
 	      <% if reporter != non_reporter %>
 	        <%= image_tag(User.find(restaurant.latest_comment.user_id).image_url, size: "19x19") %>
@@ -42,14 +48,24 @@
 	        <p><%= reporter %></p>
 	      <% end %>
             </div>
+
 	    <div class="comment-part tenn">
 	      <% if last_comment != no_comment %>
 	        <%= link_to last_comment, {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	      <% else %>
 	        <p><%= last_comment %></p>
 	      <% end %>
-	    </div>
-	  </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="left">
+                <%= link_to 'コメントログへ', {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }, :class => "comment_log_link" %>
+              </div>
+               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="right">
+                <p class="comment_time"><%= comment_time %></p>
+              </div>
+            </div>
+           </div>
 
 	</article>
 
