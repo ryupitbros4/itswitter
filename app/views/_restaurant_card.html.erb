@@ -21,6 +21,7 @@
 	    </div>
 
 	    <div class="user-comment col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
 	      <% no_comment = 'まだコメントがありません。' %>
 	      <% last_comment = no_comment %>
 	      <% non_reporter = '報告者がいません' %>
@@ -34,8 +35,8 @@
 	          <% last_comment = '最新コメントなし' %>
 	        <% end %>
 	      <% end %>
-	    
-	      <div class="commenter-part">
+
+              <div class="commenter-part icon_round">
 	        <% if reporter != non_reporter %>
 	          <%= image_tag(User.find(restaurant.latest_comment.user_id).image_url, size: "19x19") %>
 		  <%= link_to reporter, my_index_path(u_id: restaurant.latest_comment.user_id )%>
@@ -43,15 +44,15 @@
 	          <p><%= reporter %></p>
 	        <% end %>
               </div>
-	      <div class="comment-part">
+	      <div class="comment-part icon_round">
 	        <% if last_comment != no_comment %>
-	          <%= link_to last_comment.truncate(10), {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
+                  <%= link_to last_comment, {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
 	        <% else %>
 	          <p><%= last_comment %></p>
 	        <% end %>
-	      </div>
-	    </div>
+              </div>
 
+	    </div>
 	  </article>
 
 	  <!-- watch & tell & good! buttons -->
@@ -62,22 +63,16 @@
 	      <% if login_check %>
 	        <% if current_user.restaurants.include? restaurant # follow yes %>
 	          <!-- watchフラグを下ろす  -->
-		  <% follow_card_func = 'follow_system.unfollowIt(' + restaurant.id.to_s + ')' %>
 		  <% follow_card = 'follow-' + restaurant.id.to_s %>
-		
 		  <%= button_to 'ブクマはずす', unfollow_restaurant_path(restaurant), {method: :post, remote: true, id: follow_card, class: "btn btn-default btn-xs" } %>
-		
 	        <% else # follow no %>
-	          <% unfollow_card_func = 'follow_system.followIt(' + restaurant.id.to_s + ')' %>
 		  <% unfollow_card = 'unfollow-' + restaurant.id.to_s %>
 	          <!-- watchフラグを上げる-->
-		
 		  <%= button_to 'ブクマする',follow_restaurant_path(restaurant), {method: :post, remote: true, id: unfollow_card, class: "btn btn-default btn-xs" } %>
-		
+                <% end %>
+              <% else %>
+                <button type="button" class="btn btn-default btn-xs" disabled="disabled">ブクマする</button>
 	        <% end %>
-	      <% else %>
-	        <button type="button" class="btn btn-default btn-xs" disabled="disabled">ブクマする</button>
-	      <% end %>
 	    </div>
 	  
 	    <div class="tell-part col-xs-4 col-sm-4 col-md-4 col-lg-4">

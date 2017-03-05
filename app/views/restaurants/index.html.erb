@@ -35,13 +35,13 @@
   
   <div class="container">
     <div class="row">
-    <div class="block-link" id="fifty-syl">
-      <%= link_to "50音順で検索する", all_rest_restaurants_path %>
-    </div>
+      <div class="block-link" id="fifty-syl">
+        <%= link_to "50音順で検索する", all_rest_restaurants_path %>
+      </div>
 <!--
-    <div class="block-link" id="genre">
-      準備中
-    </div>
+      <div class="block-link" id="genre">
+        準備中
+      </div>
 -->
     </div>
   </div>
@@ -56,73 +56,19 @@
   
   <div class="contents-title-notice">
     ＊情報が更新されて10分以内のものを表示します。
-  <div>  
+  </div>  
 
   <div class="container">
-
     <% # 更新情報表示システム %>
     <% if @rank.present? %>
-      <% @rank.each do |restaurant| %>
-
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-	  <section class="card">
-
-	    <div class="card-content">
-	      <h1 class="card-title">
-
-                <!-- フォロー部分-->
-	        <% if logged_in?%>
-		  <% if current_user.restaurants.include? restaurant %>
-		    <%= link_to unfollow_restaurant_path(restaurant), { method: :post, remote: true } do%>
-		      <span class="glyphicon glyphicon-star color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-                    <% end %>
-	          <% else %>
-		    <%= link_to follow_restaurant_path(restaurant), { method: :post, remote: true }  do%>
-		      <span class="glyphicon glyphicon-star-empty color-gold" id="now-follow-unfollow-area-<%= restaurant.id %>"></span>
-                    <% end %>
-		  <% end %>
-	        <% end %>
-
-                <span style="word-wrap:break-word;">
-                  <%= link_to restaurant.name, shop_info_path(:shop_name => restaurant.name, :shop_id => restaurant.id) %>
-                </span>
-
-	      </h1>
-	    </div>
-
-	    <div class="card-comment tenn">
-	      <span>
-	        <%= link_to image_tag(@crowded_image[restaurant.crowdedness], :size => "32x32"), {:action => "report", :resname => restaurant.id}, {:class => "btn"} %>
-              </span>
-              <% latest_comment = 'コメント無し' %>
-
-              <% if restaurant.latest_comment.present? %>
-                <% if restaurant.latest_comment.comment.present? %>
-                  <% latest_comment = restaurant.latest_comment.comment %>
-                <% else %>
-                  <% latest_comment = '最新コメント無し' %>
-                <% end %>
-              <% end %>
-
-              <span class="relative">
-	        <% if latest_comment == "コメント無し" %>
-	          <%= latest_comment %>
-	        <% else %>
-	          <%= link_to latest_comment, { :controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id } %>
-	        <% end %>
-              </span>
-            </div>
-
-          </section>
-        </div>
-      <% end %>
+      <%= render partial: '/restaurant_card_ten', locals: { restaurants: @rank, crowded_image: @crowded_image, how_crowded: @how_crowded } %>
     <% else %>
       <h4 align="center">最新情報はありません</h4>
-      <h4><%= link_to "すべてのお店の情報を見てみよう！", all_rest_restaurants_path %></h4>
-      <h4><%= link_to "お店の混雑度を知らせてみよう！！", tell_index_path %></h4>
+      <h4 align="center"><%= link_to "すべてのお店の情報を見てみよう！", all_rest_restaurants_path %></h4>
+      <h4 align="center"><%= link_to "お店の混雑度を知らせてみよう！！", tell_index_path %></h4>
     <% end %>
-
   </div>
+
 </section>
 
 <!-- フォローの店表示部分-->
@@ -150,4 +96,3 @@
 
   </section>
 <% end %>
-
