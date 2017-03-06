@@ -1,22 +1,26 @@
 <%= render '/flash_msg2'%>
 
 <div class="jumbotron">
-<h3>Suitellへのご意見・ご要望をお聞かせください。</h3>
+  <h3>Suitellへのご意見・ご要望をお聞かせください。</h3>
 </div>
+
+<section class="contents">
 
 <%= form_for @feedback do |f| %>
-<div>
-  <%= f.label :名前 %>
-  <% @feedback.name = "匿名" %><span class="text-danger">(必須)</span>
-  <%= f.text_field :name ,class:'form-control'%>
-</div>
-<br>
-<div class="form-group">
-<p><%= f.label "ご意見" %><span class="text-danger">(必須)</span></p>
+  <div style="margin-bottom: 5px;">
+    <%= f.label :お名前 %>
+    <% @feedback.name = "匿名の名無しさん" %><span class="text-danger">(任意)</span>
+    <%= f.text_field :name ,class:'form-control'%>
+  </div>
+  <div class="form-group">
+    <p style="margin-bottom: 5px;">
+      <%= f.label "ご意見・ご要望をお願いします！" %>
+      <span class="text-danger">(必須)</span>
+    </p>
+    <%= f.text_area :opinion, rows:10, class:'form-control', placeholder:'例：あそこのアレを直してください！' %>
+  </div>
 
-  <%= f.text_area :opinion, rows:10, class:'form-control' %>
-  <br>
-  <%= f.submit "送信", data: { disable_with: '送信中...'}, class: 'btn btn-primary' %>
+  <%= f.submit "送信", data: { disable_with: '送信中...'}, class: 'btn btn-primary btn-block' %>
 
-</div>
+</section>
 <% end %>
