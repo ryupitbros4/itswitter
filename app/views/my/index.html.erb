@@ -35,6 +35,7 @@
       </thead>
     </table>
 -->
+
   <% if @postit.present? %>
     <p align="right">[<%= link_to "全てのいいねしたコメントを見る", {:action => "my_log", :category => '0', :uid => @my.id } %>]</p>
     <%= render partial: '/mypage_card', locals: { comments_log: @postit.order("updated_at desc").limit(3), crowded_image: @crowded_image } %>
