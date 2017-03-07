@@ -182,37 +182,34 @@ article {
 	  }
 
           & div {
-            padding-left: 15px;
-            padding-right: 15px;
-            &#left {
-              padding-right: 0px;
-              & a {
-                &.comment_log_link {
-                  font-size: 3px;
+            & section {
+              &.left {
+                padding-right: 0px;
+                & a {
+                  &.comment_log_link {
+                    font-size: 3px;
+                  }
                 }
-              }
-            &#right {
-              padding-left: 0px;
-              & p {
-                &.comment_time {
-                  font-size: 3px;
+              &.right {
+                padding-left: 0px;
+                & p {
+                  &.comment_time {
+                    font-size: 3px;
+                  }
                 }
               }
             }
           }
 
-        /* */
         }
-        /* */
+      }
+    } /* end of user-comment*/
 
-	}
-      } /* end of user-comment*/
-
-    } /* end of div */
-    border-top:	1px solid $CardTopBoder;
-    padding: 5px;
-    display: flex;
-  }
+  } /* end of div */
+  border-top:	1px solid $CardTopBoder;
+  padding: 5px;
+  display: flex;
+}
 
   &.card-content-row-3 {
     & div {

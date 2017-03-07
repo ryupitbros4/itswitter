@@ -28,18 +28,18 @@
             <% reporter = non_reporter %>
 	    
             <% if restaurant.latest_comment.present? %>
-            <% reporter = restaurant.latest_comment.user.nickname %>
-            <% if ((Time.zone.now - restaurant.latest_comment.updated_at).to_i <= 3600) %>
-            <% comment_time = sec2h((Time.zone.now - restaurant.latest_comment.updated_at).to_i).to_s + '前' %>
-            <% else %>
-            <% # comment_time = restaurant.latest_comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %>
-            <% comment_time = restaurant.latest_comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
-            <% end %>
-            <% if restaurant.latest_comment.comment.present? %>
-            <% last_comment = restaurant.latest_comment.comment %>
-            <% else %>
-            <% last_comment = '最新コメントなし' %>
-            <% end %>
+              <% reporter = restaurant.latest_comment.user.nickname %>
+              <% if ((Time.zone.now - restaurant.latest_comment.updated_at).to_i <= 3600) %>
+                <% comment_time = sec2h((Time.zone.now - restaurant.latest_comment.updated_at).to_i).to_s + '前' %>
+              <% else %>
+                <% # comment_time = restaurant.latest_comment.updated_at.strftime("%Y年%m月%d日 %H時%M分") %>
+                <% comment_time = restaurant.latest_comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
+              <% end %>
+              <% if restaurant.latest_comment.comment.present? %>
+                <% last_comment = restaurant.latest_comment.comment %>
+              <% else %>
+                <% last_comment = '最新コメントなし' %>
+              <% end %>
             <% end %>
 
             <div class="commenter-part icon_round">
@@ -57,13 +57,13 @@
               <p><%= last_comment %></p>
             <% end %>
             </div>
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="left">
-                <%= link_to 'コメントログへ', {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }, :class => "comment_log_link" %>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="right">
-                <p class="comment_time"><%= comment_time %></p>
-              </div>
+            <div>
+              <section class="col-xs-8 col-sm-8 col-md-6 col-lg-6" style="padding-left:0px; padding-right:0px;">
+                <%= comment_time %>
+              </section>
+              <section class="col-xs-4 col-sm-4 col-md-6 col-lg-6" style="padding-left:0px; padding-right:0px;">
+                <%= link_to '過去ログへ', {:controller => "restaurants", :action => "comment_log", :restaurant_id => restaurant.id }, :class => "comment_log_link" %>
+              </section>
             </div>
           </div>
         </article>
