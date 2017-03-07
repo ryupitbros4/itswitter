@@ -1,46 +1,55 @@
 <%= render '/flash_msg2' %>
+
 <div class="jumbotron">
-  <h2>私たちに飲食店を教えてください。</h2>
+  <h3>私たちに飲食店を教えて下さい。</h3>
 </div>
 
-<%= form_for @demand, url:demands_new_path do |f| %>
-<div>
-  <%= f.label "店名" %><span class="text-danger">(必須)</span>
-  <%= f.text_field :demand_restaurant, class:'form-control' %>
-</div>
+<section class="contents">
+  <%= form_for @demand, url:demands_new_path do |f| %>
+    <div>
+      <%= f.label "登録して欲しいお店" %><span class="text-danger">(必須)</span>
+      <%= f.text_field :demand_restaurant, class:'form-control' %>
+    </div>
 
-<br>
+    <div class="form-group">
+      <%= f.label "伝えたい思いをどうぞ！"%><span class="text-danger">(任意)</span>
+      <%= f.text_area :free, rows:10, class:'form-control' %>
+    </div>
 
-<div class="form-group">
-  <%= f.label "伝えたい思いをどうぞ！"%>
-  <br>
-  <%= f.text_area :free, rows:10, class:'form-control' %>
-</div>  
-<div>
-  <%= f.submit "登録",data: { disable_with: '送信中'}, class: 'btn btn-primary' %>
-  </div>
+    <div>
+      <%= f.submit "登録",data: { disable_with: '送信中'}, class: 'btn btn-primary btn-block' %>
+    </div>
   <% end %>
 
-<hr>
+</section>
 
-<div class="panel panel-success">
-<div class="panel-heading"><center><h1 style="color: black;">追加待ちの飲食店(追加済みの飲食店は<%= link_to 'こちら', approved_demands_path %>)</h1></center></div> 
-<div class="panel-body">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th class="col-md-4">店名</th>
-      <th class="col-md-8">伝えたい思い</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @demands.each do |demand| %>
-    <tr>
-      <td class="col-md-4"><%= demand.demand_restaurant %></td> 
-      <td class="col-md-8" style="word-wrap:break-word;"><%= demand.free %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-</div>
+<section class="contents">
+  <div class="panel panel-success">
+
+    <div class="panel-heading">
+      <center>
+        <h3 style="color: black;">追加待ちの飲食店<br>(追加済みの飲食店は<%= link_to 'こちら', approved_demands_path %>)</h3>
+      </center>
+    </div>
+ 
+    <div class="panel-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-4">店名</th>
+            <th class="col-md-8">伝えたい思い</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @demands.each do |demand| %>
+            <tr>
+              <td class="col-md-4"><%= demand.demand_restaurant %></td> 
+              <td class="col-md-8" style="word-wrap:break-word;"><%= demand.free %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
