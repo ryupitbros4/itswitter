@@ -58,15 +58,14 @@
       </div>
       <div id="collapse3" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading3">
         <div class="panel-body">
-          <p>Suitellではログインする事で、アプリ上のすべての機能を使うことが出来ます。ログインはトップページの左上にあるログインボタンから行うことが出来ます。ログイン状態になると、あなたのアカウント名と現在のポイントが左上に表示されます。</p>
-	  
-	  
+          <p>Suitellではtwitterアカウントでログインする事で、アプリ上のすべての機能を使うことが出来ます。ログインはトップページの左上にあるログインボタンから行うことが出来ます。ログイン状態になると、あなたのアカウント名と現在のポイントが左上に表示されます。※ログインしなくても混雑状況を知る機能は使えます。</p>
+
 	  <div align="center">
-            <%= image_tag("treatment_png/login_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/login-1.png", :id => "explain") %>
           </div>
 	  <br>
 	  <div align="center">
-	    <%= image_tag("treatment_png/login_exam2.png", :id => "explain") %>
+	    <%= image_tag("tukaikata/login-2.png", :id => "explain") %>
 	  </div>
 	  
         </div>
@@ -87,15 +86,11 @@
 	  <p>お店の状況は投稿された最新のものが表示されています。</p>
 	  
 	  <div align="center">
-            <%= image_tag("treatment_png/search_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/mise-card.png", :id => "explain") %>
           </div>
 	  
 	  <br>
-	  <p>また、特定のお店を調べたいときは画面中央の検索バーにお店の名前を入れてください。検索結果より該当するお店の情報を確認出来ます。</p>
-	  
-	  <div align="center">
-            <%= image_tag("treatment_png/search_exam2.png", :id => "explain") %>
-          </div>
+	  <p>また、特定のお店を調べたいときはTopページの検索バーにお店の名前を入れてください。検索結果より該当するお店の情報を確認出来ます。</p>
 	  
         </div>
       </div>
@@ -111,10 +106,10 @@
       </div>
       <div id="collapse5" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading5">
         <div class="panel-body">
-	  <p> お店カードに表示されている吹き出しの中のコメント部分をクリックすると、そのお店に対して投稿された情報の一覧が表示されたページに行くことが出来ます。</p>
+	  <p> お店カードに表示されているコメント部分(ここでは「今、すいてる!」)をクリックすると、そのお店に対して投稿された情報の一覧が表示されたページに行くことが出来ます。</p>
 	  
 	  <div align="center">
-            <%= image_tag("treatment_png/info_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/komi-log.png", :id => "explain") %>
           </div>
 	  
         </div>
@@ -133,16 +128,16 @@
       <div id="collapse6" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading6">
         <div class="panel-body">
 	  
-          <p>あなたが気になったコメントや、あなたの役に立った情報にはいいねをしましょう。コメントログページのコメントの下にあるいいねボタンを押すことでいいねを相手に送ることが出来ます。</p>
+          <p>あなたが気になったコメントや、あなたの役に立った情報にはいいねをしましょう。お店カードやコメントログページのいいね!ボタンを押すことでいいねを相手に送ることが出来ます。
 	  <div align="center">
-            <%= image_tag("treatment_png/like_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/no-iine.png", :id => "explain") %>
           </div>
 	  
 	  <br>
 	  
 	  <p>いいねは一つの情報に対して一度だけ送ることが出来ます。また、間違っていいねをしてしまった場合やいいねを取り消したい場合は、いいね取り消しボタンをクリックすることで取り消すことが出来ます。</p>
 	  <div align="center">
-            <%= image_tag("treatment_png/like_exam2.png", :id => "explain") %>
+            <%= image_tag("tukaikata/yes-iine.png", :id => "explain") %>
           </div>
 	  
         </div>
@@ -162,32 +157,21 @@
 	  
           <p>下のメニューバーのTellアイコンから行くことができます。ここでの手順は</p>
 	  <ol>
-	    <li>お店を選択する(必須)</li>
+	    <li>混雑状況を伝えたいお店を検索して、検索店舗一覧から選択します。</li>
 	    <div align="center">
-            <%= image_tag("treatment_png/select_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/tell-kensaku.png", :id => "explain") %>
             </div>
 	    
-	    <li>お店の今の状況に近いと思われるアイコンを1つ選択(必須)</li>
+	    <li>お店の今の状況に近いと思われるアイコンを1つ選択します。(必須)</li>
+	    <li>お店の情報に関するコメントをします。(任意)</li>
+            <li>伝えるボタンを押します。</li>
+	  <p>また、一度投稿すると3分間新たな投稿はできなくなります。</p>
 	    <div align="center">
-            <%= image_tag("treatment_png/select_exam2.png", :id => "explain") %>
+            <%= image_tag("tukaikata/komi-sentaku.png", :id => "explain") %>
             </div>
-	    
-	    <li>お店の情報に関するコメントをする。(任意)</li>
-	      <p>このコメントは詳しい混雑状況から、割引してるよ！と言った情報までなんでも好きなことを書いてください</p>
-	      <div align="center">
-		<%= image_tag("treatment_png/select_exam3.png", :id => "explain") %>
-              </div>
-
-	      
-	    <li>伝えるボタンを押す</li>
-	      <p>伝えるボタンを押すとコメントログページへ移動し、あなたの投稿を確認することが出来ます。</p>
-	      <div align="center">
-		<%= image_tag("treatment_png/select_exam4.png", :id => "explain") %>
-              </div>
-
 	      
 	  </ol>
-	  <p>また、一度投稿すると3分間新たな投稿はできなくなります。</p>
+
         </div>
       </div>
     </div>
@@ -202,8 +186,8 @@
       </div>
       <div id="collapse8" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading8">
         <div class="panel-body">
-          <p>ポイントは「混雑状況を伝える」「誰かの情報に対してイイねを押す」この2つの行動で加算されていきます。</p>
-	  <p>加算されるポイント数は、混雑状況を伝えた場合は10p、他ユーザーに対してイイねした場合は1p、あなたの投稿が誰かにイイねされた場合は2pとなっています。</p>
+          <p>ポイントは「混雑状況を伝える」「誰かの情報に対していいねを押す」この2つの行動で加算されていきます。</p>
+	  <p>加算されるポイント数は、混雑状況を伝えた場合は10p、他ユーザーに対していいねした場合は1p、あなたの投稿が誰かにいいねされた場合は2pとなっています。</p>
         </div>
       </div>
     </div>
@@ -218,9 +202,9 @@
       </div>
       <div id="collapse9" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading9">
         <div class="panel-body">
-          <p>検索した時に該当するお店がない場合、「お店をリクエストする」ボタンからそのお店を申請することが出来ます。申請ページでは、申請中のお店が下にログとして表示され、お店がSuitellに追加されると実際に検索することが可能になります。</p>	  
+          <p>検索した時に該当するお店がない場合、「お店をリクエストする」ボタンからそのお店を申請することが出来ます。</p>
 	  <div align="center">
-            <%= image_tag("treatment_png/request_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/request.png", :id => "explain") %>
             </div>
 
         </div>
@@ -237,9 +221,9 @@
       </div>
       <div id="collapse10" class="panel-collpase collapse" role="tabpanel" aria-labelledby="heading10">
         <div class="panel-body">
-          <p>このサービスを使っている時に不便に感じたり、不具合を発見したり、はたまたこんな機能欲しい！と感じた時は、右上の「ご意見」ボタンから要望をお伝え下さい。このアプリはまだテスト版ですので、あなたのご意見をお待ちしております。</p>
+          <p>このサービスを使っている時に不便に感じたり、不具合を発見したり、はたまたこんな機能欲しい！と感じた時は、「ご意見」ボタンから要望をお伝え下さい。このアプリはまだテスト版ですので、あなたのご意見をお待ちしております。</p>
 	  <div align="center">
-            <%= image_tag("treatment_png/opinion_exam.png", :id => "explain") %>
+            <%= image_tag("tukaikata/goiken.png", :id => "explain") %>
             </div>
 
         </div>
