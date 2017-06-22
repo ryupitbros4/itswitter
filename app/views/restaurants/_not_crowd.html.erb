@@ -106,7 +106,14 @@
             </td>
 -->
           <% else %>
-	    <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;<%= link_to last_comment.truncate(23), :action => "comment_log", :controller => "restaurants", :restaurant_id => ranking.id %>
+	    <td colspan="3" class="col-md-10" style="word-wrap:break-word;" bgcolor="#FFFFFF"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;
+
+<!-- 修正2017/6/22-->
+            <% if last_comment != 'コメント無し' %>
+               <%= link_to last_comment.truncate(23), :controller => "restaurants", :action => "comment_log", :restaurant_id => ranking.id %>
+            <% else %>
+                <%= last_comment %>
+            <% end %>
 
 <!--
 	    <% if (!(ranking.latest_comment.blank?) && !(session[:user_id].blank?) && (ranking.latest_comment.user_id != session[:user_id]))  %>
